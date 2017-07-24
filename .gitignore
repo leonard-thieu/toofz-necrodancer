@@ -3,13 +3,13 @@
 
 *.pubxml
 bower_components/
+toofz.NecroDancer.Web.Api/Scripts/
 toofz.NecroDancer.WebClient/css/**/*.css
 toofz.NecroDancer.WebClient/css/**/*.css.map
 toofz.NecroDancer.WebClient/**/*.js
 toofz.NecroDancer.WebClient/**/*.js.map
 !toofz.NecroDancer.WebClient/lib/**/*.js
 toofz.NecroDancer.WebClient/coverage/
-toofz.NecroDancer.WebClient/instrumented/
 
 # User-specific files
 *.suo
