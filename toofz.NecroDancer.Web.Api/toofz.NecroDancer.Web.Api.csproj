@@ -202,13 +202,8 @@
     <Content Include="favicon-96x96.png">
       <DependentUpon>favicon.ico</DependentUpon>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HttpStatusCodes.cshtml" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="manifest.json">
       <DependentUpon>favicon.ico</DependentUpon>
     </Content>
