@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?define ServiceName="toofz Leaderboard Service"?>
+<?define Description="Provides Steam leaderboard data."?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Fragment>
+        <ComponentGroup Id="LeaderboardService" Directory="APPLICATIONFOLDER" Source="$(var.toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate.TargetDir)">
+            <Component Id="LeaderboardUpdate.exe" Guid="{DB1A43A6-B280-4A59-ACD6-3A416F628F6A}">
+                <File Id="LeaderboardUpdate.exe" KeyPath="yes" Name="LeaderboardUpdate.exe" />
+
+                <ServiceInstall Id="SI_LeaderboardService"
+                                Type="ownProcess"
+                                Name="$(var.ServiceName)"
+                                DisplayName="$(var.ServiceName)"
+                                Description="$(var.Description)"
+                                Start="auto"
+                                ErrorControl="normal">
+                    <util:ServiceConfig ServiceName="$(var.ServiceName)"
+                                        FirstFailureActionType="restart"
+                                        SecondFailureActionType="restart"
+                                        ThirdFailureActionType="restart"
+                                        RestartServiceDelayInSeconds="60"/>
+                </ServiceInstall>
+
+                <ServiceControl Id="SC_LeaderboardService" Name="$(var.ServiceName)"
+                                Start="install" Stop="both" Remove="uninstall"
+                                Wait="yes"/>
+            </Component>
+
+            <Component Id="leaderboard.settings.json" Guid="{BA20E039-F076-4934-97CF-B0617AC4963F}">
+                <File Id="leaderboard.settings.json" KeyPath="yes" Name="leaderboard-settings.json" />
+            </Component>
+
+            <Component Id="leaderboard.log.config" Guid="{1E615FFF-CABD-49B7-89E0-C202EC5D9F5C}">
+                <File Id="leaderboard.log.config" KeyPath="yes" Name="leaderboard-log.config" />
+            </Component>
+            
+            <Component Id="LeaderboardUpdate.exe.config" Guid="{D3D8F109-8C06-4366-9921-EC66B41895F2}">
+                <File Id="LeaderboardUpdate.exe.config" KeyPath="yes" Name="LeaderboardUpdate.exe.config" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

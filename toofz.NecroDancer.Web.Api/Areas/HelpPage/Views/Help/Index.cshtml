@@ -1,0 +1,118 @@
+@using toofz.NecroDancer.Web.Api
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel
+@model Collection<ApiDescription>
+@{
+    const string InlineCodeCssClasses = "hljs hljs-string";
+    const string ValidationErrors = @"{
+  ""message"": ""The request is invalid."",
+  ""modelState"": {
+    ""leaderboard.Seed"": [
+      ""The Seed field is required.""
+    ]
+  }
+}";
+    const string OtherErrors = @"{
+  ""message"": ""The request is invalid.""
+}";
+    string TokenEndpoint = "https://api.toofz.com/token";
+    string TokenExample = $@"var loginData = new Dictionary<string, string>
+{{
+    {{ ""grant_type"", ""password"" }},
+    {{ ""userName"", ""MyUserName"" }},
+    {{ ""password"", ""MyPassword"" }},
+}};
+var content = new FormUrlEncodedContent(loginData);
+
+HttpResponseMessage response = await PostAsync(""{TokenEndpoint}"", content);";
+    const string TokenResponse = @"{
+  ""access_token"": ""imSXTs2OqSrGWzsFQhIXziFCO3rF..."",
+  ""token_type"": ""bearer"",
+  ""expires_in"": 1209599,
+  ""userName"": ""alice@example.com"",
+  "".issued"": ""Wed, 01 Oct 2014 01:22:33 GMT"",
+  "".expires"": ""Wed, 15 Oct 2014 01:22:33 GMT""
+}";
+    const string AuthenticatedRequest = @"protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+{
+    request.Headers.Authorization = new AuthenticationHeaderValue(""Bearer"", ""imSXTs2OqSrGWzsFQhIXziFCO3rF..."");
+    return base.SendAsync(request, cancellationToken);
+}";
+
+    // Group APIs by controller
+    var lookup = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+    var apiGroups = lookup.OrderBy(api => ViewBag.DisplayOrder.ContainsKey(api.Key.ControllerType) ?
+        ViewBag.DisplayOrder[api.Key.ControllerType] : int.MaxValue);
+}
+
+<header class="help-page">
+    <div class="content-wrapper">
+        <div class="float-left">
+            <h1>@Constants.SiteName Documentation</h1>
+        </div>
+    </div>
+</header>
+<div id="body" class="help-page">
+    <section class="featured">
+        <div class="content-wrapper">
+            <h2 id="overview">Overview</h2>
+            <p>
+                The toofz API provides an interface for <a href="http://necrodancer.com/">Crypt of the NecroDancer</a> related data. This includes
+                Steam leaderboards and item and enemy info. Steam leaderboard data pulls from <a href="https://partner.steamgames.com/documentation/community_data">Steam Community Data</a>
+                and <a href="https://steamcommunity.com/dev">Steam Web API</a>. Item and enemy information is parsed from Crypt of the NecroDancer files.
+            </p>
+            <p>
+                If you have any questions, requests, or comments regarding the API, please contact me via <a href="https://twitter.com/Mendayen">Twitter</a>.
+            </p>
+
+            <h2 id="media-types">Media Types</h2>
+            <p>
+                The API supports the following media types:
+                <code class="@InlineCodeCssClasses">application/json</code>,
+                <code class="@InlineCodeCssClasses">text/json</code>,
+                <code class="@InlineCodeCssClasses">application/x-www-form-urlencoded</code> (requests).
+            </p>
+            <p>
+                The recommended media type is: <code class="@InlineCodeCssClasses">application/json</code>.
+            </p>
+
+            <h2 id="errors">Errors</h2>
+            <p>
+                Error responses are returned in the following formats with a corresponding status code.
+            </p>
+            <h4>General</h4>
+            <pre><code>@OtherErrors</code></pre>
+            <h4>Validation errors</h4>
+            <pre><code>@ValidationErrors</code></pre>
+
+            <h2 id="authentication">Authentication</h2>
+            <p>
+                Some API methods require authentication.
+            </p>
+            <p>
+                Authentication is implemented via OAuth 2.0 using the Password Credentials Flow. Examples are in C#.
+            </p>
+            <h4>Getting an access token</h4>
+            <p>
+                The token endpoint is <code class="@InlineCodeCssClasses">@TokenEndpoint</code>.
+            </p>
+            <pre><code>@TokenExample</code></pre>
+            <p>
+                You'll receive a response with the access token.
+            </p>
+            <pre><code>@TokenResponse</code></pre>
+            <h4>Sending authenticated requests</h4>
+            <p>
+                Send requests by including your access token in the authorization header.
+            </p>
+            <pre><code>Authorization: Bearer imSXTs2OqSrGWzsFQhIXziFCO3rF...</code></pre>
+            <pre><code>@AuthenticatedRequest</code></pre>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        @foreach (var group in apiGroups)
+        {
+            @Html.DisplayFor(m => group, "ApiGroup")
+        }
+    </section>
+</div>

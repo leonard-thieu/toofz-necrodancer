@@ -1,0 +1,18 @@
+﻿@import 'variables';
+
+.currency {
+    padding-right: 18px !important;
+    background: none no-repeat scroll right center transparent;
+}
+
+.coin {
+    background-image: url('#{$blob-storage}/currency/coin.png');
+}
+
+.diamond {
+    background-image: url('#{$blob-storage}/currency/diamond.png');
+}
+
+.heart {
+    background-image: url('#{$blob-storage}/currency/heart-small.png');
+}

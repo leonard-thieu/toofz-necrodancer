@@ -1,0 +1,6 @@
+﻿{
+  "UpdateInterval": 30,
+  "ApiUserNameEnvVar": "PlayersUserName",
+  "ApiPasswordEnvVar": "PlayersPassword",
+  "PlayersPerUpdate": 500
+}

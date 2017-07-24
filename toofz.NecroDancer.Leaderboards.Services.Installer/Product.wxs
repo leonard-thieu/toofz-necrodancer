@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?define Name="toofz Leaderboard Services"?>
+<?define Manufacturer="toofz"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" Language="1033"
+             Name="$(var.Name)"
+             Version="$(var.Version)"
+             Manufacturer="$(var.Manufacturer)"
+             UpgradeCode="{72E961D6-BFD3-4D05-8AB4-7336FA6E932B}">
+        <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"
+                 Manufacturer="$(var.Manufacturer)"/>
+
+        <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed."
+                      Schedule="afterInstallExecute"/>
+
+        <MediaTemplate EmbedCab="yes"/>
+
+        <!-- Features -->
+        <Feature Id="LeaderboardService" Title="Leaderboard Service" Level="1">
+            <ComponentGroupRef Id="LeaderboardService"/>
+        </Feature>
+        <Feature Id="PlayerService" Title="Player Service" Level="1">
+            <ComponentGroupRef Id="PlayerService"/>
+        </Feature>
+        <Feature Id="ReplayService" Title="Replay Service" Level="1">
+            <ComponentGroupRef Id="ReplayService"/>
+        </Feature>
+        <Feature Id="CommonFiles" Title="Common Files" Level="1" Absent="disallow">
+            <ComponentGroupRef Id="CommonFiles"/>
+        </Feature>
+
+        <UIRef Id="UnwelcomingFeatureTree"/>
+    </Product>
+
+    <!-- Directory structure -->
+    <Fragment>
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="APPLICATIONFOLDER" Name="$(var.Name)"/>
+            </Directory>
+        </Directory>
+    </Fragment>
+</Wix>

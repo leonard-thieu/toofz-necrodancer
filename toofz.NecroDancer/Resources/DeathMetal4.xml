@@ -1,0 +1,229 @@
+<?xml?>
+<dungeon character="-1" name="BOSSES" numLevels="1">
+    <level bossNum="19" music="0" num="1">
+        <tiles>
+            <tile cracked="0" torch="0" type="109" x="-6" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-6" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-6" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-6" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-6" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-6" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-6" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-6" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-6" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-6" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-6" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-5" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-5" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-5" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-5" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-5" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-5" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-5" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-5" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-5" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-5" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-5" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-4" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-4" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-4" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-4" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-4" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-4" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-4" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-4" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-4" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-4" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-4" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-3" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-3" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-3" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-3" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-3" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-3" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-3" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-3" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-3" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-3" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-3" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-3" y="-3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-3" y="-2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-3" y="-1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-3" y="0" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-3" y="1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-3" y="2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-3" y="3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-2" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="1" type="109" x="-2" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-2" y="-5" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-2" y="-4" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-2" y="-3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="-2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="-1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="0" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-2" y="2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-2" y="3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-1" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="0" type="103" x="-1" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-5" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-4" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="-2" zone="4"></tile>
+            <tile cracked="0" torch="1" type="109" x="-1" y="-1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="0" zone="4"></tile>
+            <tile cracked="0" torch="1" type="109" x="-1" y="1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="-1" y="2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="-1" y="3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="0" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="0" type="103" x="0" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-5" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-4" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="-1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="0" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="0" y="2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="0" y="3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="1" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="0" type="103" x="1" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-5" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-4" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="-2" zone="4"></tile>
+            <tile cracked="0" torch="1" type="109" x="1" y="-1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="0" zone="4"></tile>
+            <tile cracked="0" torch="1" type="109" x="1" y="1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="1" y="2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="1" y="3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="2" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="1" type="109" x="2" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="2" y="-5" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="2" y="-4" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="2" y="-3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="-2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="-1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="0" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="2" y="2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="2" y="3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="3" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="3" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="3" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="3" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="3" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="3" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="3" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="3" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="3" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="3" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="3" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="3" y="-3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="3" y="-2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="3" y="-1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="3" y="0" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="3" y="1" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="3" y="2" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="3" y="3" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="4" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="4" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="4" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="4" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="4" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="4" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="4" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="4" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="4" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="4" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="4" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="5" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="5" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="5" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="5" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="5" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="5" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="5" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="5" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="5" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="14" x="5" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="5" y="-6" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="6" y="-16" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="6" y="-15" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="6" y="-14" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="6" y="-13" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="6" y="-12" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="6" y="-11" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="6" y="-10" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="6" y="-9" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="6" y="-8" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="6" y="-7" zone="4"></tile>
+            <tile cracked="0" torch="0" type="109" x="6" y="-6" zone="4"></tile>
+        </tiles>
+        <traps>
+            <trap subtype="8" type="1" x="-4" y="-11"></trap>
+            <trap subtype="8" type="1" x="4" y="-11"></trap>
+            <trap subtype="8" type="1" x="0" y="-14"></trap>
+            <trap subtype="8" type="1" x="-4" y="-14"></trap>
+            <trap subtype="8" type="1" x="4" y="-14"></trap>
+            <trap subtype="8" type="1" x="-4" y="-8"></trap>
+            <trap subtype="8" type="1" x="4" y="-8"></trap>
+        </traps>
+        <enemies>
+            <enemy beatDelay="1" lord="0" type="0" x="0" y="-11"></enemy>
+            <enemy beatDelay="1" lord="0" type="319" x="-2" y="-15"></enemy>
+            <enemy beatDelay="1" lord="0" type="320" x="2" y="-15"></enemy>
+            <enemy beatDelay="1" lord="0" type="320" x="-2" y="-9"></enemy>
+            <enemy beatDelay="1" lord="0" type="319" x="4" y="-9"></enemy>
+        </enemies>
+        <items></items>
+        <chests></chests>
+        <crates></crates>
+        <shrines></shrines>
+    </level>
+</dungeon>

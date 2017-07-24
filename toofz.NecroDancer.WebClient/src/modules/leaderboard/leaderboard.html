@@ -1,0 +1,104 @@
+<h3>{{::$ctrl.title}}</h3>
+
+<div class="row"
+     ng-switch="::$ctrl.data.leaderboard.run">
+    <table class="table table-striped table-hover nowrap dt-responsive" cellspacing="0" width="100%"
+           ng-switch-when="score|seeded-score" ng-switch-when-separator="|">
+        <thead>
+            <tr>
+                <th class="text-center">Rank</th>
+                <th class="text-center">Player</th>
+                <th class="text-center">Coins</th>
+                <th class="text-center">Level</th>
+                <th class="text-center">Killed by</th>
+            </tr>
+        </thead>
+
+        <tbody class="text-muted text-center">
+            <tr ng-repeat="item in ::$ctrl.data.entries"
+                ng-class="::{ warning: item.player.id === $ctrl.playerEntry.player.id }">
+                <td>{{::item.rank}}</td>
+                <td>
+                    <a ng-if="::item.player.display_name" ui-sref="root.player({ id: item.player.id, slug: item.player.slug })">{{::item.player.display_name}}</a>
+                    <a ng-if="::!item.player.display_name" ui-sref="root.player({ id: item.player.id })" class="text-muted">
+                        <small>{{::item.player.id}}</small>
+                    </a>
+                </td>
+                <td>
+                    <span class="currency coin">{{::item.score}}</span>
+                </td>
+                <td>{{::item.end | end}}</td>
+                <td>{{::item.killed_by | killedBy | titlecase}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-striped table-hover nowrap dt-responsive" cellspacing="0" width="100%"
+           ng-switch-when="deathless">
+        <thead>
+            <tr>
+                <th class="text-center">Rank</th>
+                <th class="text-center">Player</th>
+                <th class="text-center">Wins</th>
+                <th class="text-center">Level</th>
+                <th class="text-center">Killed by</th>
+            </tr>
+        </thead>
+
+        <tbody class="text-muted text-center">
+            <tr ng-repeat="item in $ctrl.data.entries"
+                ng-class="::{ warning: item.player.id === $ctrl.playerEntry.player.id }">
+                <td>{{::item.rank}}</td>
+                <td>
+                    <a ng-if="::item.player.display_name" ui-sref="root.player({ id: item.player.id, slug: item.player.slug })">{{::item.player.display_name}}</a>
+                    <a ng-if="::!item.player.display_name" ui-sref="root.player({ id: item.player.id })" class="text-muted">
+                        <small>{{::item.player.id}}</small>
+                    </a>
+                </td>
+                <td>{{::item.score | wins}}</td>
+                <td>{{::item.end | end}}</td>
+                <td>{{::item.killed_by | killedBy | titlecase}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-striped table-hover nowrap dt-responsive" cellspacing="0" width="100%"
+           ng-switch-when="speed|seeded-speed" ng-switch-when-separator="|">
+        <thead>
+            <tr>
+                <th class="text-center">Rank</th>
+                <th class="text-center">Player</th>
+                <th class="text-center">Time</th>
+            </tr>
+        </thead>
+
+        <tbody class="text-muted text-center">
+            <tr ng-repeat="item in $ctrl.data.entries"
+                ng-class="::{ warning: item.player.id === $ctrl.playerEntry.player.id }">
+                <td>{{::item.rank}}</td>
+                <td>
+                    <a ng-if="item.player.display_name" ui-sref="root.player({ id: item.player.id, slug: item.player.slug })">{{::item.player.display_name}}</a>
+                    <a ng-if="!item.player.display_name" ui-sref="root.player({ id: item.player.id })" class="text-muted">
+                        <small>{{::item.player.id}}</small>
+                    </a>
+                </td>
+                <td>{{::item.score | time | duration}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<nd-pagination class="row" data="::$ctrl.records"></nd-pagination>
+
+<footer class="last-update">
+    <div ng-if="::$ctrl.data.leaderboard.updated_at" class="text-muted">
+        Last Update:
+        <time class="timeago"
+              datetime="{{::$ctrl.data.leaderboard.updated_at}}"
+              title="{{::$ctrl.data.leaderboard.updated_at}}"
+              data-livestamp="{{::$ctrl.data.leaderboard.updated_at}}"></time>
+    </div>
+    <div>
+        <a href="http://steampowered.com">Powered by Steam</a>
+    </div>
+</footer>

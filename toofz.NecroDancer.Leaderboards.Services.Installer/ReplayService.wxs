@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?define ServiceName="toofz Replay Service"?>
+<?define Description="Provides Steam replay data."?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Fragment>
+        <ComponentGroup Id="ReplayService" Directory="APPLICATIONFOLDER" Source="$(var.toofz.NecroDancer.Leaderboards.Services.ReplayUpdate.TargetDir)">
+            <Component Id="ReplayUpdate.exe" Guid="{0D25C008-D8A0-4C60-BEC5-93599E083D95}">
+                <File Id="ReplayUpdate.exe" KeyPath="yes" Name="ReplayUpdate.exe" />
+
+                <ServiceInstall Id="SI_ReplayService"
+                                Type="ownProcess"
+                                Name="$(var.ServiceName)"
+                                DisplayName="$(var.ServiceName)"
+                                Description="$(var.Description)"
+                                Start="auto"
+                                ErrorControl="normal">
+                    <util:ServiceConfig ServiceName="$(var.ServiceName)"
+                                        FirstFailureActionType="restart"
+                                        SecondFailureActionType="restart"
+                                        ThirdFailureActionType="restart"
+                                        RestartServiceDelayInSeconds="60"/>
+                </ServiceInstall>
+
+                <ServiceControl Id="SC_ReplayService" Name="$(var.ServiceName)"
+                                Start="install" Stop="both" Remove="uninstall"
+                                Wait="yes"/>
+            </Component>
+            
+            <Component Id="replay.settings.json" Guid="{263D2A7B-13D4-40AF-8A69-149422F1EEF6}">
+                <File Id="replay.settings.json" KeyPath="yes" Name="replay-settings.json" />
+            </Component>
+
+            <Component Id="replay.log.config" Guid="{668EEAF0-8A35-4EF5-91F5-B09D1A47C3E8}">
+                <File Id="replay.log.config" KeyPath="yes" Name="replay-log.config" />
+            </Component>
+            
+            <Component Id="ReplayUpdate.exe.config" Guid="{E2BB2F2B-BAA7-40A3-8C61-B28A775072F1}">
+                <File Id="ReplayUpdate.exe.config" KeyPath="yes" Name="ReplayUpdate.exe.config" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

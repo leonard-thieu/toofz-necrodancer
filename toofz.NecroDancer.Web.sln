@@ -1,0 +1,140 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards", "toofz.NecroDancer.Leaderboards\toofz.NecroDancer.Leaderboards.csproj", "{2B492909-63E4-4F96-898E-802EC5A37B0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Services.Common", "toofz.NecroDancer.Leaderboards.Services.Common\toofz.NecroDancer.Leaderboards.Services.Common.csproj", "{A80ACE15-8A80-4912-AED0-385CC94B3974}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "toofz.NecroDancer.Leaderboards.Services.Installer", "toofz.NecroDancer.Leaderboards.Services.Installer\toofz.NecroDancer.Leaderboards.Services.Installer.wixproj", "{6D2C403A-153A-4093-B3A1-C5A54C594AE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate", "toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate\toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate.csproj", "{1678334C-DE8C-4DC4-B493-4454BC209E18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Services.PlayerUpdate", "toofz.NecroDancer.Leaderboards.Services.PlayerUpdate\toofz.NecroDancer.Leaderboards.Services.PlayerUpdate.csproj", "{714C9B00-9392-4F2A-872C-3FE575A23D12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Services.ReplayUpdate", "toofz.NecroDancer.Leaderboards.Services.ReplayUpdate\toofz.NecroDancer.Leaderboards.Services.ReplayUpdate.csproj", "{A1DCEC28-3283-4953-BD44-105DCCBB04CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Web.ImageManager", "toofz.NecroDancer.Web.ImageManager\toofz.NecroDancer.Web.ImageManager.csproj", "{F45D62E4-2901-4169-BB2C-139E83997E23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Web.Api", "toofz.NecroDancer.Web.Api\toofz.NecroDancer.Web.Api.csproj", "{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E1862536-1291-47AB-8DF8-65C3156CB8C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CC7FC22B-EAC1-48BE-8149-9BE3DC096509}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Leaderboards", "Leaderboards", "{DF291D24-732A-49D4-9F21-33712811F79D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Web.Api.Tests", "toofz.NecroDancer.Web.Api.Tests\toofz.NecroDancer.Web.Api.Tests.csproj", "{33CC995D-FC78-4961-B54C-954FFA85B8C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Tests", "toofz.NecroDancer.Leaderboards.Tests\toofz.NecroDancer.Leaderboards.Tests.csproj", "{F091CA94-3C0C-4BE9-ACB2-01445326A7B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{26D41F1D-86A1-4DF0-8714-FEF2C21B2304}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.WebClient", "toofz.NecroDancer.WebClient\toofz.NecroDancer.WebClient.csproj", "{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Web.LoadData", "toofz.NecroDancer.Web.LoadData\toofz.NecroDancer.Web.LoadData.csproj", "{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz", "toofz\toofz.csproj", "{2E55FDB2-96BB-4C8A-B220-299BE8484593}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer", "toofz.NecroDancer\toofz.NecroDancer.csproj", "{2763F3E5-298D-4D7A-9066-A8CDA5551F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.EntityFramework", "toofz.NecroDancer.EntityFramework\toofz.NecroDancer.EntityFramework.csproj", "{74A190F2-9A35-422D-86B9-CC97710F03D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Tests", "toofz.NecroDancer.Tests\toofz.NecroDancer.Tests.csproj", "{E699F733-5F01-4ACE-AC6A-41B26F880003}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B492909-63E4-4F96-898E-802EC5A37B0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B492909-63E4-4F96-898E-802EC5A37B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B492909-63E4-4F96-898E-802EC5A37B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B492909-63E4-4F96-898E-802EC5A37B0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A80ACE15-8A80-4912-AED0-385CC94B3974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A80ACE15-8A80-4912-AED0-385CC94B3974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A80ACE15-8A80-4912-AED0-385CC94B3974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A80ACE15-8A80-4912-AED0-385CC94B3974}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D2C403A-153A-4093-B3A1-C5A54C594AE6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{6D2C403A-153A-4093-B3A1-C5A54C594AE6}.Release|Any CPU.ActiveCfg = Release|x86
+		{6D2C403A-153A-4093-B3A1-C5A54C594AE6}.Release|Any CPU.Build.0 = Release|x86
+		{1678334C-DE8C-4DC4-B493-4454BC209E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1678334C-DE8C-4DC4-B493-4454BC209E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1678334C-DE8C-4DC4-B493-4454BC209E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1678334C-DE8C-4DC4-B493-4454BC209E18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{714C9B00-9392-4F2A-872C-3FE575A23D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{714C9B00-9392-4F2A-872C-3FE575A23D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{714C9B00-9392-4F2A-872C-3FE575A23D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{714C9B00-9392-4F2A-872C-3FE575A23D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1DCEC28-3283-4953-BD44-105DCCBB04CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1DCEC28-3283-4953-BD44-105DCCBB04CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1DCEC28-3283-4953-BD44-105DCCBB04CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1DCEC28-3283-4953-BD44-105DCCBB04CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F45D62E4-2901-4169-BB2C-139E83997E23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F45D62E4-2901-4169-BB2C-139E83997E23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F45D62E4-2901-4169-BB2C-139E83997E23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F45D62E4-2901-4169-BB2C-139E83997E23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33CC995D-FC78-4961-B54C-954FFA85B8C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33CC995D-FC78-4961-B54C-954FFA85B8C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33CC995D-FC78-4961-B54C-954FFA85B8C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33CC995D-FC78-4961-B54C-954FFA85B8C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F091CA94-3C0C-4BE9-ACB2-01445326A7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F091CA94-3C0C-4BE9-ACB2-01445326A7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F091CA94-3C0C-4BE9-ACB2-01445326A7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F091CA94-3C0C-4BE9-ACB2-01445326A7B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E55FDB2-96BB-4C8A-B220-299BE8484593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E55FDB2-96BB-4C8A-B220-299BE8484593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E55FDB2-96BB-4C8A-B220-299BE8484593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E55FDB2-96BB-4C8A-B220-299BE8484593}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2763F3E5-298D-4D7A-9066-A8CDA5551F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2763F3E5-298D-4D7A-9066-A8CDA5551F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2763F3E5-298D-4D7A-9066-A8CDA5551F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2763F3E5-298D-4D7A-9066-A8CDA5551F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74A190F2-9A35-422D-86B9-CC97710F03D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74A190F2-9A35-422D-86B9-CC97710F03D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74A190F2-9A35-422D-86B9-CC97710F03D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74A190F2-9A35-422D-86B9-CC97710F03D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E699F733-5F01-4ACE-AC6A-41B26F880003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E699F733-5F01-4ACE-AC6A-41B26F880003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E699F733-5F01-4ACE-AC6A-41B26F880003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E699F733-5F01-4ACE-AC6A-41B26F880003}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2B492909-63E4-4F96-898E-802EC5A37B0F} = {DF291D24-732A-49D4-9F21-33712811F79D}
+		{A80ACE15-8A80-4912-AED0-385CC94B3974} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
+		{6D2C403A-153A-4093-B3A1-C5A54C594AE6} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
+		{1678334C-DE8C-4DC4-B493-4454BC209E18} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
+		{714C9B00-9392-4F2A-872C-3FE575A23D12} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
+		{A1DCEC28-3283-4953-BD44-105DCCBB04CE} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
+		{F45D62E4-2901-4169-BB2C-139E83997E23} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
+		{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
+		{33CC995D-FC78-4961-B54C-954FFA85B8C2} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
+		{F091CA94-3C0C-4BE9-ACB2-01445326A7B8} = {DF291D24-732A-49D4-9F21-33712811F79D}
+		{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
+		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
+		{2E55FDB2-96BB-4C8A-B220-299BE8484593} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
+		{2763F3E5-298D-4D7A-9066-A8CDA5551F76} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
+		{74A190F2-9A35-422D-86B9-CC97710F03D3} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
+		{E699F733-5F01-4ACE-AC6A-41B26F880003} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
+	EndGlobalSection
+EndGlobal

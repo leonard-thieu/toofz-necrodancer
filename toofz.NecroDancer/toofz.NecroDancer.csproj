@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2763F3E5-298D-4D7A-9066-A8CDA5551F76}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>toofz.NecroDancer</RootNamespace>
+    <AssemblyName>toofz.NecroDancer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.1.0\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="PropertyChanged, Version=2.1.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\packages\PropertyChanged.Fody.2.1.3\lib\netstandard1.0\PropertyChanged.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.XML" />
+    <Reference Include="Validar, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Validar.Fody.1.5.1\lib\dotnet\Validar.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Character.cs" />
+    <Compile Include="Data\Bouncer.cs" />
+    <Compile Include="Data\DisplayString.cs" />
+    <Compile Include="Data\Enemy.cs" />
+    <Compile Include="Data\Frame.cs" />
+    <Compile Include="Data\Item.cs" />
+    <Compile Include="Data\NecroDancerData.cs" />
+    <Compile Include="Data\OptionalStats.cs" />
+    <Compile Include="Data\Particle.cs" />
+    <Compile Include="Data\Shadow.cs" />
+    <Compile Include="Data\SpriteSheet.cs" />
+    <Compile Include="Data\Stats.cs" />
+    <Compile Include="Data\Tweens.cs" />
+    <Compile Include="Data\XmlReaderExtensions.cs" />
+    <Compile Include="Dungeons\Chest.cs" />
+    <Compile Include="Dungeons\Crate.cs" />
+    <Compile Include="Dungeons\Dungeon.cs" />
+    <Compile Include="Dungeons\DungeonService.cs" />
+    <Compile Include="Dungeons\Enemy.cs" />
+    <Compile Include="Dungeons\Entity.cs" />
+    <Compile Include="Dungeons\EntityQuadtree.cs" />
+    <Compile Include="Dungeons\Entity`1.cs" />
+    <Compile Include="Dungeons\IntegralBooleanValidator.cs" />
+    <Compile Include="Dungeons\IRuleBuilderExtensions.cs" />
+    <Compile Include="Dungeons\Item.cs" />
+    <Compile Include="Dungeons\Level.cs" />
+    <Compile Include="Dungeons\LevelCollection.cs" />
+    <Compile Include="Dungeons\LevelTemplate.cs" />
+    <Compile Include="Dungeons\Origin.cs" />
+    <Compile Include="Dungeons\QuadNode.cs" />
+    <Compile Include="Dungeons\Quadrant.cs" />
+    <Compile Include="Dungeons\Quadtree.cs" />
+    <Compile Include="Dungeons\Shrine.cs" />
+    <Compile Include="Dungeons\Tile.cs" />
+    <Compile Include="Dungeons\Trap.cs" />
+    <Compile Include="Environment.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Replays\Move.cs" />
+    <Compile Include="Replays\Header.cs" />
+    <Compile Include="Replays\Player.cs" />
+    <Compile Include="Replays\ReplayData.cs" />
+    <Compile Include="Replays\LevelData.cs" />
+    <Compile Include="Replays\ReplaySerializationReader.cs" />
+    <Compile Include="Replays\ReplaySerializationWriter.cs" />
+    <Compile Include="Replays\ReplaySerializer.cs" />
+    <Compile Include="Run.cs" />
+    <Compile Include="Saves\Game.cs" />
+    <Compile Include="Saves\SaveData.cs" />
+    <Compile Include="Saves\Npc.cs" />
+    <Compile Include="Saves\Player.cs" />
+    <Compile Include="ValidationTemplate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\KingConga1.xml" />
+    <None Include="Resources\KingConga2.xml" />
+    <None Include="Resources\KingConga3.xml" />
+    <None Include="Resources\KingConga4.xml" />
+    <None Include="Resources\CoralRiff1.xml" />
+    <None Include="Resources\CoralRiff2.xml" />
+    <None Include="Resources\CoralRiff3.xml" />
+    <None Include="Resources\CoralRiff4.xml" />
+    <None Include="Resources\DeathMetal1.xml" />
+    <None Include="Resources\DeathMetal2.xml" />
+    <None Include="Resources\DeathMetal3.xml" />
+    <None Include="Resources\DeathMetal4.xml" />
+    <None Include="Resources\DeepBlues1.xml" />
+    <None Include="Resources\DeepBlues2.xml" />
+    <None Include="Resources\DeepBlues3.xml" />
+    <None Include="Resources\DeepBlues4.xml" />
+    <None Include="Resources\Default.xml" />
+    <None Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\toofz\toofz.csproj">
+      <Project>{2e55fdb2-96bb-4c8a-b220-299be8484593}</Project>
+      <Name>toofz</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package
+                Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The
+                missing file is {0}.
+            </ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.2.1.2\build\netstandard1.0\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.1.2\build\netstandard1.0\Fody.targets'))" />
+  </Target>
+  <Import Project="..\packages\Fody.2.1.2\build\netstandard1.0\Fody.targets" Condition="Exists('..\packages\Fody.2.1.2\build\netstandard1.0\Fody.targets')" />
+</Project>

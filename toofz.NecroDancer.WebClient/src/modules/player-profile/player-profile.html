@@ -1,0 +1,67 @@
+<header class="row">
+    <div class="col-xs-12">
+        <h3 ng-if="::$ctrl.data.player.display_name">{{::$ctrl.data.player.display_name}}</h3>
+        <h4 ng-if="::!$ctrl.data.player.display_name" class="text-muted">{{::$ctrl.data.player.id}}</h4>
+    </div>
+</header>
+
+<div class="clearfix">
+    <div class="col-md-4 col-sm-6"
+         ng-repeat="leaderboardGroup in ::$ctrl.leaderboardGroups">
+        <div class="panel panel-default leaderboard-card">
+            <div class="panel-heading">
+                <h4 class="panel-title">{{::leaderboardGroup.display_name}}</h4>
+            </div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <div class="entries">
+                        <a class="list-group-item row"
+                           ng-repeat="entry in ::leaderboardGroup.entries"
+                           ng-switch="::leaderboardGroup.leaderboard.run"
+                           ui-sref="root.leaderboard({ product: entry.leaderboard.product, character: entry.leaderboard.character, run: entry.leaderboard.run, mode: entry.leaderboard.mode, id: $ctrl.data.player.id })">
+                            <div class="rank col-xs-4">{{::entry.rank | ordinal}}</div>
+                            <div class="character col-xs-5">
+                                <img ng-src="/images/characters/{{::entry.leaderboard.character}}.png"
+                                     width="30" height="30" class="character-icon">
+                                <span>{{::entry.leaderboard._character}}</span>
+                            </div>
+
+                            <div class="score col-xs-3 currency coin"
+                                 ng-switch-when="score|seeded-score" ng-switch-when-separator="|">
+                                {{::entry.score}}
+                            </div>
+                            <div class="score col-xs-3"
+                                 ng-switch-when="speed|seeded-speed" ng-switch-when-separator="|">
+                                {{::entry.score | time | duration}}
+                            </div>
+                            <div class="score col-xs-3"
+                                 ng-switch-when="deathless">
+                                {{::entry.score | wins}}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="last-update">
+    <div ng-if="::$ctrl.leaderboardGroups.updated_at">
+        Leaderboards Updated:
+        <time class="timeago"
+              datetime="{{::$ctrl.leaderboardGroups.updated_at}}"
+              title="{{::$ctrl.leaderboardGroups.updated_at}}"
+              data-livestamp="{{::$ctrl.leaderboardGroups.updated_at}}"></time>
+    </div>
+    <div ng-if="::$ctrl.data.player.updated_at">
+        Player Updated:
+        <time class="timeago"
+              datetime="{{::$ctrl.data.player.updated_at}}"
+              title="{{::$ctrl.data.player.updated_at}}"
+              data-livestamp="{{::$ctrl.data.player.updated_at}}"></time>
+    </div>
+    <div>
+        <a href="http://steampowered.com">Powered by Steam</a>
+    </div>
+</footer>

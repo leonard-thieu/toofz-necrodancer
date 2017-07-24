@@ -1,0 +1,131 @@
+﻿@import 'variables';
+
+@font-face {
+    font-family: 'Varela Round';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Varela Round'), local('VarelaRound-Regular'), url(https://fonts.gstatic.com/s/varelaround/v6/APH4jr0uSos5wiut5cpjrnhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+
+body {
+    /* Leave space for Glimpse */
+    padding-bottom: 50px;
+
+    .container footer p {
+        color: #999999;
+        font-size: 0.8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+ui-view {
+    display: block;
+}
+
+#copyright {
+    margin-right: 1em;
+}
+
+.last-update {
+    margin-top: 5px;
+    text-align: right;
+    font-size: 10px;
+}
+
+.text-highlight {
+    color: #fff;
+}
+
+.jumbotron {
+    border: none;
+}
+
+nd-search {
+    min-width: 35%;
+
+    margin: {
+        top: 4px;
+    }
+
+    .form-group,
+    .input-group {
+        width: 100%;
+    }
+}
+
+td {
+    vertical-align: middle !important;
+}
+
+.character-icon {
+    margin-left: -15px;
+    margin-top: -4px;
+}
+
+.fa-twitter {
+    &:hover,
+    &:focus {
+        text-decoration: none !important;
+    }
+}
+
+.fa-twitter:before {
+    color: #41c8f5;
+    font-size: 22px;
+}
+
+.well .well {
+    background-color: #272b30;
+}
+
+nd-pagination {
+    display: flex;
+    align-items: center;
+
+    > .summary {
+        flex: 1 1 auto;
+    }
+}
+
+$loading-bar-color: #fff;
+
+#loading-bar {
+    .bar {
+        background: $loading-bar-color;
+    }
+
+    .peg {
+        box-shadow: $loading-bar-color 1px 0 6px 1px;
+    }
+}
+
+#loading-bar-spinner .spinner-icon {
+    border-top-color: $loading-bar-color;
+    border-left-color: $loading-bar-color;
+}
+
+.typeahead {
+    height: 240px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .result {
+        display: flex;
+        align-items: center;
+
+        height: 30px;
+
+        .avatar {
+            flex: 0 0 30px;
+
+            margin-right: 10px;
+        }
+    }
+}
+
+@import 'navmenu';
+@import 'currency';
+@import "player";

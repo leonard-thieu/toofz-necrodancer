@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?define ServiceName="toofz Player Service"?>
+<?define Description="Provides Steam player data."?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Fragment>
+        <ComponentGroup Id="PlayerService" Directory="APPLICATIONFOLDER" Source="$(var.toofz.NecroDancer.Leaderboards.Services.PlayerUpdate.TargetDir)">
+            <Component Id="PlayerUpdate.exe" Guid="{1BFFB222-8BAF-429D-898E-95C97B94A9E2}">
+                <File Id="PlayerUpdate.exe" KeyPath="yes" Name="PlayerUpdate.exe" />
+
+                <ServiceInstall Id="SI_PlayerService"
+                                Type="ownProcess"
+                                Name="$(var.ServiceName)"
+                                DisplayName="$(var.ServiceName)"
+                                Description="$(var.Description)"
+                                Start="auto"
+                                ErrorControl="normal">
+                    <util:ServiceConfig ServiceName="$(var.ServiceName)"
+                                        FirstFailureActionType="restart"
+                                        SecondFailureActionType="restart"
+                                        ThirdFailureActionType="restart"
+                                        RestartServiceDelayInSeconds="60"/>
+                </ServiceInstall>
+
+                <ServiceControl Id="SC_PlayerService" Name="$(var.ServiceName)"
+                                Start="install" Stop="both" Remove="uninstall"
+                                Wait="yes"/>
+            </Component>
+
+            <Component Id="player.settings.json" Guid="{6F7F65A7-26AB-4DAC-B7BC-48CF7BBBDA99}">
+                <File Id="player.settings.json" KeyPath="yes" Name="player-settings.json" />
+            </Component>
+
+            <Component Id="player.log.config" Guid="{23378F5B-4409-4672-A3A1-008C4C9F44E3}">
+                <File Id="player.log.config" KeyPath="yes" Name="player-log.config" />
+            </Component>
+            
+            <Component Id="PlayerUpdate.exe.config" Guid="{A8146466-4375-481D-B782-EF18A6165FFD}">
+                <File Id="PlayerUpdate.exe.config" KeyPath="yes" Name="PlayerUpdate.exe.config" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>

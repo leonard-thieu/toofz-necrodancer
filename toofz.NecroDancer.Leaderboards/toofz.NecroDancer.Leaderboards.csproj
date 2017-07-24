@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B492909-63E4-4F96-898E-802EC5A37B0F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>toofz.NecroDancer.Leaderboards</RootNamespace>
+    <AssemblyName>toofz.NecroDancer.Leaderboards</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\toofz.NecroDancer.Leaderboards.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ActionProgress.cs" />
+    <Compile Include="ApiClient.cs" />
+    <Compile Include="DailyEntry.cs" />
+    <Compile Include="DailyLeaderboard.cs" />
+    <Compile Include="DataflowHelper.cs" />
+    <Compile Include="DownloadNotifier.cs" />
+    <Compile Include="EnsureSuccessHandler.cs" />
+    <Compile Include="ApiException.cs" />
+    <Compile Include="EntityFramework\DailyEntryConfiguration.cs" />
+    <Compile Include="EntityFramework\DailyLeaderboardConfiguration.cs" />
+    <Compile Include="EntityFramework\EntryConfiguration.cs" />
+    <Compile Include="EntityFramework\LeaderboardConfiguration.cs" />
+    <Compile Include="EntityFramework\LeaderboardsContext.cs" />
+    <Compile Include="EntityFramework\LeaderboardsContext.Views.cs" />
+    <Compile Include="EntityFramework\Migrations\201505261737549_InitialCreate.cs" />
+    <Compile Include="EntityFramework\Migrations\201505261737549_InitialCreate.Designer.cs">
+      <DependentUpon>201505261737549_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201505282209354_AddIndexToPlayerPersonaName.cs" />
+    <Compile Include="EntityFramework\Migrations\201505282209354_AddIndexToPlayerPersonaName.Designer.cs">
+      <DependentUpon>201505282209354_AddIndexToPlayerPersonaName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201505291322106_RemovedUnusedColumnsAndAddedConstraints.cs" />
+    <Compile Include="EntityFramework\Migrations\201505291322106_RemovedUnusedColumnsAndAddedConstraints.Designer.cs">
+      <DependentUpon>201505291322106_RemovedUnusedColumnsAndAddedConstraints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201505291414011_RestorePlayerProfileAddress.cs" />
+    <Compile Include="EntityFramework\Migrations\201505291414011_RestorePlayerProfileAddress.Designer.cs">
+      <DependentUpon>201505291414011_RestorePlayerProfileAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201506051909025_RemoveEntryIdent.cs" />
+    <Compile Include="EntityFramework\Migrations\201506051909025_RemoveEntryIdent.Designer.cs">
+      <DependentUpon>201506051909025_RemoveEntryIdent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201506061449377_RemoveLeaderboardIdentAndPlayerIdent.cs" />
+    <Compile Include="EntityFramework\Migrations\201506061449377_RemoveLeaderboardIdentAndPlayerIdent.Designer.cs">
+      <DependentUpon>201506061449377_RemoveLeaderboardIdentAndPlayerIdent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201506082009035_AlterEntryLeaderboardIdIndexWithIncludeFields.cs" />
+    <Compile Include="EntityFramework\Migrations\201506082009035_AlterEntryLeaderboardIdIndexWithIncludeFields.Designer.cs">
+      <DependentUpon>201506082009035_AlterEntryLeaderboardIdIndexWithIncludeFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201507290048260_PlayerLastUpdate.cs" />
+    <Compile Include="EntityFramework\Migrations\201507290048260_PlayerLastUpdate.Designer.cs">
+      <DependentUpon>201507290048260_PlayerLastUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508062350566_RemoveCharacterColumn.cs" />
+    <Compile Include="EntityFramework\Migrations\201508062350566_RemoveCharacterColumn.Designer.cs">
+      <DependentUpon>201508062350566_RemoveCharacterColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508070130022_RemoveRunColumn.cs" />
+    <Compile Include="EntityFramework\Migrations\201508070130022_RemoveRunColumn.Designer.cs">
+      <DependentUpon>201508070130022_RemoveRunColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508070150565_AddedLeaderboardIdColumn.cs" />
+    <Compile Include="EntityFramework\Migrations\201508070150565_AddedLeaderboardIdColumn.Designer.cs">
+      <DependentUpon>201508070150565_AddedLeaderboardIdColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508070336413_MergedLeaderboardMetadataToLeaderboard.cs" />
+    <Compile Include="EntityFramework\Migrations\201508070336413_MergedLeaderboardMetadataToLeaderboard.Designer.cs">
+      <DependentUpon>201508070336413_MergedLeaderboardMetadataToLeaderboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508082357375_RemovedStateCodeCharLimit.cs" />
+    <Compile Include="EntityFramework\Migrations\201508082357375_RemovedStateCodeCharLimit.Designer.cs">
+      <DependentUpon>201508082357375_RemovedStateCodeCharLimit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508091306400_IncreasePlayerNameLength.cs" />
+    <Compile Include="EntityFramework\Migrations\201508091306400_IncreasePlayerNameLength.Designer.cs">
+      <DependentUpon>201508091306400_IncreasePlayerNameLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508091718242_AddStateCodeMaxLength.cs" />
+    <Compile Include="EntityFramework\Migrations\201508091718242_AddStateCodeMaxLength.Designer.cs">
+      <DependentUpon>201508091718242_AddStateCodeMaxLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508112004448_RemoveAllUnusedColumns.cs" />
+    <Compile Include="EntityFramework\Migrations\201508112004448_RemoveAllUnusedColumns.Designer.cs">
+      <DependentUpon>201508112004448_RemoveAllUnusedColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508141318089_AddTotalLeaderboardEntriesColumn.cs" />
+    <Compile Include="EntityFramework\Migrations\201508141318089_AddTotalLeaderboardEntriesColumn.Designer.cs">
+      <DependentUpon>201508141318089_AddTotalLeaderboardEntriesColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508161409534_ChangeDetailsToZoneLevel.cs" />
+    <Compile Include="EntityFramework\Migrations\201508161409534_ChangeDetailsToZoneLevel.Designer.cs">
+      <DependentUpon>201508161409534_ChangeDetailsToZoneLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508242257021_AddReplaysTable.cs" />
+    <Compile Include="EntityFramework\Migrations\201508242257021_AddReplaysTable.Designer.cs">
+      <DependentUpon>201508242257021_AddReplaysTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508270222034_DropEntryPlayerRelationship.cs" />
+    <Compile Include="EntityFramework\Migrations\201508270222034_DropEntryPlayerRelationship.Designer.cs">
+      <DependentUpon>201508270222034_DropEntryPlayerRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201508270501524_AddKilledByColumn.cs" />
+    <Compile Include="EntityFramework\Migrations\201508270501524_AddKilledByColumn.Designer.cs">
+      <DependentUpon>201508270501524_AddKilledByColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201509061831068_AddIsDataValidColumn.cs" />
+    <Compile Include="EntityFramework\Migrations\201509061831068_AddIsDataValidColumn.Designer.cs">
+      <DependentUpon>201509061831068_AddIsDataValidColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201509071550476_AddVersionColumn.cs" />
+    <Compile Include="EntityFramework\Migrations\201509071550476_AddVersionColumn.Designer.cs">
+      <DependentUpon>201509071550476_AddVersionColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201509091624046_AddEnemyForeignKey.cs" />
+    <Compile Include="EntityFramework\Migrations\201509091624046_AddEnemyForeignKey.Designer.cs">
+      <DependentUpon>201509091624046_AddEnemyForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201509101639018_ChangeEnemyFKToSimpleText.cs" />
+    <Compile Include="EntityFramework\Migrations\201509101639018_ChangeEnemyFKToSimpleText.Designer.cs">
+      <DependentUpon>201509101639018_ChangeEnemyFKToSimpleText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201509101737539_RemoveVersionColumnAddLocalFileNameColumn.cs" />
+    <Compile Include="EntityFramework\Migrations\201509101737539_RemoveVersionColumnAddLocalFileNameColumn.Designer.cs">
+      <DependentUpon>201509101737539_RemoveVersionColumnAddLocalFileNameColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201509101809471_AddVersionColumn1.cs" />
+    <Compile Include="EntityFramework\Migrations\201509101809471_AddVersionColumn1.Designer.cs">
+      <DependentUpon>201509101809471_AddVersionColumn1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201512151800031_RemoveEntryFKFromReplay.cs" />
+    <Compile Include="EntityFramework\Migrations\201512151800031_RemoveEntryFKFromReplay.Designer.cs">
+      <DependentUpon>201512151800031_RemoveEntryFKFromReplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201512240357205_AddEntriesView.cs" />
+    <Compile Include="EntityFramework\Migrations\201512240357205_AddEntriesView.Designer.cs">
+      <DependentUpon>201512240357205_AddEntriesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201601110130399_FuschiaCopperPomeranian.cs" />
+    <Compile Include="EntityFramework\Migrations\201601110130399_FuschiaCopperPomeranian.Designer.cs">
+      <DependentUpon>201601110130399_FuschiaCopperPomeranian.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201601231706160_SilverLilacSquirrel.cs" />
+    <Compile Include="EntityFramework\Migrations\201601231706160_SilverLilacSquirrel.Designer.cs">
+      <DependentUpon>201601231706160_SilverLilacSquirrel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201601310207228_WhiteGladiolusSparrow.cs" />
+    <Compile Include="EntityFramework\Migrations\201601310207228_WhiteGladiolusSparrow.Designer.cs">
+      <DependentUpon>201601310207228_WhiteGladiolusSparrow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201602090125565_AquaJasmineRabbit.cs" />
+    <Compile Include="EntityFramework\Migrations\201602090125565_AquaJasmineRabbit.Designer.cs">
+      <DependentUpon>201602090125565_AquaJasmineRabbit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\201702071543572_BluePlatinumBloodhound.cs" />
+    <Compile Include="EntityFramework\Migrations\201702071543572_BluePlatinumBloodhound.Designer.cs">
+      <DependentUpon>201702071543572_BluePlatinumBloodhound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\CodeCoverageExclusions.cs">
+      <DependentUpon>CodeCoverageExclusions.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="EntityFramework\Migrations\Configuration.cs" />
+    <Compile Include="EntityFramework\PlayerConfiguration.cs" />
+    <Compile Include="EntityFramework\ReplayConfiguration.cs" />
+    <Compile Include="ICloudBlobExtensions.cs" />
+    <Compile Include="Entry.cs" />
+    <Compile Include="ExceptionRenderer.cs" />
+    <Compile Include="LeaderboardHeaders.cs" />
+    <Compile Include="LeaderboardsSteamClient.cs" />
+    <Compile Include="Migrations\201707172139340_LimeZinc﻿AfghanHound.cs" />
+    <Compile Include="Migrations\201707172139340_LimeZinc﻿AfghanHound.Designer.cs">
+      <DependentUpon>201707172139340_LimeZinc﻿AfghanHound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotifierBase.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SteamClientTransientErrorDetectionStrategy.cs" />
+    <Compile Include="SteamKitException.cs" />
+    <Compile Include="SteamTransientErrorDetectionStrategy.cs" />
+    <Compile Include="ILeaderboardsHttpClient.cs" />
+    <Compile Include="ILeaderboardsReader.cs" />
+    <Compile Include="ILeaderboardsSqlClient.cs" />
+    <Compile Include="Leaderboard.cs" />
+    <Compile Include="LeaderboardHeader.cs" />
+    <Compile Include="LeaderboardsClient.cs" />
+    <Compile Include="LeaderboardsHttpClient.cs" />
+    <Compile Include="LeaderboardsReader.cs" />
+    <Compile Include="LeaderboardsSqlClient.cs" />
+    <Compile Include="LoggingHandler.cs" />
+    <Compile Include="OAuth2AccessToken.cs" />
+    <Compile Include="OAuth2Handler.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Replay.cs" />
+    <Compile Include="ReplayContext.cs" />
+    <Compile Include="ReplayPipeline.cs" />
+    <Compile Include="SteamTransientFaultHandler.cs" />
+    <Compile Include="StoreNotifier.cs" />
+    <Compile Include="StreamPipeline.cs" />
+    <Compile Include="TextWriterExtensions.cs" />
+    <Compile Include="TransientHttpRequestException.cs" />
+    <Compile Include="TypeExtensions.cs" />
+    <Compile Include="UpdateNotifier.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.4.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.2.0.4\lib\net45\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.8.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.8.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.8.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=8.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.8.2.0\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SqlBulkUpsert, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\SqlBulkUpsert.1.0.0\lib\net45\SqlBulkUpsert.dll</HintPath>
+    </Reference>
+    <Reference Include="SteamKit2, Version=1.8.3.0, Culture=neutral, PublicKeyToken=ed3ce47ed5aad940, processorArchitecture=MSIL">
+      <HintPath>..\packages\SteamKit2.1.8.3\lib\net45\SteamKit2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.8.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="EntityFramework\Migrations\CodeCoverageExclusions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CodeCoverageExclusions.cs</LastGenOutput>
+    </Content>
+    <Content Include="leaderboard-headers.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="daily-leaderboard-headers.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\toofz.NecroDancer\toofz.NecroDancer.csproj">
+      <Project>{2763f3e5-298d-4d7a-9066-a8cda5551f76}</Project>
+      <Name>toofz.NecroDancer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\toofz\toofz.csproj">
+      <Project>{2e55fdb2-96bb-4c8a-b220-299be8484593}</Project>
+      <Name>toofz</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EntityFramework\Migrations\201505261737549_InitialCreate.resx">
+      <DependentUpon>201505261737549_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201505282209354_AddIndexToPlayerPersonaName.resx">
+      <DependentUpon>201505282209354_AddIndexToPlayerPersonaName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201505291322106_RemovedUnusedColumnsAndAddedConstraints.resx">
+      <DependentUpon>201505291322106_RemovedUnusedColumnsAndAddedConstraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201505291414011_RestorePlayerProfileAddress.resx">
+      <DependentUpon>201505291414011_RestorePlayerProfileAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201506051909025_RemoveEntryIdent.resx">
+      <DependentUpon>201506051909025_RemoveEntryIdent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201506061449377_RemoveLeaderboardIdentAndPlayerIdent.resx">
+      <DependentUpon>201506061449377_RemoveLeaderboardIdentAndPlayerIdent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201506082009035_AlterEntryLeaderboardIdIndexWithIncludeFields.resx">
+      <DependentUpon>201506082009035_AlterEntryLeaderboardIdIndexWithIncludeFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201507290048260_PlayerLastUpdate.resx">
+      <DependentUpon>201507290048260_PlayerLastUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508062350566_RemoveCharacterColumn.resx">
+      <DependentUpon>201508062350566_RemoveCharacterColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508070130022_RemoveRunColumn.resx">
+      <DependentUpon>201508070130022_RemoveRunColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508070150565_AddedLeaderboardIdColumn.resx">
+      <DependentUpon>201508070150565_AddedLeaderboardIdColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508070336413_MergedLeaderboardMetadataToLeaderboard.resx">
+      <DependentUpon>201508070336413_MergedLeaderboardMetadataToLeaderboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508082357375_RemovedStateCodeCharLimit.resx">
+      <DependentUpon>201508082357375_RemovedStateCodeCharLimit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508091306400_IncreasePlayerNameLength.resx">
+      <DependentUpon>201508091306400_IncreasePlayerNameLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508091718242_AddStateCodeMaxLength.resx">
+      <DependentUpon>201508091718242_AddStateCodeMaxLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508112004448_RemoveAllUnusedColumns.resx">
+      <DependentUpon>201508112004448_RemoveAllUnusedColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508141318089_AddTotalLeaderboardEntriesColumn.resx">
+      <DependentUpon>201508141318089_AddTotalLeaderboardEntriesColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508161409534_ChangeDetailsToZoneLevel.resx">
+      <DependentUpon>201508161409534_ChangeDetailsToZoneLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508242257021_AddReplaysTable.resx">
+      <DependentUpon>201508242257021_AddReplaysTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508270222034_DropEntryPlayerRelationship.resx">
+      <DependentUpon>201508270222034_DropEntryPlayerRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201508270501524_AddKilledByColumn.resx">
+      <DependentUpon>201508270501524_AddKilledByColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201509061831068_AddIsDataValidColumn.resx">
+      <DependentUpon>201509061831068_AddIsDataValidColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201509071550476_AddVersionColumn.resx">
+      <DependentUpon>201509071550476_AddVersionColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201509091624046_AddEnemyForeignKey.resx">
+      <DependentUpon>201509091624046_AddEnemyForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201509101639018_ChangeEnemyFKToSimpleText.resx">
+      <DependentUpon>201509101639018_ChangeEnemyFKToSimpleText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201509101737539_RemoveVersionColumnAddLocalFileNameColumn.resx">
+      <DependentUpon>201509101737539_RemoveVersionColumnAddLocalFileNameColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201509101809471_AddVersionColumn1.resx">
+      <DependentUpon>201509101809471_AddVersionColumn1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201512151800031_RemoveEntryFKFromReplay.resx">
+      <DependentUpon>201512151800031_RemoveEntryFKFromReplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201512240357205_AddEntriesView.resx">
+      <DependentUpon>201512240357205_AddEntriesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201601110130399_FuschiaCopperPomeranian.resx">
+      <DependentUpon>201601110130399_FuschiaCopperPomeranian.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201601231706160_SilverLilacSquirrel.resx">
+      <DependentUpon>201601231706160_SilverLilacSquirrel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201601310207228_WhiteGladiolusSparrow.resx">
+      <DependentUpon>201601310207228_WhiteGladiolusSparrow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201602090125565_AquaJasmineRabbit.resx">
+      <DependentUpon>201602090125565_AquaJasmineRabbit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntityFramework\Migrations\201702071543572_BluePlatinumBloodhound.resx">
+      <DependentUpon>201702071543572_BluePlatinumBloodhound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707172139340_LimeZinc﻿AfghanHound.resx">
+      <DependentUpon>201707172139340_LimeZinc﻿AfghanHound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

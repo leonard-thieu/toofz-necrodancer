@@ -1,0 +1,19 @@
+<a class="dropdown-toggle" data-toggle="dropdown">
+    {{::$ctrl.category.name}}
+    <span class="caret"></span>
+</a>
+
+<ul class="dropdown-menu multi-level">
+    <li>
+        <a ng-href="{{::$ctrl.category.path}}">{{::$ctrl.category.name}}</a>
+    </li>
+
+    <li class="divider"></li>
+
+    <li ng-repeat="category in ::$ctrl.category.categories"
+        ng-class="::{ 'dropdown-submenu': category.categories.length }">
+        <a ng-href="{{::category.path}}">{{::category.name}}</a>
+
+        <nd-submenu category="::category"></nd-submenu>
+    </li>
+</ul>

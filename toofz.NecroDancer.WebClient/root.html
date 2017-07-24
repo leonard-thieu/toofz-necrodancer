@@ -1,0 +1,30 @@
+<header>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" ui-sref="root.landing">toofz</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <nd-navbar class="nav navbar-nav" areas="$resolve.areas"></nd-navbar>
+                <nd-search class="navbar-right"></nd-search>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<ui-view class="well"></ui-view>
+
+<footer>
+    <p>
+        <span id="copyright">&#169; 2017 Leonard Thieu</span>
+        <a href="https://twitter.com/Mendayen" class="fa fa-twitter"></a>
+    </p>
+</footer>

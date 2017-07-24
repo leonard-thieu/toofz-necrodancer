@@ -1,0 +1,72 @@
+﻿.panel-default {
+    border: none;
+}
+
+.panel-body {
+    padding: {
+        top: 0;
+        bottom: 0;
+    }
+}
+
+.list-group {
+    margin-bottom: 0;
+}
+
+.list-group-item {
+    &,
+    &:focus {
+        background-color: transparent !important;
+    }
+
+    &:hover,
+    &:active {
+        background-color: #999 !important;
+        color: #434857;
+    }
+}
+
+.leaderboard-card {
+    background-color: #1e2127;
+    width: 100%;
+
+    .panel-heading,
+    .row {
+        border: 1px solid #434857;
+    }
+
+    .panel-heading {
+        color: #fff;
+    }
+
+    .entries .row {
+        .rank {
+            color: #999;
+            text-align: right;
+        }
+
+        .character {
+            color: #cfd2da;
+            white-space: nowrap;
+        }
+
+        .score {
+            color: #999;
+            text-align: right;
+        }
+
+        &:hover {
+            .rank {
+                color: #666;
+            }
+
+            .character {
+                color: #302D25;
+            }
+
+            .score {
+                color: #666;
+            }
+        }
+    }
+}
