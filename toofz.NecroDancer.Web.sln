@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.EntityFra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Tests", "toofz.NecroDancer.Tests\toofz.NecroDancer.Tests.csproj", "{E699F733-5F01-4ACE-AC6A-41B26F880003}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBulkUpsert", "SqlBulkUpsert\SqlBulkUpsert.csproj", "{56C1CEDD-D894-48C8-90F3-6262C2DCC833}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -112,6 +114,10 @@ Global
 		{E699F733-5F01-4ACE-AC6A-41B26F880003}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E699F733-5F01-4ACE-AC6A-41B26F880003}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E699F733-5F01-4ACE-AC6A-41B26F880003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C1CEDD-D894-48C8-90F3-6262C2DCC833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C1CEDD-D894-48C8-90F3-6262C2DCC833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C1CEDD-D894-48C8-90F3-6262C2DCC833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C1CEDD-D894-48C8-90F3-6262C2DCC833}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,6 +139,7 @@ Global
 		{2763F3E5-298D-4D7A-9066-A8CDA5551F76} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
 		{74A190F2-9A35-422D-86B9-CC97710F03D3} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
 		{E699F733-5F01-4ACE-AC6A-41B26F880003} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
+		{56C1CEDD-D894-48C8-90F3-6262C2DCC833} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
