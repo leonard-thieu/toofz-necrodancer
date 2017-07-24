@@ -68,4 +68,4 @@ Prepares and uploads image data from Crypt of the NecroDancer for use on the too
 
 #### [toofz.NecroDancer.Web.LoadData](toofz.NecroDancer.Web.LoadData)
 
-Parses and loads Crypt of the NecroDancer item and enemy data into a databasex.
+Parses and loads Crypt of the NecroDancer item and enemy data into a database.
