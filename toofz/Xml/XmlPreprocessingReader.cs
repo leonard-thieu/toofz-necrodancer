@@ -5,6 +5,8 @@ namespace toofz.Xml
 {
     public sealed class XmlPreprocessingReader : StreamReader
     {
+        internal const string InvalidXmlDeclaration = "<?xml?>";
+
         public XmlPreprocessingReader(string path)
             : base(path)
         {
@@ -32,7 +34,7 @@ namespace toofz.Xml
         {
             var position = (int)BaseStream.Position;
 
-            var declLength = Constants.InvalidXmlDeclaration.Length;
+            var declLength = InvalidXmlDeclaration.Length;
             var remainingLength = BaseStream.Length - BaseStream.Position;
 
             if (remainingLength >= declLength)
@@ -41,7 +43,7 @@ namespace toofz.Xml
                 ReadBlock(buffer, position, declLength);
 
                 var decl = new string(buffer);
-                BaseStream.Position = decl != Constants.InvalidXmlDeclaration ? position : position + declLength;
+                BaseStream.Position = decl != InvalidXmlDeclaration ? position : position + declLength;
             }
         }
     }

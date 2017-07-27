@@ -51,38 +51,6 @@ namespace toofz.Xml
         }
 
         /// <summary>
-        /// Reads the text content at the current position as a <typeparamref name="T" />.
-        /// </summary>
-        /// <typeparam name="T">The type that derives from <see cref="Enumeration" /> to read.</typeparam>
-        /// <param name="reader">The <see cref="XmlReader" /> to read with.</param>
-        /// <returns>The text content as a <typeparamref name="T" />.</returns>
-        public static T ReadContentAsEnumeration<T>(this XmlReader reader)
-            where T : Enumeration
-        {
-            if (reader == null)
-                throw new ArgumentNullException(nameof(reader));
-
-            return Enumeration.Parse<T>(reader.ReadContentAsString(), false);
-        }
-
-
-        /// <summary>
-        /// Reads the text content at the current position as a <typeparamref name="T" />.
-        /// </summary>
-        /// <typeparam name="T">This type must be an enum.</typeparam>
-        /// <param name="reader">The <see cref="XmlReader" /> to read with.</param>
-        /// <returns>The text content as a <typeparamref name="T" />.</returns>
-        public static T ReadContentAsEnum<T>(this XmlReader reader)
-            where T : struct
-        {
-            if (reader == null)
-                throw new ArgumentNullException(nameof(reader));
-
-            var value = reader.ReadContentAsString();
-            return (T)Enum.Parse(typeof(T), value);
-        }
-
-        /// <summary>
         /// Advances the reader until it passes an <see cref="XmlNodeType.EndElement" /> or there are no more 
         /// nodes to read.
         /// </summary>

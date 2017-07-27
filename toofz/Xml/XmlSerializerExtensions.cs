@@ -68,14 +68,5 @@ namespace toofz.Xml
 
             serializer.Serialize(xmlWriter, o, GetBlankNamespace());
         }
-
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "o", Justification = "Matches Microsoft API.")]
-        public static void SerializeWithoutNamespaces(this XmlSerializer serializer, TextWriter textWriter, object o)
-        {
-            if (serializer == null)
-                throw new ArgumentNullException(nameof(serializer));
-
-            serializer.Serialize(textWriter, o, GetBlankNamespace());
-        }
     }
 }

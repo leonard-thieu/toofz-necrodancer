@@ -31,13 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
     <Compile Include="Enumeration.cs" />
     <Compile Include="EnumerationContainerAttribute.cs" />
     <Compile Include="EnumerationTypeConverter.cs" />
     <Compile Include="FuncKeyedCollection.cs" />
-    <Compile Include="Generic\GenericExtensions.cs" />
-    <Compile Include="Extensions\ICollectionExtensions.cs" />
     <Compile Include="ObjectDumper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -52,7 +49,6 @@
     <Compile Include="Xml\XmlSequenceWriter.cs" />
     <Compile Include="Xml\XmlSerializerExtensions.cs" />
     <Compile Include="Xml\XmlWriterExtensions.cs" />
-    <Compile Include="Xml\XmlWriterFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

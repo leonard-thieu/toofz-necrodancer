@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -59,46 +58,6 @@ namespace System
             }
 
             return string.Join(" ", tokens);
-        }
-
-        public static IEnumerable<string> GetMostCommonSubstrings(this IEnumerable<string> strings)
-        {
-            if (strings == null)
-                throw new ArgumentNullException(nameof(strings));
-            if (!strings.Any())
-                throw new ArgumentException();
-
-            var allSubstrings = new List<List<string>>();
-
-            foreach (var str in strings)
-            {
-                if (string.IsNullOrEmpty(str))
-                    throw new ArgumentException();
-
-                var substrings = new List<string>();
-
-                for (int c = 0; c < str.Length - 1; c++)
-                {
-                    for (int cc = 1; c + cc <= str.Length; cc++)
-                    {
-                        var substr = str.Substring(c, cc);
-                        if (allSubstrings.Count < 1 || allSubstrings.Last().Contains(substr))
-                            substrings.Add(substr);
-                    }
-                }
-
-                allSubstrings.Add(substrings);
-            }
-
-            if (allSubstrings.LastOrDefault().Any())
-            {
-                return from str in allSubstrings.LastOrDefault()
-                       group str by str into g
-                       orderby g.Key.Length descending, g.Count() descending
-                       select g.Key;
-            }
-
-            return Enumerable.Empty<string>();
         }
 
         public static Stream ToStream(this string value)

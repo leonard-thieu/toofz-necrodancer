@@ -70,7 +70,7 @@ namespace toofz.NecroDancer.Web.Api.Areas.HelpPage.Models
             }
         }
 
-        public IList<HttpStatusCodeDescription> HttpStatusCodes { get; } = new List<HttpStatusCodeDescription>();
+        public List<HttpStatusCodeDescription> HttpStatusCodes { get; } = new List<HttpStatusCodeDescription>();
 
         /// <summary>
         /// Gets the sample requests associated with the API.

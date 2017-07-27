@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace toofz.NecroDancer.Replays
@@ -15,8 +14,8 @@ namespace toofz.NecroDancer.Replays
         public int Unknown1 { get; set; }
         public int TotalBeats { get; set; }
 
-        public ICollection<Player> Players { get; } = new Collection<Player>();
-        public ICollection<int> RandomMoves { get; } = new Collection<int>();
-        public ICollection<int> ItemRolls { get; } = new Collection<int>();
+        public List<Player> Players { get; } = new List<Player>();
+        public List<int> RandomMoves { get; } = new List<int>();
+        public List<int> ItemRolls { get; } = new List<int>();
     }
 }

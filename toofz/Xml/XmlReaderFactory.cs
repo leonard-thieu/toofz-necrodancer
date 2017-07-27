@@ -15,15 +15,6 @@ namespace toofz.Xml
             DtdProcessing = DtdProcessing.Ignore
         };
 
-        [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", MessageId = "0#")]
-        public static XmlReader Create(string inputUri)
-        {
-            if (inputUri == null)
-                throw new ArgumentNullException(nameof(inputUri));
-
-            return XmlReader.Create(inputUri, Settings);
-        }
-
         public static XmlReader Create(Stream input)
         {
             if (input == null)
