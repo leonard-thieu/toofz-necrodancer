@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
@@ -33,16 +32,6 @@ namespace toofz
                 result = default(TResult);
                 return false;
             }
-        }
-
-        public static string Invariant(string format, params object[] args)
-        {
-            if (format == null)
-                throw new ArgumentNullException(nameof(format));
-            if (args == null)
-                throw new ArgumentNullException(nameof(args));
-
-            return string.Format(CultureInfo.InvariantCulture, format, args);
         }
 
         public static string GetEnvVar(string variable)

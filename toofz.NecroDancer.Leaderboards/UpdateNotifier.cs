@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Globalization;
 using log4net;
 
 namespace toofz.NecroDancer.Leaderboards
@@ -18,7 +19,8 @@ namespace toofz.NecroDancer.Leaderboards
 
             if (disposing)
             {
-                Log.Info($"{Category} {Name} complete after {Stopwatch.ToTotalSeconds("F1")} s.");
+                var duration = Stopwatch.Elapsed.TotalSeconds.ToString("F1", CultureInfo.CurrentCulture);
+                Log.Info($"{Category} {Name} complete after {duration} s.");
             }
 
             disposed = true;

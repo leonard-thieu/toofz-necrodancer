@@ -31,18 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ConnectionStringNotFoundException.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Enumeration.cs" />
     <Compile Include="EnumerationContainerAttribute.cs" />
     <Compile Include="EnumerationTypeConverter.cs" />
-    <Compile Include="Extensions\EnumerationExtensions.cs" />
     <Compile Include="FuncKeyedCollection.cs" />
     <Compile Include="Generic\GenericExtensions.cs" />
     <Compile Include="Extensions\ICollectionExtensions.cs" />
     <Compile Include="ObjectDumper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Extensions\StopwatchExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Reg.cs" />

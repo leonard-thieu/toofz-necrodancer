@@ -64,7 +64,7 @@ namespace toofz.NecroDancer.Leaderboards
             if (disposing)
             {
                 var size = SizeSuffix(totalBytes);
-                var time = Stopwatch.ToTotalSeconds();
+                var time = Stopwatch.Elapsed.TotalSeconds;
                 var rate = RateSuffix(totalBytes / time);
 
                 Log.Info($"{Category} {Name} complete -- {size} over {time.ToString("F1")} s ({rate}).");
