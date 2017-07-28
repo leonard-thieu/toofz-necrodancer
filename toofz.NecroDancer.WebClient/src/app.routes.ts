@@ -82,7 +82,18 @@ angular
                 enemies: ($stateParams: IStateParamsService,
                           toofzRestApi: ToofzRestApi) => {
                     'ngInject';
-                    const { attribute, page } = $stateParams;
+                    let { attribute, page } = $stateParams;
+
+                    attribute = attribute.toLowerCase();
+
+                    switch (attribute) {
+                        case 'phasing':
+                            attribute = 'ignore-walls';
+                            break;
+                        default:
+                            break;
+                    }
+
                     const params = {
                         offset: util.pageToOffset(page, 10)
                     };

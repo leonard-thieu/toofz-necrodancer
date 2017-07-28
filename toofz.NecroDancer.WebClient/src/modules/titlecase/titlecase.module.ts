@@ -32,7 +32,7 @@ angular
 
         return text => {
             if (typeof text === 'string') {
-                return toTitleCase(text.toLowerCase());
+                return toTitleCase(text.toLowerCase()).replace(/-/g, ' ');
             }
             return text;
         };

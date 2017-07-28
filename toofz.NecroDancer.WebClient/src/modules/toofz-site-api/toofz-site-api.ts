@@ -6,7 +6,7 @@ export class ToofzSiteApi {
     }
 
     getAreas() {
-        return this.$http.get<toofzSite.Areas>('/data/areas.min.json?v=3', {
+        return this.$http.get<toofzSite.Areas>('/data/areas.min.json?v=4', {
             cache: true
         }).then(response => response.data!.areas);
     }

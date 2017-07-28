@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,11 +38,11 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </returns>
         [ResponseType(typeof(Enemies))]
         [Route("")]
-        public async Task<IHttpActionResult> Get(
+        public async Task<IHttpActionResult> GetEnemies(
             [FromUri] EnemiesPagination pagination,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var content = await GetEnemiesAsync(OptionalStats.None, pagination, cancellationToken);
+            var content = await GetEnemiesAsync(null, pagination, cancellationToken);
 
             return Ok(content);
         }
@@ -49,24 +50,37 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// <summary>
         /// Gets a list of Crypt of the NecroDancer enemies with a specific attribute.
         /// </summary>
-        /// <param name="attribute">The enemy's attribute.</param>
+        /// <param name="attribute">
+        /// The enemy's attribute.
+        /// Valid values are 'boss', 'bounce-on-movement-fail', 'floating', 'ignore-liquids', 'ignore-walls', 'is-monkey-like', 'massive', and 'miniboss'.
+        /// </param>
         /// <param name="pagination">Pagination parameters.</param>
         /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
         /// <returns>
         /// Returns a list of Crypt of the NecroDancer enemies with the attribute.
         /// </returns>
+        /// <httpStatusCode cref="System.Net.HttpStatusCode.BadRequest">
+        /// Enemy attribute is invalid.
+        /// </httpStatusCode>
         [ResponseType(typeof(Enemies))]
         [Route("{attribute}")]
-        public async Task<IHttpActionResult> Get(OptionalStats attribute,
+        public async Task<IHttpActionResult> GetEnemies(string attribute,
             [FromUri] EnemiesPagination pagination,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var content = await GetEnemiesAsync(attribute, pagination, cancellationToken);
+            try
+            {
+                var content = await GetEnemiesAsync(attribute, pagination, cancellationToken);
 
-            return Ok(content);
+                return Ok(content);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        internal async Task<Enemies> GetEnemiesAsync(OptionalStats attribute,
+        internal async Task<Enemies> GetEnemiesAsync(string attribute,
             EnemiesPagination pagination,
             CancellationToken cancellationToken)
         {
@@ -74,8 +88,24 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             var offset = p.offset;
             var limit = p.limit;
 
-            var query = from e in db.Enemies
-                        where (e.OptionalStats & attribute) == attribute
+            var baseQuery = from e in db.Enemies
+                            select e;
+            if (attribute != null)
+            {
+                switch (attribute)
+                {
+                    case "boss": baseQuery = baseQuery.Where(e => e.OptionalStats.Boss); break;
+                    case "bounce-on-movement-fail": baseQuery = baseQuery.Where(e => e.OptionalStats.BounceOnMovementFail); break;
+                    case "floating": baseQuery = baseQuery.Where(e => e.OptionalStats.Floating); break;
+                    case "ignore-liquids": baseQuery = baseQuery.Where(e => e.OptionalStats.IgnoreLiquids); break;
+                    case "ignore-walls": baseQuery = baseQuery.Where(e => e.OptionalStats.IgnoreWalls); break;
+                    case "is-monkey-like": baseQuery = baseQuery.Where(e => e.OptionalStats.IsMonkeyLike); break;
+                    case "massive": baseQuery = baseQuery.Where(e => e.OptionalStats.Massive); break;
+                    case "miniboss": baseQuery = baseQuery.Where(e => e.OptionalStats.Miniboss); break;
+                    default: throw new ArgumentException("Enemy attribute is invalid.");
+                }
+            }
+            var query = from e in baseQuery
                         orderby e.ElementName, e.Type
                         select new Models.Enemy
                         {
@@ -85,7 +115,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                             health = e.Stats.Health,
                             damage = e.Stats.DamagePerHit,
                             beats_per_move = e.Stats.BeatsPerMove,
-                            drops = e.Stats.CoinsToDrop
+                            drops = e.Stats.CoinsToDrop,
                         };
 
             var total = await query.CountAsync(cancellationToken);
@@ -98,7 +128,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             return new Enemies
             {
                 total = total,
-                enemies = enemies
+                enemies = enemies,
             };
         }
 

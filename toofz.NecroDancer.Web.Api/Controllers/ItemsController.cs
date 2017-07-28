@@ -38,7 +38,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </returns>
         [ResponseType(typeof(Items))]
         [Route("")]
-        public async Task<IHttpActionResult> Get(
+        public async Task<IHttpActionResult> GetItems(
             [FromUri] ItemsPagination pagination,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -58,7 +58,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </returns>
         [ResponseType(typeof(Items))]
         [Route("{category}")]
-        public async Task<IHttpActionResult> Get(string category,
+        public async Task<IHttpActionResult> GetItems(string category,
             [FromUri] ItemsPagination pagination,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -80,7 +80,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </returns>
         [ResponseType(typeof(Items))]
         [Route("{category}/{subcategory}")]
-        public async Task<IHttpActionResult> Get(string category, string subcategory,
+        public async Task<IHttpActionResult> GetItems(string category, string subcategory,
             [FromUri] ItemsPagination pagination,
             CancellationToken cancellationToken = default(CancellationToken))
         {
