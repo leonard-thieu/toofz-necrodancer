@@ -273,7 +273,24 @@ namespace toofz.NecroDancer.Data
                                         case "spritesheet":
                                             {
                                                 var spritesheetEl = enemyElEl;
-                                                enemy.SpriteSheet.Path = spritesheetEl.Value;
+                                                var spriteSheet = enemy.SpriteSheet;
+                                                spriteSheet.Path = spritesheetEl.Value;
+                                                foreach (var spritesheetAttr in spritesheetEl.Attributes())
+                                                {
+                                                    var spritesheetAttrName = spritesheetAttr.Name.ToString();
+                                                    switch (spritesheetAttrName)
+                                                    {
+                                                        case "numFrames": spriteSheet.FrameCount = int.Parse(spritesheetAttr.Value); break;
+                                                        case "frameW": spriteSheet.FrameWidth = int.Parse(spritesheetAttr.Value); break;
+                                                        case "frameH": spriteSheet.FrameHeight = int.Parse(spritesheetAttr.Value); break;
+                                                        case "xOff": spriteSheet.OffsetX = int.Parse(spritesheetAttr.Value); break;
+                                                        case "yOff": spriteSheet.OffsetY = int.Parse(spritesheetAttr.Value); break;
+                                                        case "zOff": spriteSheet.OffsetZ = int.Parse(spritesheetAttr.Value); break;
+                                                        case "heartXOff": spriteSheet.HeartOffsetX = int.Parse(spritesheetAttr.Value); break;
+                                                        case "heartYOff": spriteSheet.HeartOffsetY = int.Parse(spritesheetAttr.Value); break;
+                                                        default: Log.Debug($"Unknown spritesheet attribute: '{spritesheetAttrName}'."); break;
+                                                    }
+                                                }
                                                 break;
                                             }
                                         case "stats":
