@@ -52,14 +52,6 @@ namespace toofz.Xml
             }
         }
 
-        private static XmlSerializerNamespaces GetBlankNamespace()
-        {
-            var ns = new XmlSerializerNamespaces();
-            ns.Add("", "");
-
-            return ns;
-        }
-
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "o", Justification = "Matches Microsoft API.")]
         public static void SerializeWithoutNamespaces(this XmlSerializer serializer, XmlWriter xmlWriter, object o)
         {
@@ -67,6 +59,14 @@ namespace toofz.Xml
                 throw new ArgumentNullException(nameof(serializer));
 
             serializer.Serialize(xmlWriter, o, GetBlankNamespace());
+        }
+
+        static XmlSerializerNamespaces GetBlankNamespace()
+        {
+            var ns = new XmlSerializerNamespaces();
+            ns.Add("", "");
+
+            return ns;
         }
     }
 }

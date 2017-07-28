@@ -9,6 +9,8 @@ namespace System
     /// </summary>
     public static class StringExtensions
     {
+        #region ToTitleCase
+
         /// <summary>
         /// Converts the specified string to title case.
         /// </summary>
@@ -33,7 +35,7 @@ namespace System
         /// A collection of words that should not have the first letter capitalized. This list includes 
         /// articles, conjunctions, and prepositions less than six letters long.
         /// </summary>
-        private static readonly string[] TitleCaseExceptions = new[]
+        static readonly string[] TitleCaseExceptions = new[]
         {
             "abaft", "about", "above", "afore", "after", "along", "amid", "among", "an", "and", "apud", "as", "aside", "at",
             "atop", "below", "but", "by", "circa", "down", "for", "from", "given", "in", "into", "lest", "like", "mid", "midst",
@@ -42,7 +44,7 @@ namespace System
             "up", "upon", "via", "vice", "with", "worth", "yet"
         };
 
-        private static string AdjustForTitleCaseExceptions(string value)
+        static string AdjustForTitleCaseExceptions(string value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
@@ -59,6 +61,8 @@ namespace System
 
             return string.Join(" ", tokens);
         }
+
+        #endregion
 
         public static Stream ToStream(this string value)
         {
