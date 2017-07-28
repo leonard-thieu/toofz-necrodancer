@@ -84,7 +84,7 @@ angular
                     'ngInject';
                     let { attribute, page } = $stateParams;
 
-                    attribute = attribute.toLowerCase();
+                    if (attribute) { attribute = attribute.toLowerCase(); }
 
                     switch (attribute) {
                         case 'phasing':
