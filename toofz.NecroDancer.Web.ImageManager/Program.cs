@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using toofz.NecroDancer.Data;
@@ -32,12 +31,12 @@ namespace toofz.NecroDancer.Web.ImageManager
 
     internal class Program
     {
-        // TODO: This shouldn't be hardcoded.
-        private const string DataDirectory = @"S:\Applications\Steam\steamapps\common\Crypt of the NecroDancer\data";
+        static string DataDirectory;
 
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
             ServicePointManager.DefaultConnectionLimit = 100;
+            DataDirectory = args[0];
 
             var storageConnectionString = Util.GetEnvVar("toofzStorageConnectionString");
             var storageAccount = CloudStorageAccount.Parse(storageConnectionString);
@@ -49,28 +48,16 @@ namespace toofz.NecroDancer.Web.ImageManager
             RunAsync(container).Wait();
         }
 
-        private static Task RunAsync(CloudBlobContainer container)
+        static Task RunAsync(CloudBlobContainer container)
         {
             var path = Path.Combine(DataDirectory, "necrodancer.xml");
-            var doc = XDocument.Load(path);
-            var root = doc.Element("necrodancer");
+            var data = NecroDancerDataSerializer.Read(path);
 
             var tasks = new List<Task>();
 
             var itemImages = new List<ImageFile>();
-            foreach (var itemEl in root.Element("items").Elements())
+            foreach (var item in data.Items)
             {
-                var item = new Item { ElementName = itemEl.Name.ToString(), ImagePath = Path.Combine("items", itemEl.Value) };
-
-                foreach (var attr in itemEl.Attributes())
-                {
-                    switch (attr.Name.ToString())
-                    {
-                        case "numFrames": item.FrameCount = int.Parse(attr.Value); break;
-                        default: break;
-                    }
-                }
-
                 var frames = GetImageFrames(item, "items");
                 itemImages.AddRange(frames);
             }
@@ -79,54 +66,8 @@ namespace toofz.NecroDancer.Web.ImageManager
             tasks.AddRange(itemTasks);
 
             var enemyImages = new List<ImageFile>();
-            foreach (var enemyEl in root.Element("enemies").Elements())
+            foreach (var enemy in data.Enemies)
             {
-                var enemy = new Enemy { ElementName = enemyEl.Name.ToString() };
-
-                foreach (var attr in enemyEl.Attributes())
-                {
-                    switch (attr.Name.ToString())
-                    {
-                        case "type": enemy.Type = int.Parse(attr.Value); break;
-                        default: break;
-                    }
-                }
-
-                foreach (var el in enemyEl.Elements())
-                {
-                    switch (el.Name.ToString())
-                    {
-                        case "spritesheet":
-                            enemy.SpriteSheet.Path = el.Value.ToString();
-                            foreach (var attr in el.Attributes())
-                            {
-                                switch (attr.Name.ToString())
-                                {
-                                    case "numFrames": enemy.SpriteSheet.FrameCount = int.Parse(attr.Value); break;
-                                    default: break;
-                                }
-                            }
-                            break;
-                        case "frame":
-                            var frame = new Frame();
-                            foreach (var attr in el.Attributes())
-                            {
-                                switch (attr.Name.ToString())
-                                {
-                                    case "inSheet": frame.InSheet = int.Parse(attr.Value); break;
-                                    case "inAnim": frame.InAnim = int.Parse(attr.Value); break;
-                                    case "animType": frame.AnimType = attr.Value; break;
-                                    case "onFraction": frame.OnFraction = double.Parse(attr.Value); break;
-                                    case "offFraction": frame.OffFraction = double.Parse(attr.Value); break;
-                                    case "singleFrame": frame.SingleFrame = attr.Value; break;
-                                    default: break;
-                                }
-                            }
-                            enemy.Frames.Add(frame);
-                            break;
-                    }
-                }
-
                 var frames = GetImageFrames(enemy, "enemies");
                 enemyImages.AddRange(frames);
             }
@@ -137,7 +78,7 @@ namespace toofz.NecroDancer.Web.ImageManager
             return Task.WhenAll(tasks);
         }
 
-        private static IEnumerable<ImageFile> GetImageFrames(Item item, string directory)
+        static IEnumerable<ImageFile> GetImageFrames(Item item, string directory)
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
@@ -151,13 +92,13 @@ namespace toofz.NecroDancer.Web.ImageManager
                 throw new ArgumentNullException(nameof(directory));
 
             var frameCount = item.FrameCount;
-            var path = Path.Combine(DataDirectory, item.ImagePath);
+            var path = Path.Combine(DataDirectory, directory, item.ImagePath);
             var baseName = Path.Combine(directory, item.ElementName);
 
             return GetImages(baseName, frameCount, path);
         }
 
-        private static IEnumerable<ImageFile> GetImageFrames(Enemy enemy, string directory)
+        static IEnumerable<ImageFile> GetImageFrames(Enemy enemy, string directory)
         {
             if (enemy == null)
                 throw new ArgumentNullException(nameof(enemy));
@@ -175,7 +116,7 @@ namespace toofz.NecroDancer.Web.ImageManager
             return GetImages(baseName, frameCount, path);
         }
 
-        private static IEnumerable<ImageFile> GetImages(string baseName, int frameCount, string path)
+        static IEnumerable<ImageFile> GetImages(string baseName, int frameCount, string path)
         {
             if (frameCount < 1)
                 throw new ArgumentException();
@@ -196,7 +137,7 @@ namespace toofz.NecroDancer.Web.ImageManager
             }
         }
 
-        private static IEnumerable<ImageFile> GetImages(string baseName, int frameCount, Image image, int width, int height, string extension)
+        static IEnumerable<ImageFile> GetImages(string baseName, int frameCount, Image image, int width, int height, string extension)
         {
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
@@ -229,7 +170,7 @@ namespace toofz.NecroDancer.Web.ImageManager
             return imageFiles;
         }
 
-        private static byte[] GetSpriteData(Image image, int srcX, int srcY, int width, int height)
+        static byte[] GetSpriteData(Image image, int srcX, int srcY, int width, int height)
         {
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
@@ -252,7 +193,7 @@ namespace toofz.NecroDancer.Web.ImageManager
             }
         }
 
-        private static ImageFile ResizeImageSmall(string sourceFileName, ImageFile image, string extension)
+        static ImageFile ResizeImageSmall(string sourceFileName, ImageFile image, string extension)
         {
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
@@ -262,7 +203,7 @@ namespace toofz.NecroDancer.Web.ImageManager
             return new ImageFile(sourceFileName, image.FrameIndex, "s", extension, image.Format, data);
         }
 
-        private static ImageFile ResizeImageMedium(string sourceFileName, ImageFile image, string extension)
+        static ImageFile ResizeImageMedium(string sourceFileName, ImageFile image, string extension)
         {
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
@@ -272,7 +213,7 @@ namespace toofz.NecroDancer.Web.ImageManager
             return new ImageFile(sourceFileName, image.FrameIndex, "m", extension, image.Format, data);
         }
 
-        private static ImageFile ResizeImageLarge(string sourceFileName, ImageFile image, string extension)
+        static ImageFile ResizeImageLarge(string sourceFileName, ImageFile image, string extension)
         {
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
@@ -282,7 +223,7 @@ namespace toofz.NecroDancer.Web.ImageManager
             return new ImageFile(sourceFileName, image.FrameIndex, "l", extension, image.Format, data);
         }
 
-        private static byte[] ResizeImage(byte[] data, int width, int height, float minScale = 1)
+        static byte[] ResizeImage(byte[] data, int width, int height, float minScale = 1)
         {
             if (data == null)
                 throw new ArgumentNullException(nameof(data));
@@ -326,7 +267,7 @@ namespace toofz.NecroDancer.Web.ImageManager
             }
         }
 
-        private static async Task UploadImageAsync(CloudBlobContainer container, ImageFile image)
+        static async Task UploadImageAsync(CloudBlobContainer container, ImageFile image)
         {
             var blockBlob = container.GetBlockBlobReference(image.Name);
             blockBlob.Properties.ContentType = "image/png";
