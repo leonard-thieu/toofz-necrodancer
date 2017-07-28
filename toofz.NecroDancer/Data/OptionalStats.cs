@@ -1,17 +1,14 @@
-﻿using System;
-
-namespace toofz.NecroDancer.Data
+﻿namespace toofz.NecroDancer.Data
 {
-    [Flags]
-    public enum OptionalStats
+    public sealed class OptionalStats
     {
-        None = 2 << -1,
-        Floating = 2 << 0,
-        BounceOnMovementFail = 2 << 1,
-        Phasing = 2 << 2,
-        Miniboss = 2 << 3,
-        Massive = 2 << 4,
-        IgnoreLiquids = 2 << 5,
-        Boss = 2 << 6,
+        public bool Boss { get; set; }
+        public bool BounceOnMovementFail { get; set; }
+        public bool Floating { get; set; }
+        public bool IgnoreLiquids { get; set; }
+        public bool IgnoreWalls { get; set; }
+        public bool IsMonkeyLike { get; set; }
+        public bool Massive { get; set; }
+        public bool Miniboss { get; set; }
     }
 }

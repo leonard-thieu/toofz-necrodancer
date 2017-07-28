@@ -43,7 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.7.1.0\lib\net45\FluentValidation.dll</HintPath>
+      <HintPath>..\packages\FluentValidation.7.1.1\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged, Version=2.1.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.2.1.3\lib\netstandard1.0\PropertyChanged.dll</HintPath>
@@ -56,28 +59,43 @@
       <HintPath>..\packages\Validar.Fody.1.5.1\lib\dotnet\Validar.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\toofz\toofz.csproj">
+      <Project>{2e55fdb2-96bb-4c8a-b220-299be8484593}</Project>
+      <Name>toofz</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character.cs" />
     <Compile Include="Data\Bouncer.cs" />
+    <Compile Include="Data\Character.cs" />
+    <Compile Include="Data\CursedSlot.cs" />
     <Compile Include="Data\DisplayString.cs" />
     <Compile Include="Data\Enemy.cs" />
     <Compile Include="Data\Frame.cs" />
     <Compile Include="Data\Item.cs" />
+    <Compile Include="Data\Modes.cs" />
     <Compile Include="Data\NecroDancerData.cs" />
+    <Compile Include="Data\NecroDancerDataSerializer.cs" />
     <Compile Include="Data\OptionalStats.cs" />
     <Compile Include="Data\Particle.cs" />
     <Compile Include="Data\Shadow.cs" />
     <Compile Include="Data\SpriteSheet.cs" />
     <Compile Include="Data\Stats.cs" />
     <Compile Include="Data\Tweens.cs" />
-    <Compile Include="Data\XmlReaderExtensions.cs" />
     <Compile Include="Dungeons\Chest.cs" />
     <Compile Include="Dungeons\Crate.cs" />
     <Compile Include="Dungeons\Dungeon.cs" />
@@ -86,8 +104,8 @@
     <Compile Include="Dungeons\Entity.cs" />
     <Compile Include="Dungeons\EntityQuadtree.cs" />
     <Compile Include="Dungeons\Entity`1.cs" />
-    <Compile Include="Dungeons\IntegralBooleanValidator.cs" />
     <Compile Include="Dungeons\IRuleBuilderExtensions.cs" />
+    <Compile Include="Dungeons\IntegralBooleanValidator.cs" />
     <Compile Include="Dungeons\Item.cs" />
     <Compile Include="Dungeons\Level.cs" />
     <Compile Include="Dungeons\LevelCollection.cs" />
@@ -99,26 +117,21 @@
     <Compile Include="Dungeons\Shrine.cs" />
     <Compile Include="Dungeons\Tile.cs" />
     <Compile Include="Dungeons\Trap.cs" />
-    <Compile Include="Environment.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Replays\Move.cs" />
     <Compile Include="Replays\Header.cs" />
+    <Compile Include="Replays\LevelData.cs" />
+    <Compile Include="Replays\Move.cs" />
     <Compile Include="Replays\Player.cs" />
     <Compile Include="Replays\ReplayData.cs" />
-    <Compile Include="Replays\LevelData.cs" />
     <Compile Include="Replays\ReplaySerializationReader.cs" />
     <Compile Include="Replays\ReplaySerializationWriter.cs" />
     <Compile Include="Replays\ReplaySerializer.cs" />
-    <Compile Include="Run.cs" />
     <Compile Include="Saves\Game.cs" />
-    <Compile Include="Saves\SaveData.cs" />
     <Compile Include="Saves\Npc.cs" />
     <Compile Include="Saves\Player.cs" />
+    <Compile Include="Saves\SaveData.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="Environment.cs" />
+    <Compile Include="Run.cs" />
     <Compile Include="ValidationTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -126,10 +139,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Resources\KingConga1.xml" />
-    <None Include="Resources\KingConga2.xml" />
-    <None Include="Resources\KingConga3.xml" />
-    <None Include="Resources\KingConga4.xml" />
     <None Include="Resources\CoralRiff1.xml" />
     <None Include="Resources\CoralRiff2.xml" />
     <None Include="Resources\CoralRiff3.xml" />
@@ -143,13 +152,11 @@
     <None Include="Resources\DeepBlues3.xml" />
     <None Include="Resources\DeepBlues4.xml" />
     <None Include="Resources\Default.xml" />
+    <None Include="Resources\KingConga1.xml" />
+    <None Include="Resources\KingConga2.xml" />
+    <None Include="Resources\KingConga3.xml" />
+    <None Include="Resources\KingConga4.xml" />
     <None Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\toofz\toofz.csproj">
-      <Project>{2e55fdb2-96bb-4c8a-b220-299be8484593}</Project>
-      <Name>toofz</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
