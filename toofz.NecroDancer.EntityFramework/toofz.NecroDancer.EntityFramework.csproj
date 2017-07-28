@@ -48,6 +48,10 @@
     <Compile Include="Migrations\201602062034518_InitialCreate.Designer.cs">
       <DependentUpon>201602062034518_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707281812407_MaroonCopperPomeranian.cs" />
+    <Compile Include="Migrations\201707281812407_MaroonCopperPomeranian.Designer.cs">
+      <DependentUpon>201707281812407_MaroonCopperPomeranian.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NecroDancerContext.cs" />
     <Compile Include="NecroDancerContext.Views.cs" />
@@ -61,11 +65,18 @@
     <EmbeddedResource Include="Migrations\201602062034518_InitialCreate.resx">
       <DependentUpon>201602062034518_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707281812407_MaroonCopperPomeranian.resx">
+      <DependentUpon>201707281812407_MaroonCopperPomeranian.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\toofz.NecroDancer\toofz.NecroDancer.csproj">
       <Project>{2763f3e5-298d-4d7a-9066-a8cda5551f76}</Project>
       <Name>toofz.NecroDancer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\toofz\toofz.csproj">
+      <Project>{2e55fdb2-96bb-4c8a-b220-299be8484593}</Project>
+      <Name>toofz</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

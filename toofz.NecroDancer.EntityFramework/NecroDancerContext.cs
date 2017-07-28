@@ -38,6 +38,7 @@ namespace toofz.NecroDancer.EntityFramework
             modelBuilder.ComplexType<DisplayString>();
             modelBuilder.ComplexType<Bouncer>();
             modelBuilder.ComplexType<Frame>();
+            modelBuilder.ComplexType<OptionalStats>();
             modelBuilder.ComplexType<Particle>();
             modelBuilder.ComplexType<Shadow>();
             modelBuilder.ComplexType<SpriteSheet>();
