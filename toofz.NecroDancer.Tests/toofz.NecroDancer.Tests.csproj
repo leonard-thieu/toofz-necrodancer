@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\NecroDancerDataTests.cs" />
+    <Compile Include="Data\ReplayDataTests.cs" />
     <Compile Include="Data\ReplaySerializerTests.cs" />
     <Compile Include="Data\ReplayWriterTests.cs" />
     <Compile Include="Data\SaveDataTests.cs" />
