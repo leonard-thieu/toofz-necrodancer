@@ -7,7 +7,9 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
         /// <summary> 
         /// Required designer variable.
         /// </summary>
+#pragma warning disable 0649
         private IContainer components;
+#pragma warning restore 0649
 
         #region IDisposable Members
 
