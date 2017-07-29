@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using toofz.NecroDancer.Data;
 
@@ -12,14 +11,17 @@ namespace toofz.NecroDancer.EntityFramework
             Database.SetInitializer<NecroDancerContext>(null);
         }
 
-        static string GetConnectionString()
+        public NecroDancerContext()
         {
-            return Environment.GetEnvironmentVariable("NecroDancerConnectionString", EnvironmentVariableTarget.Machine);
+            Initialize();
         }
 
-        public NecroDancerContext() : this(GetConnectionString()) { }
-
         public NecroDancerContext(string nameOrConnectionString) : base(nameOrConnectionString)
+        {
+            Initialize();
+        }
+
+        private void Initialize()
         {
             Configuration.AutoDetectChangesEnabled = false;
             Configuration.LazyLoadingEnabled = false;

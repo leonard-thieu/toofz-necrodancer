@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
+using toofz.NecroDancer.EntityFramework;
 using toofz.NecroDancer.Leaderboards;
 using toofz.NecroDancer.Leaderboards.EntityFramework;
 using toofz.NecroDancer.Web.Api;
@@ -65,8 +66,9 @@ namespace toofz.NecroDancer.Web.Api
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            var necroDancerConnectionString = Util.GetEnvVar("NecroDancerConnectionString");
+            kernel.Bind<NecroDancerContext>().ToConstructor(s => new NecroDancerContext(necroDancerConnectionString));
             var leaderboardsConnectionString = Util.GetEnvVar("LeaderboardsConnectionString");
-
             kernel.Bind<LeaderboardsContext>().ToConstructor(s => new LeaderboardsContext(leaderboardsConnectionString));
             kernel.Bind<ILeaderboardsSqlClient>().ToConstructor(s => new LeaderboardsSqlClient(leaderboardsConnectionString));
             kernel.Bind<LeaderboardsService>().ToSelf();
