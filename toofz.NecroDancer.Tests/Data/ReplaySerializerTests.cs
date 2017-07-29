@@ -60,8 +60,7 @@ namespace toofz.NecroDancer.Tests.Data
                 {
                     var replay = ReplaySerializer.Deserialize(s);
 
-                    int seed;
-                    var success = replay.TryGetSeed(out seed);
+                    var success = replay.TryGetSeed(out int seed);
                     Assert.IsTrue(success);
                     Assert.AreEqual(123, seed);
                 }
