@@ -66,6 +66,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
             }
         }
 
+        [TestClass]
         public class CreateIncorrectMediaTypeAsync
         {
             [TestMethod]
