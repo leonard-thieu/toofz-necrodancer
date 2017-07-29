@@ -245,7 +245,6 @@
     <Content Include="images\characters\melody.png" />
     <Content Include="images\characters\monk.png" />
     <Content Include="images\characters\nocturna.png" />
-    <Content Include="images\characters\story.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\site.css">
