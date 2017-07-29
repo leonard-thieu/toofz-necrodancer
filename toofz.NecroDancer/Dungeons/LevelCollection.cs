@@ -31,7 +31,7 @@ namespace toofz.NecroDancer.Dungeons
             UpdateLevelIds();
         }
 
-        private void UpdateLevelIds()
+        void UpdateLevelIds()
         {
             for (int i = 0; i < Count; i++)
                 Items[i].Id = i + 1;

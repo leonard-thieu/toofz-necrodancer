@@ -13,13 +13,13 @@ namespace toofz.NecroDancer.Dungeons
     {
         #region Static Members
 
-        private const string XmlName = "dungeon";
+        const string XmlName = "dungeon";
 
-        private const string CharacterXmlName = "character";
-        private const string NameXmlName = "name";
-        private const string NumLevelsXmlName = "numLevels";
+        const string CharacterXmlName = "character";
+        const string NameXmlName = "name";
+        const string NumLevelsXmlName = "numLevels";
 
-        private static readonly XmlSerializer LevelSerializer = new XmlSerializer(typeof(Level));
+        static readonly XmlSerializer LevelSerializer = new XmlSerializer(typeof(Level));
 
         #endregion
 
@@ -87,7 +87,7 @@ namespace toofz.NecroDancer.Dungeons
         #endregion
     }
 
-    internal sealed class DungeonValidator : AbstractValidator<Dungeon>
+    sealed class DungeonValidator : AbstractValidator<Dungeon>
     {
         public DungeonValidator()
         {

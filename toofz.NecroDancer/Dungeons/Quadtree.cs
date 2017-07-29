@@ -21,7 +21,7 @@ namespace toofz.NecroDancer.Dungeons
         }
         RectangleF _Bounds;
 
-        private void ReIndex()
+        void ReIndex()
         {
             // Suppress collection change notifications during re-indexing since the collection is not 
             // actually changing, just its internal structure.

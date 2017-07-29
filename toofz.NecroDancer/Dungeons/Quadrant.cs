@@ -11,7 +11,7 @@ namespace toofz.NecroDancer.Dungeons
             public Quadrant(Quadrant parent, RectangleF bounds)
             {
                 if (bounds.Width == 0 || bounds.Height == 0)
-                    throw new ArgumentException("Bounds must be non-zero.");
+                    throw new ArgumentException("Bounds must have non-zero width and height.");
 
                 Parent = parent;
                 Bounds = bounds;

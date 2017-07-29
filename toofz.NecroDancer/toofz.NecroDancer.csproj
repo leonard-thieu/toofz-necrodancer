@@ -134,7 +134,7 @@
     <Compile Include="Character.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="Run.cs" />
-    <Compile Include="ValidationTemplate.cs" />
+    <Compile Include="Dungeons\ValidationTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

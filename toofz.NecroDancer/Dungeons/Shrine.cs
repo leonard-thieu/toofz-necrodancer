@@ -23,7 +23,7 @@ namespace toofz.NecroDancer.Dungeons
         public int Type { get; set; }
     }
 
-    internal sealed class ShrineValidator : AbstractValidator<Shrine>
+    sealed class ShrineValidator : AbstractValidator<Shrine>
     {
         public ShrineValidator()
         {

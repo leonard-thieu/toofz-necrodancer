@@ -2,7 +2,7 @@
 
 namespace toofz.NecroDancer.Dungeons
 {
-    internal sealed class IntegralBooleanValidator : AbstractValidator<int>
+    sealed class IntegralBooleanValidator : AbstractValidator<int>
     {
         public IntegralBooleanValidator()
         {

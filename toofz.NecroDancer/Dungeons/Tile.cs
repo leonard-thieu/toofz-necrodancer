@@ -73,7 +73,7 @@ namespace toofz.NecroDancer.Dungeons
         public bool IsTorchable => true;
     }
 
-    internal sealed class TileValidator : AbstractValidator<Tile>
+    sealed class TileValidator : AbstractValidator<Tile>
     {
         public TileValidator()
         {

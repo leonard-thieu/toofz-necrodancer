@@ -27,7 +27,7 @@ namespace toofz.NecroDancer.Dungeons
         public int SingleChoice { get; set; }
     }
 
-    internal sealed class ChestValidator : AbstractValidator<Chest>
+    sealed class ChestValidator : AbstractValidator<Chest>
     {
         public ChestValidator()
         {

@@ -8,7 +8,7 @@ namespace toofz.NecroDancer.Dungeons
 {
     public static class DungeonService
     {
-        private static readonly XmlSerializer DungeonSerializer = new XmlSerializer(typeof(Dungeon));
+        static readonly XmlSerializer DungeonSerializer = new XmlSerializer(typeof(Dungeon));
 
         public static Dungeon Create()
         {
