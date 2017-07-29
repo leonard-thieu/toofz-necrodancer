@@ -5,14 +5,14 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-internal sealed class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
+sealed class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
 {
     internal TestDbAsyncQueryProvider(IQueryProvider inner)
     {
         this.inner = inner;
     }
 
-    private readonly IQueryProvider inner;
+    readonly IQueryProvider inner;
 
     public IQueryable CreateQuery(Expression expression)
     {
@@ -44,7 +44,7 @@ internal sealed class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
         return Task.FromResult(Execute<TResult>(expression));
     }
 
-    private sealed class TestDbAsyncEnumerable<T> : EnumerableQuery<T>, IDbAsyncEnumerable<T>, IQueryable<T>
+    sealed class TestDbAsyncEnumerable<T> : EnumerableQuery<T>, IDbAsyncEnumerable<T>, IQueryable<T>
     {
         public TestDbAsyncEnumerable(IEnumerable<T> enumerable) : base(enumerable) { }
 
@@ -61,14 +61,14 @@ internal sealed class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
     }
 }
 
-internal sealed class TestDbAsyncEnumerator<T> : IDbAsyncEnumerator<T>
+sealed class TestDbAsyncEnumerator<T> : IDbAsyncEnumerator<T>
 {
     public TestDbAsyncEnumerator(IEnumerator<T> inner)
     {
         this.inner = inner;
     }
 
-    private readonly IEnumerator<T> inner;
+    readonly IEnumerator<T> inner;
 
     public void Dispose()
     {

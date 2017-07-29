@@ -4,7 +4,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using Moq;
 
-internal static class MockHelper
+static class MockHelper
 {
     public static Mock<DbSet<TEntity>> MockSet<TEntity>(IEnumerable<TEntity> data) where TEntity : class
     {

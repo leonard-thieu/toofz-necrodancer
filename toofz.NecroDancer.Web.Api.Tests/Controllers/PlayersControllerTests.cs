@@ -2,20 +2,21 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using toofz.NecroDancer.Leaderboards;
 using toofz.NecroDancer.Leaderboards.EntityFramework;
 using toofz.NecroDancer.Web.Api.Controllers;
 using toofz.NecroDancer.Web.Api.Models;
-using Xunit;
 
 namespace toofz.NecroDancer.Web.Api.Tests.Controllers
 {
     public class PlayersControllerTests
     {
+        [TestClass]
         public class Get_Int64
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsOk()
             {
                 // Arrange
@@ -46,18 +47,19 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
 
                 // Act
                 var actionResult = await controller.GetPlayer(0L);
-                Assert.IsType<OkNegotiatedContentResult<PlayerEntries>>(actionResult);
+                Assert.IsInstanceOfType(actionResult, typeof(OkNegotiatedContentResult<PlayerEntries>));
                 var contentResult = actionResult as OkNegotiatedContentResult<PlayerEntries>;
 
                 // Assert
-                Assert.NotNull(contentResult);
-                Assert.NotNull(contentResult.Content);
+                Assert.IsNotNull(contentResult);
+                Assert.IsNotNull(contentResult.Content);
             }
         }
 
+        [TestClass]
         public class Get_String
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsOk()
             {
                 // Arrange
@@ -78,14 +80,15 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var contentResult = actionResult as OkNegotiatedContentResult<Players>;
 
                 // Assert
-                Assert.NotNull(contentResult);
-                Assert.NotNull(contentResult.Content);
+                Assert.IsNotNull(contentResult);
+                Assert.IsNotNull(contentResult.Content);
             }
         }
 
+        [TestClass]
         public class Get_Int32
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsOk()
             {
                 // Arrange
@@ -106,14 +109,15 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var contentResult = actionResult as OkNegotiatedContentResult<List<long>>;
 
                 // Assert
-                Assert.NotNull(contentResult);
-                Assert.NotNull(contentResult.Content);
+                Assert.IsNotNull(contentResult);
+                Assert.IsNotNull(contentResult.Content);
             }
         }
 
+        [TestClass]
         public class Post
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsOk()
             {
                 // Arrange
@@ -128,11 +132,11 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var contentResult = actionResult as OkNegotiatedContentResult<BulkStoreDTO>;
 
                 // Assert
-                Assert.NotNull(contentResult);
-                Assert.NotNull(contentResult.Content);
+                Assert.IsNotNull(contentResult);
+                Assert.IsNotNull(contentResult.Content);
             }
 
-            [Fact]
+            [TestMethod]
             public async Task InvalidState_ReturnsBadRequest()
             {
                 // Arrange
@@ -147,7 +151,7 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var actionResult = await controller.Post(new List<PlayerModel>());
 
                 // Assert
-                Assert.IsType<InvalidModelStateResult>(actionResult);
+                Assert.IsInstanceOfType(actionResult, typeof(InvalidModelStateResult));
             }
         }
     }

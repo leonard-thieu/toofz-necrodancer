@@ -1,21 +1,21 @@
-﻿using Moq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
-using toofz.NecroDancer.Data;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using toofz.NecroDancer.EntityFramework;
 using toofz.NecroDancer.Web.Api.Controllers;
 using toofz.NecroDancer.Web.Api.Models;
-using Xunit;
 
 namespace toofz.NecroDancer.Web.Api.Tests.Controllers
 {
     public class EnemiesControllerTests
     {
+        [TestClass]
         public class GetEnemiesAsync
         {
-            [Fact]
+            [TestMethod]
             public async Task GetEnemiesAsync_ReturnsEnemiesDTO()
             {
                 // Arrange
@@ -30,13 +30,14 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var enemiesDTO = await controller.GetEnemiesAsync(null, new EnemiesPagination(), CancellationToken.None);
 
                 // Assert
-                Assert.IsType<Enemies>(enemiesDTO);
+                Assert.IsInstanceOfType(enemiesDTO, typeof(Enemies));
             }
         }
 
+        [TestClass]
         public class Get
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsOk()
             {
                 // Arrange
@@ -52,14 +53,15 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var contentResult = actionResult as OkNegotiatedContentResult<Enemies>;
 
                 // Assert
-                Assert.NotNull(contentResult);
-                Assert.NotNull(contentResult.Content);
+                Assert.IsNotNull(contentResult);
+                Assert.IsNotNull(contentResult.Content);
             }
         }
 
+        [TestClass]
         public class Get_Attribute
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsOk()
             {
                 // Arrange
@@ -75,8 +77,8 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var contentResult = actionResult as OkNegotiatedContentResult<Enemies>;
 
                 // Assert
-                Assert.NotNull(contentResult);
-                Assert.NotNull(contentResult.Content);
+                Assert.IsNotNull(contentResult);
+                Assert.IsNotNull(contentResult.Content);
             }
         }
     }

@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using toofz.NecroDancer.Leaderboards.EntityFramework;
 using toofz.NecroDancer.Web.Api.Controllers;
 using toofz.NecroDancer.Web.Api.Models;
-using Xunit;
 
 namespace toofz.NecroDancer.Web.Api.Tests.Controllers
 {
     public class LeaderboardsControllerTests
     {
+        [TestClass]
         public class GetDailies
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsOk()
             {
                 // Arrange
@@ -28,13 +29,14 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var actionResult = await controller.GetDailies(null);
 
                 // Assert
-                Assert.IsType<OkNegotiatedContentResult<DailyLeaderboards>>(actionResult);
+                Assert.IsInstanceOfType(actionResult, typeof(OkNegotiatedContentResult<DailyLeaderboards>));
             }
         }
 
+        [TestClass]
         public class GetLeaderboardEntries
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsOk()
             {
                 // Arrange
@@ -59,11 +61,11 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var contentResult = actionResult as OkNegotiatedContentResult<LeaderboardEntries>;
 
                 // Assert
-                Assert.NotNull(contentResult);
-                Assert.IsType<LeaderboardEntries>(contentResult.Content);
+                Assert.IsNotNull(contentResult);
+                Assert.IsInstanceOfType(contentResult, typeof(OkNegotiatedContentResult<LeaderboardEntries>));
             }
 
-            [Fact]
+            [TestMethod]
             public async Task ReturnsNotFound()
             {
                 // Arrange
@@ -81,7 +83,7 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var actionResult = await controller.GetLeaderboardEntries(0, new LeaderboardsPagination());
 
                 // Assert
-                Assert.IsType<NotFoundResult>(actionResult);
+                Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
             }
         }
     }
