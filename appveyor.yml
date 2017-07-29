@@ -7,6 +7,6 @@ build:
 test:
   assemblies:
     only:
-      - toofz.NecroDancer.Tests\bin\$(configuration)\toofz.NecroDancer.Tests.dll
-      - toofz.NecroDancer.Leaderboards.Tests\bin\$(configuration)\toofz.NecroDancer.Leaderboards.Tests.dll
-      - toofz.NecroDancer.Web.Api.Tests\bin\$(configuration)\toofz.NecroDancer.Web.Api.Tests.dll
+      - toofz.NecroDancer.Tests\bin\Debug\toofz.NecroDancer.Tests.dll
+      - toofz.NecroDancer.Leaderboards.Tests\bin\Debug\toofz.NecroDancer.Leaderboards.Tests.dll
+      - toofz.NecroDancer.Web.Api.Tests\bin\Debug\toofz.NecroDancer.Web.Api.Tests.dll
