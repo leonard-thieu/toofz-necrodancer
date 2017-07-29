@@ -26,16 +26,9 @@ namespace toofz.NecroDancer.Leaderboards
             ILeaderboardsSqlClient sqlClient,
             ApiClient apiClient)
         {
-            if (httpClient == null)
-                throw new ArgumentNullException(nameof(httpClient));
-            if (sqlClient == null)
-                throw new ArgumentNullException(nameof(sqlClient));
-            if (apiClient == null)
-                throw new ArgumentNullException(nameof(apiClient));
-
-            this.httpClient = httpClient;
-            this.sqlClient = sqlClient;
-            this.apiClient = apiClient;
+            this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            this.sqlClient = sqlClient ?? throw new ArgumentNullException(nameof(sqlClient));
+            this.apiClient = apiClient ?? throw new ArgumentNullException(nameof(apiClient));
         }
 
         #endregion
