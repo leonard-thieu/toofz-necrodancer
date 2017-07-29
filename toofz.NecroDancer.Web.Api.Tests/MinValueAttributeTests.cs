@@ -4,6 +4,7 @@ namespace toofz.NecroDancer.Web.Api.Tests
 {
     public class MinValueAttributeTests
     {
+        [TestClass]
         public class IsValid
         {
             [TestMethod]

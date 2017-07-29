@@ -62,7 +62,7 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
 
                 // Assert
                 Assert.IsNotNull(contentResult);
-                Assert.IsInstanceOfType(contentResult, typeof(LeaderboardEntries));
+                Assert.IsInstanceOfType(contentResult, typeof(OkNegotiatedContentResult<LeaderboardEntries>));
             }
 
             [TestMethod]
