@@ -43,7 +43,7 @@ namespace toofz.NecroDancer.Dungeons
         public int Subtype { get; set; }
     }
 
-    internal sealed class TrapValidator : AbstractValidator<Trap>
+    sealed class TrapValidator : AbstractValidator<Trap>
     {
         public TrapValidator()
         {

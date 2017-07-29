@@ -6,16 +6,14 @@ using System.Linq;
 using FluentValidation;
 using FluentValidation.Results;
 
-internal sealed class ValidationTemplate<T> : IDataErrorInfo, INotifyDataErrorInfo
+sealed class ValidationTemplate<T> : IDataErrorInfo, INotifyDataErrorInfo
     where T : INotifyPropertyChanged
 {
-    private static readonly ConcurrentDictionary<RuntimeTypeHandle, IValidator> validators = new ConcurrentDictionary<RuntimeTypeHandle, IValidator>();
+    static readonly ConcurrentDictionary<RuntimeTypeHandle, IValidator> validators = new ConcurrentDictionary<RuntimeTypeHandle, IValidator>();
 
-    private static IValidator GetValidator(Type modelType)
+    static IValidator GetValidator(Type modelType)
     {
-        IValidator validator;
-
-        if (!validators.TryGetValue(modelType.TypeHandle, out validator))
+        if (!validators.TryGetValue(modelType.TypeHandle, out IValidator validator))
         {
             var typeName = string.Format("{0}.{1}Validator", modelType.Namespace, modelType.Name);
             var type = modelType.Assembly.GetType(typeName, true);
@@ -33,11 +31,11 @@ internal sealed class ValidationTemplate<T> : IDataErrorInfo, INotifyDataErrorIn
         target.PropertyChanged += Validate;
     }
 
-    private readonly INotifyPropertyChanged target;
-    private readonly IValidator validator;
-    private ValidationResult validationResult;
+    readonly INotifyPropertyChanged target;
+    readonly IValidator validator;
+    ValidationResult validationResult;
 
-    private void Validate(object sender, PropertyChangedEventArgs e)
+    void Validate(object sender, PropertyChangedEventArgs e)
     {
         validationResult = validator.Validate(target);
         foreach (var error in validationResult.Errors)
@@ -52,9 +50,9 @@ internal sealed class ValidationTemplate<T> : IDataErrorInfo, INotifyDataErrorIn
     {
         get
         {
-            var strings = validationResult.Errors.Where(x => x.PropertyName == columnName)
-                                          .Select(x => x.ErrorMessage)
-                                          .ToArray();
+            var strings = from x in validationResult.Errors
+                          where x.PropertyName == columnName
+                          select x.ErrorMessage;
             return string.Join(Environment.NewLine, strings);
         }
     }
@@ -63,8 +61,8 @@ internal sealed class ValidationTemplate<T> : IDataErrorInfo, INotifyDataErrorIn
     {
         get
         {
-            var strings = validationResult.Errors.Select(x => x.ErrorMessage)
-                                          .ToArray();
+            var strings = from x in validationResult.Errors
+                          select x.ErrorMessage;
             return string.Join(Environment.NewLine, strings);
         }
     }
@@ -75,7 +73,7 @@ internal sealed class ValidationTemplate<T> : IDataErrorInfo, INotifyDataErrorIn
 
     public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
-    private void OnErrorsChanged(string propertyName) => ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+    void OnErrorsChanged(string propertyName) => ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
 
     public bool HasErrors => validationResult.Errors.Count > 0;
 

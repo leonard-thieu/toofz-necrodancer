@@ -34,7 +34,7 @@ namespace toofz.NecroDancer.Dungeons
     [EnumerationContainer(typeof(LevelTemplates))]
     public abstract class LevelTemplate : Enumeration
     {
-        private LevelTemplate(int id, string name, string template) : base(id, name)
+        LevelTemplate(int id, string name, string template) : base(id, name)
         {
             Template = template;
         }

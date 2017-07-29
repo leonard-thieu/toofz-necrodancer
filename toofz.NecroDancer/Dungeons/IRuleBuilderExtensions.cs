@@ -2,7 +2,7 @@
 
 namespace toofz.NecroDancer.Dungeons
 {
-    internal static class IRuleBuilderExtensions
+    static class IRuleBuilderExtensions
     {
         public static IRuleBuilderOptions<T, int> IsIntegralBoolean<T>(this IRuleBuilder<T, int> ruleBuilder)
         {

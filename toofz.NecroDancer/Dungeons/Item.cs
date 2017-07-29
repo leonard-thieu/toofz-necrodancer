@@ -20,7 +20,7 @@ namespace toofz.NecroDancer.Dungeons
         public string Type { get; set; }
     }
 
-    internal sealed class ItemValidator : AbstractValidator<Item>
+    sealed class ItemValidator : AbstractValidator<Item>
     {
         public ItemValidator()
         {

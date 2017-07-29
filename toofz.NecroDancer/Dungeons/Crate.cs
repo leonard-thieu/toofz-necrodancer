@@ -16,7 +16,7 @@ namespace toofz.NecroDancer.Dungeons
         public int Type { get; set; }
     }
 
-    internal sealed class CrateValidator : AbstractValidator<Crate>
+    sealed class CrateValidator : AbstractValidator<Crate>
     {
         public CrateValidator()
         {

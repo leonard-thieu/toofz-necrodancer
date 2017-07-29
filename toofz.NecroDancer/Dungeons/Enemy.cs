@@ -35,7 +35,7 @@ namespace toofz.NecroDancer.Dungeons
         public int Boss { get; set; }
     }
 
-    internal sealed class EnemyValidator : AbstractValidator<Enemy>
+    sealed class EnemyValidator : AbstractValidator<Enemy>
     {
         public EnemyValidator()
         {

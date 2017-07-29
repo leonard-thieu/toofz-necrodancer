@@ -17,21 +17,21 @@ namespace toofz.NecroDancer.Dungeons
 
         public const string XmlName = "level";
 
-        private const string BossXmlName = "bossNum";
-        private const string MusicXmlName = "music";
-        private const string IdXmlName = "num";
+        const string BossXmlName = "bossNum";
+        const string MusicXmlName = "music";
+        const string IdXmlName = "num";
 
         #endregion
 
         #region Serializers
 
-        private static readonly XmlSerializer TileSerializer = new XmlSerializer(typeof(Tile));
-        private static readonly XmlSerializer TrapSerializer = new XmlSerializer(typeof(Trap));
-        private static readonly XmlSerializer EnemySerializer = new XmlSerializer(typeof(Enemy));
-        private static readonly XmlSerializer ItemSerializer = new XmlSerializer(typeof(Item));
-        private static readonly XmlSerializer ChestSerializer = new XmlSerializer(typeof(Chest));
-        private static readonly XmlSerializer CrateSerializer = new XmlSerializer(typeof(Crate));
-        private static readonly XmlSerializer ShrineSerializer = new XmlSerializer(typeof(Shrine));
+        static readonly XmlSerializer TileSerializer = new XmlSerializer(typeof(Tile));
+        static readonly XmlSerializer TrapSerializer = new XmlSerializer(typeof(Trap));
+        static readonly XmlSerializer EnemySerializer = new XmlSerializer(typeof(Enemy));
+        static readonly XmlSerializer ItemSerializer = new XmlSerializer(typeof(Item));
+        static readonly XmlSerializer ChestSerializer = new XmlSerializer(typeof(Chest));
+        static readonly XmlSerializer CrateSerializer = new XmlSerializer(typeof(Crate));
+        static readonly XmlSerializer ShrineSerializer = new XmlSerializer(typeof(Shrine));
 
         #endregion
 
