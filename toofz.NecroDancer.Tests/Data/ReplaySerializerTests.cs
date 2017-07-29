@@ -5,12 +5,12 @@ using toofz.NecroDancer.Tests.Properties;
 
 namespace toofz.NecroDancer.Tests.Data
 {
-    public class ReplaySerializerTests
+    class ReplaySerializerTests
     {
         [TestClass]
         public class ReadReplayMethod
         {
-            private static readonly ReplaySerializer ReplaySerializer = new ReplaySerializer();
+            static readonly ReplaySerializer ReplaySerializer = new ReplaySerializer();
 
             [TestMethod]
             public void CadenceWin_LoadsCorrectly()

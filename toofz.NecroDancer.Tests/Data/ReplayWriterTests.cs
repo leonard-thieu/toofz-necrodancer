@@ -6,12 +6,12 @@ using toofz.NecroDancer.Tests.Properties;
 
 namespace toofz.NecroDancer.Tests.Data
 {
-    public class ReplayWriterTests
+    class ReplayWriterTests
     {
         [TestClass]
         public class WriteReplayDataMethod
         {
-            private static readonly ReplaySerializer ReplaySerializer = new ReplaySerializer();
+            static readonly ReplaySerializer ReplaySerializer = new ReplaySerializer();
 
             [TestMethod]
             public void RemoteReplay_WritesAsLocalReplay()
