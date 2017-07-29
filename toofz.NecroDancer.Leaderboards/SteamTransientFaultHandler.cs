@@ -38,11 +38,11 @@ namespace toofz.NecroDancer.Leaderboards
                         var telemetry = new DependencyTelemetry
                         {
                             Name = request.RequestUri.Host,
-                            CommandName = request.RequestUri.PathAndQuery,
-                            StartTime = startTime,
+                            Data = request.RequestUri.PathAndQuery,
+                            Timestamp = startTime,
                             Duration = DateTimeOffset.UtcNow - startTime,
                             Success = false,
-                            DependencyKind = "HTTP",
+                            Type = "HTTP",
                         };
                         telemetryClient.TrackDependency(telemetry);
                     }
