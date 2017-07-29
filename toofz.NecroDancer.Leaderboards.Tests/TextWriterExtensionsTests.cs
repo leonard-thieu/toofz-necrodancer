@@ -1,15 +1,16 @@
 ﻿using System;
 using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Xunit;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
     public class TextWriterExtensionsTests
     {
+        [TestClass]
         public class WriteLineStart
         {
-            [Fact]
+            [TestMethod]
             public void WritesLineThenValue()
             {
                 // Arrange
@@ -23,7 +24,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 mockWriter.Verify(x => x.Write((object)null), Times.Once);
             }
 
-            [Fact]
+            [TestMethod]
             public void NullWriter_Returns_ArgumentNullException()
             {
                 // Arrange
@@ -33,8 +34,8 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var ex = Record.Exception(() => TextWriterExtensions.WriteLineStart(writer, null));
 
                 // Assert
-                Assert.NotNull(ex);
-                Assert.IsType<ArgumentNullException>(ex);
+                Assert.IsNotNull(ex);
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
             }
         }
     }

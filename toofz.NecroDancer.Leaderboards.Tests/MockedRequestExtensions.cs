@@ -3,7 +3,7 @@ using RichardSzalay.MockHttp;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
-    internal static class MockedRequestExtensions
+    static class MockedRequestExtensions
     {
         public static void RespondJson(this MockedRequest source, object content)
         {

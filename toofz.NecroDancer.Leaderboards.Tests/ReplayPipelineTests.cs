@@ -4,16 +4,17 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RichardSzalay.MockHttp;
-using Xunit;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
     public class ReplayPipelineTests
     {
+        [TestClass]
         public class CreateDownloadDetails
         {
-            [Fact]
+            [TestMethod]
             public async Task Returns_ReplayDetails()
             {
                 // Arrange
@@ -35,13 +36,13 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await getResult.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(response);
-                Assert.NotNull(response.DetailsContent);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(response);
+                Assert.IsNotNull(response.DetailsContent);
                 handler.VerifyNoOutstandingExpectation();
             }
 
-            [Fact]
+            [TestMethod]
             public async Task NotFound_SetsErrorCode()
             {
                 // Arrange
@@ -64,13 +65,13 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await getResult.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(response);
-                Assert.Equal(404, response.ErrorCode);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(response);
+                Assert.AreEqual(404, response.ErrorCode);
                 handler.VerifyNoOutstandingExpectation();
             }
 
-            [Fact]
+            [TestMethod]
             public async Task Non404NonSuccess_ThrowsHttpRequestException()
             {
                 // Arrange
@@ -87,16 +88,17 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var ex = await Record.ExceptionAsync(() => downloadDetails.Completion);
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(ex);
-                Assert.IsType<HttpRequestException>(ex);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(ex);
+                Assert.IsInstanceOfType(ex, typeof(HttpRequestException));
                 handler.VerifyNoOutstandingExpectation();
             }
         }
 
+        [TestClass]
         public class ProcessDetails
         {
-            [Fact]
+            [TestMethod]
             public async Task Returns_DataUri()
             {
                 // Arrange
@@ -115,14 +117,14 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await getResult.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(response);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(response);
 
                 var dataUri = response.DataUri;
-                Assert.Equal(Constants.FakeUri, dataUri);
+                Assert.AreEqual(Constants.FakeUri, dataUri);
             }
 
-            [Fact]
+            [TestMethod]
             public async Task NullDetails_DoesNothing()
             {
                 // Arrange
@@ -141,16 +143,17 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await getResult.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(response);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(response);
 
-                Assert.Null(response.DataUri);
+                Assert.IsNull(response.DataUri);
             }
         }
 
+        [TestClass]
         public class CreateDownloadData
         {
-            [Fact]
+            [TestMethod]
             public async Task Returns_DataContent()
             {
                 // Arrange
@@ -174,13 +177,13 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await getResult.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(response);
-                Assert.NotNull(response.DataContent);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(response);
+                Assert.IsNotNull(response.DataContent);
                 handler.VerifyNoOutstandingExpectation();
             }
 
-            [Fact]
+            [TestMethod]
             public async Task NullDataUri_DoesNothing()
             {
                 // Arrange
@@ -203,12 +206,12 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await getResult.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(response);
-                Assert.Null(response.DataContent);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(response);
+                Assert.IsNull(response.DataContent);
             }
 
-            [Fact]
+            [TestMethod]
             public async Task NotFound_SetsErrorCode()
             {
                 // Arrange
@@ -232,13 +235,13 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await getResult.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(response);
-                Assert.Equal(-404, response.ErrorCode);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(response);
+                Assert.AreEqual(-404, response.ErrorCode);
                 handler.VerifyNoOutstandingExpectation();
             }
 
-            [Fact]
+            [TestMethod]
             public async Task Non404NonSuccess_ThrowsHttpRequestException()
             {
                 // Arrange
@@ -257,16 +260,17 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var ex = await Record.ExceptionAsync(() => downloadData.Completion);
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(ex);
-                Assert.IsType<HttpRequestException>(ex);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(ex);
+                Assert.IsInstanceOfType(ex, typeof(HttpRequestException));
                 handler.VerifyNoOutstandingExpectation();
             }
         }
 
+        [TestClass]
         public class CreateProcessData
         {
-            [Fact]
+            [TestMethod]
             public async Task Returns_Data()
             {
                 // Arrange
@@ -285,12 +289,12 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await getResult.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(response);
-                Assert.NotNull(response.Data);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(response);
+                Assert.IsNotNull(response.Data);
             }
 
-            [Fact]
+            [TestMethod]
             public async Task NullDataContent_DoesNothing()
             {
                 // Arrange
@@ -309,9 +313,9 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await getResult.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(response);
-                Assert.Null(response.Data);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(response);
+                Assert.IsNull(response.Data);
             }
         }
     }

@@ -3,15 +3,16 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
     public class ApiExceptionTests
     {
+        [TestClass]
         public class CreateAsync
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsApiException()
             {
                 // Arrange
@@ -29,14 +30,14 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 });
 
                 // Assert
-                Assert.Null(ex);
-                Assert.Null(apiEx.RequestUri);
-                Assert.Null(apiEx.Request);
-                Assert.Equal("{}", apiEx.Response);
-                Assert.Equal(HttpStatusCode.BadRequest, apiEx.StatusCode);
+                Assert.IsNull(ex);
+                Assert.IsNull(apiEx.RequestUri);
+                Assert.IsNull(apiEx.Request);
+                Assert.AreEqual("{}", apiEx.Response);
+                Assert.AreEqual(HttpStatusCode.BadRequest, apiEx.StatusCode);
             }
 
-            [Fact]
+            [TestMethod]
             public async Task NullResponse_ThrowsArgumentNullException()
             {
                 // Arrange
@@ -46,11 +47,11 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var ex = await Record.ExceptionAsync(() => ApiException.CreateAsync(response));
 
                 // Assert
-                Assert.NotNull(ex);
-                Assert.IsType<ArgumentNullException>(ex);
+                Assert.IsNotNull(ex);
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
             }
 
-            [Fact]
+            [TestMethod]
             public async Task SuccessResponse_ThrowsArgumentException()
             {
                 // Arrange
@@ -60,29 +61,31 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var ex = await Record.ExceptionAsync(() => ApiException.CreateAsync(response));
 
                 // Assert
-                Assert.NotNull(ex);
-                Assert.IsType<ArgumentException>(ex);
+                Assert.IsNotNull(ex);
+                Assert.IsInstanceOfType(ex, typeof(ArgumentException));
             }
         }
 
         public class CreateIncorrectMediaTypeAsync
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsApiException()
             {
                 // Arrange
-                var response = new HttpResponseMessage();
-                response.Content = new StringContent("", Encoding.UTF8, "application/xml");
-                response.RequestMessage = new HttpRequestMessage { RequestUri = Constants.FakeUri };
+                var response = new HttpResponseMessage()
+                {
+                    Content = new StringContent("", Encoding.UTF8, "application/xml"),
+                    RequestMessage = new HttpRequestMessage { RequestUri = Constants.FakeUri }
+                };
 
                 // Act
                 var ex = await Record.ExceptionAsync(() => ApiException.CreateIncorrectMediaTypeAsync(response));
 
                 // Assert
-                Assert.Null(ex);
+                Assert.IsNull(ex);
             }
 
-            [Fact]
+            [TestMethod]
             public async Task NullResponse_ThrowsArgumentNullException()
             {
                 // Arrange
@@ -92,8 +95,8 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var ex = await Record.ExceptionAsync(() => ApiException.CreateIncorrectMediaTypeAsync(response));
 
                 // Assert
-                Assert.NotNull(ex);
-                Assert.IsType<ArgumentNullException>(ex);
+                Assert.IsNotNull(ex);
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
             }
         }
     }

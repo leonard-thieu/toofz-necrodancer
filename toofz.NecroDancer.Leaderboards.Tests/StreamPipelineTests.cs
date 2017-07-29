@@ -2,16 +2,17 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RichardSzalay.MockHttp;
-using Xunit;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
     public class StreamPipelineTests
     {
+        [TestClass]
         public class CreateRequestBlock
         {
-            [Fact]
+            [TestMethod]
             public async Task Returns_Response()
             {
                 // Arrange
@@ -29,15 +30,16 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await request.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.NotNull(response);
+                Assert.IsTrue(sent);
+                Assert.IsNotNull(response);
                 handler.VerifyNoOutstandingExpectation();
             }
         }
 
+        [TestClass]
         public class CreateDownloadBlock
         {
-            [Fact]
+            [TestMethod]
             public async Task Returns_Content()
             {
                 // Arrange
@@ -53,14 +55,15 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await download.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.Equal("fakeContent", content);
+                Assert.IsTrue(sent);
+                Assert.AreEqual("fakeContent", content);
             }
         }
 
+        [TestClass]
         public class CreateProcessContentBlock
         {
-            [Fact]
+            [TestMethod]
             public async Task Returns_Stream()
             {
                 // Arrange
@@ -75,9 +78,9 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 await processContent.Completion;
 
                 // Assert
-                Assert.True(sent);
-                Assert.True(stream.CanRead);
-                Assert.True(stream.CanSeek);
+                Assert.IsTrue(sent);
+                Assert.IsTrue(stream.CanRead);
+                Assert.IsTrue(stream.CanSeek);
             }
         }
     }

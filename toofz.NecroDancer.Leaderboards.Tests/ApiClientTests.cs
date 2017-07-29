@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using RichardSzalay.MockHttp;
-using Xunit;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
     public class ApiClientTests
     {
-        private static readonly CancellationToken Cancellation = CancellationToken.None;
+        static readonly CancellationToken Cancellation = CancellationToken.None;
 
+        [TestClass]
         public class GetStaleSteamIdsAsync
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsSteamIds()
             {
                 // Arrange
@@ -22,20 +23,23 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 handler.When(new Uri(Constants.FakeUri + "players?limit=0"))
                     .RespondJson(new List<long>());
 
-                var apiClient = new ApiClient(handler);
-                apiClient.BaseAddress = Constants.FakeUri;
+                var apiClient = new ApiClient(handler)
+                {
+                    BaseAddress = Constants.FakeUri
+                };
 
                 // Act
                 var steamIds = await apiClient.GetStaleSteamIdsAsync(0, Cancellation);
 
                 // Assert
-                Assert.IsAssignableFrom(typeof(IEnumerable<long>), steamIds);
+                Assert.IsInstanceOfType(steamIds, typeof(IEnumerable<long>));
             }
         }
 
+        [TestClass]
         public class PostPlayersAsync
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsRowsAffected()
             {
                 // Arrange
@@ -43,9 +47,10 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 handler.When(new Uri(Constants.FakeUri + "players"))
                     .RespondJson(new { rowsAffected = 1 });
 
-                var apiClient = new ApiClient(handler);
-                apiClient.BaseAddress = Constants.FakeUri;
-
+                var apiClient = new ApiClient(handler)
+                {
+                    BaseAddress = Constants.FakeUri
+                };
                 var players = new List<Player> { new Player { Exists = true, LastUpdate = new DateTime(2016, 1, 1) } };
 
                 // Act
@@ -53,13 +58,14 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var rowsAffected = JObject.Parse(response)["rowsAffected"].Value<long>();
 
                 // Assert
-                Assert.Equal(1, rowsAffected);
+                Assert.AreEqual(1, rowsAffected);
             }
         }
 
+        [TestClass]
         public class GetMissingReplayIdsAsync
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsReplayIds()
             {
                 // Arrange
@@ -67,20 +73,23 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 handler.When(new Uri(Constants.FakeUri + "replays?limit=0"))
                     .RespondJson(new List<long>());
 
-                var apiClient = new ApiClient(handler);
-                apiClient.BaseAddress = Constants.FakeUri;
+                var apiClient = new ApiClient(handler)
+                {
+                    BaseAddress = Constants.FakeUri
+                };
 
                 // Act
                 var replayIds = await apiClient.GetMissingReplayIdsAsync(0, Cancellation);
 
                 // Assert
-                Assert.IsAssignableFrom(typeof(IEnumerable<long>), replayIds);
+                Assert.IsInstanceOfType(replayIds, typeof(IEnumerable<long>));
             }
         }
 
+        [TestClass]
         public class PostReplaysAsync
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsRowsAffected()
             {
                 // Arrange
@@ -88,9 +97,10 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 handler.When(new Uri(Constants.FakeUri + "replays"))
                     .RespondJson(new { rowsAffected = 1 });
 
-                var apiClient = new ApiClient(handler);
-                apiClient.BaseAddress = Constants.FakeUri;
-
+                var apiClient = new ApiClient(handler)
+                {
+                    BaseAddress = Constants.FakeUri
+                };
                 var replays = new List<Replay> { new Replay() };
 
                 // Act
@@ -98,7 +108,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var rowsAffected = JObject.Parse(response)["rowsAffected"].Value<long>();
 
                 // Assert
-                Assert.Equal(1, rowsAffected);
+                Assert.AreEqual(1, rowsAffected);
             }
         }
     }

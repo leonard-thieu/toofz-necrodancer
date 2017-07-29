@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
-    internal sealed class TestingHttpMessageHandler : DelegatingHandler
+    sealed class TestingHttpMessageHandler : DelegatingHandler
     {
         public TestingHttpMessageHandler(HttpMessageHandler innerHandler) : base(innerHandler) { }
 

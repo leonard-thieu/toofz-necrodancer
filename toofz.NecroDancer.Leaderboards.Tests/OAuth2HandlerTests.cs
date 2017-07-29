@@ -4,20 +4,18 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RichardSzalay.MockHttp;
-using Xunit;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
     public class OAuth2HandlerTests
     {
-        private static readonly Uri BaseAddress = new Uri("http://fake.domain.tld/", UriKind.Absolute);
-        private static readonly CancellationToken Cancellation = CancellationToken.None;
-
+        [TestClass]
         public class SendAsync
         {
-            [Fact]
+            [TestMethod]
             public async Task Authorized_ReturnsResponse()
             {
                 // Arrange
@@ -31,48 +29,52 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var mockRequest = new Mock<HttpRequestMessage>();
 
                 // Act
-                await handler.TestSendAsync(mockRequest.Object, Cancellation);
+                await handler.TestSendAsync(mockRequest.Object, CancellationToken.None);
                 var authorization = mockRequest.Object.Headers.Authorization;
 
                 // Assert
-                Assert.Equal("Bearer", authorization.Scheme);
+                Assert.AreEqual("Bearer", authorization.Scheme);
             }
 
-            [Fact]
+            [TestMethod]
             public async Task Unauthorized_Authenticates()
             {
                 // Arrange
                 var mockHandler = new MockHttpMessageHandler();
 
-                var response = new HttpResponseMessage();
-                response.StatusCode = HttpStatusCode.Unauthorized;
+                var response = new HttpResponseMessage()
+                {
+                    StatusCode = HttpStatusCode.Unauthorized
+                };
                 response.Headers.WwwAuthenticate.Add(new AuthenticationHeaderValue("Bearer"));
-                mockHandler.Expect(BaseAddress)
+                mockHandler.Expect(Constants.FakeUri)
                     .Respond(response);
 
-                mockHandler.Expect(new Uri(BaseAddress, "/token"))
+                mockHandler.Expect(new Uri(Constants.FakeUri, "/token"))
                     .RespondJson(new OAuth2AccessToken
                     {
                         AccessToken = "fakeToken",
                         TokenType = "bearer",
                     });
 
-                mockHandler.Expect(BaseAddress)
+                mockHandler.Expect(Constants.FakeUri)
                     .WithHeaders("Authorization", "Bearer fakeToken")
                     .Respond(HttpStatusCode.OK);
 
                 var handler = new TestingHttpMessageHandler(new OAuth2Handler { InnerHandler = mockHandler });
 
-                var request = new HttpRequestMessage();
-                request.RequestUri = BaseAddress;
+                var request = new HttpRequestMessage()
+                {
+                    RequestUri = Constants.FakeUri
+                };
 
                 // Act
-                await handler.TestSendAsync(request, Cancellation);
+                await handler.TestSendAsync(request, CancellationToken.None);
                 var authorization = request.Headers.Authorization;
 
                 // Assert
                 mockHandler.VerifyNoOutstandingExpectation();
-                Assert.Equal("Bearer", authorization.Scheme);
+                Assert.AreEqual("Bearer", authorization.Scheme);
             }
         }
     }
