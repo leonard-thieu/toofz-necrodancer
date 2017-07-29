@@ -461,7 +461,9 @@ namespace toofz.NecroDancer.Data
         /// <summary>
         /// Reads the text content at the current position as a <see cref="bool" />.
         /// </summary>
-        /// <param name="reader">The <see cref="XmlReader" /> to read with.</param>
+        /// <param name="content">
+        /// The text content.
+        /// </param>
         /// <returns>The text content as a <see cref="bool" />.</returns>
         /// <exception cref="InvalidCastException">
         /// The value could not be read as a boolean.

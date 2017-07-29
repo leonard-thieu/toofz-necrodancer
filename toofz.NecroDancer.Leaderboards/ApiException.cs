@@ -120,33 +120,47 @@ namespace toofz.NecroDancer.Leaderboards
         /// Initializes a new instance of the <see cref="ApiException"/> class with a specified error message and 
         /// a reference to the inner exception that is the cause of this exception.
         /// </summary>
-        /// <param name="response">The error response.</param>
+        /// <param name="message">
+        /// The message that describes the error.
+        /// </param>
         /// <param name="innerException">
         /// The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) 
         /// if no inner exception is specified.
         /// </param>
-        private ApiException(string message, Exception innerException, Uri requestUri, string request, string response, HttpStatusCode statusCode) : base(message, innerException)
+        /// <param name="requestUri">
+        /// The URI of the request.
+        /// </param>
+        /// <param name="requestContent">
+        /// The contents of the request.
+        /// </param>
+        /// <param name="responseContent">
+        /// The contents of the response.
+        /// </param>
+        /// <param name="statusCode">
+        /// The HTTP status code of the response.
+        /// </param>
+        private ApiException(string message, Exception innerException, Uri requestUri, string requestContent, string responseContent, HttpStatusCode statusCode) : base(message, innerException)
         {
             RequestUri = requestUri;
-            Request = request;
-            Response = response;
+            RequestContent = requestContent;
+            ResponseContent = responseContent;
             StatusCode = statusCode;
         }
 
         /// <summary>
-        /// The request URI.
+        /// The URI of the request.
         /// </summary>
         public Uri RequestUri { get; }
         /// <summary>
-        /// The request.
+        /// The contents of the request.
         /// </summary>
-        public string Request { get; }
+        public string RequestContent { get; }
         /// <summary>
-        /// The error response.
+        /// The contents of the response.
         /// </summary>
-        public string Response { get; }
+        public string ResponseContent { get; }
         /// <summary>
-        /// The HTTP status code of the response that caused the exception.
+        /// The HTTP status code of the response.
         /// </summary>
         public HttpStatusCode StatusCode { get; }
 

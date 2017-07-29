@@ -32,8 +32,8 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 // Assert
                 Assert.IsNull(ex);
                 Assert.IsNull(apiEx.RequestUri);
-                Assert.IsNull(apiEx.Request);
-                Assert.AreEqual("{}", apiEx.Response);
+                Assert.IsNull(apiEx.RequestContent);
+                Assert.AreEqual("{}", apiEx.ResponseContent);
                 Assert.AreEqual(HttpStatusCode.BadRequest, apiEx.StatusCode);
             }
 

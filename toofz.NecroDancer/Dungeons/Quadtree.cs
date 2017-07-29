@@ -90,12 +90,12 @@ namespace toofz.NecroDancer.Dungeons
         /// <param name="node">The node to insert.</param>
         /// <param name="point">The point to insert the node.</param>
         /// <exception cref="ArgumentException">
-        /// <paramref name="Bounds"/> must be non-zero.
+        /// <see cref="Bounds"/> must have non-zero width and height.
         /// </exception>
         public void Insert(T node, Point point)
         {
             if (Bounds.Width == 0 || Bounds.Height == 0)
-                throw new ArgumentException("Bounds must be non-zero.");
+                throw new ArgumentException("Bounds must have non-zero width and height.");
 
             if (root == null)
             {
@@ -117,8 +117,7 @@ namespace toofz.NecroDancer.Dungeons
         {
             if (table != null)
             {
-                Quadrant parent = null;
-                if (table.TryGetValue(node, out parent))
+                if (table.TryGetValue(node, out Quadrant parent))
                 {
                     parent.RemoveNode(node);
                     table.Remove(node);
