@@ -4,7 +4,7 @@
       "description": "getAreas",
       "request": {
         "method": "GET",
-        "url": "/data/areas.min.json?v=3"
+        "url": "/data/areas.min.json?v=4"
       },
       "response": {
         "data": {
