@@ -4,6 +4,7 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
 using toofz.NecroDancer.Leaderboards;
+using toofz.NecroDancer.Leaderboards.EntityFramework;
 using toofz.NecroDancer.Web.Api;
 using toofz.NecroDancer.Web.Api._Leaderboards;
 using WebActivatorEx;
@@ -64,8 +65,9 @@ namespace toofz.NecroDancer.Web.Api
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            var leaderboardsConnectionString = Environment.GetEnvironmentVariable("LeaderboardsConnectionString", EnvironmentVariableTarget.Machine);
+            var leaderboardsConnectionString = Util.GetEnvVar("LeaderboardsConnectionString");
 
+            kernel.Bind<LeaderboardsContext>().ToConstructor(s => new LeaderboardsContext(leaderboardsConnectionString));
             kernel.Bind<ILeaderboardsSqlClient>().ToConstructor(s => new LeaderboardsSqlClient(leaderboardsConnectionString));
             kernel.Bind<LeaderboardsService>().ToSelf();
             kernel.Bind<IHttpServerUtilityWrapper>().ToConstructor(s => new HttpServerUtilityWrapper());

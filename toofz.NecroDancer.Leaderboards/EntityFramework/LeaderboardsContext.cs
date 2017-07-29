@@ -1,19 +1,21 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
 namespace toofz.NecroDancer.Leaderboards.EntityFramework
 {
     public class LeaderboardsContext : DbContext
     {
-        static string GetConnectionString()
+        public LeaderboardsContext()
         {
-            return Environment.GetEnvironmentVariable("LeaderboardsConnectionString", EnvironmentVariableTarget.Machine);
+            Initialize();
         }
 
-        public LeaderboardsContext() : this(GetConnectionString()) { }
-
         public LeaderboardsContext(string nameOrConnectionString) : base(nameOrConnectionString)
+        {
+            Initialize();
+        }
+
+        void Initialize()
         {
             Configuration.AutoDetectChangesEnabled = false;
             Configuration.LazyLoadingEnabled = false;

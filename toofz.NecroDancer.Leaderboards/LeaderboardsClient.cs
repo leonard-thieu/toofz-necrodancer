@@ -162,7 +162,8 @@ namespace toofz.NecroDancer.Leaderboards
             {
                 var headers = new List<DailyHeader>();
 
-                using (var db = new LeaderboardsContext())
+                var leaderboardsConnectionString = Util.GetEnvVar("LeaderboardsConnectionString");
+                using (var db = new LeaderboardsContext(leaderboardsConnectionString))
                 {
                     var today = DateTime.Today;
                     var stale = await (from l in db.DailyLeaderboards
