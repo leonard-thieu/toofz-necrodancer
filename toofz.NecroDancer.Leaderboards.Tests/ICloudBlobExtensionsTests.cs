@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Moq;
 using toofz.NecroDancer.Replays;
-using Xunit;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
     public class ICloudBlobExtensionsTests
     {
+        [TestClass]
         public class UploadReplayDataAsync
         {
-            [Fact]
+            [TestMethod]
             public async Task ReturnsUri()
             {
                 // Arrange
@@ -26,10 +27,10 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var ex = await Record.ExceptionAsync(() => ICloudBlobExtensions.UploadReplayDataAsync(mockBlob.Object, replay, CancellationToken.None));
 
                 // Assert
-                Assert.Null(ex);
+                Assert.IsNull(ex);
             }
 
-            [Fact]
+            [TestMethod]
             public async Task NullBlob_ReturnsArgumentNullException()
             {
                 // Arrange
@@ -41,11 +42,11 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var ex = await Record.ExceptionAsync(() => ICloudBlobExtensions.UploadReplayDataAsync(blob, replay, CancellationToken.None));
 
                 // Assert
-                Assert.NotNull(ex);
-                Assert.IsType<ArgumentNullException>(ex);
+                Assert.IsNotNull(ex);
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
             }
 
-            [Fact]
+            [TestMethod]
             public async Task NullReplay_ReturnsArgumentNullException()
             {
                 // Arrange
@@ -59,8 +60,8 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var ex = await Record.ExceptionAsync(() => ICloudBlobExtensions.UploadReplayDataAsync(mockBlob.Object, replay, CancellationToken.None));
 
                 // Assert
-                Assert.NotNull(ex);
-                Assert.IsType<ArgumentNullException>(ex);
+                Assert.IsNotNull(ex);
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
             }
         }
     }

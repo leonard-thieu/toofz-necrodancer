@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
     public class TypeExtensionsTests
     {
+        [TestClass]
         public class GetSimpleFullName
         {
-            [Fact]
+            [TestMethod]
             public void Returns_SimpleFullName()
             {
                 // Arrange
@@ -18,10 +19,10 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var name = TypeExtensions.GetSimpleFullName(type);
 
                 // Assert
-                Assert.Equal("System.Collections.Generic.List`1", name);
+                Assert.AreEqual("System.Collections.Generic.List`1", name);
             }
 
-            [Fact]
+            [TestMethod]
             public void NullType_ThrowsArgumentNullException()
             {
                 // Arrange
@@ -31,8 +32,8 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var ex = Record.Exception(() => TypeExtensions.GetSimpleFullName(type));
 
                 // Assert
-                Assert.NotNull(ex);
-                Assert.IsType<ArgumentNullException>(ex);
+                Assert.IsNotNull(ex);
+                Assert.IsInstanceOfType(ex, typeof(ArgumentNullException));
             }
         }
     }

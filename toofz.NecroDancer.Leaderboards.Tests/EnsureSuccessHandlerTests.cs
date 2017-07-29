@@ -2,19 +2,20 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RichardSzalay.MockHttp;
-using Xunit;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
     public class EnsureSuccessHandlerTests
     {
-        private static readonly CancellationToken Cancellation = CancellationToken.None;
+        static readonly CancellationToken Cancellation = CancellationToken.None;
 
+        [TestClass]
         public class SendAsync
         {
-            [Fact]
+            [TestMethod]
             public async Task Success_ReturnsResponse()
             {
                 // Arrange
@@ -31,10 +32,10 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 });
 
                 // Assert
-                Assert.Null(ex);
+                Assert.IsNull(ex);
             }
 
-            [Fact]
+            [TestMethod]
             public async Task NonSuccess_ThrowsApiException()
             {
                 // Arrange
@@ -50,7 +51,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 });
 
                 // Assert
-                Assert.IsType<ApiException>(ex);
+                Assert.IsInstanceOfType(ex, typeof(ApiException));
             }
         }
     }

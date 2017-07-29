@@ -3,7 +3,7 @@ using RichardSzalay.MockHttp;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
-    internal static class MockHttpMessageHandlerExtensions
+    static class MockHttpMessageHandlerExtensions
     {
         public static MockedRequest When(this MockHttpMessageHandler handler, Uri uri)
         {
