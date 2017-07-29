@@ -16,9 +16,9 @@ namespace toofz.NecroDancer.Leaderboards
 {
     public sealed class LeaderboardsClient : IDisposable
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsClient));
-        private static readonly RetryStrategy RetryStrategy = new ExponentialBackoff(10, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(2));
-        private static readonly RetryPolicy<SteamClientTransientErrorDetectionStrategy> RetryPolicy = SteamClientTransientErrorDetectionStrategy.Create(RetryStrategy);
+        static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsClient));
+        static readonly RetryStrategy RetryStrategy = new ExponentialBackoff(10, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(2));
+        static readonly RetryPolicy<SteamClientTransientErrorDetectionStrategy> RetryPolicy = SteamClientTransientErrorDetectionStrategy.Create(RetryStrategy);
 
         #region Initialization
 
@@ -35,75 +35,13 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Fields
 
-        private readonly ILeaderboardsHttpClient httpClient;
-        private readonly ILeaderboardsSqlClient sqlClient;
-        private readonly ApiClient apiClient;
+        readonly ILeaderboardsHttpClient httpClient;
+        readonly ILeaderboardsSqlClient sqlClient;
+        readonly ApiClient apiClient;
 
         #endregion
 
         #region Leaderboards and Entries
-
-        public async Task UpdateLeaderboardsAsync(CancellationToken cancellationToken)
-        {
-            using (new UpdateNotifier(Log, "leaderboards"))
-            {
-                var production = (from m in await httpClient.GetLeaderboardHeadersAsync(cancellationToken).ConfigureAwait(false)
-                                  where m.IsProduction && !m.IsCooperative
-                                  select m).ToList();
-
-                if (cancellationToken.IsCancellationRequested) { return; }
-
-                var headers = new List<LeaderboardHeader>();
-
-                using (var file = File.OpenText("leaderboard-headers.json"))
-                {
-                    var serializer = new JsonSerializer();
-                    var primaries_headers = ((Headers)serializer.Deserialize(file, typeof(Headers))).leaderboards;
-
-                    var primaries = from m in production
-                                    join o in primaries_headers on m.LeaderboardId equals o.id
-                                    select m;
-                    headers.AddRange(primaries);
-                }
-
-                var dailies = production.Where(m => m.Date != null);
-                headers.AddRange(dailies);
-
-                var leaderboardTasks = new List<Task<Leaderboard>>();
-
-                Leaderboard[] leaderboards;
-                using (var download = new DownloadNotifier(Log, "leaderboards"))
-                {
-                    foreach (var header in headers)
-                    {
-                        var leaderboard = httpClient.GetLeaderboardAsync(header, download.Progress, cancellationToken);
-                        leaderboardTasks.Add(leaderboard);
-                    }
-
-                    leaderboards = await Task.WhenAll(leaderboardTasks).ConfigureAwait(false);
-                }
-
-                if (cancellationToken.IsCancellationRequested) { return; }
-
-                await sqlClient.SaveChangesAsync(leaderboards, cancellationToken).ConfigureAwait(false);
-
-                var entries = leaderboards.SelectMany(e => e.Entries).ToList();
-
-                var players = entries.Select(e => e.SteamId)
-                    .Distinct()
-                    .Select(s => new Player { SteamId = s });
-                await sqlClient.SaveChangesAsync(players, false, cancellationToken).ConfigureAwait(false);
-
-                var replayIds = new HashSet<long>(from e in entries
-                                                  where e.ReplayId != null
-                                                  select e.ReplayId.Value);
-                var replays = from e in replayIds
-                              select new Replay { ReplayId = e };
-                await sqlClient.SaveChangesAsync(replays, false, cancellationToken).ConfigureAwait(false);
-
-                await sqlClient.SaveChangesAsync(entries).ConfigureAwait(false);
-            }
-        }
 
         public async Task UpdateLeaderboardsAsync(LeaderboardsSteamClient steamClient, CancellationToken cancellationToken)
         {
@@ -284,7 +222,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Replays
 
-        private static readonly ReplaySerializer ReplaySerializer = new ReplaySerializer();
+        static readonly ReplaySerializer ReplaySerializer = new ReplaySerializer();
 
         public async Task UpdateReplaysAsync(int limit, CloudBlobDirectory directory, CancellationToken cancellationToken)
         {
@@ -379,7 +317,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region IDisposable Members
 
-        private bool disposed;
+        bool disposed;
 
         public void Dispose()
         {
@@ -387,7 +325,7 @@ namespace toofz.NecroDancer.Leaderboards
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        void Dispose(bool disposing)
         {
             if (disposed)
                 return;

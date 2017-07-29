@@ -215,7 +215,6 @@
     <Compile Include="ILeaderboardsReader.cs" />
     <Compile Include="ILeaderboardsSqlClient.cs" />
     <Compile Include="Leaderboard.cs" />
-    <Compile Include="LeaderboardHeader.cs" />
     <Compile Include="LeaderboardsClient.cs" />
     <Compile Include="LeaderboardsHttpClient.cs" />
     <Compile Include="LeaderboardsReader.cs" />
