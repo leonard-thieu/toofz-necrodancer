@@ -4,9 +4,11 @@ before_build:
 - cmd: nuget restore
 build:
   verbosity: minimal
+configuration:
+  - Release
 test:
   assemblies:
     only:
-      - toofz.NecroDancer.Tests\bin\$(configuration)\toofz.NecroDancer.Tests.dll
-      - toofz.NecroDancer.Leaderboards.Tests\bin\$(configuration)\toofz.NecroDancer.Leaderboards.Tests.dll
-      - toofz.NecroDancer.Web.Api.Tests\bin\$(configuration)\toofz.NecroDancer.Web.Api.Tests.dll
+      - toofz.NecroDancer.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Tests.dll
+      - toofz.NecroDancer.Leaderboards.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Leaderboards.Tests.dll
+      - toofz.NecroDancer.Web.Api.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Web.Api.Tests.dll
