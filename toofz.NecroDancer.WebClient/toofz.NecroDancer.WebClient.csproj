@@ -233,7 +233,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\cadence.png" />
-    <Content Include="images\characters\all.png" />
     <Content Include="images\characters\aria.png" />
     <Content Include="images\characters\bard.png" />
     <Content Include="images\characters\bolt.png" />
@@ -247,7 +246,6 @@
     <Content Include="images\characters\monk.png" />
     <Content Include="images\characters\nocturna.png" />
     <Content Include="images\characters\story.png" />
-    <Content Include="images\characters\all.psd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\site.css">
