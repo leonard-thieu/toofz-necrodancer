@@ -8,23 +8,25 @@ namespace toofz.NecroDancer.Tests.Data
         [TestClass]
         public class TryGetSeed
         {
-            [TestMethod]
-            public void Returns_Correct_Seed()
+            [DataTestMethod]
+            [DataRow(1580050689, 603033)]
+            [DataRow(-2147483141, 89527)]
+            public void Returns_Correct_Seed(int levelSeed, int seed)
             {
                 // Arrange
                 var replayData = new ReplayData();
                 var level = new LevelData
                 {
-                    Seed = 1580050689,
+                    Seed = levelSeed,
                 };
                 replayData.Levels.Add(level);
 
                 // Act
-                var success = replayData.TryGetSeed(out int seed);
+                var success = replayData.TryGetSeed(out int result);
 
                 // Assert
                 Assert.IsTrue(success);
-                Assert.AreEqual(603033, seed);
+                Assert.AreEqual(seed, result);
             }
         }
     }

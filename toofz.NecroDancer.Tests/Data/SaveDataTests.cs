@@ -3,7 +3,7 @@ using toofz.NecroDancer.Saves;
 
 namespace toofz.NecroDancer.Tests.Data
 {
-    public class SaveDataTests
+    class SaveDataTests
     {
         [TestClass]
         public class LoadMethod
