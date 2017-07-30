@@ -12,6 +12,7 @@ namespace toofz.NecroDancer.Leaderboards.EntityFramework.Migrations
         {
             AutomaticMigrationsEnabled = false;
             ContextKey = "Toofz.NecroDancer.Leaderboards.DataAccess.Migrations.Configuration";
+            MigrationsDirectory = @"EntityFramework\Migrations";
         }
 
         protected override void Seed(LeaderboardsContext context)

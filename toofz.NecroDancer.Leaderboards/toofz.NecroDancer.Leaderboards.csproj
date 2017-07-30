@@ -198,8 +198,8 @@
     <Compile Include="ExceptionRenderer.cs" />
     <Compile Include="LeaderboardsService.cs" />
     <Compile Include="LeaderboardsSteamClient.cs" />
-    <Compile Include="Migrations\201707172139340_LimeZinc﻿AfghanHound.cs" />
-    <Compile Include="Migrations\201707172139340_LimeZinc﻿AfghanHound.Designer.cs">
+    <Compile Include="EntityFramework\Migrations\201707172139340_LimeZinc﻿AfghanHound.cs" />
+    <Compile Include="EntityFramework\Migrations\201707172139340_LimeZinc﻿AfghanHound.Designer.cs">
       <DependentUpon>201707172139340_LimeZinc﻿AfghanHound.cs</DependentUpon>
     </Compile>
     <Compile Include="NotifierBase.cs" />
@@ -448,7 +448,7 @@
     <EmbeddedResource Include="EntityFramework\Migrations\201702071543572_BluePlatinumBloodhound.resx">
       <DependentUpon>201702071543572_BluePlatinumBloodhound.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707172139340_LimeZinc﻿AfghanHound.resx">
+    <EmbeddedResource Include="EntityFramework\Migrations\201707172139340_LimeZinc﻿AfghanHound.resx">
       <DependentUpon>201707172139340_LimeZinc﻿AfghanHound.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
