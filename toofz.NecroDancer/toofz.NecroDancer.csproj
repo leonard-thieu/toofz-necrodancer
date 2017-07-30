@@ -70,16 +70,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Bouncer.cs" />
@@ -111,7 +102,6 @@
     <Compile Include="Dungeons\Item.cs" />
     <Compile Include="Dungeons\Level.cs" />
     <Compile Include="Dungeons\LevelCollection.cs" />
-    <Compile Include="Dungeons\LevelTemplate.cs" />
     <Compile Include="Dungeons\Origin.cs" />
     <Compile Include="Dungeons\QuadNode.cs" />
     <Compile Include="Dungeons\Quadrant.cs" />
@@ -141,23 +131,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Resources\CoralRiff1.xml" />
-    <None Include="Resources\CoralRiff2.xml" />
-    <None Include="Resources\CoralRiff3.xml" />
-    <None Include="Resources\CoralRiff4.xml" />
-    <None Include="Resources\DeathMetal1.xml" />
-    <None Include="Resources\DeathMetal2.xml" />
-    <None Include="Resources\DeathMetal3.xml" />
-    <None Include="Resources\DeathMetal4.xml" />
-    <None Include="Resources\DeepBlues1.xml" />
-    <None Include="Resources\DeepBlues2.xml" />
-    <None Include="Resources\DeepBlues3.xml" />
-    <None Include="Resources\DeepBlues4.xml" />
-    <None Include="Resources\Default.xml" />
-    <None Include="Resources\KingConga1.xml" />
-    <None Include="Resources\KingConga2.xml" />
-    <None Include="Resources\KingConga3.xml" />
-    <None Include="Resources\KingConga4.xml" />
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

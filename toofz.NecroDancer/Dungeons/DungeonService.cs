@@ -10,16 +10,6 @@ namespace toofz.NecroDancer.Dungeons
     {
         static readonly XmlSerializer DungeonSerializer = new XmlSerializer(typeof(Dungeon));
 
-        public static Dungeon Create()
-        {
-            return Create(LevelTemplates.Default);
-        }
-
-        public static Dungeon Create(LevelTemplate level)
-        {
-            return DungeonSerializer.Parse<Dungeon>(level.Template);
-        }
-
         public static async Task<Dungeon> LoadAsync(string path)
         {
             using (var ms = new MemoryStream())
