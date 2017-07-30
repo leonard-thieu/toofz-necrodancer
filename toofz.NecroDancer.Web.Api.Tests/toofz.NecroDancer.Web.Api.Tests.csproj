@@ -74,20 +74,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="App_Data\leaderboard-categories.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="App_Data\leaderboard-categories.min.json">
-      <DependentUpon>leaderboard-categories.json</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="App_Data\leaderboard-headers.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="App_Data\leaderboard-headers.min.json">
-      <DependentUpon>leaderboard-headers.json</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -101,7 +87,6 @@
     <Compile Include="Controllers\LeaderboardsControllerTests.cs" />
     <Compile Include="Controllers\PlayersControllerTests.cs" />
     <Compile Include="Controllers\ReplaysControllerTests.cs" />
-    <Compile Include="LeaderboardsServiceFactory.cs" />
     <Compile Include="MaxValueAttributeTests.cs" />
     <Compile Include="MinValueAttributeTests.cs" />
   </ItemGroup>

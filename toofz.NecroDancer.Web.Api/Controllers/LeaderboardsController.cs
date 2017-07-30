@@ -1,11 +1,13 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using toofz.NecroDancer.Leaderboards;
 using toofz.NecroDancer.Leaderboards.EntityFramework;
-using toofz.NecroDancer.Web.Api._Leaderboards;
 using toofz.NecroDancer.Web.Api.Models;
 
 namespace toofz.NecroDancer.Web.Api.Controllers
@@ -20,17 +22,21 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// Initializes a new instance of the <see cref="LeaderboardsController"/> class.
         /// </summary>
         /// <param name="db">The leaderboards context.</param>
-        /// <param name="leaderboardsService">The leaderboards service.</param>
+        /// <param name="categories">Leaderboard categories.</param>
+        /// <param name="leaderboardHeaders">Leaderboard headers.</param>
         public LeaderboardsController(
             LeaderboardsContext db,
-            LeaderboardsService leaderboardsService)
+            Categories categories,
+            LeaderboardHeaders leaderboardHeaders)
         {
             this.db = db;
-            this.leaderboardsService = leaderboardsService;
+            this.categories = categories;
+            this.leaderboardHeaders = leaderboardHeaders;
         }
 
-        private readonly LeaderboardsContext db;
-        private readonly LeaderboardsService leaderboardsService;
+        readonly LeaderboardsContext db;
+        readonly Categories categories;
+        readonly LeaderboardHeaders leaderboardHeaders;
 
         /// <summary>
         /// Gets a list of Crypt of the NecroDancer leaderboards.
@@ -61,17 +67,17 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             string products = null, string modes = null, string runs = null, string characters = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            products = products ?? leaderboardsService.GetAll("products");
-            modes = modes ?? leaderboardsService.GetAll("modes");
-            runs = runs ?? leaderboardsService.GetAll("runs");
-            characters = characters ?? leaderboardsService.GetAll("characters");
+            products = products ?? categories.GetAllItemNames("products");
+            modes = modes ?? categories.GetAllItemNames("modes");
+            runs = runs ?? categories.GetAllItemNames("runs");
+            characters = characters ?? categories.GetAllItemNames("characters");
 
             var product_names = products.Split(',');
             var mode_names = modes.Split(',');
             var run_names = runs.Split(',');
             var character_names = characters.Split(',');
 
-            var lbids = (from h in leaderboardsService.Headers
+            var lbids = (from h in leaderboardHeaders
                          where product_names.Contains(h.product)
                          where mode_names.Contains(h.mode)
                          where run_names.Contains(h.run)
@@ -90,9 +96,9 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                                }).ToListAsync(cancellationToken);
 
             var leaderboards = (from l in query
-                                join h in leaderboardsService.Headers on l.LeaderboardId equals h.id
+                                join h in leaderboardHeaders on l.LeaderboardId equals h.id
                                 orderby h.product, h.character, l.RunId
-                                select new Leaderboard
+                                select new Models.Leaderboard
                                 {
                                     id = h.id,
                                     product = h.product,
@@ -179,9 +185,9 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             var entries = (from e in entriesPage
                            join r in replays on e.ReplayId equals r.ReplayId into g
                            from x in g.DefaultIfEmpty()
-                           select new Entry
+                           select new Models.Entry
                            {
-                               player = new Player
+                               player = new Models.Player
                                {
                                    id = e.Player.SteamId.ToString(),
                                    display_name = e.Player.Name,
@@ -199,7 +205,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                                version = x?.Version,
                            }).ToList();
 
-            var h = leaderboardsService.Headers.FirstOrDefault(l => l.id == leaderboard.LeaderboardId);
+            var h = leaderboardHeaders.FirstOrDefault(l => l.id == leaderboard.LeaderboardId);
             if (h == null)
             {
                 return NotFound();
@@ -207,7 +213,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
 
             var content = new LeaderboardEntries
             {
-                leaderboard = new Leaderboard
+                leaderboard = new Models.Leaderboard
                 {
                     id = h.id,
                     product = h.product,
@@ -236,6 +242,9 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// <returns>
         /// Returns a list of Crypt of the NecroDancer daily leaderboards.
         /// </returns>
+        /// <httpStatusCode cref="System.Net.HttpStatusCode.BadRequest">
+        /// A product is invalid.
+        /// </httpStatusCode>
         [ResponseType(typeof(DailyLeaderboards))]
         [Route("dailies")]
         public async Task<IHttpActionResult> GetDailies(
@@ -244,14 +253,21 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             CancellationToken cancellationToken = default(CancellationToken))
         {
             pagination = pagination ?? new LeaderboardsPagination();
-            products = products ?? leaderboardsService.GetAll("products");
+            products = products ?? categories.GetAllItemNames("products");
 
-            var product_names = products.Split(',');
-
-            var productIds = (from p in product_names
-                              select leaderboardsService.GetId("products", p) into i
-                              where i != null
-                              select i).ToList();
+            var productIds = new List<int>();
+            foreach (var p in products.Split(','))
+            {
+                try
+                {
+                    productIds.Add(categories.GetItemId("products", p));
+                }
+                // TODO: When GetId is changed to throw a more specific Exception, this should also be updated.
+                catch (Exception)
+                {
+                    return BadRequest($"'{p}' is not a valid product.");
+                }
+            }
 
             var query = await (from l in db.DailyLeaderboards
                                where productIds.Contains(l.ProductId)
@@ -269,19 +285,20 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                                .ToListAsync(cancellationToken);
 
             var leaderboards = (from l in query
-                                select new DailyLeaderboard
+                                select new Models.DailyLeaderboard
                                 {
                                     id = l.LeaderboardId,
                                     date = l.Date,
                                     updated_at = l.LastUpdate,
-                                    product = leaderboardsService.GetName("products", l.ProductId),
+                                    product = categories.GetItemName("products", l.ProductId),
                                     production = l.IsProduction,
-                                }).ToList();
+                                })
+                                .ToList();
 
             var vm = new DailyLeaderboards
             {
                 total = leaderboards.Count,
-                leaderboards = leaderboards
+                leaderboards = leaderboards,
             };
 
             return Ok(vm);
@@ -353,9 +370,9 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             var entries = (from e in entriesPage
                            join r in replays on e.ReplayId equals r.ReplayId into g
                            from x in g.DefaultIfEmpty()
-                           select new Entry
+                           select new Models.Entry
                            {
-                               player = new Player
+                               player = new Models.Player
                                {
                                    id = e.Player.SteamId.ToString(),
                                    display_name = e.Player.Name,
@@ -375,12 +392,12 @@ namespace toofz.NecroDancer.Web.Api.Controllers
 
             var content = new DailyLeaderboardEntries
             {
-                leaderboard = new DailyLeaderboard
+                leaderboard = new Models.DailyLeaderboard
                 {
                     id = leaderboard.LeaderboardId,
                     date = leaderboard.Date,
                     updated_at = leaderboard.LastUpdate,
-                    product = leaderboardsService.GetName("products", leaderboard.ProductId),
+                    product = categories.GetItemName("products", leaderboard.ProductId),
                     production = leaderboard.IsProduction,
                 },
                 total = total,
@@ -392,7 +409,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
 
         #region IDisposable Members
 
-        private bool disposed;
+        bool disposed;
 
         /// <summary>
         /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.

@@ -5,8 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using toofz.NecroDancer.Leaderboards;
 using toofz.NecroDancer.Leaderboards.EntityFramework;
-using toofz.NecroDancer.Web.Api._Leaderboards;
 using toofz.NecroDancer.Web.Api.Models;
 
 namespace toofz.NecroDancer.Web.Api.Controllers
@@ -22,20 +22,20 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </summary>
         /// <param name="db">The leaderboards context.</param>
         /// <param name="sqlClient">The leaderboards SQL client.</param>
-        /// <param name="leaderboardsService">The leaderboards service.</param>
+        /// <param name="leaderboardHeaders">Leaderboard headers.</param>
         public PlayersController(
             LeaderboardsContext db,
-            Leaderboards.ILeaderboardsSqlClient sqlClient,
-            LeaderboardsService leaderboardsService)
+            ILeaderboardsSqlClient sqlClient,
+            LeaderboardHeaders leaderboardHeaders)
         {
             this.db = db;
             this.sqlClient = sqlClient;
-            this.leaderboardsService = leaderboardsService;
+            this.leaderboardHeaders = leaderboardHeaders;
         }
 
         private readonly LeaderboardsContext db;
-        private readonly Leaderboards.ILeaderboardsSqlClient sqlClient;
-        private readonly LeaderboardsService leaderboardsService;
+        private readonly ILeaderboardsSqlClient sqlClient;
+        private readonly LeaderboardHeaders leaderboardHeaders;
 
         /// <summary>
         /// Search for Steam players.
@@ -59,7 +59,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                          select p;
             var query = from p in search
                         orderby p.Entries.Count descending, p.Name, p.SteamId
-                        select new Player
+                        select new Models.Player
                         {
                             id = p.SteamId.ToString(),
                             display_name = p.Name,
@@ -138,11 +138,11 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             var entries = (from e in playerEntries
                            join r in replays on e.ReplayId equals r.ReplayId into g
                            from x in g.DefaultIfEmpty()
-                           join h in leaderboardsService.Headers on e.Leaderboard.LeaderboardId equals h.id
+                           join h in leaderboardHeaders on e.Leaderboard.LeaderboardId equals h.id
                            orderby h.product, e.Leaderboard.RunId, h.character
-                           select new Entry
+                           select new Models.Entry
                            {
-                               leaderboard = new Leaderboard
+                               leaderboard = new Models.Leaderboard
                                {
                                    id = h.id,
                                    product = h.product,
@@ -164,7 +164,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
 
             var vm = new PlayerEntries
             {
-                player = new Player
+                player = new Models.Player
                 {
                     id = player.SteamId.ToString(),
                     display_name = player.Name,
@@ -191,7 +191,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// <httpStatusCode cref="System.Net.HttpStatusCode.NotFound">
         /// An entry for the player on the leaderboard was not found.
         /// </httpStatusCode>
-        [ResponseType(typeof(Entry))]
+        [ResponseType(typeof(Models.Entry))]
         [Route("{steamId}/entries/{lbid:int}")]
         public async Task<IHttpActionResult> GetPlayerLeaderboardEntry(int lbid, long steamId,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -233,9 +233,9 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                                 })
                                 .FirstOrDefaultAsync(cancellationToken);
 
-            var entry = new Entry
+            var entry = new Models.Entry
             {
-                player = new Player
+                player = new Models.Player
                 {
                     id = playerEntry.Player.SteamId.ToString(),
                     display_name = playerEntry.Player.Name,

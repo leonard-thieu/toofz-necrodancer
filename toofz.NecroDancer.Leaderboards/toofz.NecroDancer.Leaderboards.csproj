@@ -196,18 +196,13 @@
     <Compile Include="ICloudBlobExtensions.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="ExceptionRenderer.cs" />
-    <Compile Include="LeaderboardHeaders.cs" />
+    <Compile Include="LeaderboardsService.cs" />
     <Compile Include="LeaderboardsSteamClient.cs" />
     <Compile Include="Migrations\201707172139340_LimeZinc﻿AfghanHound.cs" />
     <Compile Include="Migrations\201707172139340_LimeZinc﻿AfghanHound.Designer.cs">
       <DependentUpon>201707172139340_LimeZinc﻿AfghanHound.cs</DependentUpon>
     </Compile>
     <Compile Include="NotifierBase.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="SteamClientTransientErrorDetectionStrategy.cs" />
     <Compile Include="SteamKitException.cs" />
     <Compile Include="SteamTransientErrorDetectionStrategy.cs" />
@@ -311,12 +306,27 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CodeCoverageExclusions.cs</LastGenOutput>
     </Content>
-    <Content Include="leaderboard-headers.json">
+    <None Include="daily-leaderboard-headers.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="daily-leaderboard-headers.json">
+    </None>
+    <None Include="daily-leaderboard-headers.min.json">
+      <DependentUpon>daily-leaderboard-headers.json</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="leaderboard-categories.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="leaderboard-categories.min.json">
+      <DependentUpon>leaderboard-categories.json</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="leaderboard-headers.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="leaderboard-headers.min.json">
+      <DependentUpon>leaderboard-headers.json</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -440,10 +450,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707172139340_LimeZinc﻿AfghanHound.resx">
       <DependentUpon>201707172139340_LimeZinc﻿AfghanHound.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

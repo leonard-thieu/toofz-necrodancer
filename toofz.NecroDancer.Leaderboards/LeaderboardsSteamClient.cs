@@ -13,9 +13,13 @@ namespace toofz.NecroDancer.Leaderboards
         static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsSteamClient));
 
         const int AppId = 247080;
+        const int EntriesPerRequest = 1000000;
 
         public LeaderboardsSteamClient()
         {
+            var leaderboardsService = new LeaderboardsService();
+            categories = leaderboardsService.ReadCategories("leaderboard-categories.json");
+
             User = Util.GetEnvVar("SteamUserName");
             Pass = Util.GetEnvVar("SteamPassword");
 
@@ -31,6 +35,7 @@ namespace toofz.NecroDancer.Leaderboards
             });
         }
 
+        readonly Categories categories;
         readonly string User;
         readonly string Pass;
         readonly ProgressDebugNetworkListener networkListener;
@@ -45,7 +50,7 @@ namespace toofz.NecroDancer.Leaderboards
             set { networkListener.Progress = value; }
         }
 
-        public Task<SteamClient.ConnectedCallback> ConnectAsync()
+        Task<SteamClient.ConnectedCallback> ConnectAsync()
         {
             var tcs = new TaskCompletionSource<SteamClient.ConnectedCallback>();
 
@@ -80,7 +85,7 @@ namespace toofz.NecroDancer.Leaderboards
             return tcs.Task;
         }
 
-        public Task<SteamUser.LoggedOnCallback> LogOnAsync()
+        Task<SteamUser.LoggedOnCallback> LogOnAsync()
         {
             var tcs = new TaskCompletionSource<SteamUser.LoggedOnCallback>();
 
@@ -156,7 +161,7 @@ namespace toofz.NecroDancer.Leaderboards
             }
         }
 
-        public async Task<Leaderboard> GetLeaderboardAsync(Header header)
+        public async Task<Leaderboard> GetLeaderboardAsync(LeaderboardHeader header)
         {
             await ConnectAndLogOnAsync().ConfigureAwait(false);
 
@@ -165,15 +170,15 @@ namespace toofz.NecroDancer.Leaderboards
             var leaderboard = new Leaderboard
             {
                 LeaderboardId = lbid,
-                CharacterId = Enumeration.Parse<Character>(header.character, true).Id,
-                RunId = Enumeration.Parse<Run>(header.run.Replace(" ", ""), true).Id,
+                CharacterId = categories.GetItemId("characters", header.character),
+                RunId = categories.GetItemId("runs", header.run),
                 LastUpdate = DateTime.UtcNow,
             };
 
             try
             {
                 var response = await steamUserStats
-                    .GetLeaderboardEntries(AppId, lbid, 0, 1000000, ELeaderboardDataRequest.Global)
+                    .GetLeaderboardEntries(AppId, lbid, 0, EntriesPerRequest, ELeaderboardDataRequest.Global)
                     .ToTask()
                     .ConfigureAwait(false);
 
@@ -220,7 +225,7 @@ namespace toofz.NecroDancer.Leaderboards
             }
         }
 
-        public async Task<DailyLeaderboard> GetLeaderboardAsync(DailyHeader header)
+        public async Task<DailyLeaderboard> GetDailyLeaderboardAsync(DailyLeaderboardHeader header)
         {
             await ConnectAndLogOnAsync().ConfigureAwait(false);
 
@@ -230,21 +235,14 @@ namespace toofz.NecroDancer.Leaderboards
             {
                 LeaderboardId = lbid,
                 Date = header.date,
-                IsProduction = header.production
+                ProductId = categories.GetItemId("products", header.product),
+                IsProduction = header.production,
             };
-
-            switch (header.product)
-            {
-                case "Classic": leaderboard.ProductId = 0; break;
-                case "Amplified": leaderboard.ProductId = 1; break;
-                default:
-                    throw new ArgumentException($"'{header.product}' is not a valid product.");
-            }
 
             try
             {
                 var response = await steamUserStats
-                    .GetLeaderboardEntries(AppId, lbid, 0, 1000000, ELeaderboardDataRequest.Global)
+                    .GetLeaderboardEntries(AppId, lbid, 0, EntriesPerRequest, ELeaderboardDataRequest.Global)
                     .ToTask()
                     .ConfigureAwait(false);
 
@@ -291,23 +289,23 @@ namespace toofz.NecroDancer.Leaderboards
             }
         }
 
-        public async Task<DailyHeader> GetHeaderAsync(DateTime date, string product, bool isProduction)
+        public async Task<DailyLeaderboardHeader> GetDailyLeaderboardHeaderAsync(DateTime date, string product, bool isProduction)
         {
             await ConnectAndLogOnAsync().ConfigureAwait(false);
 
-            var header = new DailyHeader
+            var header = new DailyLeaderboardHeader
             {
                 date = date,
                 product = product,
-                production = isProduction
+                production = isProduction,
             };
 
             var tokens = new List<string>();
 
             switch (product)
             {
-                case "Amplified": tokens.Add("DLC"); break;
-                case "Classic": break;
+                case "amplified": tokens.Add("DLC"); break;
+                case "classic": break;
                 default:
                     throw new ArgumentException($"'{product}' is not a valid product.");
             }

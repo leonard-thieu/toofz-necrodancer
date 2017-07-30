@@ -52,29 +52,10 @@
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -99,22 +80,69 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\PublishProfiles\crypt.toofz.com - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\areas.json" />
+    <Content Include="data\areas.min.json">
+      <DependentUpon>areas.json</DependentUpon>
+    </Content>
+    <Content Include="data\leaderboard-categories.json" />
+    <Content Include="data\leaderboard-categories.min.json">
+      <DependentUpon>leaderboard-categories.json</DependentUpon>
+    </Content>
+    <Content Include="data\leaderboard-headers.json" />
+    <Content Include="data\leaderboard-headers.min.json">
+      <DependentUpon>leaderboard-headers.json</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\crypt.toofz.com - Web Deploy.pubxml" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Content Include="Global.asax" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
     <Content Include="android-chrome-144x144.png">
       <DependentUpon>favicon.ico</DependentUpon>
     </Content>
@@ -178,12 +206,6 @@
     <Content Include="favicon-96x96.png">
       <DependentUpon>favicon.ico</DependentUpon>
     </Content>
-    <Content Include="Global.asax" />
-    <Content Include="images\characters\all-characters-amplified.png" />
-    <Content Include="images\characters\all-characters.png" />
-    <Content Include="images\characters\mary.png" />
-    <Content Include="images\characters\story-mode.png" />
-    <Content Include="images\characters\tempo.png" />
     <Content Include="manifest.json">
       <DependentUpon>favicon.ico</DependentUpon>
     </Content>
@@ -202,20 +224,8 @@
     <Content Include="mstile-70x70.png">
       <DependentUpon>favicon.ico</DependentUpon>
     </Content>
-    <Content Include="packages.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="safari-pinned-tab.svg">
       <DependentUpon>favicon.ico</DependentUpon>
-    </Content>
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -231,10 +241,8 @@
     <Content Include="site.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="images\cadence.png" />
+    <Content Include="images\characters\all-characters-amplified.png" />
+    <Content Include="images\characters\all-characters.png" />
     <Content Include="images\characters\aria.png" />
     <Content Include="images\characters\bard.png" />
     <Content Include="images\characters\bolt.png" />
@@ -244,9 +252,13 @@
     <Content Include="images\characters\dorian.png" />
     <Content Include="images\characters\dove.png" />
     <Content Include="images\characters\eli.png" />
+    <Content Include="images\characters\mary.png" />
     <Content Include="images\characters\melody.png" />
     <Content Include="images\characters\monk.png" />
     <Content Include="images\characters\nocturna.png" />
+    <Content Include="images\characters\story-mode.png" />
+    <Content Include="images\characters\tempo.png" />
+    <Content Include="images\cadence.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\site.css">
@@ -280,20 +292,6 @@
     <Content Include="tsconfig.json" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="data\areas.json" />
-    <Content Include="data\areas.min.json">
-      <DependentUpon>areas.json</DependentUpon>
-    </Content>
-    <Content Include="data\leaderboard-headers.json" />
-    <Content Include="data\leaderboard-headers.min.json">
-      <DependentUpon>leaderboard-headers.json</DependentUpon>
-    </Content>
-    <Content Include="data\leaderboard-categories.json" />
-    <Content Include="data\leaderboard-categories.min.json">
-      <DependentUpon>leaderboard-categories.json</DependentUpon>
-    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

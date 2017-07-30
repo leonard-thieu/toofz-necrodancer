@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using log4net;
 using Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling;
 using Microsoft.WindowsAzure.Storage.Blob;
-using Newtonsoft.Json;
 using toofz.NecroDancer.Leaderboards.EntityFramework;
 using toofz.NecroDancer.Replays;
 
@@ -47,14 +45,11 @@ namespace toofz.NecroDancer.Leaderboards
         {
             using (new UpdateNotifier(Log, "leaderboards"))
             {
-                var headers = new List<Header>();
+                var headers = new List<LeaderboardHeader>();
 
-                using (var file = File.OpenText("leaderboard-headers.json"))
-                {
-                    var serializer = new JsonSerializer();
-                    var primaries_headers = ((Headers)serializer.Deserialize(file, typeof(Headers))).leaderboards;
-                    headers.AddRange(primaries_headers.Where(h => h.id > 0));
-                }
+                var leaderboardsService = new LeaderboardsService();
+                var leaderboardHeaders = leaderboardsService.ReadLeaderboardHeaders("leaderboard-headers.json");
+                headers.AddRange(leaderboardHeaders.Where(h => h.id > 0));
 
                 var leaderboardTasks = new List<Task<Leaderboard>>();
 
@@ -98,43 +93,67 @@ namespace toofz.NecroDancer.Leaderboards
         {
             using (new UpdateNotifier(Log, "daily leaderboards"))
             {
-                var headers = new List<DailyHeader>();
+                var headers = new List<DailyLeaderboardHeader>();
 
                 var leaderboardsConnectionString = Util.GetEnvVar("LeaderboardsConnectionString");
                 using (var db = new LeaderboardsContext(leaderboardsConnectionString))
                 {
-                    var today = DateTime.Today;
-                    var stale = await (from l in db.DailyLeaderboards
-                                       orderby l.LastUpdate
-                                       where l.Date != today
-                                       select new DailyHeader
-                                       {
-                                           id = l.LeaderboardId,
-                                           date = l.Date,
-                                           product = l.ProductId == 1 ? "Amplified" : "Classic",
-                                           production = l.IsProduction
-                                       })
-                                       .Take(98)
-                                       .ToListAsync(cancellationToken);
-                    headers.AddRange(stale);
+                    var leaderboardsService = new LeaderboardsService();
+                    var categories = leaderboardsService.ReadCategories("leaderboard-categories.json");
 
-                    IEnumerable<DailyHeader> todaysDailies =
+                    var today = DateTime.Today;
+                    var staleDailies = await (from l in db.DailyLeaderboards
+                                              orderby l.LastUpdate
+                                              where l.Date != today
+                                              select new
+                                              {
+                                                  l.LeaderboardId,
+                                                  l.Date,
+                                                  l.ProductId,
+                                                  l.IsProduction,
+                                              })
+                                              .Take(98)
+                                              .ToListAsync(cancellationToken)
+                                              .ConfigureAwait(false);
+                    foreach (var staleDaily in staleDailies)
+                    {
+                        var header = new DailyLeaderboardHeader
+                        {
+                            id = staleDaily.LeaderboardId,
+                            date = staleDaily.Date,
+                            product = categories.GetItemName("products", staleDaily.ProductId),
+                            production = staleDaily.IsProduction,
+                        };
+                        headers.Add(header);
+                    }
+
+                    var _todaysDailies =
                         await (from l in db.DailyLeaderboards
                                where l.Date == today
-                               select new DailyHeader
+                               select new
                                {
-                                   id = l.LeaderboardId,
-                                   date = l.Date,
-                                   product = l.ProductId == 1 ? "Amplified" : "Classic",
-                                   production = l.IsProduction
+                                   l.LeaderboardId,
+                                   l.Date,
+                                   l.ProductId,
+                                   l.IsProduction,
                                })
-                               .ToListAsync(cancellationToken);
-                    if (todaysDailies.Count() != 2)
+                               .ToListAsync(cancellationToken)
+                               .ConfigureAwait(false);
+                    IEnumerable<DailyLeaderboardHeader> todaysDailies =
+                        (from l in _todaysDailies
+                         select new DailyLeaderboardHeader
+                         {
+                             id = l.LeaderboardId,
+                             date = l.Date,
+                             product = categories.GetItemName("products", l.ProductId),
+                             production = l.IsProduction,
+                         })
+                         .ToList();
+                    if (!todaysDailies.Any())
                     {
-                        todaysDailies = await Task.WhenAll(
-                            steamClient.GetHeaderAsync(today, "Classic", true),
-                            steamClient.GetHeaderAsync(today, "Amplified", true)
-                        ).ConfigureAwait(false);
+                        var requests = from p in categories["products"]
+                                       select steamClient.GetDailyLeaderboardHeaderAsync(today, p.Key, true);
+                        todaysDailies = await Task.WhenAll(requests).ConfigureAwait(false);
                     }
                     headers.AddRange(todaysDailies);
                 }
@@ -147,7 +166,7 @@ namespace toofz.NecroDancer.Leaderboards
 
                     foreach (var header in headers)
                     {
-                        var leaderboard = steamClient.GetLeaderboardAsync(header);
+                        var leaderboard = steamClient.GetDailyLeaderboardAsync(header);
                         leaderboardTasks.Add(leaderboard);
                     }
 
