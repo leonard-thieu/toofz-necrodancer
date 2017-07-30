@@ -27,9 +27,11 @@ gulp.task('build:js', ['build:js:test'], () => {
         debug: true
     };
     const bundle = browserify(opts)
+        .ignore('angular-ui-router')
+        .ignore('moment-duration-format')
         .plugin('tsify')
         .bundle()
-        .pipe(source('app.module.ts'))
+        .pipe(source('site.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({
             loadMaps: true

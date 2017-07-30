@@ -1,6 +1,6 @@
 import * as angular from 'angular';
 import 'angular-ui-router';
-import '../node_modules/angular-loading-bar/build/loading-bar.min';
+import 'angular-loading-bar';
 import './modules/enemies/enemies.module';
 import './modules/items/items.module';
 import './modules/leaderboard/leaderboard.module';

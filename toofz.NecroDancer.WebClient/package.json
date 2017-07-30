@@ -12,11 +12,8 @@
   },
   "browserify-shim": {
     "angular": "global:angular",
-    "angular-ui-router": "global:angular-ui-router",
-    "../node_modules/angular-loading-bar/build/loading-bar.min": "global:angular-loading-bar",
-    "moment": "global:moment",
-    "moment-duration-format": "global:moment-duration-format",
     "lodash": "global:_",
+    "moment": "global:moment",
     "urijs": "global:URI"
   },
   "browserify": {
