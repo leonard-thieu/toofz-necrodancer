@@ -4,11 +4,13 @@ configuration:
   - Release
 build:
   verbosity: minimal
-before_build:
-  - nuget restore
+  project: toofz.NecroDancer.Web.sln
+install:
   - cd toofz.NecroDancer.WebClient
   - npm install
   - cd ..
+before_build:
+  - nuget restore
 test:
   assemblies:
     only:
