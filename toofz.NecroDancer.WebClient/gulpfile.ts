@@ -21,7 +21,7 @@ gulp.task('default', ['build']);
 
 gulp.task('build', ['build:js', 'build:css']);
 
-gulp.task('build:js', ['build:js:test'], function () {
+gulp.task('build:js', ['build:js:test'], () => {
     const opts: browserify.Options = {
         entries: 'src/app.module.ts',
         debug: true
@@ -53,7 +53,7 @@ gulp.task('build:js', ['build:js:test'], function () {
 });
 
 // This is still needed for tests.
-gulp.task('build:js:test', function () {
+gulp.task('build:js:test', () => {
     return tsProject.src()
         .pipe(sourcemaps.init())
         .pipe(tsProject()).js
@@ -61,7 +61,7 @@ gulp.task('build:js:test', function () {
         .pipe(gulp.dest('.'));
 });
 
-gulp.task('build:css', function () {
+gulp.task('build:css', () => {
     const sassResult = gulp.src('css/site.scss')
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
@@ -85,7 +85,7 @@ gulp.task('build:css', function () {
 
 gulp.task('clean', ['clean:js', 'clean:css']);
 
-gulp.task('clean:js', ['clean:js:test'], function () {
+gulp.task('clean:js', ['clean:js:test'], () => {
     return del([
         'src/**/*.js',
         'src/**/*.js.map',
@@ -94,7 +94,7 @@ gulp.task('clean:js', ['clean:js:test'], function () {
     ]);
 });
 
-gulp.task('clean:js:test', function () {
+gulp.task('clean:js:test', () => {
     return del([
         'tests/**/*.js',
         'tests/**/*.js.map',
@@ -102,7 +102,7 @@ gulp.task('clean:js:test', function () {
     ]);
 });
 
-gulp.task('clean:css', function () {
+gulp.task('clean:css', () => {
     return del([
         'css/**/*.css',
         'css/**/*.css.map'
