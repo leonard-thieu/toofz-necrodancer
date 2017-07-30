@@ -6,8 +6,10 @@ build:
   verbosity: minimal
   project: toofz.NecroDancer.Web.sln
 cache:
-  - toofz.NecroDancer.WebClient\bower_components
-  - toofz.NecroDancer.WebClient\node_modules
+  - packages -> **\packages.config
+  - toofz.NecroDancer.WebClient\bower_components -> toofz.NecroDancer.WebClient\bower.json
+  - toofz.NecroDancer.WebClient\node_modules -> toofz.NecroDancer.WebClient\package.json
+  - '%APPDATA%\npm-cache'
 install:
   - cd toofz.NecroDancer.WebClient
   - npm install
