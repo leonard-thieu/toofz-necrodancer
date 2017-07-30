@@ -11,7 +11,7 @@ cache:
   - toofz.NecroDancer.WebClient\node_modules -> toofz.NecroDancer.WebClient\package.json
   - '%APPDATA%\npm-cache'
 install:
-  - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild 1.0)
+  - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild)
   - npm install --global npm bower
   - cd toofz.NecroDancer.WebClient
   - npm install
