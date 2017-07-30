@@ -7,7 +7,6 @@ build:
   project: toofz.NecroDancer.Web.sln
 cache:
   - packages -> **\packages.config
-  - toofz.NecroDancer.WebClient\node_modules -> toofz.NecroDancer.WebClient\package.json
   - '%APPDATA%\npm-cache'
 
 install:
