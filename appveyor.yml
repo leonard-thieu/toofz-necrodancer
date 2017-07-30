@@ -2,20 +2,19 @@ version: 1.0.{build}
 image: Visual Studio 2017
 configuration:
   - Release
-before_build:
-  - nuget restore
 build:
   verbosity: minimal
+before_build:
+  - nuget restore
+  - cd toofz.NecroDancer.WebClient
+  - npm install
+  - cd ..
 test:
   assemblies:
     only:
       - toofz.NecroDancer.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Tests.dll
       - toofz.NecroDancer.Leaderboards.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Leaderboards.Tests.dll
       - toofz.NecroDancer.Web.Api.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Web.Api.Tests.dll
-install:
-  - cd toofz.NecroDancer.WebClient
-  - npm install
-  - cd ..
 test_script:
   - cd toofz.NecroDancer.WebClient
   - node --version
