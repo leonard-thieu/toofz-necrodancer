@@ -6,9 +6,9 @@ using toofz.NecroDancer.Saves;
 
 namespace toofz.NecroDancer.Replays
 {
-    internal sealed class ReplaySerializationWriter : StreamWriter
+    sealed class ReplaySerializationWriter : StreamWriter
     {
-        private static readonly XmlSerializer SaveDataSerializer = new XmlSerializer(typeof(SaveData));
+        static readonly XmlSerializer SaveDataSerializer = new XmlSerializer(typeof(SaveData));
 
         public ReplaySerializationWriter(Stream stream)
             : base(stream)
@@ -49,7 +49,7 @@ namespace toofz.NecroDancer.Replays
             Write(value ? 1 : 0);
         }
 
-        private void Write(Header header)
+        void Write(Header header)
         {
             if (header == null)
                 throw new ArgumentNullException(nameof(header));
@@ -66,7 +66,7 @@ namespace toofz.NecroDancer.Replays
             WriteLine(header.LevelCount);
         }
 
-        private void Write(IEnumerable<LevelData> levels)
+        void Write(IEnumerable<LevelData> levels)
         {
             if (levels == null)
                 throw new ArgumentNullException(nameof(levels));
@@ -80,7 +80,7 @@ namespace toofz.NecroDancer.Replays
             }
         }
 
-        private void Write(LevelData level)
+        void Write(LevelData level)
         {
             if (level == null)
                 throw new ArgumentNullException(nameof(level));
@@ -97,7 +97,7 @@ namespace toofz.NecroDancer.Replays
             WriteLine(level.ItemRolls);
         }
 
-        private void Write(IEnumerable<Player> players)
+        void Write(IEnumerable<Player> players)
         {
             if (players == null)
                 throw new ArgumentNullException(nameof(players));
@@ -111,19 +111,19 @@ namespace toofz.NecroDancer.Replays
             }
         }
 
-        private void Write(Player player)
+        void Write(Player player)
         {
             if (player == null)
                 throw new ArgumentNullException(nameof(player));
 
-            WriteProperty(player.Character.Id);
+            WriteProperty(player.Character);
             WriteProperty(player.Moves.Count);
             WriteLine(player.Moves);
             WriteProperty(player.WrongMoveBeats.Count);
             WriteLine(player.WrongMoveBeats);
         }
 
-        private void Write(Version version)
+        void Write(Version version)
         {
             if (version == null)
                 throw new ArgumentNullException(nameof(version));
@@ -133,12 +133,12 @@ namespace toofz.NecroDancer.Replays
             WriteLine(version.Build);
         }
 
-        private void Write(TimeSpan timeSpan)
+        void Write(TimeSpan timeSpan)
         {
             Write(timeSpan.TotalMilliseconds);
         }
 
-        private void Write(ICollection<Move> moves)
+        void Write(ICollection<Move> moves)
         {
             if (moves == null)
                 throw new ArgumentNullException(nameof(moves));
@@ -149,7 +149,7 @@ namespace toofz.NecroDancer.Replays
             }
         }
 
-        private void Write(IEnumerable<int> values)
+        void Write(IEnumerable<int> values)
         {
             if (values == null)
                 throw new ArgumentNullException(nameof(values));
@@ -160,13 +160,13 @@ namespace toofz.NecroDancer.Replays
             }
         }
 
-        private void WriteLine(TimeSpan value)
+        void WriteLine(TimeSpan value)
         {
             Write(value);
             WriteLine();
         }
 
-        private void WriteLine(ICollection<Move> moves)
+        void WriteLine(ICollection<Move> moves)
         {
             if (moves == null)
                 throw new ArgumentNullException(nameof(moves));
@@ -175,7 +175,7 @@ namespace toofz.NecroDancer.Replays
             WriteLine();
         }
 
-        private void WriteLine(IEnumerable<int> values)
+        void WriteLine(IEnumerable<int> values)
         {
             if (values == null)
                 throw new ArgumentNullException(nameof(values));
@@ -184,7 +184,7 @@ namespace toofz.NecroDancer.Replays
             WriteLine();
         }
 
-        private void WriteProperty(int value)
+        void WriteProperty(int value)
         {
             Write(value);
             Write('|');

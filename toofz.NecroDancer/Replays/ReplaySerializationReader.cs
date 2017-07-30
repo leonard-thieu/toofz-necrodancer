@@ -11,12 +11,12 @@ using toofz.Xml;
 
 namespace toofz.NecroDancer.Replays
 {
-    internal sealed class ReplaySerializationReader : StreamReader
+    sealed class ReplaySerializationReader : StreamReader
     {
-        private const string RemoteSignature = "%*#%*";
-        private static readonly XmlSerializer SaveDataSerializer = new XmlSerializer(typeof(SaveData));
+        const string RemoteSignature = "%*#%*";
+        static readonly XmlSerializer SaveDataSerializer = new XmlSerializer(typeof(SaveData));
 
-        private static int ConvertToInt32(string line) => Convert.ToInt32(line, CultureInfo.InvariantCulture);
+        static int ConvertToInt32(string line) => Convert.ToInt32(line, CultureInfo.InvariantCulture);
 
         public ReplaySerializationReader(Stream stream) : base(stream) { }
 
@@ -60,7 +60,7 @@ namespace toofz.NecroDancer.Replays
 
         #region Header
 
-        private Header ReadHeader()
+        Header ReadHeader()
         {
             var header = new Header();
 
@@ -92,7 +92,7 @@ namespace toofz.NecroDancer.Replays
             return header;
         }
 
-        private RemoteInfo ReadLineAsRemoteSignature()
+        RemoteInfo ReadLineAsRemoteSignature()
         {
             var signature = new RemoteInfo();
 
@@ -121,7 +121,7 @@ namespace toofz.NecroDancer.Replays
 
         #region Levels
 
-        private void ReadLevels(ReplayData replay)
+        void ReadLevels(ReplayData replay)
         {
             if (replay == null)
                 throw new ArgumentNullException(nameof(replay));
@@ -137,7 +137,7 @@ namespace toofz.NecroDancer.Replays
             ReadLine();
         }
 
-        private LevelData ReadLevel(int zone, int level)
+        LevelData ReadLevel(int zone, int level)
         {
             var data = new LevelData();
 
@@ -164,7 +164,7 @@ namespace toofz.NecroDancer.Replays
             return data;
         }
 
-        private static int GetZone(int index)
+        static int GetZone(int index)
         {
             if (index < 12)
             {
@@ -176,7 +176,7 @@ namespace toofz.NecroDancer.Replays
             }
         }
 
-        private static int GetLevel(int index)
+        static int GetLevel(int index)
         {
             if (index < 12)
             {
@@ -190,7 +190,7 @@ namespace toofz.NecroDancer.Replays
 
         #region Players
 
-        private IEnumerable<Player> ReadPlayers(int count)
+        IEnumerable<Player> ReadPlayers(int count)
         {
             if (count <= 0)
                 throw new ArgumentException();
@@ -205,7 +205,7 @@ namespace toofz.NecroDancer.Replays
             return players;
         }
 
-        private Player ReadPlayer()
+        Player ReadPlayer()
         {
             var player = new Player();
 
@@ -215,13 +215,7 @@ namespace toofz.NecroDancer.Replays
                 var tokens = movesLine.Split('|');
                 if (tokens.Length == 3)
                 {
-                    Character character;
-                    var id = ConvertToInt32(tokens[0]);
-                    if (!(Enumeration.TryParse(id, out character)))
-                    {
-                        character = Characters.Cadence;
-                    }
-                    player.Character = character;
+                    player.Character = ConvertToInt32(tokens[0]);
 
                     var moveCount = ConvertToInt32(tokens[1]);
                     if (moveCount > 0)
@@ -242,7 +236,7 @@ namespace toofz.NecroDancer.Replays
             return player;
         }
 
-        private ICollection<Move> ParseMoves(string value, int moveCount)
+        ICollection<Move> ParseMoves(string value, int moveCount)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
@@ -276,7 +270,7 @@ namespace toofz.NecroDancer.Replays
 
         #region SaveData
 
-        private SaveData ReadSaveData()
+        SaveData ReadSaveData()
         {
             if (EndOfStream)
             {
@@ -290,9 +284,9 @@ namespace toofz.NecroDancer.Replays
 
         #endregion
 
-        #region Private Methods
+        #region Methods
 
-        private int[] ParseInt32List(string value)
+        int[] ParseInt32List(string value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
@@ -309,7 +303,7 @@ namespace toofz.NecroDancer.Replays
             }
         }
 
-        private static int[] ParseInt32List(string value, int count)
+        static int[] ParseInt32List(string value, int count)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
@@ -318,7 +312,7 @@ namespace toofz.NecroDancer.Replays
                     select ConvertToInt32(i)).ToArray();
         }
 
-        private int ReadLineAsInt32()
+        int ReadLineAsInt32()
         {
             var line = ReadLine();
 
@@ -330,7 +324,7 @@ namespace toofz.NecroDancer.Replays
             return ConvertToInt32(line);
         }
 
-        private bool ReadLineAsBoolean()
+        bool ReadLineAsBoolean()
         {
             var line = ReadLine();
 
@@ -341,7 +335,7 @@ namespace toofz.NecroDancer.Replays
             }
         }
 
-        private TimeSpan ReadLineAsDuration()
+        TimeSpan ReadLineAsDuration()
         {
             var ms = ReadLineAsInt32();
 
@@ -350,7 +344,7 @@ namespace toofz.NecroDancer.Replays
 
         #endregion
 
-        private class RemoteInfo
+        class RemoteInfo
         {
             public string KilledBy { get; set; }
             public int Version { get; set; }
