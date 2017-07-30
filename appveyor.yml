@@ -5,6 +5,9 @@ configuration:
 build:
   verbosity: minimal
   project: toofz.NecroDancer.Web.sln
+cache:
+  - toofz.NecroDancer.WebClient\bower_components
+  - toofz.NecroDancer.WebClient\node_modules
 install:
   - cd toofz.NecroDancer.WebClient
   - npm install
