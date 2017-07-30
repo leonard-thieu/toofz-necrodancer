@@ -48,7 +48,9 @@
     <Compile Include="EntityFramework\EntryConfiguration.cs" />
     <Compile Include="EntityFramework\LeaderboardConfiguration.cs" />
     <Compile Include="EntityFramework\LeaderboardsContext.cs" />
-    <Compile Include="EntityFramework\LeaderboardsContext.Views.cs" />
+    <Compile Include="EntityFramework\LeaderboardsContext.Views.cs">
+      <DependentUpon>LeaderboardsContext.cs</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\Migrations\201505261737549_InitialCreate.cs" />
     <Compile Include="EntityFramework\Migrations\201505261737549_InitialCreate.Designer.cs">
       <DependentUpon>201505261737549_InitialCreate.cs</DependentUpon>

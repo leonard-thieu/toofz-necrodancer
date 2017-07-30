@@ -56,7 +56,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NecroDancerContext.cs" />
-    <Compile Include="NecroDancerContext.Views.cs" />
+    <Compile Include="NecroDancerContext.Views.cs">
+      <DependentUpon>NecroDancerContext.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
