@@ -121,9 +121,7 @@
     <Compile Include="Saves\Npc.cs" />
     <Compile Include="Saves\Player.cs" />
     <Compile Include="Saves\SaveData.cs" />
-    <Compile Include="Character.cs" />
     <Compile Include="Environment.cs" />
-    <Compile Include="Run.cs" />
     <Compile Include="Dungeons\ValidationTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
