@@ -1,11 +1,11 @@
 version: 1.0.{build}
 image: Visual Studio 2017
-before_build:
-  - cmd: nuget restore
-build:
-  verbosity: minimal
 configuration:
   - Release
+before_build:
+  - nuget restore
+build:
+  verbosity: minimal
 test:
   assemblies:
     only:
@@ -15,7 +15,10 @@ test:
 install:
   - cd toofz.NecroDancer.WebClient
   - npm install
+  - cd ..
 test_script:
+  - cd toofz.NecroDancer.WebClient
   - node --version
   - npm --version
   - npm test
+  - cd ..
