@@ -10,15 +10,20 @@ cache:
   - toofz.NecroDancer.WebClient\bower_components -> toofz.NecroDancer.WebClient\bower.json
   - toofz.NecroDancer.WebClient\node_modules -> toofz.NecroDancer.WebClient\package.json
   - '%APPDATA%\npm-cache'
+
 install:
   - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild 8)
   - npm install --global npm bower
+  - node --version
+  - npm --version
+  - bower --version
   - cd toofz.NecroDancer.WebClient
   - npm install
   - bower install
   - cd ..
 before_build:
   - nuget restore
+
 test:
   assemblies:
     only:
@@ -27,8 +32,5 @@ test:
       - toofz.NecroDancer.Web.Api.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Web.Api.Tests.dll
 test_script:
   - cd toofz.NecroDancer.WebClient
-  - node --version
-  - npm --version
-  - bower --version
   - npm test
   - cd ..
