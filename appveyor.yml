@@ -7,19 +7,16 @@ build:
   project: toofz.NecroDancer.Web.sln
 cache:
   - packages -> **\packages.config
-  - toofz.NecroDancer.WebClient\bower_components -> toofz.NecroDancer.WebClient\bower.json
   - toofz.NecroDancer.WebClient\node_modules -> toofz.NecroDancer.WebClient\package.json
   - '%APPDATA%\npm-cache'
 
 install:
   - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild 8)
-  - npm install --global npm bower
+  - npm install --global npm
   - node --version
   - npm --version
-  - bower --version
   - cd toofz.NecroDancer.WebClient
   - npm install
-  - bower install
   - cd ..
 before_build:
   - nuget restore
