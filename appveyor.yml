@@ -27,6 +27,7 @@ before_build:
   - cd ..
 
 test_script:
+  - ps: SqlBulkUpsert.Tests\Import-Database.ps1
   - vstest.console /logger:Appveyor "SqlBulkUpsert.Tests\bin\%CONFIGURATION%\SqlBulkUpsert.Tests.dll"
   - vstest.console /logger:Appveyor "toofz.NecroDancer.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Tests.dll"
   - vstest.console /logger:Appveyor "toofz.NecroDancer.Leaderboards.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Leaderboards.Tests.dll"
