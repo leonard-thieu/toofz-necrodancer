@@ -1,6 +1,6 @@
 {
   "reporterEnabled": "spec, mocha-appveyor-reporter",
-  "mocha-appveyor-reporterReporterOptions": {
+  "mochaAppveyorReporterReporterOptions": {
     "appveyorBatchSize": 1000
   }
 }
