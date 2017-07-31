@@ -3,8 +3,10 @@ image: Visual Studio 2017
 configuration:
   - Release
 build:
-  verbosity: minimal
+  parallel: true
   project: toofz.NecroDancer.Web.sln
+  publish_wap: true
+  verbosity: minimal
 cache:
   - packages -> **\packages.config
   - '%APPDATA%\npm-cache'
