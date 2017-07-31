@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -57,7 +58,7 @@ WHERE kcu.TABLE_NAME = @tableName;";
             }
         }
 
-        private static async Task<SqlTableSchema> LoadFromReaderAsync(string tableName, SqlDataReader sqlDataReader, CancellationToken cancellationToken)
+        internal static async Task<SqlTableSchema> LoadFromReaderAsync(string tableName, DbDataReader sqlDataReader, CancellationToken cancellationToken)
         {
             if (sqlDataReader == null)
                 throw new ArgumentNullException(nameof(sqlDataReader));
@@ -82,7 +83,7 @@ WHERE kcu.TABLE_NAME = @tableName;";
             return new SqlTableSchema(tableName, columns, primaryKeyColumns);
         }
 
-        private SqlTableSchema(string tableName, IEnumerable<Column> columns, IEnumerable<string> primaryKeyColumnNames)
+        internal SqlTableSchema(string tableName, IEnumerable<Column> columns, IEnumerable<string> primaryKeyColumnNames)
         {
             if (tableName == null)
                 throw new ArgumentNullException(nameof(tableName));

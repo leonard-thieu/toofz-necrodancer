@@ -37,7 +37,7 @@ namespace SqlBulkUpsert
 
             using (var dataReader = new TypedDataReader<T>(columnMappings, items))
             {
-                progress.Report(items.Count());
+                progress?.Report(items.Count());
                 await BulkCopyAsync(connection, targetTableSchema.TableName, dataReader, cancellationToken).ConfigureAwait(false);
             }
         }
@@ -50,7 +50,7 @@ namespace SqlBulkUpsert
                 await BulkCopyAsync(connection, tempTable.Name, dataReader, cancellationToken).ConfigureAwait(false);
 
                 var rows = await tempTable.MergeAsync(targetTableSchema, updateOnMatch, cancellationToken).ConfigureAwait(false);
-                progress.Report(rows);
+                progress?.Report(rows);
             }
         }
 
