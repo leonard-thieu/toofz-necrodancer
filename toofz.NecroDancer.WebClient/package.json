@@ -8,6 +8,7 @@
     "build": "gulp build",
     "clean": "gulp clean",
     "test": "npm run build && electron-mocha --opts tests/mocha.opts && remap-istanbul -i ./coverage/coverage-final.json -o ./coverage/coverage-final.json",
+    "test-appveyor": "npm run build && electron-mocha --opts tests/mocha-appveyor.opts && remap-istanbul -i ./coverage/coverage-final.json -o ./coverage/coverage-final.json",
     "report": "istanbul report && node tests/open-coverage.js"
   },
   "browserify-shim": {
@@ -92,7 +93,6 @@
     "merge-stream": "^1.0.1",
     "mocha": "^3.2.0",
     "mocha-appveyor-reporter": "^0.4.0",
-    "mocha-multi-reporters": "^1.1.4",
     "moment": "2.18.1",
     "moment-duration-format": "1.3.0",
     "open": "0.0.5",

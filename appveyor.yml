@@ -33,5 +33,5 @@ test_script:
   - vstest.console /logger:Appveyor "toofz.NecroDancer.Leaderboards.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Leaderboards.Tests.dll"
   - vstest.console /logger:Appveyor "toofz.NecroDancer.Web.Api.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Web.Api.Tests.dll"
   - cd toofz.NecroDancer.WebClient
-  - npm test
+  - npm run test-appveyor
   - cd ..
