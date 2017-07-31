@@ -22,14 +22,11 @@ before_build:
   - npm run build
   - cd ..
 
-test:
-  assemblies:
-    only:
-      - SqlBulkUpsert.Tests\bin\$(CONFIGURATION)\SqlBulkUpsert.Tests.dll
-      - toofz.NecroDancer.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Tests.dll
-      - toofz.NecroDancer.Leaderboards.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Leaderboards.Tests.dll
-      - toofz.NecroDancer.Web.Api.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Web.Api.Tests.dll
 test_script:
+  - vstest.console /logger:Appveyor "SqlBulkUpsert.Tests\bin\$(CONFIGURATION)\SqlBulkUpsert.Tests.dll"
+  - vstest.console /logger:Appveyor "toofz.NecroDancer.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Tests.dll"
+  - vstest.console /logger:Appveyor "toofz.NecroDancer.Leaderboards.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Leaderboards.Tests.dll"
+  - vstest.console /logger:Appveyor "toofz.NecroDancer.Web.Api.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Web.Api.Tests.dll"
   - cd toofz.NecroDancer.WebClient
   - npm test
   - cd ..
