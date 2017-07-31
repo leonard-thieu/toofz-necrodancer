@@ -15,11 +15,12 @@ install:
   - npm install --global npm
   - node --version
   - npm --version
-  - cd toofz.NecroDancer.WebClient
-  - npm install
-  - cd ..
 before_build:
   - nuget restore
+  - cd toofz.NecroDancer.WebClient
+  - npm install
+  - npm run build
+  - cd ..
 
 test:
   assemblies:
