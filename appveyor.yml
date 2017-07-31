@@ -3,7 +3,6 @@ image: Visual Studio 2017
 configuration:
   - Release
 build:
-  parallel: true
   project: toofz.NecroDancer.Web.sln
   publish_wap: true
   verbosity: minimal
