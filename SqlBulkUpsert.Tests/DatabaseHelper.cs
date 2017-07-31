@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using SqlBulkUpsert.Tests.Properties;
 
 namespace SqlBulkUpsert.Tests
@@ -24,7 +25,10 @@ namespace SqlBulkUpsert.Tests
 
         public static SqlConnection CreateAndOpenConnection()
         {
-            var sqlConnection = new SqlConnection(@"Data Source=localhost;Initial Catalog=SqlBulkUpsertTestDb;Integrated Security=SSPI;");
+            var connectionString =
+                Environment.GetEnvironmentVariable("SqlBulkUpsertTestConnectionString", EnvironmentVariableTarget.Machine) ??
+                @"Data Source=localhost;Initial Catalog=SqlBulkUpsertTestDb;Integrated Security=SSPI;";
+            var sqlConnection = new SqlConnection(connectionString);
             sqlConnection.Open();
             return sqlConnection;
         }
