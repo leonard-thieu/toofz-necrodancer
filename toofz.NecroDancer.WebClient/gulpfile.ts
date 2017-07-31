@@ -1,10 +1,5 @@
-import * as del from 'del';
 import * as browserify from 'browserify';
-
-import merge = require('merge-stream');
-import * as source from 'vinyl-source-stream';
-import * as buffer from 'vinyl-buffer';
-
+import * as del from 'del';
 import * as gulp from 'gulp';
 import * as autoprefixer from 'gulp-autoprefixer';
 import * as babel from 'gulp-babel';
@@ -13,7 +8,10 @@ import * as minifyCSS from 'gulp-minify-css';
 import * as sass from 'gulp-sass';
 import * as sourcemaps from 'gulp-sourcemaps';
 import * as tsc from 'gulp-typescript';
-import * as uglify from 'gulp-uglify';
+import * as composer from 'gulp-uglify/composer';
+import * as buffer from 'vinyl-buffer';
+import * as source from 'vinyl-source-stream';
+import merge = require('merge-stream');
 
 const tsProject = tsc.createProject('tsconfig.json');
 
@@ -27,6 +25,7 @@ gulp.task('build:js', ['build:js:test'], () => {
         debug: true
     };
     const bundle = browserify(opts)
+        .ignore('angular-loading-bar')
         .ignore('angular-ui-router')
         .ignore('moment-duration-format')
         .plugin('tsify')
@@ -45,9 +44,10 @@ gulp.task('build:js', ['build:js:test'], () => {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('.'));
 
+    const minify = composer(require('uglify-es'), console);
     const siteMin = bundle
         .pipe(concat('site.min.js'))
-        .pipe(uglify())
+        .pipe(minify())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('.'));
 
