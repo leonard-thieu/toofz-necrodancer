@@ -290,7 +290,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="tsconfig.json" />
-    <Content Include="bower.json" />
     <Content Include="package.json" />
   </ItemGroup>
   <PropertyGroup>
