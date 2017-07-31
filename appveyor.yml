@@ -9,6 +9,8 @@ build:
 cache:
   - packages -> **\packages.config
   - '%APPDATA%\npm-cache'
+services:
+  - mssql2014
 
 install:
   - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild 8)
@@ -23,10 +25,10 @@ before_build:
   - cd ..
 
 test_script:
-  - vstest.console /logger:Appveyor "toofz.NecroDancer.Tests\bin\Release\toofz.NecroDancer.Tests.dll"
+  - vstest.console /logger:Appveyor "SqlBulkUpsert.Tests\bin\%CONFIGURATION%\SqlBulkUpsert.Tests.dll"
+  - vstest.console /logger:Appveyor "toofz.NecroDancer.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Tests.dll"
   - vstest.console /logger:Appveyor "toofz.NecroDancer.Leaderboards.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Leaderboards.Tests.dll"
   - vstest.console /logger:Appveyor "toofz.NecroDancer.Web.Api.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Web.Api.Tests.dll"
-  - vstest.console /logger:Appveyor "SqlBulkUpsert.Tests\bin\Release\SqlBulkUpsert.Tests.dll"
   - cd toofz.NecroDancer.WebClient
   - npm test
   - cd ..
