@@ -6,7 +6,7 @@ namespace SqlBulkUpsert.Tests
     [TestClass]
     public class ColumnTests
     {
-        private readonly Dictionary<Column, string> columnDefn = new Dictionary<Column, string>
+        readonly Dictionary<Column, string> columnDefn = new Dictionary<Column, string>
         {
             {
                 new TextColumn

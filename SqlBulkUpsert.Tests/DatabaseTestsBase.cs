@@ -2,7 +2,7 @@
 
 namespace SqlBulkUpsert.Tests
 {
-    public class DatabaseTestsBase
+    public abstract class DatabaseTestsBase
     {
         [ClassInitialize]
         public void Setup()
@@ -13,7 +13,7 @@ namespace SqlBulkUpsert.Tests
         [TestCleanup]
         public void TearDown()
         {
-            DatabaseHelper.ExecuteCommands("TRUNCATE TABLE [TestUpsert]");
+            DatabaseHelper.ExecuteCommands("TRUNCATE TABLE [TestUpsert];");
         }
     }
 }

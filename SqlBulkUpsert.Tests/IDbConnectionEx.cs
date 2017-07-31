@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
 
-namespace SqlBulkUpsert
+namespace SqlBulkUpsert.Tests
 {
-    public static class IDbConnectionEx
+    static class IDbConnectionEx
     {
         /// <summary>
         /// Execute multiple non-query commands against a connection.

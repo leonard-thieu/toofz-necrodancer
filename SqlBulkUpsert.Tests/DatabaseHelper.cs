@@ -3,7 +3,7 @@ using SqlBulkUpsert.Tests.Properties;
 
 namespace SqlBulkUpsert.Tests
 {
-    internal static class DatabaseHelper
+    static class DatabaseHelper
     {
         public static void RefreshSchema()
         {

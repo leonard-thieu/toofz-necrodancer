@@ -19,11 +19,11 @@ namespace SqlBulkUpsert.Tests
 
                 var columnMappings = new ColumnMappings<TestDto>
                 {
-                    {"key_part_1", d => d.KeyPart1},
-                    {"key_part_2", d => d.KeyPart2},
-                    {"nullable_text", d => d.Text},
-                    {"nullable_number", d => d.Number},
-                    {"nullable_datetimeoffset", d => d.Date},
+                    { "key_part_1", d => d.KeyPart1 },
+                    { "key_part_2", d => d.KeyPart2 },
+                    { "nullable_text", d => d.Text },
+                    { "nullable_number", d => d.Number },
+                    { "nullable_datetimeoffset", d => d.Date },
                 };
 
                 var upserter = new TypedUpserter<TestDto>(targetSchema, columnMappings);
@@ -53,7 +53,7 @@ namespace SqlBulkUpsert.Tests
             }
         }
 
-        public class TestDto
+        class TestDto
         {
             public string KeyPart1 { get; set; }
             public short KeyPart2 { get; set; }
