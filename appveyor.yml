@@ -9,6 +9,10 @@ build:
 cache:
   - packages -> **\packages.config
   - '%APPDATA%\npm-cache'
+environment:
+  SqlBulkUpsertTestConnectionString: Server=(local)\SQL2014;Database=SqlBulkUpsertTestDb;User ID=sa;Password=Password12!
+services:
+  - mssql2014
 
 install:
   - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild 8)
@@ -22,14 +26,12 @@ before_build:
   - npm run build
   - cd ..
 
-test:
-  assemblies:
-    only:
-      - SqlBulkUpsert.Tests\bin\$(CONFIGURATION)\SqlBulkUpsert.Tests.dll
-      - toofz.NecroDancer.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Tests.dll
-      - toofz.NecroDancer.Leaderboards.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Leaderboards.Tests.dll
-      - toofz.NecroDancer.Web.Api.Tests\bin\$(CONFIGURATION)\toofz.NecroDancer.Web.Api.Tests.dll
 test_script:
+  - ps: SqlBulkUpsert.Tests\Import-Database.ps1
+  - vstest.console /logger:Appveyor "SqlBulkUpsert.Tests\bin\%CONFIGURATION%\SqlBulkUpsert.Tests.dll"
+  - vstest.console /logger:Appveyor "toofz.NecroDancer.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Tests.dll"
+  - vstest.console /logger:Appveyor "toofz.NecroDancer.Leaderboards.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Leaderboards.Tests.dll"
+  - vstest.console /logger:Appveyor "toofz.NecroDancer.Web.Api.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Web.Api.Tests.dll"
   - cd toofz.NecroDancer.WebClient
   - npm test
   - cd ..
