@@ -9,6 +9,8 @@ build:
 cache:
   - packages -> **\packages.config
   - '%APPDATA%\npm-cache'
+environment:
+  SqlBulkUpsertTestConnectionString: Server=(local)\SQL2014;Database=SqlBulkUpsertTestDb;User ID=sa;Password=Password12!
 services:
   - mssql2014
 
