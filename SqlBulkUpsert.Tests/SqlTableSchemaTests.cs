@@ -94,16 +94,15 @@ namespace SqlBulkUpsert.Tests
                                               },
                                           }.ToArray());
 
-            columnDetail.Rows.Add("ident", 1, "NO", "int", DBNull.Value, DBNull.Value, (byte)10, (short)10, 0, DBNull.Value);
-            columnDetail.Rows.Add("key_part_1", 2, "NO", "nchar", 4, 8, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value);
-            columnDetail.Rows.Add("key_part_2", 3, "NO", "smallint", DBNull.Value, DBNull.Value, (byte)5, (short)10, 0, DBNull.Value);
-            columnDetail.Rows.Add("nullable_text", 4, "YES", "nvarchar", 50, 100, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value);
-            columnDetail.Rows.Add("nullable_number", 5, "YES", "int", DBNull.Value, DBNull.Value, (byte)10, (short)10, 0, DBNull.Value);
-            columnDetail.Rows.Add("nullable_datetimeoffset", 6, "YES", "datetimeoffset", DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value, (short)7);
-            columnDetail.Rows.Add("nullable_money", 7, "YES", "money", DBNull.Value, DBNull.Value, (byte)19, (short)10, 4, DBNull.Value);
-            columnDetail.Rows.Add("nullable_varbinary", 8, "YES", "varbinary", -1, -1, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value);
-            columnDetail.Rows.Add("nullable_image", 9, "YES", "image", 2147483647, 2147483647, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value);
-            columnDetail.Rows.Add("nullable_xml", 10, "YES", "xml", -1, -1, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value);
+            columnDetail.Rows.Add("key_part_1", 1, "NO", "nchar", 4, 8, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value);
+            columnDetail.Rows.Add("key_part_2", 2, "NO", "smallint", DBNull.Value, DBNull.Value, (byte)5, (short)10, 0, DBNull.Value);
+            columnDetail.Rows.Add("nullable_text", 3, "YES", "nvarchar", 50, 100, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value);
+            columnDetail.Rows.Add("nullable_number", 4, "YES", "int", DBNull.Value, DBNull.Value, (byte)10, (short)10, 0, DBNull.Value);
+            columnDetail.Rows.Add("nullable_datetimeoffset", 5, "YES", "datetimeoffset", DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value, (short)7);
+            columnDetail.Rows.Add("nullable_money", 6, "YES", "money", DBNull.Value, DBNull.Value, (byte)19, (short)10, 4, DBNull.Value);
+            columnDetail.Rows.Add("nullable_varbinary", 7, "YES", "varbinary", -1, -1, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value);
+            columnDetail.Rows.Add("nullable_image", 8, "YES", "image", 2147483647, 2147483647, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value);
+            columnDetail.Rows.Add("nullable_xml", 9, "YES", "xml", -1, -1, DBNull.Value, DBNull.Value, DBNull.Value, DBNull.Value);
 
             var keyDetail = new DataTable();
             keyDetail.Columns.AddRange(new List<DataColumn>
@@ -120,125 +119,113 @@ namespace SqlBulkUpsert.Tests
 
             var dataTableReader = new DataTableReader(new[] { columnDetail, keyDetail });
 
-            #region Columns
             var expectedColumns = new List<Column>
-                                      {
-                                          new NumericColumn
-                                          {
-                                              Name = "ident",
-                                              OrdinalPosition = 1,
-                                              Nullable = false,
-                                              DataType = "int",
-                                              Precision = 10,
-                                              Radix = 10,
-                                              Scale = 0,
-                                          },
-                                          new TextColumn
-                                          {
-                                              Name = "key_part_1",
-                                              OrdinalPosition = 2,
-                                              Nullable = false,
-                                              DataType = "nchar",
-                                              CharLength = 4,
-                                              ByteLength = 8,
-                                          },
-                                          new NumericColumn
-                                          {
-                                              Name = "key_part_2",
-                                              OrdinalPosition = 3,
-                                              Nullable = false,
-                                              DataType = "smallint",
-                                              Precision = 5,
-                                              Radix = 10,
-                                              Scale = 0,
-                                          },
-                                          new TextColumn
-                                          {
-                                              Name = "nullable_text",
-                                              OrdinalPosition = 4,
-                                              Nullable = true,
-                                              DataType = "nvarchar",
-                                              CharLength = 50,
-                                              ByteLength = 100,
-                                          },
-                                          new NumericColumn
-                                          {
-                                              Name = "nullable_number",
-                                              OrdinalPosition = 5,
-                                              Nullable = true,
-                                              DataType = "int",
-                                              Precision = 10,
-                                              Radix = 10,
-                                              Scale = 0,
-                                          },
-                                          new DateColumn
-                                          {
-                                              Name = "nullable_datetimeoffset",
-                                              OrdinalPosition = 6,
-                                              Nullable = true,
-                                              DataType = "datetimeoffset",
-                                              Precision = 7,
-                                          },
-                                          new NumericColumn
-                                          {
-                                              Name = "nullable_money",
-                                              OrdinalPosition = 7,
-                                              Nullable = true,
-                                              DataType = "money",
-                                              Precision = 19,
-                                              Radix = 10,
-                                              Scale = 4,
-                                          },
-                                          new TextColumn
-                                          {
-                                              Name = "nullable_varbinary",
-                                              OrdinalPosition = 8,
-                                              Nullable = true,
-                                              DataType = "varbinary",
-                                              CharLength = -1,
-                                              ByteLength = -1,
-                                          },
-                                          new TextColumn
-                                          {
-                                              Name = "nullable_image",
-                                              OrdinalPosition = 9,
-                                              Nullable = true,
-                                              DataType = "image",
-                                              CharLength = 2147483647,
-                                              ByteLength = 2147483647,
-                                          },
-                                          new Column
-                                          {
-                                              Name = "nullable_xml",
-                                              OrdinalPosition = 10,
-                                              Nullable = true,
-                                              DataType = "xml",
-                                          },
-                                      };
+            {
+                new TextColumn
+                {
+                    Name = "key_part_1",
+                    OrdinalPosition = 1,
+                    Nullable = false,
+                    DataType = "nchar",
+                    CharLength = 4,
+                    ByteLength = 8,
+                },
+                new NumericColumn
+                {
+                    Name = "key_part_2",
+                    OrdinalPosition = 2,
+                    Nullable = false,
+                    DataType = "smallint",
+                    Precision = 5,
+                    Radix = 10,
+                    Scale = 0,
+                },
+                new TextColumn
+                {
+                    Name = "nullable_text",
+                    OrdinalPosition = 3,
+                    Nullable = true,
+                    DataType = "nvarchar",
+                    CharLength = 50,
+                    ByteLength = 100,
+                },
+                new NumericColumn
+                {
+                    Name = "nullable_number",
+                    OrdinalPosition = 4,
+                    Nullable = true,
+                    DataType = "int",
+                    Precision = 10,
+                    Radix = 10,
+                    Scale = 0,
+                },
+                new DateColumn
+                {
+                    Name = "nullable_datetimeoffset",
+                    OrdinalPosition = 5,
+                    Nullable = true,
+                    DataType = "datetimeoffset",
+                    Precision = 7,
+                },
+                new NumericColumn
+                {
+                    Name = "nullable_money",
+                    OrdinalPosition = 6,
+                    Nullable = true,
+                    DataType = "money",
+                    Precision = 19,
+                    Radix = 10,
+                    Scale = 4,
+                },
+                new TextColumn
+                {
+                    Name = "nullable_varbinary",
+                    OrdinalPosition = 7,
+                    Nullable = true,
+                    DataType = "varbinary",
+                    CharLength = -1,
+                    ByteLength = -1,
+                },
+                new TextColumn
+                {
+                    Name = "nullable_image",
+                    OrdinalPosition = 8,
+                    Nullable = true,
+                    DataType = "image",
+                    CharLength = 2147483647,
+                    ByteLength = 2147483647,
+                },
+                new Column
+                {
+                    Name = "nullable_xml",
+                    OrdinalPosition = 9,
+                    Nullable = true,
+                    DataType = "xml",
+                },
+            };
 
             var expectedKeyColumns = new List<Column>
-                                         {
-                                             new TextColumn
-                                             {
-                                                 Name = "key_part_1",
-                                                 OrdinalPosition = 2,
-                                                 Nullable = false,
-                                                 DataType = "nchar",
-                                                 CharLength = 4,
-                                                 ByteLength = 8,
-                                             },
-                                             new NumericColumn
-                                             {
-                                                 Name = "key_part_2",
-                                                 OrdinalPosition = 3,
-                                                 Nullable = false,
-                                                 DataType = "smallint",
-                                                 Precision = 5,
-                                                 Radix = 10,
-                                                 Scale = 0,
-                                             },
-                                         };
-            #endregion
+            {
+                new TextColumn
+                {
+                    Name = "key_part_1",
+                    OrdinalPosition = 1,
+                    Nullable = false,
+                    DataType = "nchar",
+                    CharLength = 4,
+                    ByteLength = 8,
+                },
+                new NumericColumn
+                {
+                    Name = "key_part_2",
+                    OrdinalPosition = 2,
+                    Nullable = false,
+                    DataType = "smallint",
+                    Precision = 5,
+                    Radix = 10,
+                    Scale = 0,
+                },
+            };
 
             // Act
             var schema = await SqlTableSchema.LoadFromReaderAsync("TestUpsert", dataTableReader, CancellationToken.None);
@@ -255,115 +242,113 @@ namespace SqlBulkUpsert.Tests
             using (var connection = DatabaseHelper.CreateAndOpenConnection())
             {
                 // Arrange
-                #region Columns
                 var expectedColumns = new List<Column>
-                                      {
-                                          new TextColumn
-                                          {
-                                              Name = "key_part_1",
-                                              OrdinalPosition = 1,
-                                              Nullable = false,
-                                              DataType = "nchar",
-                                              CharLength = 4,
-                                              ByteLength = 8,
-                                          },
-                                          new NumericColumn
-                                          {
-                                              Name = "key_part_2",
-                                              OrdinalPosition = 2,
-                                              Nullable = false,
-                                              DataType = "smallint",
-                                              Precision = 5,
-                                              Radix = 10,
-                                              Scale = 0,
-                                          },
-                                          new TextColumn
-                                          {
-                                              Name = "nullable_text",
-                                              OrdinalPosition = 3,
-                                              Nullable = true,
-                                              DataType = "nvarchar",
-                                              CharLength = 50,
-                                              ByteLength = 100,
-                                          },
-                                          new NumericColumn
-                                          {
-                                              Name = "nullable_number",
-                                              OrdinalPosition = 4,
-                                              Nullable = true,
-                                              DataType = "int",
-                                              Precision = 10,
-                                              Radix = 10,
-                                              Scale = 0,
-                                          },
-                                          new DateColumn
-                                          {
-                                              Name = "nullable_datetimeoffset",
-                                              OrdinalPosition = 5,
-                                              Nullable = true,
-                                              DataType = "datetimeoffset",
-                                              Precision = 7,
-                                          },
-                                          new NumericColumn
-                                          {
-                                              Name = "nullable_money",
-                                              OrdinalPosition = 6,
-                                              Nullable = true,
-                                              DataType = "money",
-                                              Precision = 19,
-                                              Radix = 10,
-                                              Scale = 4,
-                                          },
-                                          new TextColumn
-                                          {
-                                              Name = "nullable_varbinary",
-                                              OrdinalPosition = 7,
-                                              Nullable = true,
-                                              DataType = "varbinary",
-                                              CharLength = -1,
-                                              ByteLength = -1,
-                                          },
-                                          new TextColumn
-                                          {
-                                              Name = "nullable_image",
-                                              OrdinalPosition = 8,
-                                              Nullable = true,
-                                              DataType = "image",
-                                              CharLength = 2147483647,
-                                              ByteLength = 2147483647,
-                                          },
-                                          new Column
-                                          {
-                                              Name = "nullable_xml",
-                                              OrdinalPosition = 9,
-                                              Nullable = true,
-                                              DataType = "xml",
-                                          },
-                                      };
+                {
+                    new TextColumn
+                    {
+                        Name = "key_part_1",
+                        OrdinalPosition = 1,
+                        Nullable = false,
+                        DataType = "nchar",
+                        CharLength = 4,
+                        ByteLength = 8,
+                    },
+                    new NumericColumn
+                    {
+                        Name = "key_part_2",
+                        OrdinalPosition = 2,
+                        Nullable = false,
+                        DataType = "smallint",
+                        Precision = 5,
+                        Radix = 10,
+                        Scale = 0,
+                    },
+                    new TextColumn
+                    {
+                        Name = "nullable_text",
+                        OrdinalPosition = 3,
+                        Nullable = true,
+                        DataType = "nvarchar",
+                        CharLength = 50,
+                        ByteLength = 100,
+                    },
+                    new NumericColumn
+                    {
+                        Name = "nullable_number",
+                        OrdinalPosition = 4,
+                        Nullable = true,
+                        DataType = "int",
+                        Precision = 10,
+                        Radix = 10,
+                        Scale = 0,
+                    },
+                    new DateColumn
+                    {
+                        Name = "nullable_datetimeoffset",
+                        OrdinalPosition = 5,
+                        Nullable = true,
+                        DataType = "datetimeoffset",
+                        Precision = 7,
+                    },
+                    new NumericColumn
+                    {
+                        Name = "nullable_money",
+                        OrdinalPosition = 6,
+                        Nullable = true,
+                        DataType = "money",
+                        Precision = 19,
+                        Radix = 10,
+                        Scale = 4,
+                    },
+                    new TextColumn
+                    {
+                        Name = "nullable_varbinary",
+                        OrdinalPosition = 7,
+                        Nullable = true,
+                        DataType = "varbinary",
+                        CharLength = -1,
+                        ByteLength = -1,
+                    },
+                    new TextColumn
+                    {
+                        Name = "nullable_image",
+                        OrdinalPosition = 8,
+                        Nullable = true,
+                        DataType = "image",
+                        CharLength = 2147483647,
+                        ByteLength = 2147483647,
+                    },
+                    new Column
+                    {
+                        Name = "nullable_xml",
+                        OrdinalPosition = 9,
+                        Nullable = true,
+                        DataType = "xml",
+                    },
+                };
 
                 var expectedKeyColumns = new List<Column>
-                                         {
-                                             new TextColumn
-                                             {
-                                                 Name = "key_part_1",
-                                                 OrdinalPosition = 1,
-                                                 Nullable = false,
-                                                 DataType = "nchar",
-                                                 CharLength = 4,
-                                                 ByteLength = 8,
-                                             },
-                                             new NumericColumn
-                                             {
-                                                 Name = "key_part_2",
-                                                 OrdinalPosition = 2,
-                                                 Nullable = false,
-                                                 DataType = "smallint",
-                                                 Precision = 5,
-                                                 Radix = 10,
-                                                 Scale = 0,
-                                             },
-                                         };
-                #endregion
+                {
+                    new TextColumn
+                    {
+                        Name = "key_part_1",
+                        OrdinalPosition = 1,
+                        Nullable = false,
+                        DataType = "nchar",
+                        CharLength = 4,
+                        ByteLength = 8,
+                    },
+                    new NumericColumn
+                    {
+                        Name = "key_part_2",
+                        OrdinalPosition = 2,
+                        Nullable = false,
+                        DataType = "smallint",
+                        Precision = 5,
+                        Radix = 10,
+                        Scale = 0,
+                    },
+                };
 
                 // Act
                 SqlTableSchema schema = await SqlTableSchema.LoadFromDatabaseAsync(connection, "TestUpsert", CancellationToken.None);

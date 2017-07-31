@@ -9,22 +9,10 @@ namespace SqlBulkUpsert.Tests
         private readonly Dictionary<Column, string> columnDefn = new Dictionary<Column, string>
         {
             {
-                new NumericColumn
-                {
-                    Name = "ident",
-                    OrdinalPosition = 1,
-                    Nullable = false,
-                    DataType = "int",
-                    Precision = 10,
-                    Radix = 10,
-                    Scale = 0,
-                }, "[ident] int NOT NULL"
-            },
-            {
                 new TextColumn
                 {
                     Name = "key_part_1",
-                    OrdinalPosition = 2,
+                    OrdinalPosition = 1,
                     Nullable = false,
                     DataType = "nchar",
                     CharLength = 4,
@@ -35,7 +23,7 @@ namespace SqlBulkUpsert.Tests
                 new NumericColumn
                 {
                     Name = "key_part_2",
-                    OrdinalPosition = 3,
+                    OrdinalPosition = 2,
                     Nullable = false,
                     DataType = "smallint",
                     Precision = 5,
@@ -47,7 +35,7 @@ namespace SqlBulkUpsert.Tests
                 new TextColumn
                 {
                     Name = "nullable_text",
-                    OrdinalPosition = 4,
+                    OrdinalPosition = 3,
                     Nullable = true,
                     DataType = "nvarchar",
                     CharLength = 50,
@@ -58,7 +46,7 @@ namespace SqlBulkUpsert.Tests
                 new NumericColumn
                 {
                     Name = "nullable_number",
-                    OrdinalPosition = 5,
+                    OrdinalPosition = 4,
                     Nullable = true,
                     DataType = "int",
                     Precision = 10,
@@ -70,7 +58,7 @@ namespace SqlBulkUpsert.Tests
                 new DateColumn
                 {
                     Name = "nullable_datetimeoffset",
-                    OrdinalPosition = 6,
+                    OrdinalPosition = 5,
                     Nullable = true,
                     DataType = "datetimeoffset",
                     Precision = 7,
@@ -80,7 +68,7 @@ namespace SqlBulkUpsert.Tests
                 new NumericColumn
                 {
                     Name = "nullable_money",
-                    OrdinalPosition = 7,
+                    OrdinalPosition = 6,
                     Nullable = true,
                     DataType = "money",
                     Precision = 19,
@@ -92,7 +80,7 @@ namespace SqlBulkUpsert.Tests
                 new TextColumn
                 {
                     Name = "nullable_varbinary",
-                    OrdinalPosition = 8,
+                    OrdinalPosition = 7,
                     Nullable = true,
                     DataType = "varbinary",
                     CharLength = -1,
@@ -103,7 +91,7 @@ namespace SqlBulkUpsert.Tests
                 new TextColumn
                 {
                     Name = "nullable_image",
-                    OrdinalPosition = 9,
+                    OrdinalPosition = 8,
                     Nullable = true,
                     DataType = "image",
                     CharLength = 2147483647,
@@ -114,7 +102,7 @@ namespace SqlBulkUpsert.Tests
                 new Column
                 {
                     Name = "nullable_xml",
-                    OrdinalPosition = 10,
+                    OrdinalPosition = 9,
                     Nullable = true,
                     DataType = "xml",
                 }, "[nullable_xml] xml NULL"
