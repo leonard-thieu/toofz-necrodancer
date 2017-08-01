@@ -6,9 +6,9 @@ using toofz.NecroDancer.Leaderboards.Services.Common;
 
 namespace toofz.NecroDancer.Leaderboards.Services.ReplayUpdate
 {
-    internal sealed class WorkerRole : WorkerRoleBase<ReplaySettings>
+    sealed class WorkerRole : WorkerRoleBase<ReplaySettings>
     {
-        private static CloudBlobDirectory GetDirectory(string connectionString)
+        static CloudBlobDirectory GetDirectory(string connectionString)
         {
             var storageAccount = CloudStorageAccount.Parse(connectionString);
             var blobClient = storageAccount.CreateCloudBlobClient();
@@ -20,6 +20,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplayUpdate
         }
 
         public WorkerRole() : base("toofz Replay Service") { }
+
         protected override string SettingsPath => "replay-settings.json";
 
         protected override Task RunAsyncOverride(CancellationToken cancellationToken)
