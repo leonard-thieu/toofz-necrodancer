@@ -46,6 +46,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
+    <Reference Include="toofz, Version=2.0.0.21279, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.2.0.0\lib\net45\toofz.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -59,10 +62,6 @@
     <ProjectReference Include="..\toofz.NecroDancer\toofz.NecroDancer.csproj">
       <Project>{2763f3e5-298d-4d7a-9066-a8cda5551f76}</Project>
       <Name>toofz.NecroDancer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\toofz\toofz.csproj">
-      <Project>{2e55fdb2-96bb-4c8a-b220-299be8484593}</Project>
-      <Name>toofz</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

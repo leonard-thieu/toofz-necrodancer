@@ -90,6 +90,9 @@
     <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.8.2\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="toofz, Version=2.0.0.21279, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.2.0.0\lib\net45\toofz.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\toofz.NecroDancer.Leaderboards.Services.Common\toofz.NecroDancer.Leaderboards.Services.Common.csproj">
@@ -99,10 +102,6 @@
     <ProjectReference Include="..\toofz.NecroDancer.Leaderboards\toofz.NecroDancer.Leaderboards.csproj">
       <Project>{2b492909-63e4-4f96-898e-802ec5a37b0f}</Project>
       <Name>toofz.NecroDancer.Leaderboards</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\toofz\toofz.csproj">
-      <Project>{2e55fdb2-96bb-4c8a-b220-299be8484593}</Project>
-      <Name>toofz</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
