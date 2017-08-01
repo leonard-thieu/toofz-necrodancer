@@ -48,9 +48,9 @@ Service that updates replay data.
 
 Installer for leaderboard services.
 
-#### [SqlBulkUpsert](SqlBulkUpsert)
+#### [SqlBulkUpsert](https://github.com/leonard-thieu/SqlBulkUpsert)
 
-Provides bulk upserting functionality. Used by leaderboard services for performance. Derived from https://github.com/dezfowler/SqlBulkUpsert.
+Provides bulk upserting functionality. Used by leaderboard services for performance. Forked from https://github.com/dezfowler/SqlBulkUpsert.
 
 #### [toofz.NecroDancer.WebClient](toofz.NecroDancer.WebClient)
 
