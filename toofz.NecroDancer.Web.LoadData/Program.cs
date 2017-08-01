@@ -4,7 +4,7 @@ using toofz.NecroDancer.EntityFramework;
 
 namespace toofz.NecroDancer.Web.LoadData
 {
-    class Program
+    static class Program
     {
         static readonly ILog Log = LogManager.GetLogger(typeof(Program));
 
