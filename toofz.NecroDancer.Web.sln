@@ -31,8 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.WebClient
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Web.LoadData", "toofz.NecroDancer.Web.LoadData\toofz.NecroDancer.Web.LoadData.csproj", "{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer", "toofz.NecroDancer\toofz.NecroDancer.csproj", "{2763F3E5-298D-4D7A-9066-A8CDA5551F76}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.EntityFramework", "toofz.NecroDancer.EntityFramework\toofz.NecroDancer.EntityFramework.csproj", "{74A190F2-9A35-422D-86B9-CC97710F03D3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution files", "{6F458725-A1D5-446C-81D1-FFCED96AE999}"
@@ -44,8 +42,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Tests", "toofz.NecroDancer.Leaderboards.Tests\toofz.NecroDancer.Leaderboards.Tests.csproj", "{81D4C7F2-4DEA-4A5F-B818-55FCC25C350A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Web.Api.Tests", "toofz.NecroDancer.Web.Api.Tests\toofz.NecroDancer.Web.Api.Tests.csproj", "{AF85C3C1-6A21-43E4-B9B6-E0D2707D9A9E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Tests", "toofz.NecroDancer.Tests\toofz.NecroDancer.Tests.csproj", "{E2F08F15-BEE0-4990-AD77-BC3F2C6B68DD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{26548D1C-2C22-4BF8-A40E-DFB1A46A1DC5}"
 EndProject
@@ -94,10 +90,6 @@ Global
 		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2763F3E5-298D-4D7A-9066-A8CDA5551F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2763F3E5-298D-4D7A-9066-A8CDA5551F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2763F3E5-298D-4D7A-9066-A8CDA5551F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2763F3E5-298D-4D7A-9066-A8CDA5551F76}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74A190F2-9A35-422D-86B9-CC97710F03D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74A190F2-9A35-422D-86B9-CC97710F03D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74A190F2-9A35-422D-86B9-CC97710F03D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -110,10 +102,6 @@ Global
 		{AF85C3C1-6A21-43E4-B9B6-E0D2707D9A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF85C3C1-6A21-43E4-B9B6-E0D2707D9A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF85C3C1-6A21-43E4-B9B6-E0D2707D9A9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E2F08F15-BEE0-4990-AD77-BC3F2C6B68DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2F08F15-BEE0-4990-AD77-BC3F2C6B68DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2F08F15-BEE0-4990-AD77-BC3F2C6B68DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2F08F15-BEE0-4990-AD77-BC3F2C6B68DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -129,11 +117,9 @@ Global
 		{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
 		{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
 		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064} = {26548D1C-2C22-4BF8-A40E-DFB1A46A1DC5}
-		{2763F3E5-298D-4D7A-9066-A8CDA5551F76} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
 		{74A190F2-9A35-422D-86B9-CC97710F03D3} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
 		{81D4C7F2-4DEA-4A5F-B818-55FCC25C350A} = {DF291D24-732A-49D4-9F21-33712811F79D}
 		{AF85C3C1-6A21-43E4-B9B6-E0D2707D9A9E} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
-		{E2F08F15-BEE0-4990-AD77-BC3F2C6B68DD} = {26D41F1D-86A1-4DF0-8714-FEF2C21B2304}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
