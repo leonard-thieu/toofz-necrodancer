@@ -4,7 +4,7 @@
 
 ## Project structure
 
-#### [toofz](toofz)
+#### [toofz](https://github.com/leonard-thieu/toofz)
 
 Utility library.
 
