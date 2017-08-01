@@ -1,5 +1,9 @@
 version: 1.0.{build}
 image: Visual Studio 2017
+
+artifacts:
+  - path: toofz.NecroDancer.Leaderboards.Services.Installer\bin\$(configuration)\toofz-leaderboard-services.msi
+    name: toofz Leaderboard Services
 configuration:
   - Release
 build:
