@@ -21,7 +21,7 @@ namespace toofz.NecroDancer.EntityFramework
             Initialize();
         }
 
-        private void Initialize()
+        void Initialize()
         {
             Configuration.AutoDetectChangesEnabled = false;
             Configuration.LazyLoadingEnabled = false;

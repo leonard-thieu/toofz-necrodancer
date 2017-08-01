@@ -5,7 +5,7 @@ using toofz.NecroDancer.Data;
 
 namespace toofz.NecroDancer.EntityFramework
 {
-    internal sealed class ItemConfiguration : EntityTypeConfiguration<Item>
+    sealed class ItemConfiguration : EntityTypeConfiguration<Item>
     {
         public ItemConfiguration()
         {

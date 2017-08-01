@@ -5,7 +5,7 @@ using toofz.NecroDancer.Data;
 
 namespace toofz.NecroDancer.EntityFramework.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<NecroDancerContext>
+    sealed class Configuration : DbMigrationsConfiguration<NecroDancerContext>
     {
         public Configuration()
         {

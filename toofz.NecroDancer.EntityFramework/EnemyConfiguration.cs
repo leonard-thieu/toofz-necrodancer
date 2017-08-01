@@ -5,7 +5,7 @@ using toofz.NecroDancer.Data;
 
 namespace toofz.NecroDancer.EntityFramework
 {
-    internal sealed class EnemyConfiguration : EntityTypeConfiguration<Enemy>
+    sealed class EnemyConfiguration : EntityTypeConfiguration<Enemy>
     {
         public EnemyConfiguration()
         {
