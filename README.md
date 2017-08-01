@@ -8,13 +8,9 @@
 
 Utility library.
 
-#### [toofz.NecroDancer](toofz.NecroDancer)
+#### [toofz.NecroDancer](https://github.com/leonard-thieu/toofz-necrodancer-core)
 
 Provides types for working with Crypt of the NecroDancer game data.
-
-#### [toofz.NecroDancer.Tests](toofz.NecroDancer.Tests)
-
-Tests for [toofz.NecroDancer](toofz.NecroDancer).
 
 #### [toofz.NecroDancer.EntityFramework](toofz.NecroDancer.EntityFramework)
 
