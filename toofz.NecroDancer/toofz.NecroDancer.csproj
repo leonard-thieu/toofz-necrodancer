@@ -57,17 +57,14 @@
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.XML" />
+    <Reference Include="toofz, Version=2.0.0.21279, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.2.0.0\lib\net45\toofz.dll</HintPath>
+    </Reference>
     <Reference Include="Validar, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Validar.Fody.1.5.1\lib\dotnet\Validar.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\toofz\toofz.csproj">
-      <Project>{2e55fdb2-96bb-4c8a-b220-299be8484593}</Project>
-      <Name>toofz</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
