@@ -4,7 +4,7 @@ using toofz.NecroDancer.Leaderboards.Services.Common;
 
 namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate
 {
-    internal sealed class WorkerRole : WorkerRoleBase<Settings>
+    sealed class WorkerRole : WorkerRoleBase<Settings>
     {
         public WorkerRole() : base("toofz Leaderboard Service") { }
 

@@ -5,11 +5,11 @@ using toofz.NecroDancer.Leaderboards.Services.Common;
 
 namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate
 {
-    internal static class Program
+    static class Program
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(Program));
+        static readonly ILog Log = LogManager.GetLogger(typeof(Program));
 
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
             Log.Debug("Initialized logging.");
             var instrumentationKey = Environment.GetEnvironmentVariable("LeaderboardsInstrumentationKey", EnvironmentVariableTarget.Machine);
