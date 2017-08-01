@@ -12,7 +12,7 @@ using toofz.NecroDancer.Data;
 
 namespace toofz.NecroDancer.Web.ImageManager
 {
-    class ImageFile
+    sealed class ImageFile
     {
         public ImageFile(string baseName, int frameIndex, string type, string ext, Guid format, byte[] data)
         {
@@ -29,7 +29,7 @@ namespace toofz.NecroDancer.Web.ImageManager
         public string Name { get; }
     }
 
-    internal class Program
+    static class Program
     {
         static string DataDirectory;
 
