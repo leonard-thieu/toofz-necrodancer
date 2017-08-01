@@ -8,12 +8,12 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
         /// Required designer variable.
         /// </summary>
 #pragma warning disable 0649
-        private IContainer components;
+        IContainer components;
 #pragma warning restore 0649
 
         #region IDisposable Members
 
-        private bool disposed;
+        bool disposed;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -42,7 +42,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        void InitializeComponent()
         {
 
         }

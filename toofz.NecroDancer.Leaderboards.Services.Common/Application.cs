@@ -10,11 +10,11 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
 {
     public static class Application
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(Application));
+        static readonly ILog Log = LogManager.GetLogger(typeof(Application));
 
         public static readonly TelemetryClient TelemetryClient = InitializeTelemetry();
 
-        private static TelemetryClient InitializeTelemetry()
+        static TelemetryClient InitializeTelemetry()
         {
             var telemetryClient = new TelemetryClient();
 

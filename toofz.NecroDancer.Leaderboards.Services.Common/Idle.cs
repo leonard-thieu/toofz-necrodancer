@@ -5,18 +5,18 @@ using log4net;
 
 namespace toofz.NecroDancer.Leaderboards.Services.Common
 {
-    internal sealed class Idle
+    sealed class Idle
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(Idle));
+        static readonly ILog Log = LogManager.GetLogger(typeof(Idle));
 
-        private readonly DateTime startTime = DateTime.UtcNow;
+        readonly DateTime startTime = DateTime.UtcNow;
 
         public void Delay(TimeSpan updateInterval, CancellationToken cancellationToken)
         {
             DelayAsync(updateInterval, cancellationToken).Wait();
         }
 
-        private async Task DelayAsync(TimeSpan updateInterval, CancellationToken cancellationToken)
+        async Task DelayAsync(TimeSpan updateInterval, CancellationToken cancellationToken)
         {
             var remaining = GetRemainingTime(updateInterval);
             LogTimeRemaining(remaining);
@@ -34,7 +34,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
             }
         }
 
-        private static void LogTimeRemaining(TimeSpan remaining)
+        static void LogTimeRemaining(TimeSpan remaining)
         {
             if (remaining > TimeSpan.Zero)
             {
@@ -46,6 +46,6 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
             }
         }
 
-        private TimeSpan GetRemainingTime(TimeSpan updateInterval) => updateInterval - (DateTime.UtcNow - startTime);
+        TimeSpan GetRemainingTime(TimeSpan updateInterval) => updateInterval - (DateTime.UtcNow - startTime);
     }
 }

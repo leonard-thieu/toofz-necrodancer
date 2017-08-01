@@ -15,7 +15,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
     {
         #region Static Members
 
-        private static readonly ILog Log = LogManager.GetLogger(typeof(WorkerRoleBase<TSettings>).GetSimpleFullName());
+        static readonly ILog Log = LogManager.GetLogger(typeof(WorkerRoleBase<TSettings>).GetSimpleFullName());
 
         #endregion
 
@@ -37,23 +37,23 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
 
         #region Fields
 
-        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
-        private ILeaderboardsHttpClient httpClient;
-        private OAuth2Handler oAuth2Handler;
-        private ApiClient apiClient;
+        ILeaderboardsHttpClient httpClient;
+        OAuth2Handler oAuth2Handler;
+        ApiClient apiClient;
 
-        private Thread thread;
-        private Idle idle;
+        Thread thread;
+        Idle idle;
 
         protected abstract string SettingsPath { get; }
 
-        protected TSettings Settings { get; private set; } = new TSettings();
+        protected TSettings Settings { get; set; } = new TSettings();
 
         /// <summary>
         /// The client used to perform leaderboard updates.
         /// </summary>
-        protected LeaderboardsClient LeaderboardsClient { get; private set; }
+        protected LeaderboardsClient LeaderboardsClient { get; set; }
 
         #endregion
 
@@ -89,7 +89,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
             thread.Start();
         }
 
-        private void Run()
+        void Run()
         {
             var cancellationToken = cancellationTokenSource.Token;
 
@@ -116,7 +116,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
             }
         }
 
-        private static void LogError(string message, Exception ex)
+        static void LogError(string message, Exception ex)
         {
             var e = ex;
             if (ex is AggregateException)
@@ -127,7 +127,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
             Log.Error(message, e);
         }
 
-        private async Task RunAsync(CancellationToken cancellationToken)
+        async Task RunAsync(CancellationToken cancellationToken)
         {
             while (!cancellationToken.IsCancellationRequested)
             {
