@@ -1,5 +1,9 @@
 version: 1.0.{build}
 image: Visual Studio 2017
+
+artifacts:
+  - path: toofz.NecroDancer.Leaderboards.Services.Installer\bin\$(configuration)\toofz-leaderboard-services.msi
+    name: toofz Leaderboard Services
 configuration:
   - Release
 build:
@@ -11,6 +15,10 @@ cache:
   - '%APPDATA%\npm-cache'
 environment:
   SqlBulkUpsertTestConnectionString: Server=(local)\SQL2014;Database=SqlBulkUpsertTestDb;User ID=sa;Password=Password12!
+notifications:
+  - provider: Slack
+    incoming_webhook:
+      secure: c7l1UmXHWpIDLL1awU4r0QYVPToYM/XjV8trFyD1oHArKxs/vBTYiKYScr1EhCUgmEX6sAFBTvkUHF/k5B+cGjzqRBR2XkAO+lzk8cHQ1FI=
 services:
   - mssql2014
 
@@ -20,7 +28,7 @@ install:
   - node --version
   - npm --version
 before_build:
-  - nuget restore
+  - appveyor-retry nuget restore -DisableParallelProcessing
   - cd toofz.NecroDancer.WebClient
   - npm install
   - npm run build
