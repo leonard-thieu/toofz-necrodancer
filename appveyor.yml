@@ -24,7 +24,7 @@ install:
   - node --version
   - npm --version
 before_build:
-  - nuget restore
+  - appveyor-retry nuget restore -DisableParallelProcessing
   - cd toofz.NecroDancer.WebClient
   - npm install
   - npm run build
