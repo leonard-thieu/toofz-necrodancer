@@ -2,7 +2,7 @@
 
 namespace toofz.NecroDancer.Leaderboards.Services.PlayerUpdate
 {
-    internal sealed class PlayerSettings : Settings
+    sealed class PlayerSettings : Settings
     {
         public int PlayersPerUpdate { get; set; }
     }
