@@ -41,6 +41,12 @@
     <Reference Include="Castle.Core, Version=4.1.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.1.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.1.1\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.2.0.4\lib\net45\Microsoft.Azure.KeyVault.Core.dll</HintPath>
     </Reference>
@@ -82,6 +88,12 @@
       <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="toofz, Version=2.0.0.21279, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.2.0.0\lib\net45\toofz.dll</HintPath>
+    </Reference>
+    <Reference Include="toofz.NecroDancer, Version=2.0.0.23027, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.NecroDancer.2.0.0\lib\net45\toofz.NecroDancer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -116,10 +128,6 @@
     <ProjectReference Include="..\toofz.NecroDancer.Leaderboards\toofz.NecroDancer.Leaderboards.csproj">
       <Project>{2b492909-63e4-4f96-898e-802ec5a37b0f}</Project>
       <Name>toofz.NecroDancer.Leaderboards</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\toofz.NecroDancer\toofz.NecroDancer.csproj">
-      <Project>{2763f3e5-298d-4d7a-9066-a8cda5551f76}</Project>
-      <Name>toofz.NecroDancer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

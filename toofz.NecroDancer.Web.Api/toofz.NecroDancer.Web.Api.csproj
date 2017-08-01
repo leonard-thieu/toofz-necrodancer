@@ -67,6 +67,9 @@
     <Reference Include="FluentValidation.WebApi, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.WebApi.7.1.1\lib\net45\FluentValidation.WebApi.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
     </Reference>
@@ -228,6 +231,9 @@
     <Reference Include="toofz, Version=2.0.0.21279, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\toofz.2.0.0\lib\net45\toofz.dll</HintPath>
     </Reference>
+    <Reference Include="toofz.NecroDancer, Version=2.0.0.23027, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.NecroDancer.2.0.0\lib\net45\toofz.NecroDancer.dll</HintPath>
+    </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
@@ -241,10 +247,6 @@
     <ProjectReference Include="..\toofz.NecroDancer.EntityFramework\toofz.NecroDancer.EntityFramework.csproj">
       <Project>{74a190f2-9a35-422d-86b9-cc97710f03d3}</Project>
       <Name>toofz.NecroDancer.EntityFramework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\toofz.NecroDancer\toofz.NecroDancer.csproj">
-      <Project>{2763f3e5-298d-4d7a-9066-a8cda5551f76}</Project>
-      <Name>toofz.NecroDancer</Name>
     </ProjectReference>
     <ProjectReference Include="..\toofz.NecroDancer.Leaderboards\toofz.NecroDancer.Leaderboards.csproj">
       <Project>{2b492909-63e4-4f96-898e-802ec5a37b0f}</Project>
