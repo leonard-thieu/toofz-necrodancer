@@ -12,9 +12,9 @@ Utility library.
 
 Provides types for working with Crypt of the NecroDancer game data.
 
-#### [toofz.NecroDancer.EntityFramework](toofz.NecroDancer.EntityFramework)
+#### [toofz.NecroDancer.EntityFramework](https://github.com/leonard-thieu/toofz-necrodancer-entityframework)
 
-Provides a context for working with types from [toofz.NecroDancer](toofz.NecroDancer) in a database.
+Provides a context for working with types from [toofz.NecroDancer](https://github.com/leonard-thieu/toofz-necrodancer-core) in a database.
 
 #### [toofz.NecroDancer.Leaderboards](toofz.NecroDancer.Leaderboards)
 
