@@ -81,6 +81,9 @@
     <Reference Include="toofz.NecroDancer, Version=2.0.0.23027, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\toofz.NecroDancer.2.0.0\lib\net45\toofz.NecroDancer.dll</HintPath>
     </Reference>
+    <Reference Include="toofz.NecroDancer.EntityFramework, Version=2.0.0.27611, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.NecroDancer.EntityFramework.2.0.0\lib\net46\toofz.NecroDancer.EntityFramework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -103,10 +106,6 @@
     <Compile Include="MinValueAttributeTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\toofz.NecroDancer.EntityFramework\toofz.NecroDancer.EntityFramework.csproj">
-      <Project>{74a190f2-9a35-422d-86b9-cc97710f03d3}</Project>
-      <Name>toofz.NecroDancer.EntityFramework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\toofz.NecroDancer.Leaderboards\toofz.NecroDancer.Leaderboards.csproj">
       <Project>{2b492909-63e4-4f96-898e-802ec5a37b0f}</Project>
       <Name>toofz.NecroDancer.Leaderboards</Name>
