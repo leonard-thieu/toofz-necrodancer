@@ -48,7 +48,7 @@ Installer for leaderboard services.
 
 Provides bulk upserting functionality. Used by leaderboard services for performance. Forked from https://github.com/dezfowler/SqlBulkUpsert.
 
-#### [toofz.NecroDancer.WebClient](toofz.NecroDancer.WebClient)
+#### [toofz.NecroDancer.WebClient](https://github.com/leonard-thieu/toofz-necrodancer-webclient)
 
 Source for http://crypt.toofz.com/.
 
