@@ -60,7 +60,7 @@ Source for https://api.toofz.com/help.
 
 Tests for [toofz.NecroDancer.Web.Api](toofz.NecroDancer.Web.Api).
 
-#### [toofz.NecroDancer.Web.ImageManager](toofz.NecroDancer.Web.ImageManager)
+#### [toofz.NecroDancer.ImageManager](https://github.com/leonard-thieu/toofz-necrodancer-imagemanager)
 
 Prepares and uploads image data from Crypt of the NecroDancer for use on the toofz website.
 
