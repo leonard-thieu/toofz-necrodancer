@@ -25,8 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Leaderboards", "Leaderboard
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.WebClient", "toofz.NecroDancer.WebClient\toofz.NecroDancer.WebClient.csproj", "{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Web.LoadData", "toofz.NecroDancer.Web.LoadData\toofz.NecroDancer.Web.LoadData.csproj", "{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution files", "{6F458725-A1D5-446C-81D1-FFCED96AE999}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
@@ -36,8 +34,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Tests", "toofz.NecroDancer.Leaderboards.Tests\toofz.NecroDancer.Leaderboards.Tests.csproj", "{81D4C7F2-4DEA-4A5F-B818-55FCC25C350A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Web.Api.Tests", "toofz.NecroDancer.Web.Api.Tests\toofz.NecroDancer.Web.Api.Tests.csproj", "{AF85C3C1-6A21-43E4-B9B6-E0D2707D9A9E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{26548D1C-2C22-4BF8-A40E-DFB1A46A1DC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,10 +72,6 @@ Global
 		{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064}.Release|Any CPU.Build.0 = Release|Any CPU
 		{81D4C7F2-4DEA-4A5F-B818-55FCC25C350A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{81D4C7F2-4DEA-4A5F-B818-55FCC25C350A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81D4C7F2-4DEA-4A5F-B818-55FCC25C350A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -101,7 +93,6 @@ Global
 		{A1DCEC28-3283-4953-BD44-105DCCBB04CE} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
 		{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
 		{7DFA54E9-2CE4-43E7-9646-E2B89FB13DE4} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
-		{3CC43DC3-CB00-4EBC-BC87-CFE7440A3064} = {26548D1C-2C22-4BF8-A40E-DFB1A46A1DC5}
 		{81D4C7F2-4DEA-4A5F-B818-55FCC25C350A} = {DF291D24-732A-49D4-9F21-33712811F79D}
 		{AF85C3C1-6A21-43E4-B9B6-E0D2707D9A9E} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
 	EndGlobalSection

@@ -64,6 +64,6 @@ Tests for [toofz.NecroDancer.Web.Api](toofz.NecroDancer.Web.Api).
 
 Prepares and uploads image data from Crypt of the NecroDancer for use on the toofz website.
 
-#### [toofz.NecroDancer.Web.LoadData](toofz.NecroDancer.Web.LoadData)
+#### [toofz.NecroDancer.LoadData](https://github.com/leonard-thieu/toofz-necrodancer-loaddata)
 
 Parses and loads Crypt of the NecroDancer item and enemy data into a database.
