@@ -1,5 +1,0 @@
---renderer
---require-main tests/crash
---require tests/coverage
---require tests/preload
-tests/src/**/*.js

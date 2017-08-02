@@ -1,6 +1,0 @@
---renderer
---require-main tests/crash
---require tests/coverage
---require tests/preload
---reporter mocha-appveyor-reporter
-tests/src/**/*.js

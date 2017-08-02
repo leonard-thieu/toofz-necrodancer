@@ -12,27 +12,14 @@ build:
   verbosity: minimal
 cache:
   - packages -> **\packages.config
-  - '%APPDATA%\npm-cache'
 notifications:
   - provider: Slack
     incoming_webhook:
       secure: c7l1UmXHWpIDLL1awU4r0QYVPToYM/XjV8trFyD1oHArKxs/vBTYiKYScr1EhCUgmEX6sAFBTvkUHF/k5B+cGjzqRBR2XkAO+lzk8cHQ1FI=
 
-install:
-  - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild 8)
-  - npm install --global npm
-  - node --version
-  - npm --version
 before_build:
   - appveyor-retry nuget restore -DisableParallelProcessing
-  - cd toofz.NecroDancer.WebClient
-  - npm install
-  - npm run build
-  - cd ..
 
 test_script:
   - vstest.console /logger:Appveyor "toofz.NecroDancer.Leaderboards.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Leaderboards.Tests.dll"
   - vstest.console /logger:Appveyor "toofz.NecroDancer.Web.Api.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Web.Api.Tests.dll"
-  - cd toofz.NecroDancer.WebClient
-  - npm run test-appveyor
-  - cd ..
