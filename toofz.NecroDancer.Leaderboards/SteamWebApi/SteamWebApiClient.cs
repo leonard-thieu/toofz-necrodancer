@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using log4net;
 using Newtonsoft.Json;
+using toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamRemoteStorage;
 using toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamUser;
 
 namespace toofz.NecroDancer.Leaderboards.SteamWebApi
@@ -20,25 +21,20 @@ namespace toofz.NecroDancer.Leaderboards.SteamWebApi
 
         static readonly ILog Log = LogManager.GetLogger(typeof(SteamWebApiClient));
 
-        const int AppId = 247080;
         static readonly Uri SteamApiUri = new Uri("https://api.steampowered.com/");
-
-        static async Task SendAsync<T>(ITargetBlock<T> block, T item)
-        {
-            if (!await block.SendAsync(item).ConfigureAwait(false))
-            {
-                throw new InvalidOperationException($"Posting {item} to the get data block failed.");
-            }
-        }
 
         #endregion
 
         #region Initialization
 
-        public SteamWebApiClient(HttpMessageHandler handler, LeaderboardsReader reader) : base(handler)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SteamWebApiClient"/> class with a specific handler.
+        /// </summary>
+        /// <param name="handler">
+        /// The HTTP handler stack to use for sending requests.
+        /// </param>
+        public SteamWebApiClient(HttpMessageHandler handler) : base(handler)
         {
-            this.reader = reader ?? throw new ArgumentNullException(nameof(reader));
-
             MaxResponseContentBufferSize = 2 * 1024 * 1024;
             DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
         }
@@ -46,8 +42,6 @@ namespace toofz.NecroDancer.Leaderboards.SteamWebApi
         #endregion
 
         #region Fields
-
-        readonly LeaderboardsReader reader;
 
         /// <summary>
         /// A Steam Web API key. This is required by some API endpoints.
@@ -118,7 +112,7 @@ namespace toofz.NecroDancer.Leaderboards.SteamWebApi
                 { "key", SteamWebApiKey },
                 { "steamIds", string.Join(",", ids) },
             });
-            await SendAsync(download, url).ConfigureAwait(false);
+            await download.CheckSendAsync(url).ConfigureAwait(false);
 
             download.Complete();
             await processData.Completion.ConfigureAwait(false);
@@ -130,41 +124,65 @@ namespace toofz.NecroDancer.Leaderboards.SteamWebApi
 
         #endregion
 
-        #region Replays
+        #region GetUGCFileDetails
 
-        static readonly UriTemplate GetUgcFileDetailsUri = new UriTemplate($"ISteamRemoteStorage/GetUGCFileDetails/v1/?format=xml&key={{key}}&appid={AppId}&ugcid={{ugcId}}");
+        static readonly UriTemplate GetUgcFileDetailsUri = new UriTemplate("ISteamRemoteStorage/GetUGCFileDetails/v1/?key={key}&appid={appId}&ugcid={ugcId}");
 
-        public async Task<IEnumerable<ReplayContext>> GetReplaysAsync(IEnumerable<long> ugcIds,
+        // TODO: Handle a potential error response from the Steam Web API. See: https://wiki.teamfortress.com/wiki/WebAPI/GetUGCFileDetails#Result_data.
+        /// <summary>
+        /// Returns file details for a UGC ID.
+        /// </summary>
+        /// <param name="appId">
+        /// The ID of the product of the UGC.
+        /// </param>
+        /// <param name="ugcId">
+        /// The ID of the UGC to get file details for.
+        /// </param>
+        /// <param name="progress">
+        /// A progress provider that will be called with total bytes requested. <paramref name="progress"/> may be null.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <exception cref="System.InvalidOperationException">
+        /// <see cref="GetUgcFileDetailsAsync"/> requires <see cref="SteamWebApiKey"/> to be set to a valid Steam Web API Key.
+        /// </exception>
+        public async Task<UgcFileDetails> GetUgcFileDetailsAsync(
+            int appId,
+            long ugcId,
+            IProgress<long> progress = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            using (var activity = new DownloadNotifier(Log, "replays"))
+            if (SteamWebApiKey == null)
+                throw new InvalidOperationException($"{nameof(GetUgcFileDetailsAsync)} requires {nameof(SteamWebApiKey)} to be set to a valid Steam Web API Key.");
+
+            var download = StreamPipeline.Create(this, progress, cancellationToken);
+
+            UgcFileDetails ugcFileDetails = null;
+            var processData = new ActionBlock<Stream>(data =>
             {
-                var pipeline = ReplayPipeline.Create(this, activity.Progress, cancellationToken);
-
-                var replayContexts = new List<ReplayContext>();
-                var processData = new ActionBlock<ReplayContext>(context =>
+                using (var sr = new StreamReader(data))
                 {
-                    replayContexts.Add(context);
-                });
-
-                pipeline.LinkTo(processData, new DataflowLinkOptions { PropagateCompletion = true });
-
-                foreach (var ugcId in ugcIds)
-                {
-                    var requestUri = GetUgcFileDetailsUri.BindByName(SteamApiUri, new Dictionary<string, string>
-                    {
-                        { "key", SteamWebApiKey },
-                        { "ugcId", ugcId.ToString() },
-                    });
-                    await SendAsync(pipeline, new Tuple<long, Uri>(ugcId, requestUri)).ConfigureAwait(false);
+                    ugcFileDetails = JsonConvert.DeserializeObject<UgcFileDetails>(sr.ReadToEnd());
                 }
+            });
 
-                pipeline.Complete();
+            download.LinkTo(processData, new DataflowLinkOptions { PropagateCompletion = true });
 
-                await processData.Completion.ConfigureAwait(false);
+            var url = GetUgcFileDetailsUri.BindByName(SteamApiUri, new Dictionary<string, string>
+            {
+                { "key", SteamWebApiKey },
+                { "appId", appId.ToString() },
+                { "ugcId", ugcId.ToString() },
+            });
+            await download.CheckSendAsync(url).ConfigureAwait(false);
 
-                return replayContexts;
-            }
+            download.Complete();
+            await processData.Completion.ConfigureAwait(false);
+
+            Debug.Assert(ugcFileDetails != null);
+
+            return ugcFileDetails;
         }
 
         #endregion

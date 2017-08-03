@@ -194,11 +194,17 @@
     <Compile Include="EntityFramework\Migrations\Configuration.cs" />
     <Compile Include="EntityFramework\PlayerConfiguration.cs" />
     <Compile Include="EntityFramework\ReplayConfiguration.cs" />
+    <Compile Include="HttpRequestStatusException.cs" />
+    <Compile Include="HttpRequestStatusHandler.cs" />
     <Compile Include="IApiClient.cs" />
-    <Compile Include="ICloudBlobExtensions.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="ExceptionRenderer.cs" />
+    <Compile Include="ITargetBlockExtensions.cs" />
+    <Compile Include="IUgcHttpClient.cs" />
     <Compile Include="LeaderboardsService.cs" />
+    <Compile Include="LeaderboardsSqlClient.cs">
+      <DependentUpon>ILeaderboardsSqlClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="LeaderboardsSteamClient.cs" />
     <Compile Include="EntityFramework\Migrations\201707172139340_LimeZinc﻿AfghanHound.cs" />
     <Compile Include="EntityFramework\Migrations\201707172139340_LimeZinc﻿AfghanHound.Designer.cs">
@@ -211,27 +217,27 @@
     <Compile Include="ILeaderboardsSqlClient.cs" />
     <Compile Include="Leaderboard.cs" />
     <Compile Include="LeaderboardsClient.cs" />
+    <Compile Include="SteamWebApi\ISteamRemoteStorage\UgcFileDetails.cs" />
     <Compile Include="SteamWebApi\ISteamUser\PlayerSummaries.cs" />
     <Compile Include="SteamWebApi\ISteamWebApiClient.cs" />
     <Compile Include="SteamWebApi\SteamWebApiClient.cs">
       <DependentUpon>ISteamWebApiClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="LeaderboardsReader.cs" />
-    <Compile Include="LeaderboardsSqlClient.cs" />
     <Compile Include="LoggingHandler.cs" />
     <Compile Include="OAuth2AccessToken.cs" />
     <Compile Include="OAuth2Handler.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Replay.cs" />
-    <Compile Include="ReplayContext.cs" />
-    <Compile Include="ReplayPipeline.cs" />
     <Compile Include="SteamTransientFaultHandler.cs" />
     <Compile Include="StoreNotifier.cs" />
     <Compile Include="StreamPipeline.cs" />
     <Compile Include="TextWriterExtensions.cs" />
     <Compile Include="TransientHttpRequestException.cs" />
     <Compile Include="TypeExtensions.cs" />
+    <Compile Include="UgcHttpClient.cs">
+      <DependentUpon>IUgcHttpClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateNotifier.cs" />
   </ItemGroup>
   <ItemGroup>

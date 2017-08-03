@@ -18,7 +18,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi
             public async Task SteamWebApiKeyIsNull_ThrowsInvalidOperationException()
             {
                 // Arrange
-                var steamWebApiClient = new SteamWebApiClient(new MockHttpMessageHandler(), new LeaderboardsReader());
+                var steamWebApiClient = new SteamWebApiClient(new MockHttpMessageHandler());
 
                 // Act
                 var ex = await Record.ExceptionAsync(() =>
@@ -34,7 +34,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi
             public async Task steamIdsIsNull_ThrowsArgumentNullException()
             {
                 // Arrange
-                var steamWebApiClient = new SteamWebApiClient(new MockHttpMessageHandler(), new LeaderboardsReader());
+                var steamWebApiClient = new SteamWebApiClient(new MockHttpMessageHandler());
                 steamWebApiClient.SteamWebApiKey = "mySteamWebApiKey";
 
                 // Act
@@ -51,7 +51,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi
             public async Task TooManySteamIds_ThrowsArgumentException()
             {
                 // Arrange
-                var steamWebApiClient = new SteamWebApiClient(new MockHttpMessageHandler(), new LeaderboardsReader());
+                var steamWebApiClient = new SteamWebApiClient(new MockHttpMessageHandler());
                 steamWebApiClient.SteamWebApiKey = "mySteamWebApiKey";
 
                 // Act
@@ -73,7 +73,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi
                     .When(HttpMethod.Get, "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=mySteamWebApiKey&steamids=76561197960435530")
                     .RespondJson(Resources.GetPlayerSummaries);
 
-                var steamWebApiClient = new SteamWebApiClient(handler, new LeaderboardsReader());
+                var steamWebApiClient = new SteamWebApiClient(handler);
                 steamWebApiClient.SteamWebApiKey = "mySteamWebApiKey";
 
                 // Act

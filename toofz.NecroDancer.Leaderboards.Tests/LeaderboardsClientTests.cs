@@ -20,7 +20,12 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var mockSteamWebApiClient = new Mock<ISteamWebApiClient>();
                 var mockILeaderboardsSqlClient = new Mock<ILeaderboardsSqlClient>();
                 var mockApiClient = new Mock<IApiClient>();
-                var leaderboardsClient = new LeaderboardsClient(mockSteamWebApiClient.Object, mockILeaderboardsSqlClient.Object, mockApiClient.Object);
+                var mockUgcHttpClient = new Mock<IUgcHttpClient>();
+                var leaderboardsClient = new LeaderboardsClient(
+                    mockSteamWebApiClient.Object,
+                    mockILeaderboardsSqlClient.Object,
+                    mockApiClient.Object,
+                    mockUgcHttpClient.Object);
 
                 // Act
                 var ex = await Record.ExceptionAsync(() =>
@@ -39,7 +44,12 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var mockSteamWebApiClient = new Mock<ISteamWebApiClient>();
                 var mockILeaderboardsSqlClient = new Mock<ILeaderboardsSqlClient>();
                 var mockApiClient = new Mock<IApiClient>();
-                var leaderboardsClient = new LeaderboardsClient(mockSteamWebApiClient.Object, mockILeaderboardsSqlClient.Object, mockApiClient.Object);
+                var mockUgcHttpClient = new Mock<IUgcHttpClient>();
+                var leaderboardsClient = new LeaderboardsClient(
+                    mockSteamWebApiClient.Object,
+                    mockILeaderboardsSqlClient.Object,
+                    mockApiClient.Object,
+                    mockUgcHttpClient.Object);
 
                 // Act
                 await leaderboardsClient.UpdatePlayersAsync(1);

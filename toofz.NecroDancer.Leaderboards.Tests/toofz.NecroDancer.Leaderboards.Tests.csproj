@@ -135,9 +135,7 @@
     <Compile Include="ApiExceptionTests.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="EnsureSuccessHandlerTests.cs" />
-    <Compile Include="ICloudBlobExtensionsTests.cs" />
     <Compile Include="OAuth2HandlerTests.cs" />
-    <Compile Include="ReplayPipelineTests.cs" />
     <Compile Include="StreamPipelineTests.cs" />
     <Compile Include="TextWriterExtensionsTests.cs" />
     <Compile Include="TypeExtensionsTests.cs" />

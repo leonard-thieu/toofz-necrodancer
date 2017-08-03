@@ -3,7 +3,9 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using log4net;
@@ -18,28 +20,32 @@ namespace toofz.NecroDancer.Leaderboards
     public sealed class LeaderboardsClient : IDisposable
     {
         static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsClient));
+        const int AppId = 247080;
         static readonly RetryStrategy RetryStrategy = new ExponentialBackoff(10, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(2));
         static readonly RetryPolicy<SteamClientTransientErrorDetectionStrategy> RetryPolicy = SteamClientTransientErrorDetectionStrategy.Create(RetryStrategy);
 
         #region Initialization
 
         public LeaderboardsClient(
-            ISteamWebApiClient httpClient,
+            ISteamWebApiClient steamWebApiClient,
             ILeaderboardsSqlClient sqlClient,
-            IApiClient apiClient)
+            IApiClient apiClient,
+            IUgcHttpClient ugcHttpClient)
         {
-            this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            this.steamWebApiClient = steamWebApiClient ?? throw new ArgumentNullException(nameof(steamWebApiClient));
             this.sqlClient = sqlClient ?? throw new ArgumentNullException(nameof(sqlClient));
             this.apiClient = apiClient ?? throw new ArgumentNullException(nameof(apiClient));
+            this.ugcHttpClient = ugcHttpClient ?? throw new ArgumentNullException(nameof(ugcHttpClient));
         }
 
         #endregion
 
         #region Fields
 
-        readonly ISteamWebApiClient httpClient;
+        readonly ISteamWebApiClient steamWebApiClient;
         readonly ILeaderboardsSqlClient sqlClient;
         readonly IApiClient apiClient;
+        readonly IUgcHttpClient ugcHttpClient;
 
         #endregion
 
@@ -232,7 +238,7 @@ namespace toofz.NecroDancer.Leaderboards
 
                         async Task MapPlayers()
                         {
-                            var playerSummaries = await httpClient
+                            var playerSummaries = await steamWebApiClient
                                 .GetPlayerSummariesAsync(ids, download.Progress, cancellationToken)
                                 .ConfigureAwait(false);
 
@@ -301,76 +307,78 @@ namespace toofz.NecroDancer.Leaderboards
             {
                 var missing = await apiClient.GetMissingReplayIdsAsync(limit, cancellationToken).ConfigureAwait(false);
 
-                var replayContexts = await httpClient.GetReplaysAsync(missing, cancellationToken).ConfigureAwait(false);
-
-                var replays = new List<Replay>(limit);
-                var uploads = new List<Task<Uri>>(limit);
-
-                foreach (var replayContext in replayContexts)
+                var replays = new ConcurrentBag<Replay>();
+                using (var download = new DownloadNotifier(Log, "replays"))
                 {
-                    var replay = new Replay
+                    var requests = new List<Task>();
+                    foreach (var ugcId in missing)
                     {
-                        ReplayId = replayContext.UgcId,
-                        ErrorCode = replayContext.ErrorCode,
-                    };
-                    replays.Add(replay);
+                        var request = UpdateReplayAsync(ugcId);
+                        requests.Add(request);
+                    }
+                    await Task.WhenAll(requests).ConfigureAwait(false);
 
-                    if (replayContext.Data != null)
+                    async Task UpdateReplayAsync(long ugcId)
                     {
-                        Task<Uri> upload;
+                        var replay = new Replay { ReplayId = ugcId };
+                        replays.Add(replay);
 
                         try
                         {
-                            var data = ReplaySerializer.Deserialize(replayContext.Data);
-
-                            replay.Version = data.Header.Version;
-                            replay.KilledBy = data.Header.KilledBy;
-                            if (data.TryGetSeed(out int seed))
+                            var ugcFileDetails = await steamWebApiClient.GetUgcFileDetailsAsync(AppId, ugcId, download.Progress, cancellationToken).ConfigureAwait(false);
+                            try
                             {
-                                replay.Seed = seed;
+                                var ugcFile = await ugcHttpClient.GetUgcFileAsync(ugcFileDetails.Data.Url, download.Progress, cancellationToken).ConfigureAwait(false);
+                                try
+                                {
+                                    var replayData = ReplaySerializer.Deserialize(ugcFile);
+                                    replay.Version = replayData.Header.Version;
+                                    replay.KilledBy = replayData.Header.KilledBy;
+                                    if (replayData.TryGetSeed(out int seed))
+                                    {
+                                        replay.Seed = seed;
+                                    }
+
+                                    ugcFile.Dispose();
+                                    ugcFile = new MemoryStream();
+                                    ReplaySerializer.Serialize(ugcFile, replayData);
+                                    ugcFile.Position = 0;
+                                }
+                                // TODO: Catch a more specific exception.
+                                catch (Exception ex)
+                                {
+                                    Log.Error($"Unable to read replay from '{ugcFileDetails.Data.Url}'.", ex);
+                                    // Upload unmodified data on failure
+                                    ugcFile.Position = 0;
+                                }
+                                finally
+                                {
+                                    try
+                                    {
+                                        var blob = directory.GetBlockBlobReference(replay.FileName);
+                                        blob.Properties.ContentType = "application/octet-stream";
+                                        blob.Properties.CacheControl = "max-age=604800"; // 1 week
+
+                                        await blob.UploadFromStreamAsync(ugcFile, cancellationToken).ConfigureAwait(false);
+
+                                        Log.Debug(blob.Uri);
+                                    }
+                                    // TODO: Catch a more specific exception.
+                                    catch (Exception ex)
+                                    {
+                                        Log.Error($"Failed to upload {replay.FileName}.", ex);
+                                    }
+                                }
                             }
-
-                            var blob = directory.GetBlockBlobReference(replay.FileName);
-                            blob.Properties.ContentType = "application/octet-stream";
-                            blob.Properties.CacheControl = "max-age=604800"; // 1 week
-
-                            upload = blob.UploadReplayDataAsync(data, cancellationToken);
+                            catch (HttpRequestStatusException ex)
+                            {
+                                replay.ErrorCode = -(int)ex.StatusCode;
+                            }
                         }
-                        catch (Exception ex)
+                        catch (HttpRequestStatusException ex)
                         {
-                            Log.Error($"Failed to read replay from '{replayContext.DataUri}'.", ex);
-
-                            var blob = directory.GetBlockBlobReference(replay.FileName);
-                            blob.Properties.ContentType = "application/octet-stream";
-                            blob.Properties.CacheControl = "max-age=604800"; // 1 week
-
-                            // Upload unmodified data on failure
-                            upload = blob.UploadRemoteReplayDataAsync(replayContext.Data, cancellationToken);
+                            replay.ErrorCode = (int)ex.StatusCode;
                         }
-
-                        uploads.Add(upload);
-                    }
-                }
-
-                while (uploads.Any())
-                {
-                    var upload = await Task.WhenAny(uploads).ConfigureAwait(false);
-                    uploads.Remove(upload);
-
-                    Uri uri = null;
-                    try
-                    {
-                        uri = await upload.ConfigureAwait(false);
-
-                        Log.Debug(uri);
-                    }
-                    catch (Exception ex)
-                    {
-                        var fileName = uri.Segments.Last();
-                        var failed = replays.First(r => r.FileName == fileName);
-                        replays.Remove(failed);
-
-                        Log.Error($"Failed to upload {fileName}.", ex);
                     }
                 }
 
@@ -398,7 +406,7 @@ namespace toofz.NecroDancer.Leaderboards
 
             if (disposing)
             {
-                httpClient.Dispose();
+                steamWebApiClient.Dispose();
                 apiClient.Dispose();
             }
 

@@ -1,17 +1,16 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks.Dataflow;
-using System.Xml;
-using System.Xml.Linq;
 
 namespace toofz.NecroDancer.Leaderboards
 {
     static class StreamPipeline
     {
-        public static IPropagatorBlock<Uri, Stream> Create(HttpClient httpClient, IProgress<long> progress,
+        public static IPropagatorBlock<Uri, Stream> Create(
+            HttpClient httpClient,
+            IProgress<long> progress,
             CancellationToken cancellationToken)
         {
             if (httpClient == null)
@@ -27,7 +26,9 @@ namespace toofz.NecroDancer.Leaderboards
             return DataflowBlock.Encapsulate(request, processContent);
         }
 
-        internal static TransformBlock<Uri, HttpResponseMessage> CreateRequestBlock(HttpClient httpClient, CancellationToken cancellationToken)
+        internal static TransformBlock<Uri, HttpResponseMessage> CreateRequestBlock(
+            HttpClient httpClient,
+            CancellationToken cancellationToken)
         {
             return new TransformBlock<Uri, HttpResponseMessage>(
                 requestUri => httpClient.GetAsync(requestUri, cancellationToken),
@@ -45,36 +46,6 @@ namespace toofz.NecroDancer.Leaderboards
         {
             return new TransformBlock<HttpContent, Stream>(
                 content => content.ProcessContentAsync(progress),
-                new ExecutionDataflowBlockOptions { MaxDegreeOfParallelism = Environment.ProcessorCount });
-        }
-
-        internal static TransformBlock<Stream, Stream> CreateValidateSteamResponseBlock(IProgress<long> progress)
-        {
-            return new TransformBlock<Stream, Stream>(
-                data =>
-                {
-                    try
-                    {
-                        var doc = XDocument.Load(data);
-                        var error = doc.Root.Elements("error").FirstOrDefault();
-                        if (error != null)
-                        {
-                            throw new HttpRequestException(error.Value);
-                        }
-                        else
-                        {
-                            data.Position = 0;
-
-                            return data;
-                        }
-                    }
-                    catch (XmlException)
-                    {
-                        data.Position = 0;
-
-                        return data;
-                    }
-                },
                 new ExecutionDataflowBlockOptions { MaxDegreeOfParallelism = Environment.ProcessorCount });
         }
     }
