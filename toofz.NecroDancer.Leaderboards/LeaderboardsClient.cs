@@ -23,7 +23,8 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Initialization
 
-        public LeaderboardsClient(SteamWebApiClient httpClient,
+        public LeaderboardsClient(
+            SteamWebApiClient httpClient,
             ILeaderboardsSqlClient sqlClient,
             ApiClient apiClient)
         {
@@ -202,7 +203,8 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Players
 
-        public async Task UpdatePlayersAsync(int limit, CancellationToken cancellationToken)
+        public async Task UpdatePlayersAsync(int limit,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             if (limit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(limit));
