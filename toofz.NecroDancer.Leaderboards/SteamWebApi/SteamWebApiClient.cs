@@ -85,7 +85,7 @@ namespace toofz.NecroDancer.Leaderboards.SteamWebApi
         /// </exception>
         public async Task<PlayerSummaries> GetPlayerSummariesAsync(
             IEnumerable<long> steamIds,
-            IProgress<long> progress,
+            IProgress<long> progress = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (SteamWebApiKey == null)

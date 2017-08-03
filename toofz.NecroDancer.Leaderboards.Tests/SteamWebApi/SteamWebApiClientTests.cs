@@ -23,7 +23,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi
                 // Act
                 var ex = await Record.ExceptionAsync(() =>
                 {
-                    return steamWebApiClient.GetPlayerSummariesAsync(new long[0], null);
+                    return steamWebApiClient.GetPlayerSummariesAsync(new long[0]);
                 });
 
                 // Assert
@@ -40,7 +40,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi
                 // Act
                 var ex = await Record.ExceptionAsync(() =>
                 {
-                    return steamWebApiClient.GetPlayerSummariesAsync(null, null);
+                    return steamWebApiClient.GetPlayerSummariesAsync(null);
                 });
 
                 // Assert
@@ -57,7 +57,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi
                 // Act
                 var ex = await Record.ExceptionAsync(() =>
                 {
-                    return steamWebApiClient.GetPlayerSummariesAsync(new long[SteamWebApiClient.MaxPlayerSummariesPerRequest + 1], null);
+                    return steamWebApiClient.GetPlayerSummariesAsync(new long[SteamWebApiClient.MaxPlayerSummariesPerRequest + 1]);
                 });
 
                 // Assert
@@ -77,7 +77,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi
                 steamWebApiClient.SteamWebApiKey = "mySteamWebApiKey";
 
                 // Act
-                var playerSummaries = await steamWebApiClient.GetPlayerSummariesAsync(new long[] { 76561197960435530 }, null);
+                var playerSummaries = await steamWebApiClient.GetPlayerSummariesAsync(new long[] { 76561197960435530 });
 
                 // Assert
                 Assert.IsInstanceOfType(playerSummaries, typeof(PlayerSummaries));
