@@ -68,6 +68,12 @@ namespace toofz.NecroDancer.Leaderboards.SteamWebApi
         /// <param name="steamIds">
         /// List of 64 bit Steam IDs to return profile information for. Up to 100 Steam IDs can be requested.
         /// </param>
+        /// <param name="progress">
+        /// A progress provider that will be called with total bytes requested. <paramref name="progress"/> may be null.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
         /// <exception cref="System.InvalidOperationException">
         /// <see cref="GetPlayerSummariesAsync"/> requires <see cref="SteamWebApiKey"/> to be set to a valid Steam Web API Key.
         /// </exception>
