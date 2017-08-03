@@ -125,6 +125,7 @@
     <Compile Include="..\Record.cs">
       <Link>Record.cs</Link>
     </Compile>
+    <Compile Include="SteamWebApi\ISteamUser\PlayerSummariesTests.cs" />
     <Compile Include="TestingHttpMessageHandler.cs" />
   </ItemGroup>
   <ItemGroup>
