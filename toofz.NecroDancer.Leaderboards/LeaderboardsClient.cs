@@ -20,7 +20,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Initialization
 
-        public LeaderboardsClient(ILeaderboardsHttpClient httpClient,
+        public LeaderboardsClient(LeaderboardsHttpClient httpClient,
             ILeaderboardsSqlClient sqlClient,
             ApiClient apiClient)
         {
@@ -33,7 +33,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Fields
 
-        readonly ILeaderboardsHttpClient httpClient;
+        readonly LeaderboardsHttpClient httpClient;
         readonly ILeaderboardsSqlClient sqlClient;
         readonly ApiClient apiClient;
 

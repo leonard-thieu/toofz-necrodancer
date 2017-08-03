@@ -39,7 +39,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
 
         readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
-        ILeaderboardsHttpClient httpClient;
+        LeaderboardsHttpClient httpClient;
         OAuth2Handler oAuth2Handler;
         ApiClient apiClient;
 

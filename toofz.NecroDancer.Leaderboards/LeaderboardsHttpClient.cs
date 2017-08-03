@@ -11,7 +11,7 @@ using log4net;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    public sealed class LeaderboardsHttpClient : HttpClient, ILeaderboardsHttpClient
+    public sealed class LeaderboardsHttpClient : HttpClient
     {
         #region Static Members
 
