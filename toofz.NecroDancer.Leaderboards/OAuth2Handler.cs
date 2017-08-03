@@ -12,8 +12,8 @@ namespace toofz.NecroDancer.Leaderboards
 {
     public sealed class OAuth2Handler : DelegatingHandler
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(OAuth2Handler));
-        private static readonly AuthenticationHeaderValue BearerHeader = new AuthenticationHeaderValue("Bearer");
+        static readonly ILog Log = LogManager.GetLogger(typeof(OAuth2Handler));
+        static readonly AuthenticationHeaderValue BearerHeader = new AuthenticationHeaderValue("Bearer");
 
         public string UserName { get; set; }
         public string Password { get; set; }
@@ -42,7 +42,7 @@ namespace toofz.NecroDancer.Leaderboards
             return response;
         }
 
-        private void AddBearerToken(HttpRequestMessage request)
+        void AddBearerToken(HttpRequestMessage request)
         {
             if (BearerToken != null)
             {
@@ -50,7 +50,7 @@ namespace toofz.NecroDancer.Leaderboards
             }
         }
 
-        private async Task<OAuth2AccessToken> AuthenticateAsync(Uri requestUri, CancellationToken cancellationToken)
+        async Task<OAuth2AccessToken> AuthenticateAsync(Uri requestUri, CancellationToken cancellationToken)
         {
             var authUri = new Uri(requestUri, "/token");
             Log.Info($"Authenticating to '{authUri}'...");
@@ -79,7 +79,7 @@ namespace toofz.NecroDancer.Leaderboards
             return accessToken;
         }
 
-        private Task<HttpResponseMessage> PostAsync(Uri requestUri, FormUrlEncodedContent content, CancellationToken cancellationToken)
+        Task<HttpResponseMessage> PostAsync(Uri requestUri, FormUrlEncodedContent content, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, requestUri);
             request.Content = content;

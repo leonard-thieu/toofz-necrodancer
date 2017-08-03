@@ -11,14 +11,14 @@ namespace toofz.NecroDancer.Leaderboards
             Progress = new ActionProgress<long>(r => rowsAffected = r);
         }
 
-        private long rowsAffected;
+        long rowsAffected;
 
         public IProgress<long> Progress { get; }
         public long RowsAffected => rowsAffected;
 
         #region IDisposable Implementation
 
-        private bool disposed;
+        bool disposed;
 
         protected override void Dispose(bool disposing)
         {

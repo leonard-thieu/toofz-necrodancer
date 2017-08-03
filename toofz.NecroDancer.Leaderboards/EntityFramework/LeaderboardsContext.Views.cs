@@ -114,7 +114,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for CodeFirstDatabase.DailyLeaderboard.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView0()
+        static DbMappingView GetView0()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing DailyLeaderboard
@@ -135,7 +135,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for CodeFirstDatabase.DailyEntry.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView1()
+        static DbMappingView GetView1()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing DailyEntry
@@ -158,7 +158,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for CodeFirstDatabase.Player.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView2()
+        static DbMappingView GetView2()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Player
@@ -179,7 +179,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for CodeFirstDatabase.Entry.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView3()
+        static DbMappingView GetView3()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Entry
@@ -202,7 +202,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for CodeFirstDatabase.Leaderboard.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView4()
+        static DbMappingView GetView4()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Leaderboard
@@ -223,7 +223,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for LeaderboardsContext.DailyLeaderboards.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView5()
+        static DbMappingView GetView5()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing DailyLeaderboards
@@ -244,7 +244,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for LeaderboardsContext.DailyEntries.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView6()
+        static DbMappingView GetView6()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing DailyEntries
@@ -267,7 +267,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for LeaderboardsContext.Players.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView7()
+        static DbMappingView GetView7()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Players
@@ -288,7 +288,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for LeaderboardsContext.Entries.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView8()
+        static DbMappingView GetView8()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Entries
@@ -311,7 +311,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for LeaderboardsContext.Leaderboards.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView9()
+        static DbMappingView GetView9()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Leaderboards
@@ -332,7 +332,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for CodeFirstDatabase.Replay.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView10()
+        static DbMappingView GetView10()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Replay
@@ -353,7 +353,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// Gets the view for LeaderboardsContext.Replays.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView11()
+        static DbMappingView GetView11()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Replays

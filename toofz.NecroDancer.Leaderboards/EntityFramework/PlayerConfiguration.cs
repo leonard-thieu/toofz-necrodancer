@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace toofz.NecroDancer.Leaderboards.EntityFramework
 {
     [ExcludeFromCodeCoverage]
-    internal sealed class PlayerConfiguration : EntityTypeConfiguration<Player>
+    sealed class PlayerConfiguration : EntityTypeConfiguration<Player>
     {
         public PlayerConfiguration()
         {

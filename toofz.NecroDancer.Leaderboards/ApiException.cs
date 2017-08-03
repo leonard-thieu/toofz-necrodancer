@@ -58,7 +58,7 @@ namespace toofz.NecroDancer.Leaderboards
             return CreateAsync(response, message);
         }
 
-        private static async Task<ApiException> CreateAsync(HttpResponseMessage response, string message)
+        static async Task<ApiException> CreateAsync(HttpResponseMessage response, string message)
         {
             var requestUri = response.RequestMessage.RequestUri;
 
@@ -96,7 +96,7 @@ namespace toofz.NecroDancer.Leaderboards
             return new ApiException(message, ex, requestUri, requestContent, responseContent, response.StatusCode);
         }
 
-        private static HttpRequestException GetHttpRequestException(HttpResponseMessage response)
+        static HttpRequestException GetHttpRequestException(HttpResponseMessage response)
         {
             HttpRequestException httpEx = null;
 
@@ -139,7 +139,7 @@ namespace toofz.NecroDancer.Leaderboards
         /// <param name="statusCode">
         /// The HTTP status code of the response.
         /// </param>
-        private ApiException(string message, Exception innerException, Uri requestUri, string requestContent, string responseContent, HttpStatusCode statusCode) : base(message, innerException)
+        ApiException(string message, Exception innerException, Uri requestUri, string requestContent, string responseContent, HttpStatusCode statusCode) : base(message, innerException)
         {
             RequestUri = requestUri;
             RequestContent = requestContent;

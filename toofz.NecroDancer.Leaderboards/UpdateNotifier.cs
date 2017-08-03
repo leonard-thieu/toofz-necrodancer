@@ -10,7 +10,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region IDisposable Members
 
-        private bool disposed;
+        bool disposed;
 
         protected override void Dispose(bool disposing)
         {

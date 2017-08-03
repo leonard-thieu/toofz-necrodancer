@@ -13,12 +13,12 @@ namespace toofz.NecroDancer.Leaderboards
     {
         #region Table Names
 
-        private const string LeaderboardsTableName = "Leaderboards";
-        private const string EntriesTableName = "Entries";
-        private const string DailyLeaderboardsTableName = "DailyLeaderboards";
-        private const string DailyEntriesTableName = "DailyEntries";
-        private const string PlayersTableName = "Players";
-        private const string ReplaysTableName = "Replays";
+        const string LeaderboardsTableName = "Leaderboards";
+        const string EntriesTableName = "Entries";
+        const string DailyLeaderboardsTableName = "DailyLeaderboards";
+        const string DailyEntriesTableName = "DailyEntries";
+        const string PlayersTableName = "Players";
+        const string ReplaysTableName = "Replays";
 
         #endregion
 
@@ -26,7 +26,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Leaderboard
 
-        private static readonly ColumnMappings<Leaderboard> LeaderboardMappings = new ColumnMappings<Leaderboard>
+        static readonly ColumnMappings<Leaderboard> LeaderboardMappings = new ColumnMappings<Leaderboard>
         {
             d => d.LeaderboardId,
             d => d.LastUpdate,
@@ -39,7 +39,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Entry
 
-        private static readonly ColumnMappings<Entry> EntryMappings = new ColumnMappings<Entry>
+        static readonly ColumnMappings<Entry> EntryMappings = new ColumnMappings<Entry>
         {
             d => d.LeaderboardId,
             d => d.Rank,
@@ -54,7 +54,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region DailyLeaderboard
 
-        private static readonly ColumnMappings<DailyLeaderboard> DailyLeaderboardMappings = new ColumnMappings<DailyLeaderboard>
+        static readonly ColumnMappings<DailyLeaderboard> DailyLeaderboardMappings = new ColumnMappings<DailyLeaderboard>
         {
             d => d.LeaderboardId,
             d => d.LastUpdate,
@@ -67,7 +67,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region DailyEntry
 
-        private static readonly ColumnMappings<DailyEntry> DailyEntryMappings = new ColumnMappings<DailyEntry>
+        static readonly ColumnMappings<DailyEntry> DailyEntryMappings = new ColumnMappings<DailyEntry>
         {
             d => d.LeaderboardId,
             d => d.Rank,
@@ -82,7 +82,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Player
 
-        private static readonly ColumnMappings<Player> PlayerMappings = new ColumnMappings<Player>
+        static readonly ColumnMappings<Player> PlayerMappings = new ColumnMappings<Player>
         {
             d => d.SteamId,
             d => d.Exists,
@@ -95,7 +95,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Replay
 
-        private static readonly ColumnMappings<Replay> ReplayMappings = new ColumnMappings<Replay>
+        static readonly ColumnMappings<Replay> ReplayMappings = new ColumnMappings<Replay>
         {
             d => d.ReplayId,
             d => d.ErrorCode,
@@ -108,7 +108,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #endregion
 
-        private static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsSqlClient));
+        static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsSqlClient));
 
         static string ToSentenceCase(string str)
         {
@@ -119,17 +119,14 @@ namespace toofz.NecroDancer.Leaderboards
 
         public LeaderboardsSqlClient(string connectionString)
         {
-            if (connectionString == null)
-                throw new ArgumentNullException(nameof(connectionString));
-
-            this.connectionString = connectionString;
+            this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
 
         #endregion
 
         #region Fields
 
-        private readonly string connectionString;
+        readonly string connectionString;
 
         #endregion
 
@@ -208,9 +205,9 @@ FROM {tableName};";
             }
         }
 
-        private string EntriesSuffix = "_A";
+        string EntriesSuffix = "_A";
 
-        private string GetEntriesTableName()
+        string GetEntriesTableName()
         {
             var tableName = EntriesTableName + EntriesSuffix;
             EntriesSuffix = EntriesSuffix == "_A" ? "_B" : "_A";
@@ -259,7 +256,7 @@ FROM {tableName};";
 
         #region Methods
 
-        private async Task UpsertAsync<T>(string tableName, ColumnMappings<T> columnMappings, IEnumerable<T> items, bool updateOnMatch, CancellationToken cancellationToken)
+        async Task UpsertAsync<T>(string tableName, ColumnMappings<T> columnMappings, IEnumerable<T> items, bool updateOnMatch, CancellationToken cancellationToken)
         {
             using (var connection = new SqlConnection(connectionString))
             {

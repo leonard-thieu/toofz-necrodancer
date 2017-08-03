@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace toofz.NecroDancer.Leaderboards.EntityFramework
 {
     [ExcludeFromCodeCoverage]
-    internal sealed class DailyLeaderboardConfiguration : EntityTypeConfiguration<DailyLeaderboard>
+    sealed class DailyLeaderboardConfiguration : EntityTypeConfiguration<DailyLeaderboard>
     {
         public DailyLeaderboardConfiguration()
         {

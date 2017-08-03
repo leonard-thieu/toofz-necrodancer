@@ -4,7 +4,7 @@ using System.IO;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    public partial interface ILeaderboardsReader
+    public interface ILeaderboardsReader
     {
         IEnumerable<Player> ReadPlayers(Stream data);
         Uri ReadReplayUri(Stream data);

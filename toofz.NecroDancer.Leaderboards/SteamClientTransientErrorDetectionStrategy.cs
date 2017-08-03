@@ -9,7 +9,7 @@ namespace toofz.NecroDancer.Leaderboards
     {
         #region Static Members
 
-        private static readonly ILog Log = LogManager.GetLogger(typeof(SteamClientTransientErrorDetectionStrategy));
+        static readonly ILog Log = LogManager.GetLogger(typeof(SteamClientTransientErrorDetectionStrategy));
 
         public static RetryPolicy<SteamClientTransientErrorDetectionStrategy> Create(RetryStrategy retryStrategy)
         {
@@ -19,7 +19,7 @@ namespace toofz.NecroDancer.Leaderboards
             return retryPolicy;
         }
 
-        private static void OnRetrying(object sender, RetryingEventArgs e)
+        static void OnRetrying(object sender, RetryingEventArgs e)
         {
             Log.Debug(e.LastException.Message + $" Experienced a transient error during a Steam Client API request. Retrying ({e.CurrentRetryCount}) in {e.Delay}...");
         }

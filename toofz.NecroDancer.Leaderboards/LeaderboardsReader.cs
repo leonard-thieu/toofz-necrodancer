@@ -14,7 +14,7 @@ namespace toofz.NecroDancer.Leaderboards
     {
         #region Static Members
 
-        private static string CleanInvalidXmlChars(string text)
+        static string CleanInvalidXmlChars(string text)
         {
             // From xml spec valid chars: 
             // #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]     

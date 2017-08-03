@@ -11,15 +11,15 @@ namespace toofz.NecroDancer.Leaderboards
 {
     public sealed class SteamTransientFaultHandler : DelegatingHandler
     {
-        private static readonly RetryStrategy RetryStrategy = new ExponentialBackoff(10, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(2));
-        private static readonly RetryPolicy<SteamTransientErrorDetectionStrategy> RetryPolicy = SteamTransientErrorDetectionStrategy.Create(RetryStrategy);
+        static readonly RetryStrategy RetryStrategy = new ExponentialBackoff(10, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(2));
+        static readonly RetryPolicy<SteamTransientErrorDetectionStrategy> RetryPolicy = SteamTransientErrorDetectionStrategy.Create(RetryStrategy);
 
         public SteamTransientFaultHandler(TelemetryClient telemetryClient)
         {
             this.telemetryClient = telemetryClient;
         }
 
-        private readonly TelemetryClient telemetryClient;
+        readonly TelemetryClient telemetryClient;
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {

@@ -10,7 +10,7 @@ namespace toofz.NecroDancer.Leaderboards
     {
         #region Static Members
 
-        private static readonly ILog Log = LogManager.GetLogger(typeof(SteamTransientErrorDetectionStrategy));
+        static readonly ILog Log = LogManager.GetLogger(typeof(SteamTransientErrorDetectionStrategy));
 
         public static RetryPolicy<SteamTransientErrorDetectionStrategy> Create(RetryStrategy retryStrategy)
         {
@@ -20,7 +20,7 @@ namespace toofz.NecroDancer.Leaderboards
             return retryPolicy;
         }
 
-        private static void OnRetrying(object sender, RetryingEventArgs e)
+        static void OnRetrying(object sender, RetryingEventArgs e)
         {
             Log.Debug(e.LastException.Message + $" Experienced a transient error during an HTTP request. Retrying ({e.CurrentRetryCount}) in {e.Delay}...");
         }
