@@ -71,7 +71,7 @@ namespace toofz.NecroDancer.Leaderboards
                     {
                         // Process details
                         // Set DataUri
-                        var details = await DataflowHelper.ProcessContentAsync(context.DetailsContent, progress).ConfigureAwait(false);
+                        var details = await HttpContentExtensions.ProcessContentAsync(context.DetailsContent, progress).ConfigureAwait(false);
                         context.DataUri = LeaderboardsReader.ReadReplayUri(details);
                     }
 
@@ -125,7 +125,7 @@ namespace toofz.NecroDancer.Leaderboards
                      {
                          // Process data
                          // Set Data
-                         var data = await DataflowHelper.ProcessContentAsync(context.DataContent, progress).ConfigureAwait(false);
+                         var data = await HttpContentExtensions.ProcessContentAsync(context.DataContent, progress).ConfigureAwait(false);
                          context.Data = data;
                      }
 

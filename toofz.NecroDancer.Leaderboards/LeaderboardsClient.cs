@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,6 +10,7 @@ using log4net;
 using Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling;
 using Microsoft.WindowsAzure.Storage.Blob;
 using toofz.NecroDancer.Leaderboards.EntityFramework;
+using toofz.NecroDancer.Leaderboards.SteamWebApi;
 using toofz.NecroDancer.Replays;
 
 namespace toofz.NecroDancer.Leaderboards
@@ -20,7 +23,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Initialization
 
-        public LeaderboardsClient(LeaderboardsHttpClient httpClient,
+        public LeaderboardsClient(SteamWebApiClient httpClient,
             ILeaderboardsSqlClient sqlClient,
             ApiClient apiClient)
         {
@@ -33,7 +36,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Fields
 
-        readonly LeaderboardsHttpClient httpClient;
+        readonly SteamWebApiClient httpClient;
         readonly ILeaderboardsSqlClient sqlClient;
         readonly ApiClient apiClient;
 
@@ -206,34 +209,68 @@ namespace toofz.NecroDancer.Leaderboards
 
             using (new UpdateNotifier(Log, "players"))
             {
-                var steamIds = await apiClient.GetStaleSteamIdsAsync(limit, cancellationToken).ConfigureAwait(false);
+                var steamIds = (await apiClient.GetStaleSteamIdsAsync(limit, cancellationToken).ConfigureAwait(false)).ToList();
 
-                var players = await httpClient.GetPlayersAsync(steamIds, cancellationToken).ConfigureAwait(false);
+                var players = new ConcurrentBag<Player>();
+                using (var download = new DownloadNotifier(Log, "players"))
+                {
+                    var requests = new List<Task>();
+                    for (int i = 0; i < steamIds.Count; i += SteamWebApiClient.MaxPlayerSummariesPerRequest)
+                    {
+                        var ids = steamIds
+                            .Skip(i)
+                            .Take(SteamWebApiClient.MaxPlayerSummariesPerRequest);
+                        var request = MapPlayers();
+                        requests.Add(request);
 
-                players = steamIds.GroupJoin(
-                          players,
-                          id => id,
-                          p => p.SteamId,
-                          (id, ps) =>
-                          {
-                              var p = ps.SingleOrDefault();
-                              if (p != null)
-                              {
-                                  p.Exists = true;
-                              }
-                              else
-                              {
-                                  p = new Player
-                                  {
-                                      SteamId = id,
-                                      Exists = false,
-                                  };
-                              }
-                              p.LastUpdate = DateTime.UtcNow;
-                              return p;
-                          }).ToList();
+                        async Task MapPlayers()
+                        {
+                            var playerSummaries = await httpClient
+                                .GetPlayerSummariesAsync(ids, download.Progress, cancellationToken)
+                                .ConfigureAwait(false);
 
-                await apiClient.PostPlayersAsync(players, cancellationToken).ConfigureAwait(false);
+                            foreach (var p in playerSummaries.Response.Players)
+                            {
+                                players.Add(new Player
+                                {
+                                    SteamId = p.SteamId,
+                                    Name = p.PersonaName,
+                                    Avatar = p.Avatar,
+                                });
+                            }
+
+                        }
+                    }
+                    await Task.WhenAll(requests).ConfigureAwait(false);
+                }
+
+                Debug.Assert(!players.Any(p => p == null));
+
+                // TODO: Document purpose.
+                var playersIncludingNonExisting = steamIds.GroupJoin(
+                    players,
+                    id => id,
+                    p => p.SteamId,
+                    (id, ps) =>
+                    {
+                        var p = ps.SingleOrDefault();
+                        if (p != null)
+                        {
+                            p.Exists = true;
+                        }
+                        else
+                        {
+                            p = new Player
+                            {
+                                SteamId = id,
+                                Exists = false,
+                            };
+                        }
+                        p.LastUpdate = DateTime.UtcNow;
+                        return p;
+                    });
+
+                await apiClient.PostPlayersAsync(playersIncludingNonExisting, cancellationToken).ConfigureAwait(false);
             }
         }
 

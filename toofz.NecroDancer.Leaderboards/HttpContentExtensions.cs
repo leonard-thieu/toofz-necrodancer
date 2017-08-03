@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    static class DataflowHelper
+    static class HttpContentExtensions
     {
         /// <summary>
         /// Copies the content to a seekable stream and reports progress.
@@ -17,7 +17,7 @@ namespace toofz.NecroDancer.Leaderboards
         /// <exception cref="ArgumentNullException">
         /// <paramref name="content"/> is null.
         /// </exception>
-        public static async Task<Stream> ProcessContentAsync(HttpContent content, IProgress<long> progress)
+        public static async Task<Stream> ProcessContentAsync(this HttpContent content, IProgress<long> progress)
         {
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
@@ -35,7 +35,7 @@ namespace toofz.NecroDancer.Leaderboards
                 {
                     // GZipStream is not seekable
                     var decompressed = new MemoryStream();
-                    gzip.CopyTo(decompressed);
+                    await gzip.CopyToAsync(decompressed).ConfigureAwait(false);
                     decompressed.Position = 0;
                     return decompressed;
                 }

@@ -20,13 +20,11 @@ namespace toofz.NecroDancer.Leaderboards
             TransformBlock<Uri, HttpResponseMessage> request = CreateRequestBlock(httpClient, cancellationToken);
             TransformBlock<HttpResponseMessage, HttpContent> download = CreateDownloadBlock();
             TransformBlock<HttpContent, Stream> processContent = CreateProcessContentBlock(progress);
-            TransformBlock<Stream, Stream> validateSteamResponse = CreateValidateSteamResponseBlock(progress);
 
             request.LinkTo(download, new DataflowLinkOptions { PropagateCompletion = true });
             download.LinkTo(processContent, new DataflowLinkOptions { PropagateCompletion = true });
-            processContent.LinkTo(validateSteamResponse, new DataflowLinkOptions { PropagateCompletion = true });
 
-            return DataflowBlock.Encapsulate(request, validateSteamResponse);
+            return DataflowBlock.Encapsulate(request, processContent);
         }
 
         internal static TransformBlock<Uri, HttpResponseMessage> CreateRequestBlock(HttpClient httpClient, CancellationToken cancellationToken)
@@ -46,7 +44,7 @@ namespace toofz.NecroDancer.Leaderboards
         internal static TransformBlock<HttpContent, Stream> CreateProcessContentBlock(IProgress<long> progress)
         {
             return new TransformBlock<HttpContent, Stream>(
-                content => DataflowHelper.ProcessContentAsync(content, progress),
+                content => content.ProcessContentAsync(progress),
                 new ExecutionDataflowBlockOptions { MaxDegreeOfParallelism = Environment.ProcessorCount });
         }
 

@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using log4net;
 using Newtonsoft.Json;
+using toofz.NecroDancer.Leaderboards.SteamWebApi;
 
 namespace toofz.NecroDancer.Leaderboards.Services.Common
 {
@@ -39,7 +40,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
 
         readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
-        LeaderboardsHttpClient httpClient;
+        SteamWebApiClient httpClient;
         OAuth2Handler oAuth2Handler;
         ApiClient apiClient;
 
@@ -70,7 +71,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
                 new SteamTransientFaultHandler(Application.TelemetryClient),
             });
             var reader = new LeaderboardsReader();
-            httpClient = new LeaderboardsHttpClient(steamApiHandlers, reader);
+            httpClient = new SteamWebApiClient(steamApiHandlers, reader);
 
             var sqlClient = new LeaderboardsSqlClient(Util.GetEnvVar("LeaderboardsConnectionString"));
 

@@ -27,36 +27,6 @@ namespace toofz.NecroDancer.Leaderboards
         #endregion
 
         /// <summary>
-        /// Deserializes a collection of players from the stream.
-        /// </summary>
-        /// <param name="data">The serialized data that represents a collection of players.</param>
-        /// <returns>A collection of players that represents the data.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="data"/> is null.
-        /// </exception>
-        public IEnumerable<Player> ReadPlayers(Stream data)
-        {
-            if (data == null)
-                throw new ArgumentNullException(nameof(data));
-
-            var responseShape = new
-            {
-                response = new
-                {
-                    players = new Player[0]
-                }
-            };
-
-            var sr = new StreamReader(data);
-            var text = sr.ReadToEnd();
-            text = CleanInvalidXmlChars(text);
-
-            var response = JsonConvert.DeserializeAnonymousType(text, responseShape).response;
-
-            return response.players;
-        }
-
-        /// <summary>
         /// Deserializes a <see cref="Replay"/> object from <paramref name="data"/>.
         /// </summary>
         /// <param name="data">The serialized data that represents a <see cref="Replay"/> object.</param>

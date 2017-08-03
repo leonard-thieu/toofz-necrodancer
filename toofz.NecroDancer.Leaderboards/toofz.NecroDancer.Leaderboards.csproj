@@ -36,7 +36,7 @@
     <Compile Include="ApiClient.cs" />
     <Compile Include="DailyEntry.cs" />
     <Compile Include="DailyLeaderboard.cs" />
-    <Compile Include="DataflowHelper.cs" />
+    <Compile Include="HttpContentExtensions.cs" />
     <Compile Include="DownloadNotifier.cs" />
     <Compile Include="EnsureSuccessHandler.cs" />
     <Compile Include="ApiException.cs" />
@@ -208,7 +208,8 @@
     <Compile Include="ILeaderboardsSqlClient.cs" />
     <Compile Include="Leaderboard.cs" />
     <Compile Include="LeaderboardsClient.cs" />
-    <Compile Include="LeaderboardsHttpClient.cs" />
+    <Compile Include="SteamWebApi\ISteamUser\PlayerSummaries.cs" />
+    <Compile Include="SteamWebApi\SteamWebApiClient.cs" />
     <Compile Include="LeaderboardsReader.cs" />
     <Compile Include="LeaderboardsSqlClient.cs" />
     <Compile Include="LoggingHandler.cs" />
