@@ -14,7 +14,7 @@ using toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamUser;
 
 namespace toofz.NecroDancer.Leaderboards.SteamWebApi
 {
-    public sealed class SteamWebApiClient : HttpClient
+    public sealed class SteamWebApiClient : HttpClient, ISteamWebApiClient
     {
         #region Static Members
 
@@ -49,6 +49,9 @@ namespace toofz.NecroDancer.Leaderboards.SteamWebApi
 
         readonly LeaderboardsReader reader;
 
+        /// <summary>
+        /// A Steam Web API key. This is required by some API endpoints.
+        /// </summary>
         public string SteamWebApiKey { get; set; }
 
         #endregion

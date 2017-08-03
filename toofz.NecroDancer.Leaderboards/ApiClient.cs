@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    public sealed class ApiClient : HttpClient
+    public sealed class ApiClient : HttpClient, IApiClient
     {
         static readonly ILog Log = LogManager.GetLogger(typeof(ApiClient));
 

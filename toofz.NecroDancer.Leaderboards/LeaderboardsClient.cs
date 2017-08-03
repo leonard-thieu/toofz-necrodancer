@@ -24,9 +24,9 @@ namespace toofz.NecroDancer.Leaderboards
         #region Initialization
 
         public LeaderboardsClient(
-            SteamWebApiClient httpClient,
+            ISteamWebApiClient httpClient,
             ILeaderboardsSqlClient sqlClient,
-            ApiClient apiClient)
+            IApiClient apiClient)
         {
             this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             this.sqlClient = sqlClient ?? throw new ArgumentNullException(nameof(sqlClient));
@@ -37,15 +37,17 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Fields
 
-        readonly SteamWebApiClient httpClient;
+        readonly ISteamWebApiClient httpClient;
         readonly ILeaderboardsSqlClient sqlClient;
-        readonly ApiClient apiClient;
+        readonly IApiClient apiClient;
 
         #endregion
 
         #region Leaderboards and Entries
 
-        public async Task UpdateLeaderboardsAsync(LeaderboardsSteamClient steamClient, CancellationToken cancellationToken)
+        public async Task UpdateLeaderboardsAsync(
+            LeaderboardsSteamClient steamClient,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             using (new UpdateNotifier(Log, "leaderboards"))
             {
@@ -93,7 +95,9 @@ namespace toofz.NecroDancer.Leaderboards
             }
         }
 
-        public async Task UpdateDailyLeaderboardsAsync(LeaderboardsSteamClient steamClient, CancellationToken cancellationToken)
+        public async Task UpdateDailyLeaderboardsAsync(
+            LeaderboardsSteamClient steamClient,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             using (new UpdateNotifier(Log, "daily leaderboards"))
             {
@@ -203,7 +207,8 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Players
 
-        public async Task UpdatePlayersAsync(int limit,
+        public async Task UpdatePlayersAsync(
+            int limit,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (limit <= 0)
@@ -282,7 +287,10 @@ namespace toofz.NecroDancer.Leaderboards
 
         static readonly ReplaySerializer ReplaySerializer = new ReplaySerializer();
 
-        public async Task UpdateReplaysAsync(int limit, CloudBlobDirectory directory, CancellationToken cancellationToken)
+        public async Task UpdateReplaysAsync(
+            int limit,
+            CloudBlobDirectory directory,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             if (limit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(limit));

@@ -33,7 +33,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ActionProgress.cs" />
-    <Compile Include="ApiClient.cs" />
+    <Compile Include="ApiClient.cs">
+      <DependentUpon>IApiClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="DailyEntry.cs" />
     <Compile Include="DailyLeaderboard.cs" />
     <Compile Include="HttpContentExtensions.cs" />
@@ -192,6 +194,7 @@
     <Compile Include="EntityFramework\Migrations\Configuration.cs" />
     <Compile Include="EntityFramework\PlayerConfiguration.cs" />
     <Compile Include="EntityFramework\ReplayConfiguration.cs" />
+    <Compile Include="IApiClient.cs" />
     <Compile Include="ICloudBlobExtensions.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="ExceptionRenderer.cs" />
@@ -209,7 +212,10 @@
     <Compile Include="Leaderboard.cs" />
     <Compile Include="LeaderboardsClient.cs" />
     <Compile Include="SteamWebApi\ISteamUser\PlayerSummaries.cs" />
-    <Compile Include="SteamWebApi\SteamWebApiClient.cs" />
+    <Compile Include="SteamWebApi\ISteamWebApiClient.cs" />
+    <Compile Include="SteamWebApi\SteamWebApiClient.cs">
+      <DependentUpon>ISteamWebApiClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="LeaderboardsReader.cs" />
     <Compile Include="LeaderboardsSqlClient.cs" />
     <Compile Include="LoggingHandler.cs" />
