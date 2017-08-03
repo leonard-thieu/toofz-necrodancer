@@ -6,9 +6,9 @@ using System.Threading.Tasks.Dataflow;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    internal static class ReplayPipeline
+    static class ReplayPipeline
     {
-        private static readonly LeaderboardsReader LeaderboardsReader = new LeaderboardsReader();
+        static readonly LeaderboardsReader LeaderboardsReader = new LeaderboardsReader();
 
         public static IPropagatorBlock<Tuple<long, Uri>, ReplayContext> Create(HttpClient httpClient, IProgress<long> progress,
             CancellationToken cancellationToken)

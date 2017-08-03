@@ -72,7 +72,7 @@ namespace toofz.NecroDancer.Leaderboards
             }
         }
 
-        private void WriteStackTrace(IndentedTextWriter indentedWriter, StackTrace stackTrace)
+        void WriteStackTrace(IndentedTextWriter indentedWriter, StackTrace stackTrace)
         {
             if (stackTrace.FrameCount == 0)
                 return;
@@ -99,7 +99,7 @@ namespace toofz.NecroDancer.Leaderboards
             indentedWriter.Indent--;
         }
 
-        private static string GetMethodSignature(MethodBase method)
+        static string GetMethodSignature(MethodBase method)
         {
             var fullSig = method.ToString();
             var i = fullSig.IndexOf(' ');

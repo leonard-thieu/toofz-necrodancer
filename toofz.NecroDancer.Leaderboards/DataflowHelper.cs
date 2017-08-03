@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    internal static class DataflowHelper
+    static class DataflowHelper
     {
         /// <summary>
         /// Copies the content to a seekable stream and reports progress.

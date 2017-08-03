@@ -36,10 +36,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         public LeaderboardsHttpClient(HttpMessageHandler handler, ILeaderboardsReader reader) : base(handler)
         {
-            if (reader == null)
-                throw new ArgumentNullException(nameof(reader));
-
-            this.reader = reader;
+            this.reader = reader ?? throw new ArgumentNullException(nameof(reader));
 
             MaxResponseContentBufferSize = 2 * 1024 * 1024;
             DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));

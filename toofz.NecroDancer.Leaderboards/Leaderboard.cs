@@ -16,9 +16,9 @@ namespace toofz.NecroDancer.Leaderboards
     [XmlRoot(XmlName)]
     public sealed class Leaderboard : IXmlSerializable
     {
-        private const string XmlName = "response";
+        const string XmlName = "response";
 
-        private static readonly ILog Log = LogManager.GetLogger(typeof(Leaderboard));
+        static readonly ILog Log = LogManager.GetLogger(typeof(Leaderboard));
 
         /// <summary>
         /// A value that uniquely identifies the leaderboard.
@@ -55,7 +55,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region IXmlSerializable Members
 
-        private static readonly XmlSerializer EntrySerializer = new XmlSerializer(typeof(Entry));
+        static readonly XmlSerializer EntrySerializer = new XmlSerializer(typeof(Entry));
 
         /// <summary>
         /// This method is reserved and should not be used.

@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace toofz.NecroDancer.Leaderboards.EntityFramework
 {
     [ExcludeFromCodeCoverage]
-    internal sealed class EntryConfiguration : EntityTypeConfiguration<Entry>
+    sealed class EntryConfiguration : EntityTypeConfiguration<Entry>
     {
         public EntryConfiguration()
         {

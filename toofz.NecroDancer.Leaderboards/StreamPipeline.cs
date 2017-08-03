@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    internal static class StreamPipeline
+    static class StreamPipeline
     {
         public static IPropagatorBlock<Uri, Stream> Create(HttpClient httpClient, IProgress<long> progress,
             CancellationToken cancellationToken)

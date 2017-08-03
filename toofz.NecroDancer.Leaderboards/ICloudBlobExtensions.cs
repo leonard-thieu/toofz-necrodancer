@@ -10,9 +10,9 @@ namespace toofz.NecroDancer.Leaderboards
     /// <summary>
     /// Contains extension methods for <see cref="ICloudBlob"/>.
     /// </summary>
-    internal static class ICloudBlobExtensions
+    static class ICloudBlobExtensions
     {
-        private static readonly ReplaySerializer ReplaySerializer = new ReplaySerializer();
+        static readonly ReplaySerializer ReplaySerializer = new ReplaySerializer();
 
         /// <summary>
         /// Uploads a locally readable replay to Azure.

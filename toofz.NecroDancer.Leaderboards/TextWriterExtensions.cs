@@ -6,7 +6,7 @@ namespace toofz.NecroDancer.Leaderboards
     /// <summary>
     /// Contains extension methods for <see cref="TextWriter"/>.
     /// </summary>
-    internal static class TextWriterExtensions
+    static class TextWriterExtensions
     {
         /// <summary>
         /// Writes a line terminator, followed by the text representation of an object by calling the ToString method on 

@@ -6,13 +6,10 @@ namespace toofz.NecroDancer.Leaderboards
     {
         public ActionProgress(Action<T> handler)
         {
-            if (handler == null)
-                throw new ArgumentNullException(nameof(handler));
-
-            this.handler = handler;
+            this.handler = handler ?? throw new ArgumentNullException(nameof(handler));
         }
 
-        private readonly Action<T> handler;
+        readonly Action<T> handler;
 
         public void Report(T value)
         {

@@ -12,7 +12,7 @@ namespace toofz.NecroDancer.Leaderboards
 {
     public sealed class ApiClient : HttpClient
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(ApiClient));
+        static readonly ILog Log = LogManager.GetLogger(typeof(ApiClient));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient"/> class with a specific handler.
@@ -62,7 +62,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #endregion
 
-        private async Task<string> PostEntitiesAsync<T>(string requestUri, IEnumerable<T> entities, CancellationToken cancellationToken)
+        async Task<string> PostEntitiesAsync<T>(string requestUri, IEnumerable<T> entities, CancellationToken cancellationToken)
         {
             using (var activity = new StoreNotifier(Log, requestUri))
             {

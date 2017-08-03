@@ -8,7 +8,7 @@ using SteamKit2;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    public class LeaderboardsSteamClient
+    public sealed class LeaderboardsSteamClient
     {
         static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsSteamClient));
 

@@ -8,10 +8,7 @@ namespace toofz.NecroDancer.Leaderboards
     {
         protected NotifierBase(ILog log, string category, string name)
         {
-            if (log == null)
-                throw new ArgumentNullException(nameof(log));
-
-            Log = log;
+            Log = log ?? throw new ArgumentNullException(nameof(log));
             Category = category;
             Name = name;
 
@@ -26,7 +23,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region IDisposable Members
 
-        private bool disposed;
+        bool disposed;
 
         public void Dispose()
         {

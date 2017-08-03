@@ -7,7 +7,7 @@ namespace toofz.NecroDancer.Leaderboards
 {
     public sealed class EnsureSuccessHandler : DelegatingHandler
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(EnsureSuccessHandler));
+        static readonly ILog Log = LogManager.GetLogger(typeof(EnsureSuccessHandler));
 
         /// <summary>
         /// Sends an HTTP request to the inner handler to send to the server as an asynchronous operation.

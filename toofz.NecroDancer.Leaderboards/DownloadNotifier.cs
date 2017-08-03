@@ -9,10 +9,10 @@ namespace toofz.NecroDancer.Leaderboards
     {
         #region Static Members
 
-        private static readonly string[] SizeSuffixes = { "bytes", "kB", "MB", "GB" };
+        static readonly string[] SizeSuffixes = { "bytes", "kB", "MB", "GB" };
 
         // http://stackoverflow.com/a/14488941/414137
-        private static string SizeSuffix(long value)
+        static string SizeSuffix(long value)
         {
             if (value < 0)
                 return "-" + SizeSuffix(-value);
@@ -25,9 +25,9 @@ namespace toofz.NecroDancer.Leaderboards
             return string.Format("{0:F1} {1}", adjustedSize, SizeSuffixes[mag]);
         }
 
-        private static readonly string[] RateSuffixes = { "Bps", "kBps", "MBps", "GBps" };
+        static readonly string[] RateSuffixes = { "Bps", "kBps", "MBps", "GBps" };
 
-        private static string RateSuffix(double value)
+        static string RateSuffix(double value)
         {
             if (value < 0)
                 return "-" + RateSuffix(-value);
@@ -47,14 +47,14 @@ namespace toofz.NecroDancer.Leaderboards
             Progress = new ActionProgress<long>(r => Interlocked.Add(ref totalBytes, r));
         }
 
-        private long totalBytes;
+        long totalBytes;
 
         public IProgress<long> Progress { get; }
         public long TotalBytes => totalBytes;
 
         #region IDisposable Members
 
-        private bool disposed;
+        bool disposed;
 
         protected override void Dispose(bool disposing)
         {

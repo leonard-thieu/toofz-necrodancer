@@ -13,9 +13,9 @@ namespace toofz.NecroDancer.Leaderboards
     [XmlRoot(XmlName)]
     public sealed class Entry : IXmlSerializable
     {
-        private const string XmlName = "entry";
+        const string XmlName = "entry";
 
-        private static readonly ILog Log = LogManager.GetLogger(typeof(Entry));
+        static readonly ILog Log = LogManager.GetLogger(typeof(Entry));
 
         /// <summary>
         /// The ID of the leaderboard associated with the entry.

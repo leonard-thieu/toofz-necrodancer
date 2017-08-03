@@ -7,7 +7,7 @@ namespace toofz.NecroDancer.Leaderboards
 {
     public sealed class LoggingHandler : DelegatingHandler
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(LoggingHandler));
+        static readonly ILog Log = LogManager.GetLogger(typeof(LoggingHandler));
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
