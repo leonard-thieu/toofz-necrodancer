@@ -205,7 +205,6 @@
     <Compile Include="SteamClientTransientErrorDetectionStrategy.cs" />
     <Compile Include="SteamKitException.cs" />
     <Compile Include="SteamTransientErrorDetectionStrategy.cs" />
-    <Compile Include="ILeaderboardsReader.cs" />
     <Compile Include="ILeaderboardsSqlClient.cs" />
     <Compile Include="Leaderboard.cs" />
     <Compile Include="LeaderboardsClient.cs" />

@@ -10,7 +10,7 @@ namespace toofz.NecroDancer.Leaderboards
     /// <summary>
     /// Deserializes Steam leaderboard related types.
     /// </summary>
-    public sealed class LeaderboardsReader : ILeaderboardsReader
+    public sealed class LeaderboardsReader
     {
         #region Static Members
 

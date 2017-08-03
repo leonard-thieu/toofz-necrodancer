@@ -34,7 +34,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Initialization
 
-        public LeaderboardsHttpClient(HttpMessageHandler handler, ILeaderboardsReader reader) : base(handler)
+        public LeaderboardsHttpClient(HttpMessageHandler handler, LeaderboardsReader reader) : base(handler)
         {
             this.reader = reader ?? throw new ArgumentNullException(nameof(reader));
 
@@ -46,7 +46,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Fields
 
-        readonly ILeaderboardsReader reader;
+        readonly LeaderboardsReader reader;
 
         public string SteamWebApiKey { get; set; }
 
