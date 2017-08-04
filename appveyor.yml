@@ -6,29 +6,30 @@ artifacts:
     name: toofz Leaderboard Services
 configuration:
   - Release
-build:
-  project: toofz.NecroDancer.Web.sln
-  publish_wap: true
-  verbosity: minimal
 cache:
   - packages -> **\packages.config
 notifications:
   - provider: Slack
     incoming_webhook:
       secure: c7l1UmXHWpIDLL1awU4r0QYVPToYM/XjV8trFyD1oHArKxs/vBTYiKYScr1EhCUgmEX6sAFBTvkUHF/k5B+cGjzqRBR2XkAO+lzk8cHQ1FI=
+
 install:
   - ps: |
-    Write-Host "Installing Azure storage emulator..." -ForegroundColor Cyan
-    Write-Host "Downloading..."
-    $msiPath = "$($env:USERPROFILE)\MicrosoftAzureStorageEmulator.msi"
-    (New-Object Net.WebClient).DownloadFile('https://download.microsoft.com/download/F/3/8/F3857A38-D344-43B4-8E5B-2D03489909B9/MicrosoftAzureStorageEmulator.msi', $msiPath)
-    Write-Host "Installing..."
-    cmd /c start /wait msiexec /i "$msiPath" /q
-    del $msiPath
-    Write-Host "Installed Azure storage emulator" -ForegroundColor Green
+      Write-Host "Installing Azure Storage Emulator..." -ForegroundColor Cyan
+      Write-Host "Downloading..."
+      $msiPath = "$($env:USERPROFILE)\MicrosoftAzureStorageEmulator.msi"
+      (New-Object Net.WebClient).DownloadFile('https://download.microsoft.com/download/F/3/8/F3857A38-D344-43B4-8E5B-2D03489909B9/MicrosoftAzureStorageEmulator.msi', $msiPath)
+      Write-Host "Installing..."
+      cmd /c start /wait msiexec /i "$msiPath" /q
+      del $msiPath
+      Write-Host "Installed Azure Storage Emulator" -ForegroundColor Green
 
 before_build:
   - appveyor-retry nuget restore -DisableParallelProcessing
+build:
+  project: toofz.NecroDancer.Web.sln
+  publish_wap: true
+  verbosity: minimal
 
 test_script:
   - vstest.console /logger:Appveyor "toofz.NecroDancer.Leaderboards.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Leaderboards.Tests.dll"
