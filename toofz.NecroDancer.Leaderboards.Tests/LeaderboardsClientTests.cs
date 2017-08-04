@@ -65,7 +65,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
         [TestClass]
         public class UpdateReplaysAsync
         {
-            static CloudBlobDirectory GetDirectory()
+            static CloudBlobDirectory GetReplaysCloudBlobDirectory()
             {
                 var storageAccount = CloudStorageAccount.Parse("UseDevelopmentStorage=true");
                 var blobClient = storageAccount.CreateCloudBlobClient();
@@ -74,36 +74,6 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 container.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
 
                 return container.GetDirectoryReference("replays");
-            }
-
-            private static bool _wasUp;
-
-            [ClassInitialize]
-            public static void StartAzureBeforeAllTestsIfNotUp(TestContext context)
-            {
-                if (!AzureStorageEmulatorManager.IsProcessStarted())
-                {
-                    AzureStorageEmulatorManager.StartStorageEmulator();
-                    _wasUp = false;
-                }
-                else
-                {
-                    _wasUp = true;
-                }
-
-            }
-
-            [ClassCleanup]
-            public static void StopAzureAfterAllTestsIfWasDown()
-            {
-                if (!_wasUp)
-                {
-                    AzureStorageEmulatorManager.StopStorageEmulator();
-                }
-                else
-                {
-                    // Leave as it was before testing...
-                }
             }
 
             [TestMethod]
@@ -120,7 +90,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                     mockApiClient.Object,
                     mockUgcHttpClient.Object);
 
-                var directory = GetDirectory();
+                var directory = GetReplaysCloudBlobDirectory();
 
                 // Act
                 var ex = await Record.ExceptionAsync(() =>
@@ -170,7 +140,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                     mockApiClient.Object,
                     mockUgcHttpClient.Object);
 
-                var directory = GetDirectory();
+                var directory = GetReplaysCloudBlobDirectory();
 
                 // Act
                 var ex = await Record.ExceptionAsync(() =>
