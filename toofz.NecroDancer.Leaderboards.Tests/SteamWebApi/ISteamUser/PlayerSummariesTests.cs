@@ -14,7 +14,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi.ISteamUser
             public void GetPlayerSummariesJson_DeserializesPlayerSummaries()
             {
                 // Arrange
-                var json = Resources.GetPlayerSummaries;
+                var json = Resources.PlayerSummaries;
 
                 // Act
                 var playerSummaries = JsonConvert.DeserializeObject<PlayerSummaries>(json);
@@ -35,7 +35,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi.ISteamUser
             public void GetPlayerSummariesJson_DeserializesPlayerSummariesResponse()
             {
                 // Arrange
-                var json = Resources.GetPlayerSummaries;
+                var json = Resources.PlayerSummaries;
 
                 // Act
                 var playerSummaries = JsonConvert.DeserializeObject<PlayerSummaries>(json);
@@ -57,7 +57,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi.ISteamUser
             public void GetPlayerSummariesJson_DeserializesPlayerSummary()
             {
                 // Arrange
-                var json = Resources.GetPlayerSummaries;
+                var json = Resources.PlayerSummaries;
 
                 // Act
                 var playerSummaries = JsonConvert.DeserializeObject<PlayerSummaries>(json);

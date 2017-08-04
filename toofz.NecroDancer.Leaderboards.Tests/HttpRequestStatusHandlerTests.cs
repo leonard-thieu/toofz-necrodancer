@@ -7,7 +7,7 @@ using RichardSzalay.MockHttp;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
-    public class EnsureSuccessHandlerTests
+    class HttpRequestStatusHandlerTests
     {
         [TestClass]
         public class SendAsync
@@ -21,22 +21,19 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                     .When("*")
                     .Respond(HttpStatusCode.OK);
 
-                var handler = new TestingHttpMessageHandler(new EnsureSuccessHandler { InnerHandler = mockHandler });
+                var handler = new TestingHttpMessageHandler(new HttpRequestStatusHandler { InnerHandler = mockHandler });
 
                 var mockRequest = new Mock<HttpRequestMessage>();
 
                 // Act
-                var ex = await Record.ExceptionAsync(async () =>
-                {
-                    await handler.TestSendAsync(mockRequest.Object);
-                });
+                var response = await handler.TestSendAsync(mockRequest.Object);
 
                 // Assert
-                Assert.IsNull(ex);
+                Assert.IsInstanceOfType(response, typeof(HttpResponseMessage));
             }
 
             [TestMethod]
-            public async Task NonSuccess_ThrowsApiException()
+            public async Task NonSuccess_ThrowsHttpRequestStatusException()
             {
                 // Arrange
                 var mockHandler = new MockHttpMessageHandler();
@@ -44,7 +41,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                     .When("*")
                     .Respond(HttpStatusCode.BadRequest);
 
-                var handler = new TestingHttpMessageHandler(new EnsureSuccessHandler { InnerHandler = mockHandler });
+                var handler = new TestingHttpMessageHandler(new HttpRequestStatusHandler { InnerHandler = mockHandler });
 
                 var mockRequest = new Mock<HttpRequestMessage>();
 
@@ -55,7 +52,9 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 });
 
                 // Assert
-                Assert.IsInstanceOfType(ex, typeof(ApiException));
+                Assert.IsInstanceOfType(ex, typeof(HttpRequestStatusException));
+                var e = (HttpRequestStatusException)ex;
+                Assert.AreEqual(e.StatusCode, HttpStatusCode.BadRequest);
             }
         }
     }

@@ -74,9 +74,33 @@ namespace toofz.NecroDancer.Leaderboards.Tests.Properties {
         ///				&quot;avatar&quot;: &quot;https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f1/f1dd60a188883caf82d0cbfccfe6aba0af1732d4.jpg&quot;,
         ///				&quot;avatarmedium&quot;: &quot;https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f1/f1dd60a188883caf82d0cbfccfe6aba0a [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string GetPlayerSummaries {
+        internal static string PlayerSummaries {
             get {
-                return ResourceManager.GetString("GetPlayerSummaries", resourceCulture);
+                return ResourceManager.GetString("PlayerSummaries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BROWN DIREBAT%*#%*24\n1\n0\n0\n1\n1\n0\n1\n107608\n2\n1006686362\n1\n512\n337\n170\n0|170|2:2,4:2,6:2,8:2,10:2,12:3,14:3,16:3,18:3,20:3,22:3,24:3,26:2,28:3,30:0,32:3,34:2,36:3,38:3,40:2,42:0,44:2,46:0,48:0,50:0,52:0,54:3,56:3,58:2,60:3,62:2,64:1,66:3,68:3,70:3,72:2,74:2,76:2,78:2,80:0,82:3,84:3,86:0,88:0,90:3,92:3,94:1,96:1,98:1,100:1,102:1,104:1,106:1,108:1,110:1,112:1,114:1,116:1,118:1,120:1,122:2,124:1,126:1,128:2,130:0,132:2,134:0,136:2,138:2,140:2,142:2,144:2,146:2,148:2,150:1,152:2,154:1,156:1,158:1,1 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string UgcFile {
+            get {
+                return ResourceManager.GetString("UgcFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///	&quot;data&quot;: {
+        ///		&quot;filename&quot;: &quot;2/9/2014_score191_zone1_level2&quot;,
+        ///		&quot;url&quot;: &quot;http://cloud-3.steamusercontent.com/ugc/22837952671856412/756063F4E07B686916257652BBEB972C3C9E6F8D/&quot;,
+        ///		&quot;size&quot;: 1558
+        ///	}
+        ///}.
+        /// </summary>
+        internal static string UgcFileDetails {
+            get {
+                return ResourceManager.GetString("UgcFileDetails", resourceCulture);
             }
         }
     }

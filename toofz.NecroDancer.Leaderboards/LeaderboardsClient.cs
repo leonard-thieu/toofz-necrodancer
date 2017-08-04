@@ -301,7 +301,7 @@ namespace toofz.NecroDancer.Leaderboards
             if (limit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(limit));
             if (directory == null)
-                throw new ArgumentNullException(nameof(directory));
+                throw new ArgumentNullException(nameof(directory), $"{nameof(directory)} is null.");
 
             using (new UpdateNotifier(Log, "replays"))
             {
