@@ -47,7 +47,7 @@ namespace toofz.NecroDancer.Leaderboards.Steam.WebApi
                         telemetryClient.TrackDependency(telemetry);
                     }
 
-                    throw new SteamWebApiTransientHttpRequestException { StatusCode = response.StatusCode };
+                    throw new HttpRequestStatusException { StatusCode = response.StatusCode };
                 }
 
                 return response;

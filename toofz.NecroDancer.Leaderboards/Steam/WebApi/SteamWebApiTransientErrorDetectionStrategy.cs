@@ -31,7 +31,7 @@ namespace toofz.NecroDancer.Leaderboards.Steam.WebApi
 
         public bool IsTransient(Exception ex)
         {
-            var transient = ex as SteamWebApiTransientHttpRequestException;
+            var transient = ex as HttpRequestStatusException;
             if (transient != null)
             {
                 switch (transient.StatusCode)
