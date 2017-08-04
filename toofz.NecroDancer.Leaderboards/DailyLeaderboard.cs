@@ -24,7 +24,13 @@ namespace toofz.NecroDancer.Leaderboards
         /// The date associated with the daily leaderboard.
         /// </summary>
         public DateTime Date { get; set; }
+        /// <summary>
+        /// The id of the product that the leaderboard is under.
+        /// </summary>
         public int ProductId { get; set; }
+        /// <summary>
+        /// Indicates if the leaderboard is a production leaderboard.
+        /// </summary>
         public bool IsProduction { get; set; }
     }
 }

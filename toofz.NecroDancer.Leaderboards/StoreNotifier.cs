@@ -6,7 +6,7 @@ namespace toofz.NecroDancer.Leaderboards
 {
     public sealed class StoreNotifier : NotifierBase
     {
-        public StoreNotifier(ILog log, string name) : base(log, "Store", name)
+        public StoreNotifier(ILog log, string name) : base("Store", log, name)
         {
             Progress = new ActionProgress<long>(r => rowsAffected = r);
         }

@@ -14,10 +14,13 @@ namespace toofz.NecroDancer.Leaderboards
         /// </summary>
         /// <param name="writer">The text writer.</param>
         /// <param name="value">The value to write.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// <paramref name="writer"/> is null.
+        /// </exception>
         public static void WriteLineStart(this TextWriter writer, object value)
         {
             if (writer == null)
-                throw new ArgumentNullException(nameof(writer));
+                throw new ArgumentNullException(nameof(writer), $"{nameof(writer)} is null.");
 
             writer.WriteLine();
             writer.Write(value);

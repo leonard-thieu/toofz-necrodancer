@@ -6,7 +6,7 @@ namespace toofz.NecroDancer.Leaderboards
 {
     public sealed class UpdateNotifier : NotifierBase
     {
-        public UpdateNotifier(ILog log, string name) : base(log, "Update", name) { }
+        public UpdateNotifier(ILog log, string name) : base("Update", log, name) { }
 
         #region IDisposable Members
 

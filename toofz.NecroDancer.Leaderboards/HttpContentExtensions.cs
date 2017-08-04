@@ -14,13 +14,13 @@ namespace toofz.NecroDancer.Leaderboards
         /// <param name="content">The content to copy.</param>
         /// <param name="progress">The progress object to update. This may be null if progress reporting is not desired.</param>
         /// <returns>A task that represents copying of the content.</returns>
-        /// <exception cref="ArgumentNullException">
+        /// <exception cref="System.ArgumentNullException">
         /// <paramref name="content"/> is null.
         /// </exception>
         public static async Task<Stream> ProcessContentAsync(this HttpContent content, IProgress<long> progress)
         {
             if (content == null)
-                throw new ArgumentNullException(nameof(content));
+                throw new ArgumentNullException(nameof(content), $"{nameof(content)} is null.");
 
             var contentStream = new MemoryStream();
             await content.CopyToAsync(contentStream).ConfigureAwait(false);

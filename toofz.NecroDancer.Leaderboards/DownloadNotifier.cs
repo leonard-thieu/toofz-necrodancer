@@ -42,7 +42,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #endregion
 
-        public DownloadNotifier(ILog log, string name) : base(log, "Download", name)
+        public DownloadNotifier(ILog log, string name) : base("Download", log, name)
         {
             Progress = new ActionProgress<long>(r => Interlocked.Add(ref totalBytes, r));
         }

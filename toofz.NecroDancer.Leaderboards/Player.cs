@@ -19,7 +19,9 @@ namespace toofz.NecroDancer.Leaderboards
         /// The player's display name.
         /// </summary>
         public string Name { get; set; }
-
+        /// <summary>
+        /// The full URL of the player's 32x32px avatar.
+        /// </summary>
         public string Avatar { get; set; }
 
         /// <summary>
