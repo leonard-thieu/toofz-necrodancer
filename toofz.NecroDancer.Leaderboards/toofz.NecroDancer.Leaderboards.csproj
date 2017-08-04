@@ -104,8 +104,8 @@
     </Reference>
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="toofz, Version=2.0.0.21279, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\toofz.2.0.0\lib\net45\toofz.dll</HintPath>
+    <Reference Include="toofz, Version=2.1.0.20911, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.2.1.0\lib\net45\toofz.dll</HintPath>
     </Reference>
     <Reference Include="toofz.NecroDancer, Version=2.0.0.23027, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\toofz.NecroDancer.2.0.0\lib\net45\toofz.NecroDancer.dll</HintPath>
@@ -123,14 +123,11 @@
     </Compile>
     <Compile Include="Steam\WebApi\SteamWebApiTransientErrorDetectionStrategy.cs" />
     <Compile Include="Steam\WebApi\SteamWebApiTransientFaultHandler.cs" />
-    <Compile Include="ActionProgress.cs" />
     <Compile Include="ApiException.cs" />
     <Compile Include="DailyEntry.cs" />
     <Compile Include="DailyLeaderboard.cs" />
-    <Compile Include="DownloadNotifier.cs" />
     <Compile Include="EnsureSuccessHandler.cs" />
     <Compile Include="Entry.cs" />
-    <Compile Include="ExceptionRenderer.cs" />
     <Compile Include="HttpContentExtensions.cs" />
     <Compile Include="HttpRequestStatusException.cs" />
     <Compile Include="HttpRequestStatusHandler.cs" />
@@ -151,17 +148,12 @@
     <Compile Include="LeaderboardsClient.cs" />
     <Compile Include="LeaderboardsResources.cs" />
     <Compile Include="LoggingHandler.cs" />
-    <Compile Include="NotifierBase.cs" />
     <Compile Include="OAuth2AccessToken.cs" />
     <Compile Include="OAuth2Handler.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Replay.cs" />
-    <Compile Include="StoreNotifier.cs" />
     <Compile Include="StreamPipeline.cs" />
-    <Compile Include="TextWriterExtensions.cs" />
-    <Compile Include="TypeExtensions.cs" />
-    <Compile Include="UpdateNotifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

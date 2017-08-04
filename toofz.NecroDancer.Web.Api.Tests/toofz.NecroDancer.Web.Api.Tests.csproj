@@ -75,8 +75,8 @@
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
-    <Reference Include="toofz, Version=2.0.0.21279, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\toofz.2.0.0\lib\net45\toofz.dll</HintPath>
+    <Reference Include="toofz, Version=2.1.0.20911, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.2.1.0\lib\net45\toofz.dll</HintPath>
     </Reference>
     <Reference Include="toofz.NecroDancer, Version=2.0.0.23027, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\toofz.NecroDancer.2.0.0\lib\net45\toofz.NecroDancer.dll</HintPath>
