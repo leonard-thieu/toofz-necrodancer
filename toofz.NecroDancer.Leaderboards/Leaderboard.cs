@@ -7,7 +7,6 @@ namespace toofz.NecroDancer.Leaderboards
     /// <summary>
     /// Represents a Crypt of the NecroDancer leaderboard.
     /// </summary>
-    [DebuggerDisplay("{Character} - {Run}")]
     public sealed class Leaderboard
     {
         /// <summary>
