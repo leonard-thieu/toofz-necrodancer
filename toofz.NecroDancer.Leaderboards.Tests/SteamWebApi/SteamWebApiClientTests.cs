@@ -7,6 +7,7 @@ using toofz.NecroDancer.Leaderboards.Steam.WebApi;
 using toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamRemoteStorage;
 using toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamUser;
 using toofz.NecroDancer.Leaderboards.Tests.Properties;
+using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi
 {

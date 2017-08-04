@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using AzureTableStorage.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Moq;
 using toofz.NecroDancer.Leaderboards.Steam.WebApi;
+using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
