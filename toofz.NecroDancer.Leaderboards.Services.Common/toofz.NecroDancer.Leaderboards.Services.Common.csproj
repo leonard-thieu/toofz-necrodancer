@@ -107,8 +107,8 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="toofz, Version=2.0.0.21279, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\toofz.2.0.0\lib\net45\toofz.dll</HintPath>
+    <Reference Include="toofz, Version=2.1.0.20911, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.2.1.0\lib\net45\toofz.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
