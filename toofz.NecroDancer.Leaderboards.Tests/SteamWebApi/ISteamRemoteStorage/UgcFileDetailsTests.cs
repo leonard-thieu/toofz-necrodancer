@@ -26,7 +26,6 @@ namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi.ISteamRemoteStorage
         }
     }
 
-    [TestClass]
     class UgcFileDetailsDataTests
     {
         [TestClass]
