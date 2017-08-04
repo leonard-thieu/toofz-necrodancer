@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using RichardSzalay.MockHttp;
+using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
@@ -20,7 +21,8 @@ namespace toofz.NecroDancer.Leaderboards.Tests
             {
                 // Arrange
                 var handler = new MockHttpMessageHandler();
-                handler.When(new Uri(Constants.FakeUri + "players?limit=0"))
+                handler
+                    .When(new Uri(Constants.FakeUri + "players?limit=0"))
                     .RespondJson(new List<long>());
 
                 var apiClient = new ApiClient(handler)
@@ -44,7 +46,8 @@ namespace toofz.NecroDancer.Leaderboards.Tests
             {
                 // Arrange
                 var handler = new MockHttpMessageHandler();
-                handler.When(new Uri(Constants.FakeUri + "players"))
+                handler
+                    .When(new Uri(Constants.FakeUri + "players"))
                     .RespondJson(new { rowsAffected = 1 });
 
                 var apiClient = new ApiClient(handler)
@@ -70,7 +73,8 @@ namespace toofz.NecroDancer.Leaderboards.Tests
             {
                 // Arrange
                 var handler = new MockHttpMessageHandler();
-                handler.When(new Uri(Constants.FakeUri + "replays?limit=0"))
+                handler
+                    .When(new Uri(Constants.FakeUri + "replays?limit=0"))
                     .RespondJson(new List<long>());
 
                 var apiClient = new ApiClient(handler)
@@ -94,7 +98,8 @@ namespace toofz.NecroDancer.Leaderboards.Tests
             {
                 // Arrange
                 var handler = new MockHttpMessageHandler();
-                handler.When(new Uri(Constants.FakeUri + "replays"))
+                handler
+                    .When(new Uri(Constants.FakeUri + "replays"))
                     .RespondJson(new { rowsAffected = 1 });
 
                 var apiClient = new ApiClient(handler)

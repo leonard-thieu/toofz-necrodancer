@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RichardSzalay.MockHttp;
+using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
@@ -17,7 +18,9 @@ namespace toofz.NecroDancer.Leaderboards.Tests
             {
                 // Arrange
                 var handler = new MockHttpMessageHandler();
-                handler.Expect(Constants.FakeUri).Respond(new StringContent("fakeContent"));
+                handler
+                    .Expect(Constants.FakeUri)
+                    .Respond(new StringContent("fakeContent"));
 
                 var httpClient = new HttpClient(handler);
 

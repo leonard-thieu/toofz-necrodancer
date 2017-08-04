@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RichardSzalay.MockHttp;
 using toofz.NecroDancer.Leaderboards.Tests.Properties;
+using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
