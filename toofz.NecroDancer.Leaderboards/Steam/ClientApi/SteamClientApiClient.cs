@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using log4net;
 using SteamKit2;
 
-namespace toofz.NecroDancer.Leaderboards
+namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
 {
-    public sealed class LeaderboardsSteamClient
+    public sealed class SteamClientApiClient
     {
-        static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsSteamClient));
+        static readonly ILog Log = LogManager.GetLogger(typeof(SteamClientApiClient));
 
         const int AppId = 247080;
         const int EntriesPerRequest = 1000000;
 
-        public LeaderboardsSteamClient()
+        public SteamClientApiClient()
         {
             var leaderboardsService = new LeaderboardsService();
             categories = leaderboardsService.ReadCategories("leaderboard-categories.json");
@@ -65,7 +65,7 @@ namespace toofz.NecroDancer.Leaderboards
                         tcs.TrySetResult(response);
                         break;
                     default:
-                        tcs.TrySetException(new SteamKitException($"Unable to connect to Steam.") { Result = response.Result });
+                        tcs.TrySetException(new SteamClientApiException($"Unable to connect to Steam.") { Result = response.Result });
                         break;
                 }
 
@@ -74,7 +74,7 @@ namespace toofz.NecroDancer.Leaderboards
             });
             onDisconnected = manager.Subscribe<SteamClient.DisconnectedCallback>(response =>
             {
-                tcs.TrySetException(new SteamKitException("Unable to connect to Steam."));
+                tcs.TrySetException(new SteamClientApiException("Unable to connect to Steam."));
                 onConnected.Dispose();
                 onDisconnected.Dispose();
             });
@@ -101,7 +101,7 @@ namespace toofz.NecroDancer.Leaderboards
                         break;
                     case EResult.AccountLogonDenied:
                         {
-                            var ex = new SteamKitException("Unable to logon to Steam: This account is SteamGuard protected.")
+                            var ex = new SteamClientApiException("Unable to logon to Steam: This account is SteamGuard protected.")
                             {
                                 Result = response.Result
                             };
@@ -110,7 +110,7 @@ namespace toofz.NecroDancer.Leaderboards
                         }
                     default:
                         {
-                            var ex = new SteamKitException("Unable to logon to Steam.")
+                            var ex = new SteamClientApiException("Unable to logon to Steam.")
                             {
                                 Result = response.Result
                             };
@@ -124,7 +124,7 @@ namespace toofz.NecroDancer.Leaderboards
             });
             onDisconnected = manager.Subscribe<SteamClient.DisconnectedCallback>(response =>
             {
-                tcs.TrySetException(new SteamKitException("Unable to connect to Steam."));
+                tcs.TrySetException(new SteamClientApiException("Unable to connect to Steam."));
                 onLoggedOn.Dispose();
                 onDisconnected.Dispose();
             });
@@ -212,7 +212,7 @@ namespace toofz.NecroDancer.Leaderboards
                             return leaderboard;
                         }
                     default:
-                        throw new SteamKitException($"Unable to retrieve entries for leaderboard '{lbid}'.")
+                        throw new SteamClientApiException($"Unable to retrieve entries for leaderboard '{lbid}'.")
                         {
                             Result = response.Result
                         };
@@ -221,7 +221,7 @@ namespace toofz.NecroDancer.Leaderboards
             }
             catch (TaskCanceledException ex)
             {
-                throw new SteamKitException($"Unable to retrieve entries for leaderboard '{lbid}'.", ex);
+                throw new SteamClientApiException($"Unable to retrieve entries for leaderboard '{lbid}'.", ex);
             }
         }
 
@@ -277,7 +277,7 @@ namespace toofz.NecroDancer.Leaderboards
                             return leaderboard;
                         }
                     default:
-                        throw new SteamKitException($"Unable to retrieve entries for leaderboard '{lbid}'.")
+                        throw new SteamClientApiException($"Unable to retrieve entries for leaderboard '{lbid}'.")
                         {
                             Result = response.Result
                         };
@@ -285,7 +285,7 @@ namespace toofz.NecroDancer.Leaderboards
             }
             catch (TaskCanceledException ex)
             {
-                throw new SteamKitException($"Unable to retrieve entries for leaderboard '{lbid}'.", ex);
+                throw new SteamClientApiException($"Unable to retrieve entries for leaderboard '{lbid}'.", ex);
             }
         }
 
@@ -326,7 +326,7 @@ namespace toofz.NecroDancer.Leaderboards
                 {
                     case EResult.OK: header.id = response.ID; break;
                     default:
-                        throw new SteamKitException($"Unable to find the leaderboard '{name}'.")
+                        throw new SteamClientApiException($"Unable to find the leaderboard '{name}'.")
                         {
                             Result = response.Result
                         };
@@ -336,7 +336,7 @@ namespace toofz.NecroDancer.Leaderboards
             }
             catch (TaskCanceledException ex)
             {
-                throw new SteamKitException($"Unable to retrieve data for the leaderboard '{name}'.", ex);
+                throw new SteamClientApiException($"Unable to retrieve data for the leaderboard '{name}'.", ex);
             }
         }
 

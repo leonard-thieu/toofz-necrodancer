@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Moq;
-using toofz.NecroDancer.Leaderboards.SteamWebApi;
+using toofz.NecroDancer.Leaderboards.Steam.WebApi;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {

@@ -3,17 +3,17 @@ using System.Threading.Tasks;
 using log4net;
 using Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling;
 
-namespace toofz.NecroDancer.Leaderboards
+namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
 {
-    class SteamClientTransientErrorDetectionStrategy : ITransientErrorDetectionStrategy
+    class SteamClientApiTransientErrorDetectionStrategy : ITransientErrorDetectionStrategy
     {
         #region Static Members
 
-        static readonly ILog Log = LogManager.GetLogger(typeof(SteamClientTransientErrorDetectionStrategy));
+        static readonly ILog Log = LogManager.GetLogger(typeof(SteamClientApiTransientErrorDetectionStrategy));
 
-        public static RetryPolicy<SteamClientTransientErrorDetectionStrategy> Create(RetryStrategy retryStrategy)
+        public static RetryPolicy<SteamClientApiTransientErrorDetectionStrategy> Create(RetryStrategy retryStrategy)
         {
-            var retryPolicy = new RetryPolicy<SteamClientTransientErrorDetectionStrategy>(retryStrategy);
+            var retryPolicy = new RetryPolicy<SteamClientApiTransientErrorDetectionStrategy>(retryStrategy);
             retryPolicy.Retrying += OnRetrying;
 
             return retryPolicy;
@@ -30,7 +30,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         public bool IsTransient(Exception ex)
         {
-            var transient = ex as SteamKitException;
+            var transient = ex as SteamClientApiException;
             if (transient != null)
             {
                 return transient.InnerException is TaskCanceledException;

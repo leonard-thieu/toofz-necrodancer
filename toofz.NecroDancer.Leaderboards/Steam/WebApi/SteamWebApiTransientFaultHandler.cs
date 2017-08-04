@@ -7,14 +7,14 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace toofz.NecroDancer.Leaderboards
+namespace toofz.NecroDancer.Leaderboards.Steam.WebApi
 {
-    public sealed class SteamTransientFaultHandler : DelegatingHandler
+    public sealed class SteamWebApiTransientFaultHandler : DelegatingHandler
     {
         static readonly RetryStrategy RetryStrategy = new ExponentialBackoff(10, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(2));
-        static readonly RetryPolicy<SteamTransientErrorDetectionStrategy> RetryPolicy = SteamTransientErrorDetectionStrategy.Create(RetryStrategy);
+        static readonly RetryPolicy<SteamWebApiTransientErrorDetectionStrategy> RetryPolicy = SteamWebApiTransientErrorDetectionStrategy.Create(RetryStrategy);
 
-        public SteamTransientFaultHandler(TelemetryClient telemetryClient)
+        public SteamWebApiTransientFaultHandler(TelemetryClient telemetryClient)
         {
             this.telemetryClient = telemetryClient;
         }
@@ -47,7 +47,7 @@ namespace toofz.NecroDancer.Leaderboards
                         telemetryClient.TrackDependency(telemetry);
                     }
 
-                    throw new TransientHttpRequestException { StatusCode = response.StatusCode };
+                    throw new SteamWebApiTransientHttpRequestException { StatusCode = response.StatusCode };
                 }
 
                 return response;

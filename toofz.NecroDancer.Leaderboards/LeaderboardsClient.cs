@@ -5,14 +5,14 @@ using System.Data.Entity;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using log4net;
 using Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling;
 using Microsoft.WindowsAzure.Storage.Blob;
 using toofz.NecroDancer.Leaderboards.EntityFramework;
-using toofz.NecroDancer.Leaderboards.SteamWebApi;
+using toofz.NecroDancer.Leaderboards.Steam.ClientApi;
+using toofz.NecroDancer.Leaderboards.Steam.WebApi;
 using toofz.NecroDancer.Replays;
 
 namespace toofz.NecroDancer.Leaderboards
@@ -22,7 +22,7 @@ namespace toofz.NecroDancer.Leaderboards
         static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsClient));
         const int AppId = 247080;
         static readonly RetryStrategy RetryStrategy = new ExponentialBackoff(10, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(2));
-        static readonly RetryPolicy<SteamClientTransientErrorDetectionStrategy> RetryPolicy = SteamClientTransientErrorDetectionStrategy.Create(RetryStrategy);
+        static readonly RetryPolicy<SteamClientApiTransientErrorDetectionStrategy> RetryPolicy = SteamClientApiTransientErrorDetectionStrategy.Create(RetryStrategy);
 
         #region Initialization
 
@@ -52,7 +52,7 @@ namespace toofz.NecroDancer.Leaderboards
         #region Leaderboards and Entries
 
         public async Task UpdateLeaderboardsAsync(
-            LeaderboardsSteamClient steamClient,
+            SteamClientApiClient steamClient,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using (new UpdateNotifier(Log, "leaderboards"))
@@ -102,7 +102,7 @@ namespace toofz.NecroDancer.Leaderboards
         }
 
         public async Task UpdateDailyLeaderboardsAsync(
-            LeaderboardsSteamClient steamClient,
+            SteamClientApiClient steamClient,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using (new UpdateNotifier(Log, "daily leaderboards"))

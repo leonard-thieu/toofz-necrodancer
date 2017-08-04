@@ -3,9 +3,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RichardSzalay.MockHttp;
-using toofz.NecroDancer.Leaderboards.SteamWebApi;
-using toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamRemoteStorage;
-using toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamUser;
+using toofz.NecroDancer.Leaderboards.Steam.WebApi;
+using toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamRemoteStorage;
+using toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamUser;
 using toofz.NecroDancer.Leaderboards.Tests.Properties;
 
 namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi

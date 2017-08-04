@@ -32,16 +32,170 @@
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.1.1\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.4.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.2.0.4\lib\net45\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.8.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.8.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.8.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.8.2.1\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SqlBulkUpsert, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.SqlBulkUpsert.2.0.0\lib\net45\SqlBulkUpsert.dll</HintPath>
+    </Reference>
+    <Reference Include="SteamKit2, Version=1.8.3.0, Culture=neutral, PublicKeyToken=ed3ce47ed5aad940, processorArchitecture=MSIL">
+      <HintPath>..\packages\SteamKit2.1.8.3\lib\net45\SteamKit2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.8.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="toofz, Version=2.0.0.21279, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.2.0.0\lib\net45\toofz.dll</HintPath>
+    </Reference>
+    <Reference Include="toofz.NecroDancer, Version=2.0.0.23027, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.NecroDancer.2.0.0\lib\net45\toofz.NecroDancer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Steam\ClientApi\SteamClientApiClient.cs" />
+    <Compile Include="Steam\ClientApi\SteamClientApiException.cs" />
+    <Compile Include="Steam\ClientApi\SteamClientApiTransientErrorDetectionStrategy.cs" />
+    <Compile Include="Steam\WebApi\ISteamRemoteStorage\UgcFileDetails.cs" />
+    <Compile Include="Steam\WebApi\ISteamUser\PlayerSummaries.cs" />
+    <Compile Include="Steam\WebApi\ISteamWebApiClient.cs" />
+    <Compile Include="Steam\WebApi\SteamWebApiClient.cs">
+      <DependentUpon>ISteamWebApiClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Steam\WebApi\SteamWebApiTransientErrorDetectionStrategy.cs" />
+    <Compile Include="Steam\WebApi\SteamWebApiTransientFaultHandler.cs" />
+    <Compile Include="Steam\WebApi\SteamWebApiTransientHttpRequestException.cs" />
     <Compile Include="ActionProgress.cs" />
+    <Compile Include="ApiException.cs" />
+    <Compile Include="DailyEntry.cs" />
+    <Compile Include="DailyLeaderboard.cs" />
+    <Compile Include="DownloadNotifier.cs" />
+    <Compile Include="EnsureSuccessHandler.cs" />
+    <Compile Include="Entry.cs" />
+    <Compile Include="ExceptionRenderer.cs" />
+    <Compile Include="HttpContentExtensions.cs" />
+    <Compile Include="HttpRequestStatusException.cs" />
+    <Compile Include="HttpRequestStatusHandler.cs" />
+    <Compile Include="IApiClient.cs" />
     <Compile Include="ApiClient.cs">
       <DependentUpon>IApiClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="DailyEntry.cs" />
-    <Compile Include="DailyLeaderboard.cs" />
-    <Compile Include="HttpContentExtensions.cs" />
-    <Compile Include="DownloadNotifier.cs" />
-    <Compile Include="EnsureSuccessHandler.cs" />
-    <Compile Include="ApiException.cs" />
+    <Compile Include="ILeaderboardsSqlClient.cs" />
+    <Compile Include="LeaderboardsSqlClient.cs">
+      <DependentUpon>ILeaderboardsSqlClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ITargetBlockExtensions.cs" />
+    <Compile Include="IUgcHttpClient.cs" />
+    <Compile Include="UgcHttpClient.cs">
+      <DependentUpon>IUgcHttpClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Leaderboard.cs" />
+    <Compile Include="LeaderboardsClient.cs" />
+    <Compile Include="LeaderboardsService.cs" />
+    <Compile Include="LoggingHandler.cs" />
+    <Compile Include="NotifierBase.cs" />
+    <Compile Include="OAuth2AccessToken.cs" />
+    <Compile Include="OAuth2Handler.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Replay.cs" />
+    <Compile Include="StoreNotifier.cs" />
+    <Compile Include="StreamPipeline.cs" />
+    <Compile Include="TextWriterExtensions.cs" />
+    <Compile Include="TypeExtensions.cs" />
+    <Compile Include="UpdateNotifier.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="daily-leaderboard-headers.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="daily-leaderboard-headers.min.json">
+      <DependentUpon>daily-leaderboard-headers.json</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="leaderboard-categories.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="leaderboard-categories.min.json">
+      <DependentUpon>leaderboard-categories.json</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="leaderboard-headers.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="leaderboard-headers.min.json">
+      <DependentUpon>leaderboard-headers.json</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="EntityFramework\DailyEntryConfiguration.cs" />
     <Compile Include="EntityFramework\DailyLeaderboardConfiguration.cs" />
     <Compile Include="EntityFramework\EntryConfiguration.cs" />
@@ -50,6 +204,10 @@
     <Compile Include="EntityFramework\LeaderboardsContext.Views.cs">
       <DependentUpon>LeaderboardsContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\PlayerConfiguration.cs" />
+    <Compile Include="EntityFramework\ReplayConfiguration.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="EntityFramework\Migrations\201505261737549_InitialCreate.cs" />
     <Compile Include="EntityFramework\Migrations\201505261737549_InitialCreate.Designer.cs">
       <DependentUpon>201505261737549_InitialCreate.cs</DependentUpon>
@@ -186,174 +344,20 @@
     <Compile Include="EntityFramework\Migrations\201702071543572_BluePlatinumBloodhound.Designer.cs">
       <DependentUpon>201702071543572_BluePlatinumBloodhound.cs</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\Migrations\201707172139340_LimeZinc﻿AfghanHound.cs" />
+    <Compile Include="EntityFramework\Migrations\201707172139340_LimeZinc﻿AfghanHound.Designer.cs">
+      <DependentUpon>201707172139340_LimeZinc﻿AfghanHound.cs</DependentUpon>
+    </Compile>
+    <Content Include="EntityFramework\Migrations\CodeCoverageExclusions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CodeCoverageExclusions.cs</LastGenOutput>
+    </Content>
     <Compile Include="EntityFramework\Migrations\CodeCoverageExclusions.cs">
       <DependentUpon>CodeCoverageExclusions.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="EntityFramework\Migrations\Configuration.cs" />
-    <Compile Include="EntityFramework\PlayerConfiguration.cs" />
-    <Compile Include="EntityFramework\ReplayConfiguration.cs" />
-    <Compile Include="HttpRequestStatusException.cs" />
-    <Compile Include="HttpRequestStatusHandler.cs" />
-    <Compile Include="IApiClient.cs" />
-    <Compile Include="Entry.cs" />
-    <Compile Include="ExceptionRenderer.cs" />
-    <Compile Include="ITargetBlockExtensions.cs" />
-    <Compile Include="IUgcHttpClient.cs" />
-    <Compile Include="LeaderboardsService.cs" />
-    <Compile Include="LeaderboardsSqlClient.cs">
-      <DependentUpon>ILeaderboardsSqlClient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LeaderboardsSteamClient.cs" />
-    <Compile Include="EntityFramework\Migrations\201707172139340_LimeZinc﻿AfghanHound.cs" />
-    <Compile Include="EntityFramework\Migrations\201707172139340_LimeZinc﻿AfghanHound.Designer.cs">
-      <DependentUpon>201707172139340_LimeZinc﻿AfghanHound.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NotifierBase.cs" />
-    <Compile Include="SteamClientTransientErrorDetectionStrategy.cs" />
-    <Compile Include="SteamKitException.cs" />
-    <Compile Include="SteamTransientErrorDetectionStrategy.cs" />
-    <Compile Include="ILeaderboardsSqlClient.cs" />
-    <Compile Include="Leaderboard.cs" />
-    <Compile Include="LeaderboardsClient.cs" />
-    <Compile Include="SteamWebApi\ISteamRemoteStorage\UgcFileDetails.cs" />
-    <Compile Include="SteamWebApi\ISteamUser\PlayerSummaries.cs" />
-    <Compile Include="SteamWebApi\ISteamWebApiClient.cs" />
-    <Compile Include="SteamWebApi\SteamWebApiClient.cs">
-      <DependentUpon>ISteamWebApiClient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LoggingHandler.cs" />
-    <Compile Include="OAuth2AccessToken.cs" />
-    <Compile Include="OAuth2Handler.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Replay.cs" />
-    <Compile Include="SteamTransientFaultHandler.cs" />
-    <Compile Include="StoreNotifier.cs" />
-    <Compile Include="StreamPipeline.cs" />
-    <Compile Include="TextWriterExtensions.cs" />
-    <Compile Include="TransientHttpRequestException.cs" />
-    <Compile Include="TypeExtensions.cs" />
-    <Compile Include="UgcHttpClient.cs">
-      <DependentUpon>IUgcHttpClient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UpdateNotifier.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentValidation.7.1.1\lib\net45\FluentValidation.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ApplicationInsights, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.2.4.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.2.0.4\lib\net45\Microsoft.Azure.KeyVault.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Data.Edm, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.Edm.5.8.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Data.OData, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.OData.5.8.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Data.Services.Client, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.Services.Client.5.8.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Storage, Version=8.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\WindowsAzure.Storage.8.2.1\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
-      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
-    </Reference>
-    <Reference Include="SqlBulkUpsert, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\toofz.SqlBulkUpsert.2.0.0\lib\net45\SqlBulkUpsert.dll</HintPath>
-    </Reference>
-    <Reference Include="SteamKit2, Version=1.8.3.0, Culture=neutral, PublicKeyToken=ed3ce47ed5aad940, processorArchitecture=MSIL">
-      <HintPath>..\packages\SteamKit2.1.8.3\lib\net45\SteamKit2.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Spatial.5.8.2\lib\net40\System.Spatial.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="toofz, Version=2.0.0.21279, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\toofz.2.0.0\lib\net45\toofz.dll</HintPath>
-    </Reference>
-    <Reference Include="toofz.NecroDancer, Version=2.0.0.23027, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\toofz.NecroDancer.2.0.0\lib\net45\toofz.NecroDancer.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="EntityFramework\Migrations\CodeCoverageExclusions.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CodeCoverageExclusions.cs</LastGenOutput>
-    </Content>
-    <None Include="daily-leaderboard-headers.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="daily-leaderboard-headers.min.json">
-      <DependentUpon>daily-leaderboard-headers.json</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="leaderboard-categories.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="leaderboard-categories.min.json">
-      <DependentUpon>leaderboard-categories.json</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="leaderboard-headers.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="leaderboard-headers.min.json">
-      <DependentUpon>leaderboard-headers.json</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="EntityFramework\Migrations\201505261737549_InitialCreate.resx">
       <DependentUpon>201505261737549_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>

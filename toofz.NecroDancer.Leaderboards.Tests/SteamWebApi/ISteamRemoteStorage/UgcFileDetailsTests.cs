@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamRemoteStorage;
+using toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamRemoteStorage;
 using toofz.NecroDancer.Leaderboards.Tests.Properties;
 
 namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi.ISteamRemoteStorage

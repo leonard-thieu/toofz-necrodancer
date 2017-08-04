@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamRemoteStorage
+namespace toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamRemoteStorage
 {
     public sealed class UgcFileDetails
     {

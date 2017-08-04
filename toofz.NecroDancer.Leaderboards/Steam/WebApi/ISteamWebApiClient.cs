@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamRemoteStorage;
-using toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamUser;
+using toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamRemoteStorage;
+using toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamUser;
 
-namespace toofz.NecroDancer.Leaderboards.SteamWebApi
+namespace toofz.NecroDancer.Leaderboards.Steam.WebApi
 {
     public interface ISteamWebApiClient : IDisposable
     {

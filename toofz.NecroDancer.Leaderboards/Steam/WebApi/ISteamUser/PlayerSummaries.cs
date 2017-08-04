@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamUser
+namespace toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamUser
 {
     public sealed class PlayerSummaries
     {

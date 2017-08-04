@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using toofz.NecroDancer.Leaderboards.Services.Common;
+using toofz.NecroDancer.Leaderboards.Steam.ClientApi;
 
 namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate
 {
@@ -12,7 +13,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate
 
         protected override async Task RunAsyncOverride(CancellationToken cancellationToken)
         {
-            var steamClient = new LeaderboardsSteamClient();
+            var steamClient = new SteamClientApiClient();
             await LeaderboardsClient.UpdateLeaderboardsAsync(steamClient, cancellationToken).ConfigureAwait(false);
             await LeaderboardsClient.UpdateDailyLeaderboardsAsync(steamClient, cancellationToken).ConfigureAwait(false);
         }

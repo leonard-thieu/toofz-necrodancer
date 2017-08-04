@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using log4net;
 using Newtonsoft.Json;
-using toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamRemoteStorage;
-using toofz.NecroDancer.Leaderboards.SteamWebApi.ISteamUser;
+using toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamRemoteStorage;
+using toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamUser;
 
-namespace toofz.NecroDancer.Leaderboards.SteamWebApi
+namespace toofz.NecroDancer.Leaderboards.Steam.WebApi
 {
     public sealed class SteamWebApiClient : HttpClient, ISteamWebApiClient
     {

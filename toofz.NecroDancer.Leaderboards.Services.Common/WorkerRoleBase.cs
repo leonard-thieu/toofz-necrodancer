@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using log4net;
 using Newtonsoft.Json;
-using toofz.NecroDancer.Leaderboards.SteamWebApi;
+using toofz.NecroDancer.Leaderboards.Steam.WebApi;
 
 namespace toofz.NecroDancer.Leaderboards.Services.Common
 {
@@ -69,7 +69,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
             var steamApiHandlers = HttpClientFactory.CreatePipeline(new WebRequestHandler(), new DelegatingHandler[]
             {
                 new LoggingHandler(),
-                new SteamTransientFaultHandler(Application.TelemetryClient),
+                new SteamWebApiTransientFaultHandler(Application.TelemetryClient),
             });
             httpClient = new SteamWebApiClient(steamApiHandlers);
 

@@ -4,17 +4,17 @@ using System.Net;
 using log4net;
 using Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling;
 
-namespace toofz.NecroDancer.Leaderboards
+namespace toofz.NecroDancer.Leaderboards.Steam.WebApi
 {
-    public sealed class SteamTransientErrorDetectionStrategy : ITransientErrorDetectionStrategy
+    public sealed class SteamWebApiTransientErrorDetectionStrategy : ITransientErrorDetectionStrategy
     {
         #region Static Members
 
-        static readonly ILog Log = LogManager.GetLogger(typeof(SteamTransientErrorDetectionStrategy));
+        static readonly ILog Log = LogManager.GetLogger(typeof(SteamWebApiTransientErrorDetectionStrategy));
 
-        public static RetryPolicy<SteamTransientErrorDetectionStrategy> Create(RetryStrategy retryStrategy)
+        public static RetryPolicy<SteamWebApiTransientErrorDetectionStrategy> Create(RetryStrategy retryStrategy)
         {
-            var retryPolicy = new RetryPolicy<SteamTransientErrorDetectionStrategy>(retryStrategy);
+            var retryPolicy = new RetryPolicy<SteamWebApiTransientErrorDetectionStrategy>(retryStrategy);
             retryPolicy.Retrying += OnRetrying;
 
             return retryPolicy;
@@ -31,7 +31,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         public bool IsTransient(Exception ex)
         {
-            var transient = ex as TransientHttpRequestException;
+            var transient = ex as SteamWebApiTransientHttpRequestException;
             if (transient != null)
             {
                 switch (transient.StatusCode)
