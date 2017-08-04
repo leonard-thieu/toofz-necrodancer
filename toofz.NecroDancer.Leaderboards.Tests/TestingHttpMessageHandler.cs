@@ -8,7 +8,9 @@ namespace toofz.NecroDancer.Leaderboards.Tests
     {
         public TestingHttpMessageHandler(HttpMessageHandler innerHandler) : base(innerHandler) { }
 
-        public Task<HttpResponseMessage> TestSendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        public Task<HttpResponseMessage> TestSendAsync(
+            HttpRequestMessage request,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             return SendAsync(request, cancellationToken);
         }

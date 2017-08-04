@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using log4net;
 using Newtonsoft.Json;
+using toofz.NecroDancer.Leaderboards.SteamWebApi;
 
 namespace toofz.NecroDancer.Leaderboards.Services.Common
 {
@@ -39,9 +40,10 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
 
         readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
-        ILeaderboardsHttpClient httpClient;
+        SteamWebApiClient httpClient;
         OAuth2Handler oAuth2Handler;
         ApiClient apiClient;
+        IUgcHttpClient ugcHttpClient;
 
         Thread thread;
         Idle idle;
@@ -69,8 +71,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
                 new LoggingHandler(),
                 new SteamTransientFaultHandler(Application.TelemetryClient),
             });
-            var reader = new LeaderboardsReader();
-            httpClient = new LeaderboardsHttpClient(steamApiHandlers, reader);
+            httpClient = new SteamWebApiClient(steamApiHandlers);
 
             var sqlClient = new LeaderboardsSqlClient(Util.GetEnvVar("LeaderboardsConnectionString"));
 
@@ -83,7 +84,14 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
             });
             apiClient = new ApiClient(apiHandlers);
 
-            LeaderboardsClient = new LeaderboardsClient(httpClient, sqlClient, apiClient);
+            var ugcHandlers = HttpClientFactory.CreatePipeline(new WebRequestHandler(), new DelegatingHandler[]
+            {
+                new LoggingHandler(),
+                new HttpRequestStatusHandler(),
+            });
+            ugcHttpClient = new UgcHttpClient(ugcHandlers);
+
+            LeaderboardsClient = new LeaderboardsClient(httpClient, sqlClient, apiClient, ugcHttpClient);
 
             thread = new Thread(Run);
             thread.Start();

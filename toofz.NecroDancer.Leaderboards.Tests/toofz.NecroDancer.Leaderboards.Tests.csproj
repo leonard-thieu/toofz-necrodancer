@@ -96,39 +96,57 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <ProjectReference Include="..\toofz.NecroDancer.Leaderboards\toofz.NecroDancer.Leaderboards.csproj">
+      <Project>{2b492909-63e4-4f96-898e-802ec5a37b0f}</Project>
+      <Name>toofz.NecroDancer.Leaderboards</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureStorageEmulatorManager.cs" />
+    <Compile Include="UgcHttpClientTests.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="HttpRequestStatusHandlerTests.cs" />
+    <Compile Include="ITargetBlockExtensionsTests.cs" />
+    <Compile Include="LeaderboardsClientTests.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Resources\2_9_2014_score191_zone1_level2" />
+    <None Include="Resources\GetPlayerSummaries.json" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Resources\GetUGCFileDetails.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MockedRequestExtensions.cs" />
+    <Compile Include="MockHttpMessageHandlerExtensions.cs" />
     <Compile Include="..\Record.cs">
       <Link>Record.cs</Link>
     </Compile>
+    <Compile Include="SteamWebApi\ISteamRemoteStorage\UgcFileDetailsTests.cs" />
+    <Compile Include="SteamWebApi\ISteamUser\PlayerSummariesTests.cs" />
+    <Compile Include="TestingHttpMessageHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SteamWebApi\SteamWebApiClientTests.cs" />
     <Compile Include="ApiClientTests.cs" />
     <Compile Include="ApiExceptionTests.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="EnsureSuccessHandlerTests.cs" />
-    <Compile Include="ICloudBlobExtensionsTests.cs" />
-    <Compile Include="MockedRequestExtensions.cs" />
-    <Compile Include="MockHttpMessageHandlerExtensions.cs" />
     <Compile Include="OAuth2HandlerTests.cs" />
-    <Compile Include="ReplayPipelineTests.cs" />
     <Compile Include="StreamPipelineTests.cs" />
-    <Compile Include="TestingHttpMessageHandler.cs" />
     <Compile Include="TextWriterExtensionsTests.cs" />
     <Compile Include="TypeExtensionsTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\toofz.NecroDancer.Leaderboards\toofz.NecroDancer.Leaderboards.csproj">
-      <Project>{2b492909-63e4-4f96-898e-802ec5a37b0f}</Project>
-      <Name>toofz.NecroDancer.Leaderboards</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

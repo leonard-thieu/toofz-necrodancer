@@ -7,7 +7,12 @@ namespace toofz.NecroDancer.Leaderboards.Tests
     {
         public static void RespondJson(this MockedRequest source, object content)
         {
-            source.Respond("application/json", JsonConvert.SerializeObject(content));
+            source.RespondJson(JsonConvert.SerializeObject(content));
+        }
+
+        public static void RespondJson(this MockedRequest source, string content)
+        {
+            source.Respond("application/json", content);
         }
     }
 }

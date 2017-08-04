@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace toofz.NecroDancer.Leaderboards
 {
@@ -12,7 +11,6 @@ namespace toofz.NecroDancer.Leaderboards
         /// <summary>
         /// The player's Steam ID.
         /// </summary>
-        [JsonProperty("steamid")]
         public long SteamId { get; set; }
 
         public bool? Exists { get; set; }
@@ -20,10 +18,8 @@ namespace toofz.NecroDancer.Leaderboards
         /// <summary>
         /// The player's display name.
         /// </summary>
-        [JsonProperty("personaname")]
         public string Name { get; set; }
 
-        [JsonProperty("avatar")]
         public string Avatar { get; set; }
 
         /// <summary>

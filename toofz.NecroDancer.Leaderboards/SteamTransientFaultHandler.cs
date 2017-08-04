@@ -47,7 +47,7 @@ namespace toofz.NecroDancer.Leaderboards
                         telemetryClient.TrackDependency(telemetry);
                     }
 
-                    throw new TransientHttpRequestException(response.StatusCode);
+                    throw new TransientHttpRequestException { StatusCode = response.StatusCode };
                 }
 
                 return response;

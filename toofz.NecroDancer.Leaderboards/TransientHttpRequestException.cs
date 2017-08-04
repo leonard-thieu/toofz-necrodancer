@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Net;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    public sealed class TransientHttpRequestException : Exception
+    public sealed class TransientHttpRequestException : HttpRequestStatusException
     {
-        public TransientHttpRequestException(HttpStatusCode statusCode)
-        {
-            StatusCode = statusCode;
-        }
+        public TransientHttpRequestException() { }
 
-        public HttpStatusCode StatusCode { get; }
+        public TransientHttpRequestException(string message) : base(message) { }
+
+        public TransientHttpRequestException(string message, Exception inner) : base(message, inner) { }
     }
 }
