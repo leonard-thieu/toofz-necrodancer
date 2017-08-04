@@ -7,9 +7,11 @@ using Newtonsoft.Json;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    public sealed class LeaderboardsService
+    public static class LeaderboardsResources
     {
-        public Categories ReadCategories(string path)
+        #region Categories
+
+        public static Categories ReadCategories(string path)
         {
             using (var file = File.OpenText(path))
             {
@@ -25,7 +27,11 @@ namespace toofz.NecroDancer.Leaderboards
             public Categories categories { get; set; }
         }
 
-        public LeaderboardHeaders ReadLeaderboardHeaders(string path)
+        #endregion
+
+        #region Leaderboard Headers
+
+        public static LeaderboardHeaders ReadLeaderboardHeaders(string path)
         {
             using (var file = File.OpenText(path))
             {
@@ -41,7 +47,11 @@ namespace toofz.NecroDancer.Leaderboards
             public LeaderboardHeaders leaderboards { get; } = new LeaderboardHeaders();
         }
 
-        public DailyLeaderboardHeaders ReadDailyLeaderboardHeaders(string path)
+        #endregion
+
+        #region Daily Leaderboard Headers
+
+        public static DailyLeaderboardHeaders ReadDailyLeaderboardHeaders(string path)
         {
             using (var file = File.OpenText(path))
             {
@@ -56,6 +66,8 @@ namespace toofz.NecroDancer.Leaderboards
         {
             public DailyLeaderboardHeaders leaderboards { get; } = new DailyLeaderboardHeaders();
         }
+
+        #endregion
     }
 
     public sealed class Categories : Dictionary<string, Category>

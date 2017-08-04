@@ -18,16 +18,15 @@ namespace toofz.NecroDancer.Leaderboards.EntityFramework.Migrations
         protected override void Seed(LeaderboardsContext context)
         {
             base.Seed(context);
-
-            var leaderboardsService = new LeaderboardsService();
-            var dailyLeaderboardHeaders = leaderboardsService.ReadDailyLeaderboardHeaders("daily-leaderboard-headers.json");
+            
+            var dailyLeaderboardHeaders = LeaderboardsResources.ReadDailyLeaderboardHeaders("daily-leaderboard-headers.min.json");
             var existing = (from l in context.DailyLeaderboards
                             select l.LeaderboardId)
                             .ToList();
             var newDailies = from h in dailyLeaderboardHeaders
                              where !existing.Contains(h.id)
                              select h;
-            var categories = leaderboardsService.ReadCategories("leaderboard-categories.json");
+            var categories = LeaderboardsResources.ReadCategories("leaderboard-categories.min.json");
 
             foreach (var newDaily in newDailies)
             {

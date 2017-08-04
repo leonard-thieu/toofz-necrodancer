@@ -58,9 +58,8 @@ namespace toofz.NecroDancer.Leaderboards
             using (new UpdateNotifier(Log, "leaderboards"))
             {
                 var headers = new List<LeaderboardHeader>();
-
-                var leaderboardsService = new LeaderboardsService();
-                var leaderboardHeaders = leaderboardsService.ReadLeaderboardHeaders("leaderboard-headers.json");
+                
+                var leaderboardHeaders = LeaderboardsResources.ReadLeaderboardHeaders("leaderboard-headers.min.json");
                 headers.AddRange(leaderboardHeaders.Where(h => h.id > 0));
 
                 var leaderboardTasks = new List<Task<Leaderboard>>();
@@ -112,8 +111,7 @@ namespace toofz.NecroDancer.Leaderboards
                 var leaderboardsConnectionString = Util.GetEnvVar("LeaderboardsConnectionString");
                 using (var db = new LeaderboardsContext(leaderboardsConnectionString))
                 {
-                    var leaderboardsService = new LeaderboardsService();
-                    var categories = leaderboardsService.ReadCategories("leaderboard-categories.json");
+                    var categories = LeaderboardsResources.ReadCategories("leaderboard-categories.min.json");
 
                     var today = DateTime.Today;
                     var staleDailies = await (from l in db.DailyLeaderboards

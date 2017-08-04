@@ -17,8 +17,7 @@ namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
 
         public SteamClientApiClient()
         {
-            var leaderboardsService = new LeaderboardsService();
-            categories = leaderboardsService.ReadCategories("leaderboard-categories.json");
+            categories = LeaderboardsResources.ReadCategories("leaderboard-categories.min.json");
 
             User = Util.GetEnvVar("SteamUserName");
             Pass = Util.GetEnvVar("SteamPassword");

@@ -262,16 +262,12 @@
     <Content Include="Service References\Application Insights\ConnectedService.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\leaderboard-categories.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="App_Data\leaderboard-categories.json" />
     <Content Include="App_Data\leaderboard-categories.min.json">
       <DependentUpon>leaderboard-categories.json</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\leaderboard-headers.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="App_Data\leaderboard-headers.json" />
     <Content Include="App_Data\leaderboard-headers.min.json">
       <DependentUpon>leaderboard-headers.json</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

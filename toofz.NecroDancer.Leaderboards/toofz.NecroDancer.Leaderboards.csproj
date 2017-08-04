@@ -149,7 +149,7 @@
     </Compile>
     <Compile Include="Leaderboard.cs" />
     <Compile Include="LeaderboardsClient.cs" />
-    <Compile Include="LeaderboardsService.cs" />
+    <Compile Include="LeaderboardsResources.cs" />
     <Compile Include="LoggingHandler.cs" />
     <Compile Include="NotifierBase.cs" />
     <Compile Include="OAuth2AccessToken.cs" />
@@ -172,23 +172,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="daily-leaderboard-headers.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="daily-leaderboard-headers.json" />
     <None Include="daily-leaderboard-headers.min.json">
       <DependentUpon>daily-leaderboard-headers.json</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="leaderboard-categories.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="leaderboard-categories.json" />
     <None Include="leaderboard-categories.min.json">
       <DependentUpon>leaderboard-categories.json</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="leaderboard-headers.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="leaderboard-headers.json" />
     <None Include="leaderboard-headers.min.json">
       <DependentUpon>leaderboard-headers.json</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

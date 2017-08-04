@@ -89,11 +89,11 @@
             <Component Id="ApplicationInsights.config" Guid="{C39D3B2E-2884-48C6-BB43-0F491B30B65F}">
                 <File Id="ApplicationInsights.config" KeyPath="yes" Name="ApplicationInsights.config" />
             </Component>
-            <Component Id="daily.leaderboard.headers.json" Guid="{62948D22-B18B-4D7B-8D04-8C2BE446840F}">
-                <File Id="daily.leaderboard.headers.json" KeyPath="yes" Name="daily-leaderboard-headers.json" />
+            <Component Id="daily.leaderboard.headers.min.json" Guid="{62948D22-B18B-4D7B-8D04-8C2BE446840F}">
+                <File Id="daily.leaderboard.headers.min.json" KeyPath="yes" Name="daily-leaderboard-headers.min.json" />
             </Component>
-            <Component Id="leaderboard.headers.json" Guid="{CD9B018E-EDB7-45EB-B86D-6092C3D92907}">
-                <File Id="leaderboard.headers.json" KeyPath="yes" Name="leaderboard-headers.json" />
+            <Component Id="leaderboard.headers.min.json" Guid="{CD9B018E-EDB7-45EB-B86D-6092C3D92907}">
+                <File Id="leaderboard.headers.min.json" KeyPath="yes" Name="leaderboard-headers.min.json" />
             </Component>
         </ComponentGroup>
     </Fragment>
