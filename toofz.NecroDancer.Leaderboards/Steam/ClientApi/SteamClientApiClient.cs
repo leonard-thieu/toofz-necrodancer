@@ -20,6 +20,10 @@ namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
         /// </summary>
         /// <param name="userName">The user name to log on to Steam with.</param>
         /// <param name="password">The password to log on to Steam with.</param>
+        /// <param name="manager">
+        /// The callback manager associated with this instance. If <paramref name="manager"/> is null, a default callback manager 
+        /// will be created.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
         /// <paramref name="userName"/> is null.
         /// </exception>

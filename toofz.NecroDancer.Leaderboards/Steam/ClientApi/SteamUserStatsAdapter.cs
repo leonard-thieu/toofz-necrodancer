@@ -40,7 +40,7 @@ namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
 
         /// <summary>
         /// Asks the Steam back-end for a set of rows in the leaderboard. Results are returned
-        /// in a <see cref="LeaderboardEntriesCallback"/>.
+        /// in a <see cref="ILeaderboardEntriesCallback"/>.
         /// </summary>
         /// <param name="appId">The AppID to request leaderboard rows for.</param>
         /// <param name="id">ID of the leaderboard to view.</param>
