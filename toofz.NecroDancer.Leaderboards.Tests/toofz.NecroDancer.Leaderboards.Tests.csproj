@@ -80,8 +80,14 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
     <Reference Include="RichardSzalay.MockHttp, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RichardSzalay.MockHttp.1.5.0\lib\net45\RichardSzalay.MockHttp.dll</HintPath>
+    </Reference>
+    <Reference Include="SteamKit2, Version=1.8.3.0, Culture=neutral, PublicKeyToken=ed3ce47ed5aad940, processorArchitecture=MSIL">
+      <HintPath>..\packages\SteamKit2.1.8.3\lib\net45\SteamKit2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -112,6 +118,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Steam\ClientApi\ProgressDebugNetworkListenerTests.cs" />
+    <Compile Include="Steam\ClientApi\SteamClientApiClientTests.cs" />
+    <Compile Include="Steam\ClientApi\SteamClientApiTransientErrorDetectionStrategyTests.cs" />
     <Compile Include="TestsSetup.cs" />
     <Compile Include="UgcHttpClientTests.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -138,11 +147,11 @@
     <None Include="Resources\GetUGCFileDetails.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SteamWebApi\ISteamRemoteStorage\UgcFileDetailsTests.cs" />
-    <Compile Include="SteamWebApi\ISteamUser\PlayerSummariesTests.cs" />
+    <Compile Include="Steam\WebApi\ISteamRemoteStorage\UgcFileDetailsTests.cs" />
+    <Compile Include="Steam\WebApi\ISteamUser\PlayerSummariesTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SteamWebApi\SteamWebApiClientTests.cs" />
+    <Compile Include="Steam\WebApi\SteamWebApiClientTests.cs" />
     <Compile Include="ApiClientTests.cs" />
     <Compile Include="ApiExceptionTests.cs" />
     <Compile Include="Constants.cs" />

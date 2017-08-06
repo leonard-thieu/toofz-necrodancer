@@ -9,7 +9,7 @@ using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
-    public class ApiClientTests
+    class ApiClientTests
     {
         static readonly CancellationToken Cancellation = CancellationToken.None;
 

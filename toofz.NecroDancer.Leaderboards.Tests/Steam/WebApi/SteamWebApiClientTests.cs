@@ -9,7 +9,7 @@ using toofz.NecroDancer.Leaderboards.Steam.WebApi.ISteamUser;
 using toofz.NecroDancer.Leaderboards.Tests.Properties;
 using toofz.TestsShared;
 
-namespace toofz.NecroDancer.Leaderboards.Tests.SteamWebApi
+namespace toofz.NecroDancer.Leaderboards.Tests.Steam.WebApi
 {
     class SteamWebApiClientTests
     {

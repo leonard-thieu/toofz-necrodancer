@@ -8,7 +8,7 @@ using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
-    public class EnsureSuccessHandlerTests
+    class EnsureSuccessHandlerTests
     {
         [TestClass]
         public class SendAsync

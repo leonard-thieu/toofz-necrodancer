@@ -5,7 +5,7 @@ using Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling;
 
 namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
 {
-    class SteamClientApiTransientErrorDetectionStrategy : ITransientErrorDetectionStrategy
+    sealed class SteamClientApiTransientErrorDetectionStrategy : ITransientErrorDetectionStrategy
     {
         #region Static Members
 
@@ -28,6 +28,14 @@ namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
 
         #region ITransientErrorDetectionStrategy Members
 
+        /// <summary>
+        /// Determines whether the specified exception represents a transient failure that
+        /// can be compensated by a retry.
+        /// </summary>
+        /// <param name="ex">The exception object to be verified.</param>
+        /// <returns>
+        /// true if the specified exception is considered as transient; otherwise, false.
+        /// </returns>
         public bool IsTransient(Exception ex)
         {
             var transient = ex as SteamClientApiException;

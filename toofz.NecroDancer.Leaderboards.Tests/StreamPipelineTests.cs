@@ -8,7 +8,7 @@ using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
-    public class StreamPipelineTests
+    class StreamPipelineTests
     {
         [TestClass]
         public class CreateRequestBlock

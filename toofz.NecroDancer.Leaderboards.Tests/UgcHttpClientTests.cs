@@ -12,7 +12,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
     class UgcHttpClientTests
     {
         [TestClass]
-        public class GetUgcFileAsyncTests
+        public class GetUgcFileAsync
         {
             [TestMethod]
             public async Task UrlIsNull_ThrowsArgumentNullException()
