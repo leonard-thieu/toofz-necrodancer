@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using toofz.NecroDancer.Leaderboards.EntityFramework;
 using toofz.NecroDancer.Leaderboards.Services.Common;
 using toofz.NecroDancer.Leaderboards.Steam.ClientApi;
 
@@ -13,9 +14,16 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate
 
         protected override async Task RunAsyncOverride(CancellationToken cancellationToken)
         {
-            var steamClient = new SteamClientApiClient();
+            var userName = Util.GetEnvVar("SteamUserName");
+            var password = Util.GetEnvVar("SteamPassword");
+            var steamClient = new SteamClientApiClient(userName, password);
             await LeaderboardsClient.UpdateLeaderboardsAsync(steamClient, cancellationToken).ConfigureAwait(false);
-            await LeaderboardsClient.UpdateDailyLeaderboardsAsync(steamClient, cancellationToken).ConfigureAwait(false);
+
+            var leaderboardsConnectionString = Util.GetEnvVar("LeaderboardsConnectionString");
+            using (var db = new LeaderboardsContext(leaderboardsConnectionString))
+            {
+                await LeaderboardsClient.UpdateDailyLeaderboardsAsync(steamClient, db, cancellationToken).ConfigureAwait(false);
+            }
         }
     }
 }

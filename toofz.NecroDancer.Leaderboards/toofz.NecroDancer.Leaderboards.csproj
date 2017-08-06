@@ -112,9 +112,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Steam\ClientApi\SteamClientApiClient.cs" />
+    <Compile Include="Steam\ClientApi\CallbackManagerAdapter.cs">
+      <DependentUpon>ICallbackManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Steam\ClientApi\FindOrCreateLeaderboardCallbackAdapter.cs">
+      <DependentUpon>IFindOrCreateLeaderboardCallback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Steam\ClientApi\ICallbackManager.cs" />
+    <Compile Include="Steam\ClientApi\IFindOrCreateLeaderboardCallback.cs" />
+    <Compile Include="Steam\ClientApi\ILeaderboardEntriesCallback.cs" />
+    <Compile Include="Steam\ClientApi\ISteamClient.cs" />
+    <Compile Include="Steam\ClientApi\ISteamClientApiClient.cs" />
+    <Compile Include="Steam\ClientApi\ISteamUserStats.cs" />
+    <Compile Include="Steam\ClientApi\LeaderboardEntriesCallbackAdapter.cs">
+      <DependentUpon>ILeaderboardEntriesCallback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Steam\ClientApi\ProgressDebugNetworkListener.cs" />
+    <Compile Include="Steam\ClientApi\SteamClientAdapter.cs">
+      <DependentUpon>ISteamClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Steam\ClientApi\SteamClientApiClient.cs">
+      <DependentUpon>ISteamClientApiClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Steam\ClientApi\SteamClientApiException.cs" />
     <Compile Include="Steam\ClientApi\SteamClientApiTransientErrorDetectionStrategy.cs" />
+    <Compile Include="Steam\ClientApi\SteamUserStatsAdapter.cs">
+      <DependentUpon>ISteamUserStats.cs</DependentUpon>
+    </Compile>
     <Compile Include="Steam\WebApi\ISteamRemoteStorage\UgcFileDetails.cs" />
     <Compile Include="Steam\WebApi\ISteamUser\PlayerSummaries.cs" />
     <Compile Include="Steam\WebApi\ISteamWebApiClient.cs" />

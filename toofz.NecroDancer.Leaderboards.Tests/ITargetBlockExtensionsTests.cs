@@ -8,7 +8,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
     class ITargetBlockExtensionsTests
     {
         [TestClass]
-        public class CheckSendAsyncTests
+        public class CheckSendAsync
         {
             [TestMethod]
             public async Task TargetIsNull_ThrowsArgumentNullException()

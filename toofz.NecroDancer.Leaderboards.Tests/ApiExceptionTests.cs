@@ -8,7 +8,7 @@ using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
-    public class ApiExceptionTests
+    class ApiExceptionTests
     {
         [TestClass]
         public class CreateAsync

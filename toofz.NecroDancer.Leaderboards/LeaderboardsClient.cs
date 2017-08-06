@@ -8,7 +8,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using log4net;
-using Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling;
 using Microsoft.WindowsAzure.Storage.Blob;
 using toofz.NecroDancer.Leaderboards.EntityFramework;
 using toofz.NecroDancer.Leaderboards.Steam.ClientApi;
@@ -20,9 +19,8 @@ namespace toofz.NecroDancer.Leaderboards
     public sealed class LeaderboardsClient : IDisposable
     {
         static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsClient));
+
         const int AppId = 247080;
-        static readonly RetryStrategy RetryStrategy = new ExponentialBackoff(10, TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(2));
-        static readonly RetryPolicy<SteamClientApiTransientErrorDetectionStrategy> RetryPolicy = SteamClientApiTransientErrorDetectionStrategy.Create(RetryStrategy);
 
         #region Initialization
 
@@ -49,30 +47,69 @@ namespace toofz.NecroDancer.Leaderboards
 
         #endregion
 
-        #region Leaderboards and Entries
+        #region Leaderboards
 
         public async Task UpdateLeaderboardsAsync(
-            SteamClientApiClient steamClient,
+            ISteamClientApiClient steamClient,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using (new UpdateNotifier(Log, "leaderboards"))
             {
                 var headers = new List<LeaderboardHeader>();
-                
+
                 var leaderboardHeaders = LeaderboardsResources.ReadLeaderboardHeaders("leaderboard-headers.min.json");
                 headers.AddRange(leaderboardHeaders.Where(h => h.id > 0));
 
-                var leaderboardTasks = new List<Task<Leaderboard>>();
+                var categories = LeaderboardsResources.ReadCategories("leaderboard-categories.min.json");
 
                 Leaderboard[] leaderboards;
                 using (var download = new DownloadNotifier(Log, "leaderboards"))
                 {
                     steamClient.Progress = download.Progress;
 
+                    var leaderboardTasks = new List<Task<Leaderboard>>();
                     foreach (var header in headers)
                     {
-                        var leaderboardTask = RetryPolicy.ExecuteAsync(() => steamClient.GetLeaderboardAsync(header), cancellationToken);
-                        leaderboardTasks.Add(leaderboardTask);
+                        leaderboardTasks.Add(MapLeaderboardEntries());
+
+                        async Task<Leaderboard> MapLeaderboardEntries()
+                        {
+                            var leaderboard = new Leaderboard
+                            {
+                                LeaderboardId = header.id,
+                                CharacterId = categories.GetItemId("characters", header.character),
+                                RunId = categories.GetItemId("runs", header.run),
+                                LastUpdate = DateTime.UtcNow,
+                            };
+
+                            var response =
+                                await steamClient.GetLeaderboardEntriesAsync(AppId, header.id, cancellationToken).ConfigureAwait(false);
+
+                            leaderboard.EntriesCount = response.EntryCount;
+                            var leaderboardEntries = response.Entries.Select(e =>
+                            {
+                                var entry = new Entry
+                                {
+                                    LeaderboardId = header.id,
+                                    Rank = e.GlobalRank,
+                                    SteamId = (long)(ulong)e.SteamID,
+                                    Score = e.Score,
+                                    Zone = e.Details[0],
+                                    Level = e.Details[1],
+                                };
+                                var ugcId = (long)(ulong)e.UGCId;
+                                switch (ugcId)
+                                {
+                                    case -1: entry.ReplayId = null; break;
+                                    default: entry.ReplayId = ugcId; break;
+                                }
+
+                                return entry;
+                            });
+                            leaderboard.Entries.AddRange(leaderboardEntries);
+
+                            return leaderboard;
+                        }
                     }
 
                     leaderboards = await Task.WhenAll(leaderboardTasks).ConfigureAwait(false);
@@ -101,74 +138,110 @@ namespace toofz.NecroDancer.Leaderboards
         }
 
         public async Task UpdateDailyLeaderboardsAsync(
-            SteamClientApiClient steamClient,
+            ISteamClientApiClient steamClient,
+            LeaderboardsContext db,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             using (new UpdateNotifier(Log, "daily leaderboards"))
             {
                 var headers = new List<DailyLeaderboardHeader>();
 
-                var leaderboardsConnectionString = Util.GetEnvVar("LeaderboardsConnectionString");
-                using (var db = new LeaderboardsContext(leaderboardsConnectionString))
+                IEnumerable<DailyLeaderboardHeader> todaysDailies;
+                var categories = LeaderboardsResources.ReadCategories("leaderboard-categories.min.json");
+                var today = DateTime.Today;
+
+                var staleDailies = await (from l in db.DailyLeaderboards
+                                          orderby l.LastUpdate
+                                          where l.Date != today
+                                          select new
+                                          {
+                                              l.LeaderboardId,
+                                              l.Date,
+                                              l.ProductId,
+                                              l.IsProduction,
+                                          })
+                                          .Take(98)
+                                          .ToListAsync(cancellationToken)
+                                          .ConfigureAwait(false);
+                foreach (var staleDaily in staleDailies)
                 {
-                    var categories = LeaderboardsResources.ReadCategories("leaderboard-categories.min.json");
-
-                    var today = DateTime.Today;
-                    var staleDailies = await (from l in db.DailyLeaderboards
-                                              orderby l.LastUpdate
-                                              where l.Date != today
-                                              select new
-                                              {
-                                                  l.LeaderboardId,
-                                                  l.Date,
-                                                  l.ProductId,
-                                                  l.IsProduction,
-                                              })
-                                              .Take(98)
-                                              .ToListAsync(cancellationToken)
-                                              .ConfigureAwait(false);
-                    foreach (var staleDaily in staleDailies)
+                    var header = new DailyLeaderboardHeader
                     {
-                        var header = new DailyLeaderboardHeader
-                        {
-                            id = staleDaily.LeaderboardId,
-                            date = staleDaily.Date,
-                            product = categories.GetItemName("products", staleDaily.ProductId),
-                            production = staleDaily.IsProduction,
-                        };
-                        headers.Add(header);
-                    }
-
-                    var _todaysDailies =
-                        await (from l in db.DailyLeaderboards
-                               where l.Date == today
-                               select new
-                               {
-                                   l.LeaderboardId,
-                                   l.Date,
-                                   l.ProductId,
-                                   l.IsProduction,
-                               })
-                               .ToListAsync(cancellationToken)
-                               .ConfigureAwait(false);
-                    IEnumerable<DailyLeaderboardHeader> todaysDailies =
-                        (from l in _todaysDailies
-                         select new DailyLeaderboardHeader
-                         {
-                             id = l.LeaderboardId,
-                             date = l.Date,
-                             product = categories.GetItemName("products", l.ProductId),
-                             production = l.IsProduction,
-                         })
-                         .ToList();
-                    if (!todaysDailies.Any())
-                    {
-                        var requests = from p in categories["products"]
-                                       select steamClient.GetDailyLeaderboardHeaderAsync(today, p.Key, true);
-                        todaysDailies = await Task.WhenAll(requests).ConfigureAwait(false);
-                    }
-                    headers.AddRange(todaysDailies);
+                        id = staleDaily.LeaderboardId,
+                        date = staleDaily.Date,
+                        product = categories.GetItemName("products", staleDaily.ProductId),
+                        production = staleDaily.IsProduction,
+                    };
+                    headers.Add(header);
                 }
+
+                var _todaysDailies =
+                    await (from l in db.DailyLeaderboards
+                           where l.Date == today
+                           select new
+                           {
+                               l.LeaderboardId,
+                               l.Date,
+                               l.ProductId,
+                               l.IsProduction,
+                           })
+                           .ToListAsync(cancellationToken)
+                           .ConfigureAwait(false);
+                todaysDailies = (from l in _todaysDailies
+                                 select new DailyLeaderboardHeader
+                                 {
+                                     id = l.LeaderboardId,
+                                     date = l.Date,
+                                     product = categories.GetItemName("products", l.ProductId),
+                                     production = l.IsProduction,
+                                 })
+                                 .ToList();
+
+                if (todaysDailies.Count() != categories.GetCategory("products").Count)
+                {
+                    var headerTasks = new List<Task<DailyLeaderboardHeader>>();
+                    foreach (var p in categories["products"])
+                    {
+                        headerTasks.Add(GetDailyLeaderboardHeaderAsync());
+
+                        async Task<DailyLeaderboardHeader> GetDailyLeaderboardHeaderAsync()
+                        {
+                            var isProduction = true;
+                            var name = GetDailyLeaderboardName(p.Key, today, isProduction);
+                            var leaderboard = await steamClient.FindLeaderboardAsync(AppId, name, cancellationToken).ConfigureAwait(false);
+
+                            return new DailyLeaderboardHeader
+                            {
+                                id = leaderboard.ID,
+                                date = today,
+                                product = p.Key,
+                                production = isProduction,
+                            };
+                        }
+                    }
+                    todaysDailies = await Task.WhenAll(headerTasks).ConfigureAwait(false);
+
+                    string GetDailyLeaderboardName(string product, DateTime date, bool isProduction)
+                    {
+                        var tokens = new List<string>();
+
+                        switch (product)
+                        {
+                            case "amplified": tokens.Add("DLC"); break;
+                            case "classic": break;
+                            default:
+                                throw new ArgumentException($"'{product}' is not a valid product.");
+                        }
+
+                        tokens.Add(date.ToString("d/M/yyyy"));
+
+                        var name = string.Join(" ", tokens);
+                        if (isProduction) { name += "_PROD"; }
+
+                        return name;
+                    }
+                }
+                headers.AddRange(todaysDailies);
 
                 var leaderboardTasks = new List<Task<DailyLeaderboard>>();
                 DailyLeaderboard[] leaderboards;
@@ -178,8 +251,46 @@ namespace toofz.NecroDancer.Leaderboards
 
                     foreach (var header in headers)
                     {
-                        var leaderboard = steamClient.GetDailyLeaderboardAsync(header);
-                        leaderboardTasks.Add(leaderboard);
+                        leaderboardTasks.Add(MapLeaderboardEntries());
+
+                        async Task<DailyLeaderboard> MapLeaderboardEntries()
+                        {
+                            var leaderboard = new DailyLeaderboard
+                            {
+                                LeaderboardId = header.id,
+                                Date = header.date,
+                                ProductId = categories.GetItemId("products", header.product),
+                                IsProduction = header.production,
+                                LastUpdate = DateTime.UtcNow,
+                            };
+
+                            var response =
+                                await steamClient.GetLeaderboardEntriesAsync(AppId, header.id, cancellationToken).ConfigureAwait(false);
+
+                            var leaderboardEntries = response.Entries.Select(e =>
+                            {
+                                var entry = new DailyEntry
+                                {
+                                    LeaderboardId = header.id,
+                                    Rank = e.GlobalRank,
+                                    SteamId = (long)(ulong)e.SteamID,
+                                    Score = e.Score,
+                                    Zone = e.Details[0],
+                                    Level = e.Details[1],
+                                };
+                                var ugcId = (long)(ulong)e.UGCId;
+                                switch (ugcId)
+                                {
+                                    case -1: entry.ReplayId = null; break;
+                                    default: entry.ReplayId = ugcId; break;
+                                }
+
+                                return entry;
+                            });
+                            leaderboard.Entries.AddRange(leaderboardEntries);
+
+                            return leaderboard;
+                        }
                     }
 
                     leaderboards = await Task.WhenAll(leaderboardTasks).ConfigureAwait(false);
