@@ -7,8 +7,8 @@
     <ProjectGuid>{45E158FD-FCBB-409D-A09B-D54EDD758910}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate.Tests</RootNamespace>
-    <AssemblyName>toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate.Tests</AssemblyName>
+    <RootNamespace>toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests</RootNamespace>
+    <AssemblyName>toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -81,9 +81,9 @@
       <Project>{a80ace15-8a80-4912-aed0-385cc94b3974}</Project>
       <Name>toofz.NecroDancer.Leaderboards.Services.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate\toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate.csproj">
+    <ProjectReference Include="..\toofz.NecroDancer.Leaderboards.Services.LeaderboardsService\toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.csproj">
       <Project>{1678334c-de8c-4dc4-b493-4454bc209e18}</Project>
-      <Name>toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate</Name>
+      <Name>toofz.NecroDancer.Leaderboards.Services.LeaderboardsService</Name>
     </ProjectReference>
     <ProjectReference Include="..\toofz.NecroDancer.Leaderboards\toofz.NecroDancer.Leaderboards.csproj">
       <Project>{2b492909-63e4-4f96-898e-802ec5a37b0f}</Project>

@@ -10,7 +10,7 @@ using toofz.NecroDancer.Leaderboards.Steam.ClientApi;
 using toofz.TestsShared;
 using static SteamKit2.SteamUserStats.LeaderboardEntriesCallback;
 
-namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate.Tests
+namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests
 {
     class WorkerRoleTests
     {

@@ -3,7 +3,7 @@ using log4net;
 using Microsoft.ApplicationInsights.Extensibility;
 using toofz.NecroDancer.Leaderboards.Services.Common;
 
-namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate
+namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService
 {
     static class Program
     {

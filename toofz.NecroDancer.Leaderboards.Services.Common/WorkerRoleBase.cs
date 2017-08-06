@@ -52,8 +52,6 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
         Thread thread;
         Idle idle;
 
-        protected abstract string SettingsPath { get; }
-
         protected TSettings Settings { get; set; } = new TSettings();
 
         #endregion
@@ -124,7 +122,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
             {
                 idle = new Idle();
 
-                using (var sr = File.OpenText(SettingsPath))
+                using (var sr = File.OpenText("settings.json"))
                 {
                     var json = await sr.ReadToEndAsync().ConfigureAwait(false);
                     Settings = JsonConvert.DeserializeObject<TSettings>(json);

@@ -9,7 +9,7 @@ using toofz.NecroDancer.Leaderboards.EntityFramework;
 using toofz.NecroDancer.Leaderboards.Services.Common;
 using toofz.NecroDancer.Leaderboards.Steam.ClientApi;
 
-namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate
+namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService
 {
     sealed class WorkerRole : WorkerRoleBase<Settings>
     {
@@ -17,9 +17,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate
 
         const uint AppId = 247080;
 
-        public WorkerRole() : base("toofz Leaderboard Service") { }
-
-        protected override string SettingsPath => "leaderboard-settings.json";
+        public WorkerRole() : base("toofz Leaderboards Service") { }
 
         protected override void OnStartOverride() { }
 

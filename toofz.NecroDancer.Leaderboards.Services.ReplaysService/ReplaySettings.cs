@@ -1,6 +1,6 @@
 ﻿using toofz.NecroDancer.Leaderboards.Services.Common;
 
-namespace toofz.NecroDancer.Leaderboards.Services.ReplayUpdate
+namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
 {
     sealed class ReplaySettings : Settings
     {

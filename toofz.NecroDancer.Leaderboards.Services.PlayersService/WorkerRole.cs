@@ -10,18 +10,16 @@ using log4net;
 using toofz.NecroDancer.Leaderboards.Services.Common;
 using toofz.NecroDancer.Leaderboards.Steam.WebApi;
 
-namespace toofz.NecroDancer.Leaderboards.Services.PlayerUpdate
+namespace toofz.NecroDancer.Leaderboards.Services.PlayersService
 {
     sealed class WorkerRole : WorkerRoleBase<PlayerSettings>
     {
         static readonly ILog Log = LogManager.GetLogger(typeof(WorkerRole));
 
-        public WorkerRole() : base("toofz Player Service") { }
+        public WorkerRole() : base("toofz Players Service") { }
 
         OAuth2Handler oAuth2Handler;
         HttpMessageHandler apiHandlers;
-
-        protected override string SettingsPath => "player-settings.json";
 
         protected override void OnStartOverride()
         {

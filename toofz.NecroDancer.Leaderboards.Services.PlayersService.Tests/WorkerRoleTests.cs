@@ -7,7 +7,7 @@ using Moq;
 using toofz.NecroDancer.Leaderboards.Steam.WebApi;
 using toofz.TestsShared;
 
-namespace toofz.NecroDancer.Leaderboards.Services.PlayerUpdate.Tests
+namespace toofz.NecroDancer.Leaderboards.Services.PlayersService.Tests
 {
     class WorkerRoleTests
     {

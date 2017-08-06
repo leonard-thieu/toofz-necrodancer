@@ -12,7 +12,7 @@ using toofz.NecroDancer.Leaderboards.Services.Common;
 using toofz.NecroDancer.Leaderboards.Steam.WebApi;
 using toofz.NecroDancer.Replays;
 
-namespace toofz.NecroDancer.Leaderboards.Services.ReplayUpdate
+namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
 {
     sealed class WorkerRole : WorkerRoleBase<ReplaySettings>
     {
@@ -31,12 +31,10 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplayUpdate
             return container.GetDirectoryReference("replays");
         }
 
-        public WorkerRole() : base("toofz Replay Service") { }
+        public WorkerRole() : base("toofz Replays Service") { }
 
         OAuth2Handler oAuth2Handler;
         HttpMessageHandler apiHandlers;
-
-        protected override string SettingsPath => "replay-settings.json";
 
         protected override void OnStartOverride()
         {
