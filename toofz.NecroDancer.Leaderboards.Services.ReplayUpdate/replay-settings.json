@@ -1,6 +1,4 @@
 ﻿{
   "UpdateInterval": 60,
-  "ApiUserNameEnvVar": "ReplaysUserName",
-  "ApiPasswordEnvVar": "ReplaysPassword",
   "ReplaysPerUpdate": 60
 }

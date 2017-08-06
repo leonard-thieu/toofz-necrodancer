@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{81D4C7F2-4DEA-4A5F-B818-55FCC25C350A}</ProjectGuid>
+    <ProjectGuid>{3F602AB5-05E8-4A2D-B84A-F76EE07BE5EE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>toofz.NecroDancer.Leaderboards.Tests</RootNamespace>
-    <AssemblyName>toofz.NecroDancer.Leaderboards.Tests</AssemblyName>
+    <RootNamespace>toofz.NecroDancer.Leaderboards.Services.PlayerUpdate.Tests</RootNamespace>
+    <AssemblyName>toofz.NecroDancer.Leaderboards.Services.PlayerUpdate.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -59,67 +59,44 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
-      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
-    </Reference>
     <Reference Include="RichardSzalay.MockHttp, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RichardSzalay.MockHttp.1.5.0\lib\net45\RichardSzalay.MockHttp.dll</HintPath>
-    </Reference>
-    <Reference Include="SteamKit2, Version=1.8.3.0, Culture=neutral, PublicKeyToken=ed3ce47ed5aad940, processorArchitecture=MSIL">
-      <HintPath>..\packages\SteamKit2.1.8.3\lib\net45\SteamKit2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="toofz.TestsShared, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\toofz.TestsShared.1.1.0\lib\net45\toofz.TestsShared.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\toofz.NecroDancer.Leaderboards\toofz.NecroDancer.Leaderboards.csproj">
-      <Project>{2b492909-63e4-4f96-898e-802ec5a37b0f}</Project>
-      <Name>toofz.NecroDancer.Leaderboards</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="Resources\2_9_2014_score191_zone1_level2" />
-    <None Include="Resources\GetPlayerSummaries.json" />
-    <None Include="Resources\GetUgcFileDetails.json" />
-    <Compile Include="Steam\ClientApi\ProgressDebugNetworkListenerTests.cs" />
-    <Compile Include="Steam\ClientApi\SteamClientApiClientTests.cs" />
-    <Compile Include="Steam\ClientApi\SteamClientApiTransientErrorDetectionStrategyTests.cs" />
-    <Compile Include="Steam\WebApi\ISteamRemoteStorage\UgcFileDetailsTests.cs" />
-    <Compile Include="Steam\WebApi\ISteamUser\PlayerSummariesTests.cs" />
-    <Compile Include="Steam\WebApi\SteamWebApiClientTests.cs" />
-    <Compile Include="ApiClientTests.cs" />
-    <Compile Include="ApiExceptionTests.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="EnsureSuccessHandlerTests.cs" />
-    <Compile Include="HttpRequestStatusHandlerTests.cs" />
-    <Compile Include="ITargetBlockExtensionsTests.cs" />
-    <Compile Include="OAuth2HandlerTests.cs" />
-    <Compile Include="StreamPipelineTests.cs" />
-    <Compile Include="UgcHttpClientTests.cs" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WorkerRoleTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\toofz.NecroDancer.Leaderboards.Services.Common\toofz.NecroDancer.Leaderboards.Services.Common.csproj">
+      <Project>{a80ace15-8a80-4912-aed0-385cc94b3974}</Project>
+      <Name>toofz.NecroDancer.Leaderboards.Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\toofz.NecroDancer.Leaderboards.Services.PlayerUpdate\toofz.NecroDancer.Leaderboards.Services.PlayerUpdate.csproj">
+      <Project>{714c9b00-9392-4f2a-872c-3fe575a23d12}</Project>
+      <Name>toofz.NecroDancer.Leaderboards.Services.PlayerUpdate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\toofz.NecroDancer.Leaderboards\toofz.NecroDancer.Leaderboards.csproj">
+      <Project>{2b492909-63e4-4f96-898e-802ec5a37b0f}</Project>
+      <Name>toofz.NecroDancer.Leaderboards</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

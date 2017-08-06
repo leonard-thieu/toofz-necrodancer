@@ -29,8 +29,8 @@ namespace toofz.NecroDancer.Leaderboards
 
             if (!response.IsSuccessStatusCode)
             {
-                var uri = request.RequestUri;
                 var statusCode = (int)response.StatusCode;
+                var uri = request.RequestUri;
 
                 Log.Error($"{statusCode} {uri}");
 

@@ -1,9 +1,6 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 
-artifacts:
-  - path: toofz.NecroDancer.Leaderboards.Services.Installer\bin\$(configuration)\toofz-leaderboard-services.msi
-    name: toofz Leaderboard Services
 configuration:
   - Release
 cache:
@@ -33,4 +30,7 @@ build:
 
 test_script:
   - vstest.console /logger:Appveyor "toofz.NecroDancer.Leaderboards.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Leaderboards.Tests.dll"
+  - vstest.console /logger:Appveyor "toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate.Tests.dll"
+  - vstest.console /logger:Appveyor "toofz.NecroDancer.Leaderboards.Services.PlayerUpdate.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Leaderboards.Services.PlayerUpdate.Tests.dll"
+  - vstest.console /logger:Appveyor "toofz.NecroDancer.Leaderboards.Services.ReplayUpdate.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Leaderboards.Services.ReplayUpdate.Tests.dll"
   - vstest.console /logger:Appveyor "toofz.NecroDancer.Web.Api.Tests\bin\%CONFIGURATION%\toofz.NecroDancer.Web.Api.Tests.dll"

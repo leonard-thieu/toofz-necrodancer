@@ -1,5 +1,3 @@
 ﻿{
-  "UpdateInterval": 120,
-  "ApiUserNameEnvVar": "LeaderboardsUserName",
-  "ApiPasswordEnvVar": "LeaderboardsPassword"
+  "UpdateInterval": 120
 }

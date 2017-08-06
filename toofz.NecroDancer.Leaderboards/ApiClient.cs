@@ -1,12 +1,12 @@
-﻿using log4net;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using log4net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace toofz.NecroDancer.Leaderboards
 {
@@ -18,7 +18,7 @@ namespace toofz.NecroDancer.Leaderboards
         /// Initializes a new instance of the <see cref="ApiClient"/> class with a specific handler.
         /// </summary>
         /// <param name="handler">The HTTP handler stack to use for sending requests.</param>
-        public ApiClient(HttpMessageHandler handler) : base(handler) { }
+        public ApiClient(HttpMessageHandler handler) : base(handler, disposeHandler: false) { }
 
         #region Players
 

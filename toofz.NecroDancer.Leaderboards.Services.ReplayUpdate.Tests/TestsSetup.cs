@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using toofz.TestsShared;
 
-namespace toofz.NecroDancer.Leaderboards.Tests
+namespace toofz.NecroDancer.Leaderboards.Services.ReplayUpdate.Tests
 {
     [TestClass]
     public class TestsSetup
