@@ -118,6 +118,12 @@ namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
 
                 onConnected.Dispose();
                 onDisconnected.Dispose();
+
+                onDisconnected = manager.Subscribe<SteamClient.DisconnectedCallback>(_ =>
+                {
+                    Log.Info("Disconnected from Steam.");
+                    onDisconnected.Dispose();
+                });
             });
             onDisconnected = manager.Subscribe<SteamClient.DisconnectedCallback>(response =>
             {
@@ -185,6 +191,15 @@ namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
             manager.RunWaitAllCallbacks(TimeSpan.FromSeconds(1));
 
             return tcs.Task;
+        }
+
+        /// <summary>
+        /// Disconnects this client.
+        /// </summary>
+        public void Disconnect()
+        {
+            SteamClient.Disconnect();
+            manager.RunWaitAllCallbacks(TimeSpan.FromSeconds(1));
         }
     }
 }

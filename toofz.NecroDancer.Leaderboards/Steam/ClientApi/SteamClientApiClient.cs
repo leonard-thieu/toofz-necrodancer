@@ -165,5 +165,29 @@ namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
                     throw new SteamClientApiException($"Unable to retrieve entries for leaderboard '{lbid}'.") { Result = leaderboardEntries.Result };
             }
         }
+
+        #region IDisposable Implementation
+
+        bool disposed = false;
+
+        void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    steamClient.Disconnect();
+                }
+
+                disposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        #endregion
     }
 }

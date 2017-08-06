@@ -29,14 +29,16 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate
             var password = Util.GetEnvVar("SteamPassword");
             var leaderboardsConnectionString = Util.GetEnvVar("LeaderboardsConnectionString");
 
-            var steamClient = new SteamClientApiClient(userName, password);
             var leaderboardsSqlClient = new LeaderboardsSqlClient(leaderboardsConnectionString);
 
-            await UpdateLeaderboardsAsync(steamClient, leaderboardsSqlClient, cancellationToken).ConfigureAwait(false);
-
-            using (var db = new LeaderboardsContext(leaderboardsConnectionString))
+            using (var steamClient = new SteamClientApiClient(userName, password))
             {
-                await UpdateDailyLeaderboardsAsync(steamClient, leaderboardsSqlClient, db, cancellationToken).ConfigureAwait(false);
+                await UpdateLeaderboardsAsync(steamClient, leaderboardsSqlClient, cancellationToken).ConfigureAwait(false);
+
+                using (var db = new LeaderboardsContext(leaderboardsConnectionString))
+                {
+                    await UpdateDailyLeaderboardsAsync(steamClient, leaderboardsSqlClient, db, cancellationToken).ConfigureAwait(false);
+                }
             }
         }
 

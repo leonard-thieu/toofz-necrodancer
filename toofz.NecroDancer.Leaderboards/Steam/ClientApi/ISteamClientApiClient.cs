@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
 {
-    public interface ISteamClientApiClient
+    public interface ISteamClientApiClient : IDisposable
     {
         IProgress<long> Progress { get; set; }
 
