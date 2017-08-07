@@ -27,28 +27,28 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService
             var password = Util.GetEnvVar("SteamPassword");
             var leaderboardsConnectionString = Util.GetEnvVar("LeaderboardsConnectionString");
 
-            var leaderboardsSqlClient = new LeaderboardsSqlClient(leaderboardsConnectionString);
+            var storeClient = new LeaderboardsStoreClient(leaderboardsConnectionString);
 
             using (var steamClient = new SteamClientApiClient(userName, password))
             {
-                await UpdateLeaderboardsAsync(steamClient, leaderboardsSqlClient, cancellationToken).ConfigureAwait(false);
+                await UpdateLeaderboardsAsync(steamClient, storeClient, cancellationToken).ConfigureAwait(false);
 
                 using (var db = new LeaderboardsContext(leaderboardsConnectionString))
                 {
-                    await UpdateDailyLeaderboardsAsync(steamClient, leaderboardsSqlClient, db, cancellationToken).ConfigureAwait(false);
+                    await UpdateDailyLeaderboardsAsync(steamClient, storeClient, db, cancellationToken).ConfigureAwait(false);
                 }
             }
         }
 
         internal async Task UpdateLeaderboardsAsync(
             ISteamClientApiClient steamClient,
-            ILeaderboardsSqlClient leaderboardsSqlClient,
+            ILeaderboardsStoreClient storeClient,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (steamClient == null)
                 throw new ArgumentNullException(nameof(steamClient), $"{nameof(steamClient)} is null.");
-            if (leaderboardsSqlClient == null)
-                throw new ArgumentNullException(nameof(leaderboardsSqlClient), $"{nameof(leaderboardsSqlClient)} is null.");
+            if (storeClient == null)
+                throw new ArgumentNullException(nameof(storeClient), $"{nameof(storeClient)} is null.");
 
             using (new UpdateNotifier(Log, "leaderboards"))
             {
@@ -114,36 +114,36 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService
 
                 if (cancellationToken.IsCancellationRequested) { return; }
 
-                await leaderboardsSqlClient.SaveChangesAsync(leaderboards, cancellationToken).ConfigureAwait(false);
+                await storeClient.SaveChangesAsync(leaderboards, cancellationToken).ConfigureAwait(false);
 
                 var entries = leaderboards.SelectMany(e => e.Entries).ToList();
 
                 var players = entries.Select(e => e.SteamId)
                     .Distinct()
                     .Select(s => new Player { SteamId = s });
-                await leaderboardsSqlClient.SaveChangesAsync(players, false, cancellationToken).ConfigureAwait(false);
+                await storeClient.SaveChangesAsync(players, false, cancellationToken).ConfigureAwait(false);
 
                 var replayIds = new HashSet<long>(from e in entries
                                                   where e.ReplayId != null
                                                   select e.ReplayId.Value);
                 var replays = from e in replayIds
                               select new Replay { ReplayId = e };
-                await leaderboardsSqlClient.SaveChangesAsync(replays, false, cancellationToken).ConfigureAwait(false);
+                await storeClient.SaveChangesAsync(replays, false, cancellationToken).ConfigureAwait(false);
 
-                await leaderboardsSqlClient.SaveChangesAsync(entries).ConfigureAwait(false);
+                await storeClient.SaveChangesAsync(entries).ConfigureAwait(false);
             }
         }
 
         internal async Task UpdateDailyLeaderboardsAsync(
             ISteamClientApiClient steamClient,
-            ILeaderboardsSqlClient leaderboardsSqlClient,
+            ILeaderboardsStoreClient storeClient,
             LeaderboardsContext db,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (steamClient == null)
                 throw new ArgumentNullException(nameof(steamClient), $"{nameof(steamClient)} is null.");
-            if (leaderboardsSqlClient == null)
-                throw new ArgumentNullException(nameof(leaderboardsSqlClient), $"{nameof(leaderboardsSqlClient)} is null.");
+            if (storeClient == null)
+                throw new ArgumentNullException(nameof(storeClient), $"{nameof(storeClient)} is null.");
             if (db == null)
                 throw new ArgumentNullException(nameof(db), $"{nameof(db)} is null.");
 
@@ -303,23 +303,23 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService
 
                 if (cancellationToken.IsCancellationRequested) { return; }
 
-                await leaderboardsSqlClient.SaveChangesAsync(leaderboards, cancellationToken).ConfigureAwait(false);
+                await storeClient.SaveChangesAsync(leaderboards, cancellationToken).ConfigureAwait(false);
 
                 var entries = leaderboards.SelectMany(e => e.Entries).ToList();
 
                 var players = entries.Select(e => e.SteamId)
                     .Distinct()
                     .Select(s => new Player { SteamId = s });
-                await leaderboardsSqlClient.SaveChangesAsync(players, false, cancellationToken).ConfigureAwait(false);
+                await storeClient.SaveChangesAsync(players, false, cancellationToken).ConfigureAwait(false);
 
                 var replayIds = new HashSet<long>(from e in entries
                                                   where e.ReplayId != null
                                                   select e.ReplayId.Value);
                 var replays = from e in replayIds
                               select new Replay { ReplayId = e };
-                await leaderboardsSqlClient.SaveChangesAsync(replays, false, cancellationToken).ConfigureAwait(false);
+                await storeClient.SaveChangesAsync(replays, false, cancellationToken).ConfigureAwait(false);
 
-                await leaderboardsSqlClient.SaveChangesAsync(entries, cancellationToken).ConfigureAwait(false);
+                await storeClient.SaveChangesAsync(entries, cancellationToken).ConfigureAwait(false);
             }
         }
     }

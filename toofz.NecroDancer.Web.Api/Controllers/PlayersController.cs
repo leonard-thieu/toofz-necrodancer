@@ -21,20 +21,20 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// Initializes a new instance of the <see cref="PlayersController"/> class.
         /// </summary>
         /// <param name="db">The leaderboards context.</param>
-        /// <param name="sqlClient">The leaderboards SQL client.</param>
+        /// <param name="storeClient">The leaderboards store client.</param>
         /// <param name="leaderboardHeaders">Leaderboard headers.</param>
         public PlayersController(
             LeaderboardsContext db,
-            ILeaderboardsSqlClient sqlClient,
+            ILeaderboardsStoreClient storeClient,
             LeaderboardHeaders leaderboardHeaders)
         {
             this.db = db;
-            this.sqlClient = sqlClient;
+            this.storeClient = storeClient;
             this.leaderboardHeaders = leaderboardHeaders;
         }
 
         private readonly LeaderboardsContext db;
-        private readonly ILeaderboardsSqlClient sqlClient;
+        private readonly ILeaderboardsStoreClient storeClient;
         private readonly LeaderboardHeaders leaderboardHeaders;
 
         /// <summary>
@@ -310,7 +310,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                              LastUpdate = p.LastUpdate,
                              Avatar = p.Avatar,
                          }).ToList();
-            await sqlClient.SaveChangesAsync(model, true, cancellationToken);
+            await storeClient.SaveChangesAsync(model, true, cancellationToken);
 
             return Ok(new BulkStoreDTO { RowsAffected = players.Count() });
         }

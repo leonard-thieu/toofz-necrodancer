@@ -23,14 +23,14 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests
                 // Arrange
                 var workerRole = new WorkerRole();
 
-                var mockILeaderboardsSqlClient = new Mock<ILeaderboardsSqlClient>();
+                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
 
                 // Act
                 var ex = await Record.ExceptionAsync(() =>
                 {
                     return workerRole.UpdateLeaderboardsAsync(
                         null,
-                        mockILeaderboardsSqlClient.Object);
+                        mockILeaderboardsStoreClient.Object);
                 });
 
                 // Assert
@@ -73,18 +73,18 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests
                     .Setup(steamClient => steamClient.GetLeaderboardEntriesAsync(It.IsAny<uint>(), It.IsAny<int>(), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromResult(mockILeaderboardEntriesCallback.Object));
 
-                var mockILeaderboardsSqlClient = new Mock<ILeaderboardsSqlClient>();
+                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
 
                 // Act
                 await workerRole.UpdateLeaderboardsAsync(
                     mockISteamClientApiClient.Object,
-                    mockILeaderboardsSqlClient.Object);
+                    mockILeaderboardsStoreClient.Object);
 
                 // Assert
-                mockILeaderboardsSqlClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Leaderboard>>(), It.IsAny<CancellationToken>()));
-                mockILeaderboardsSqlClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Player>>(), false, It.IsAny<CancellationToken>()));
-                mockILeaderboardsSqlClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Replay>>(), false, It.IsAny<CancellationToken>()));
-                mockILeaderboardsSqlClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Entry>>()));
+                mockILeaderboardsStoreClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Leaderboard>>(), It.IsAny<CancellationToken>()));
+                mockILeaderboardsStoreClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Player>>(), false, It.IsAny<CancellationToken>()));
+                mockILeaderboardsStoreClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Replay>>(), false, It.IsAny<CancellationToken>()));
+                mockILeaderboardsStoreClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Entry>>()));
             }
         }
 
@@ -97,7 +97,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests
                 // Arrange
                 var workerRole = new WorkerRole();
 
-                var mockILeaderboardsSqlClient = new Mock<ILeaderboardsSqlClient>();
+                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
                 var mockLeaderboardsContext = new Mock<LeaderboardsContext>();
 
                 // Act
@@ -105,7 +105,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests
                 {
                     return workerRole.UpdateDailyLeaderboardsAsync(
                         null,
-                        mockILeaderboardsSqlClient.Object,
+                        mockILeaderboardsStoreClient.Object,
                         mockLeaderboardsContext.Object);
                 });
 
@@ -141,7 +141,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests
                 // Arrange
                 var workerRole = new WorkerRole();
 
-                var mockILeaderboardsSqlClient = new Mock<ILeaderboardsSqlClient>();
+                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
                 var mockISteamClientApiClient = new Mock<ISteamClientApiClient>();
 
                 // Act
@@ -149,7 +149,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests
                 {
                     return workerRole.UpdateDailyLeaderboardsAsync(
                         mockISteamClientApiClient.Object,
-                        mockILeaderboardsSqlClient.Object,
+                        mockILeaderboardsStoreClient.Object,
                         null);
                 });
 
@@ -178,7 +178,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests
                     .Setup(steamClient => steamClient.GetLeaderboardEntriesAsync(It.IsAny<uint>(), It.IsAny<int>(), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromResult(mockILeaderboardEntriesCallback.Object));
 
-                var mockILeaderboardsSqlClient = new Mock<ILeaderboardsSqlClient>();
+                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
 
                 var dailyLeaderboards = new List<DailyLeaderboard>
                 {
@@ -201,14 +201,14 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests
                 // Act
                 await workerRole.UpdateDailyLeaderboardsAsync(
                     mockISteamClientApiClient.Object,
-                    mockILeaderboardsSqlClient.Object,
+                    mockILeaderboardsStoreClient.Object,
                     mockLeaderboardsContext.Object);
 
                 // Assert
-                mockILeaderboardsSqlClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<DailyLeaderboard>>(), It.IsAny<CancellationToken>()));
-                mockILeaderboardsSqlClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Player>>(), false, It.IsAny<CancellationToken>()));
-                mockILeaderboardsSqlClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Replay>>(), false, It.IsAny<CancellationToken>()));
-                mockILeaderboardsSqlClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<DailyEntry>>(), It.IsAny<CancellationToken>()));
+                mockILeaderboardsStoreClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<DailyLeaderboard>>(), It.IsAny<CancellationToken>()));
+                mockILeaderboardsStoreClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Player>>(), false, It.IsAny<CancellationToken>()));
+                mockILeaderboardsStoreClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<Replay>>(), false, It.IsAny<CancellationToken>()));
+                mockILeaderboardsStoreClient.Verify(sqlClient => sqlClient.SaveChangesAsync(It.IsAny<IEnumerable<DailyEntry>>(), It.IsAny<CancellationToken>()));
             }
         }
     }

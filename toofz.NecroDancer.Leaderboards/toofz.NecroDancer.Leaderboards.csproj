@@ -129,9 +129,9 @@
     <Compile Include="ApiClient.cs">
       <DependentUpon>IApiClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="ILeaderboardsSqlClient.cs" />
-    <Compile Include="LeaderboardsSqlClient.cs">
-      <DependentUpon>ILeaderboardsSqlClient.cs</DependentUpon>
+    <Compile Include="ILeaderboardsStoreClient.cs" />
+    <Compile Include="LeaderboardsStoreClient.cs">
+      <DependentUpon>ILeaderboardsStoreClient.cs</DependentUpon>
     </Compile>
     <Compile Include="ITargetBlockExtensions.cs" />
     <Compile Include="IUgcHttpClient.cs" />

@@ -21,17 +21,17 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// Initializes a new instance of the <see cref="ReplaysController"/> class.
         /// </summary>
         /// <param name="db">The leaderboards context.</param>
-        /// <param name="sqlClient">The SQL client used to store submitted data.</param>
+        /// <param name="storeClient">The store client used to store submitted data.</param>
         public ReplaysController(
             LeaderboardsContext db,
-            ILeaderboardsSqlClient sqlClient)
+            ILeaderboardsStoreClient storeClient)
         {
             this.db = db;
-            this.sqlClient = sqlClient;
+            this.storeClient = storeClient;
         }
 
         private readonly LeaderboardsContext db;
-        private readonly ILeaderboardsSqlClient sqlClient;
+        private readonly ILeaderboardsStoreClient storeClient;
 
         /// <summary>
         /// Gets a list of UGCIDs that require processing.
@@ -88,7 +88,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                              KilledBy = r.KilledBy,
                          }).ToList();
 
-            await sqlClient.SaveChangesAsync(model, true, cancellationToken);
+            await storeClient.SaveChangesAsync(model, true, cancellationToken);
 
             return Ok(new BulkStoreDTO { RowsAffected = replays.Count() });
         }

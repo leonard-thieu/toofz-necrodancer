@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    public interface ILeaderboardsSqlClient
+    public interface ILeaderboardsStoreClient
     {
         Task SaveChangesAsync(IEnumerable<Leaderboard> leaderboards, CancellationToken cancellationToken);
         Task SaveChangesAsync(IEnumerable<Entry> entries);

@@ -9,9 +9,9 @@ using System.Text.RegularExpressions;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    public sealed class LeaderboardsSqlClient : ILeaderboardsSqlClient
+    public sealed class LeaderboardsStoreClient : ILeaderboardsStoreClient
     {
-        static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsSqlClient));
+        static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsStoreClient));
 
         static string ToSentenceCase(string str)
         {
@@ -20,7 +20,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Initialization
 
-        public LeaderboardsSqlClient(string connectionString)
+        public LeaderboardsStoreClient(string connectionString)
         {
             this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
