@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    public interface IApiClient : IDisposable
+    public interface IToofzApiClient : IDisposable
     {
         Task<IEnumerable<long>> GetMissingReplayIdsAsync(int limit, CancellationToken cancellationToken);
         Task<IEnumerable<long>> GetStaleSteamIdsAsync(int limit, CancellationToken cancellationToken);

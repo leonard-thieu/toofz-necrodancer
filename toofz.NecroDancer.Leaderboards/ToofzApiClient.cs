@@ -10,15 +10,15 @@ using Newtonsoft.Json.Linq;
 
 namespace toofz.NecroDancer.Leaderboards
 {
-    public sealed class ApiClient : HttpClient, IApiClient
+    public sealed class ToofzApiClient : HttpClient, IToofzApiClient
     {
-        static readonly ILog Log = LogManager.GetLogger(typeof(ApiClient));
+        static readonly ILog Log = LogManager.GetLogger(typeof(ToofzApiClient));
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiClient"/> class with a specific handler.
+        /// Initializes a new instance of the <see cref="ToofzApiClient"/> class with a specific handler.
         /// </summary>
         /// <param name="handler">The HTTP handler stack to use for sending requests.</param>
-        public ApiClient(HttpMessageHandler handler) : base(handler, disposeHandler: false) { }
+        public ToofzApiClient(HttpMessageHandler handler) : base(handler, disposeHandler: false) { }
 
         #region Players
 

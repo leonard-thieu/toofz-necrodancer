@@ -41,13 +41,13 @@ namespace toofz.NecroDancer.Leaderboards.Services.PlayersService.Tests
                 // Arrange
                 var workerRole = new WorkerRole();
 
-                var mockApiClient = new Mock<IApiClient>();
+                var mockIToofzApiClient = new Mock<IToofzApiClient>();
 
                 // Act
                 var ex = await Record.ExceptionAsync(() =>
                 {
                     return workerRole.UpdatePlayersAsync(
-                        mockApiClient.Object,
+                        mockIToofzApiClient.Object,
                         null,
                         1);
                 });
@@ -62,14 +62,14 @@ namespace toofz.NecroDancer.Leaderboards.Services.PlayersService.Tests
                 // Arrange
                 var workerRole = new WorkerRole();
 
-                var mockApiClient = new Mock<IApiClient>();
+                var mockIToofzApiClient = new Mock<IToofzApiClient>();
                 var mockSteamWebApiClient = new Mock<ISteamWebApiClient>();
 
                 // Act
                 var ex = await Record.ExceptionAsync(() =>
                 {
                     return workerRole.UpdatePlayersAsync(
-                        mockApiClient.Object,
+                        mockIToofzApiClient.Object,
                         mockSteamWebApiClient.Object,
                         -1);
                 });
@@ -84,17 +84,17 @@ namespace toofz.NecroDancer.Leaderboards.Services.PlayersService.Tests
                 // Arrange
                 var workerRole = new WorkerRole();
 
-                var mockApiClient = new Mock<IApiClient>();
+                var mockIToofzApiClient = new Mock<IToofzApiClient>();
                 var mockSteamWebApiClient = new Mock<ISteamWebApiClient>();
 
                 // Act
                 await workerRole.UpdatePlayersAsync(
-                        mockApiClient.Object,
+                        mockIToofzApiClient.Object,
                         mockSteamWebApiClient.Object,
                         1);
 
                 // Assert
-                mockApiClient.Verify(apiClient => apiClient.PostPlayersAsync(It.IsAny<IEnumerable<Player>>(), It.IsAny<CancellationToken>()));
+                mockIToofzApiClient.Verify(apiClient => apiClient.PostPlayersAsync(It.IsAny<IEnumerable<Player>>(), It.IsAny<CancellationToken>()));
             }
         }
     }

@@ -105,7 +105,6 @@
     <Compile Include="Steam\WebApi\ISteamRemoteStorage\UgcFileDetailsTests.cs" />
     <Compile Include="Steam\WebApi\ISteamUser\PlayerSummariesTests.cs" />
     <Compile Include="Steam\WebApi\SteamWebApiClientTests.cs" />
-    <Compile Include="ApiClientTests.cs" />
     <Compile Include="ApiExceptionTests.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="EnsureSuccessHandlerTests.cs" />
@@ -113,6 +112,7 @@
     <Compile Include="ITargetBlockExtensionsTests.cs" />
     <Compile Include="OAuth2HandlerTests.cs" />
     <Compile Include="StreamPipelineTests.cs" />
+    <Compile Include="ToofzApiClientTests.cs" />
     <Compile Include="UgcHttpClientTests.cs" />
     <None Include="App.config">
       <SubType>Designer</SubType>

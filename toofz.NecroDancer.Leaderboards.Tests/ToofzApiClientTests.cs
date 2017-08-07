@@ -9,7 +9,7 @@ using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
-    class ApiClientTests
+    class ToofzApiClientTests
     {
         static readonly CancellationToken Cancellation = CancellationToken.None;
 
@@ -25,13 +25,13 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                     .When(new Uri(Constants.FakeUri + "players?limit=0"))
                     .RespondJson(new List<long>());
 
-                var apiClient = new ApiClient(handler)
+                var toofzApiClient = new ToofzApiClient(handler)
                 {
                     BaseAddress = Constants.FakeUri
                 };
 
                 // Act
-                var steamIds = await apiClient.GetStaleSteamIdsAsync(0, Cancellation);
+                var steamIds = await toofzApiClient.GetStaleSteamIdsAsync(0, Cancellation);
 
                 // Assert
                 Assert.IsInstanceOfType(steamIds, typeof(IEnumerable<long>));
@@ -50,14 +50,14 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                     .When(new Uri(Constants.FakeUri + "players"))
                     .RespondJson(new { rowsAffected = 1 });
 
-                var apiClient = new ApiClient(handler)
+                var toofzApiClient = new ToofzApiClient(handler)
                 {
                     BaseAddress = Constants.FakeUri
                 };
                 var players = new List<Player> { new Player { Exists = true, LastUpdate = new DateTime(2016, 1, 1) } };
 
                 // Act
-                var response = await apiClient.PostPlayersAsync(players, Cancellation);
+                var response = await toofzApiClient.PostPlayersAsync(players, Cancellation);
                 var rowsAffected = JObject.Parse(response)["rowsAffected"].Value<long>();
 
                 // Assert
@@ -77,13 +77,13 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                     .When(new Uri(Constants.FakeUri + "replays?limit=0"))
                     .RespondJson(new List<long>());
 
-                var apiClient = new ApiClient(handler)
+                var toofzApiClient = new ToofzApiClient(handler)
                 {
                     BaseAddress = Constants.FakeUri
                 };
 
                 // Act
-                var replayIds = await apiClient.GetMissingReplayIdsAsync(0, Cancellation);
+                var replayIds = await toofzApiClient.GetMissingReplayIdsAsync(0, Cancellation);
 
                 // Assert
                 Assert.IsInstanceOfType(replayIds, typeof(IEnumerable<long>));
@@ -102,14 +102,14 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                     .When(new Uri(Constants.FakeUri + "replays"))
                     .RespondJson(new { rowsAffected = 1 });
 
-                var apiClient = new ApiClient(handler)
+                var toofzApiClient = new ToofzApiClient(handler)
                 {
                     BaseAddress = Constants.FakeUri
                 };
                 var replays = new List<Replay> { new Replay() };
 
                 // Act
-                var response = await apiClient.PostReplaysAsync(replays, Cancellation);
+                var response = await toofzApiClient.PostReplaysAsync(replays, Cancellation);
                 var rowsAffected = JObject.Parse(response)["rowsAffected"].Value<long>();
 
                 // Assert

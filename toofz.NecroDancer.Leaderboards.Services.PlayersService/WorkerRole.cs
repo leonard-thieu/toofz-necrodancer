@@ -45,15 +45,15 @@ namespace toofz.NecroDancer.Leaderboards.Services.PlayersService
                 new SteamWebApiTransientFaultHandler(Application.TelemetryClient),
             });
 
-            using (var apiClient = new ApiClient(apiHandlers))
+            using (var toofzApiClient = new ToofzApiClient(apiHandlers))
             using (var steamWebApiClient = new SteamWebApiClient(steamApiHandlers))
             {
-                apiClient.BaseAddress = new Uri(apiBaseAddress);
+                toofzApiClient.BaseAddress = new Uri(apiBaseAddress);
 
                 steamWebApiClient.SteamWebApiKey = steamWebApiKey;
 
                 await UpdatePlayersAsync(
-                    apiClient,
+                    toofzApiClient,
                     steamWebApiClient,
                     Settings.PlayersPerUpdate,
                     cancellationToken)
@@ -62,13 +62,13 @@ namespace toofz.NecroDancer.Leaderboards.Services.PlayersService
         }
 
         internal async Task UpdatePlayersAsync(
-            IApiClient apiClient,
+            IToofzApiClient toofzApiClient,
             ISteamWebApiClient steamWebApiClient,
             int limit,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (apiClient == null)
-                throw new ArgumentNullException(nameof(apiClient), $"{nameof(apiClient)} is null.");
+            if (toofzApiClient == null)
+                throw new ArgumentNullException(nameof(toofzApiClient), $"{nameof(toofzApiClient)} is null.");
             if (steamWebApiClient == null)
                 throw new ArgumentNullException(nameof(steamWebApiClient), $"{nameof(steamWebApiClient)} is null.");
             if (limit <= 0)
@@ -76,7 +76,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.PlayersService
 
             using (new UpdateNotifier(Log, "players"))
             {
-                var steamIds = (await apiClient.GetStaleSteamIdsAsync(limit, cancellationToken).ConfigureAwait(false)).ToList();
+                var steamIds = (await toofzApiClient.GetStaleSteamIdsAsync(limit, cancellationToken).ConfigureAwait(false)).ToList();
 
                 var players = new ConcurrentBag<Player>();
                 using (var download = new DownloadNotifier(Log, "players"))
@@ -137,7 +137,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.PlayersService
                         return p;
                     });
 
-                await apiClient.PostPlayersAsync(playersIncludingNonExisting, cancellationToken).ConfigureAwait(false);
+                await toofzApiClient.PostPlayersAsync(playersIncludingNonExisting, cancellationToken).ConfigureAwait(false);
             }
         }
     }

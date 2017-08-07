@@ -67,16 +67,16 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
                 new HttpRequestStatusHandler(),
             });
 
-            using (var apiClient = new ApiClient(apiHandlers))
+            using (var toofzApiClient = new ToofzApiClient(apiHandlers))
             using (var steamWebApiClient = new SteamWebApiClient(steamApiHandlers))
             using (var ugcHttpClient = new UgcHttpClient(ugcHandlers))
             {
-                apiClient.BaseAddress = new Uri(apiBaseAddress);
+                toofzApiClient.BaseAddress = new Uri(apiBaseAddress);
 
                 steamWebApiClient.SteamWebApiKey = steamWebApiKey;
 
                 await UpdateReplaysAsync(
-                    apiClient,
+                    toofzApiClient,
                     steamWebApiClient,
                     ugcHttpClient,
                     GetDirectory(storageConnectionString),
@@ -89,15 +89,15 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
         static readonly ReplaySerializer ReplaySerializer = new ReplaySerializer();
 
         internal async Task UpdateReplaysAsync(
-            IApiClient apiClient,
+            IToofzApiClient toofzApiClient,
             ISteamWebApiClient steamWebApiClient,
             IUgcHttpClient ugcHttpClient,
             CloudBlobDirectory directory,
             int limit,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (apiClient == null)
-                throw new ArgumentNullException(nameof(apiClient), $"{nameof(apiClient)} is null.");
+            if (toofzApiClient == null)
+                throw new ArgumentNullException(nameof(toofzApiClient), $"{nameof(toofzApiClient)} is null.");
             if (steamWebApiClient == null)
                 throw new ArgumentNullException(nameof(steamWebApiClient), $"{nameof(steamWebApiClient)} is null.");
             if (ugcHttpClient == null)
@@ -109,7 +109,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
 
             using (new UpdateNotifier(Log, "replays"))
             {
-                var missing = await apiClient.GetMissingReplayIdsAsync(limit, cancellationToken).ConfigureAwait(false);
+                var missing = await toofzApiClient.GetMissingReplayIdsAsync(limit, cancellationToken).ConfigureAwait(false);
 
                 var replays = new ConcurrentBag<Replay>();
                 using (var download = new DownloadNotifier(Log, "replays"))
@@ -187,7 +187,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
                 }
 
                 // TODO: Add rollback to stored replays in case this fails
-                await apiClient.PostReplaysAsync(replays, cancellationToken).ConfigureAwait(false);
+                await toofzApiClient.PostReplaysAsync(replays, cancellationToken).ConfigureAwait(false);
             }
         }
     }
