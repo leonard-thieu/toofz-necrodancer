@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,7 +6,6 @@ using Moq;
 using toofz.NecroDancer.Leaderboards;
 using toofz.NecroDancer.Leaderboards.EntityFramework;
 using toofz.NecroDancer.Web.Api.Controllers;
-using toofz.NecroDancer.Web.Api.Models;
 using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Web.Api.Tests.Controllers
@@ -15,27 +13,44 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
     public class PlayersControllerTests
     {
         [TestClass]
-        public class Get_Int64
+        public class GetPlayers
         {
             [TestMethod]
-            public async Task ReturnsOk()
+            public async Task NoParams_ReturnsPlayers()
             {
                 // Arrange
-                var mockSetPlayer = MockHelper.MockSet(new List<Leaderboards.Player>
-                {
-                    new Leaderboards.Player
-                    {
-                        SteamId = 0
-                    }
-                }.AsQueryable());
-                var mockSetEntry = MockHelper.MockSet(new List<Leaderboards.Entry>
-                {
+                var mockSet = MockHelper.MockSet<Player>();
 
-                }.AsQueryable());
-                var mockSetReplay = MockHelper.MockSet(new List<Leaderboards.Replay>
-                {
+                var mockRepository = new Mock<LeaderboardsContext>();
+                mockRepository.Setup(x => x.Players).Returns(mockSet.Object);
 
-                }.AsQueryable());
+                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
+
+                var controller = new PlayersController(
+                    mockRepository.Object,
+                    mockILeaderboardsStoreClient.Object,
+                    LeaderboardsServiceFactory.ReadLeaderboardHeaders());
+
+                // Act
+                var actionResult = await controller.GetPlayers("", new Models.PlayersPagination());
+                var contentResult = actionResult as OkNegotiatedContentResult<Models.Players>;
+
+                // Assert
+                Assert.IsNotNull(contentResult);
+                Assert.IsNotNull(contentResult.Content);
+            }
+        }
+
+        [TestClass]
+        public class GetPlayer
+        {
+            [TestMethod]
+            public async Task ValidParams_ReturnsPlayerEntries()
+            {
+                // Arrange
+                var mockSetPlayer = MockHelper.MockSet(new Player { SteamId = 76561197960481221 });
+                var mockSetEntry = MockHelper.MockSet<Entry>();
+                var mockSetReplay = MockHelper.MockSet<Replay>();
 
                 var mockRepository = new Mock<LeaderboardsContext>();
                 mockRepository.Setup(x => x.Players).Returns(mockSetPlayer.Object);
@@ -50,9 +65,9 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                     LeaderboardsServiceFactory.ReadLeaderboardHeaders());
 
                 // Act
-                var actionResult = await controller.GetPlayer(0L);
-                Assert.IsInstanceOfType(actionResult, typeof(OkNegotiatedContentResult<PlayerEntries>));
-                var contentResult = actionResult as OkNegotiatedContentResult<PlayerEntries>;
+                var actionResult = await controller.GetPlayer(76561197960481221);
+                Assert.IsInstanceOfType(actionResult, typeof(OkNegotiatedContentResult<Models.PlayerEntries>));
+                var contentResult = actionResult as OkNegotiatedContentResult<Models.PlayerEntries>;
 
                 // Assert
                 Assert.IsNotNull(contentResult);
@@ -61,74 +76,10 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
         }
 
         [TestClass]
-        public class Get_String
+        public class PostPlayers
         {
             [TestMethod]
-            public async Task ReturnsOk()
-            {
-                // Arrange
-                var mockSet = MockHelper.MockSet(new List<Leaderboards.Player>
-                {
-
-                }.AsQueryable());
-
-                var mockRepository = new Mock<LeaderboardsContext>();
-                mockRepository.Setup(x => x.Players).Returns(mockSet.Object);
-
-                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
-
-                var controller = new PlayersController(
-                    mockRepository.Object,
-                    mockILeaderboardsStoreClient.Object,
-                    LeaderboardsServiceFactory.ReadLeaderboardHeaders());
-
-                // Act
-                var actionResult = await controller.GetPlayers("", new PlayersPagination());
-                var contentResult = actionResult as OkNegotiatedContentResult<Players>;
-
-                // Assert
-                Assert.IsNotNull(contentResult);
-                Assert.IsNotNull(contentResult.Content);
-            }
-        }
-
-        [TestClass]
-        public class Get_Int32
-        {
-            [TestMethod]
-            public async Task ReturnsOk()
-            {
-                // Arrange
-                var mockSet = MockHelper.MockSet(new List<Leaderboards.Player>
-                {
-
-                }.AsQueryable());
-
-                var mockRepository = new Mock<LeaderboardsContext>();
-                mockRepository.Setup(x => x.Players).Returns(mockSet.Object);
-
-                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
-
-                var controller = new PlayersController(
-                    mockRepository.Object,
-                    mockILeaderboardsStoreClient.Object,
-                    LeaderboardsServiceFactory.ReadLeaderboardHeaders());
-
-                // Act
-                var actionResult = await controller.Get(0);
-                var contentResult = actionResult as OkNegotiatedContentResult<List<long>>;
-
-                // Assert
-                Assert.IsNotNull(contentResult);
-                Assert.IsNotNull(contentResult.Content);
-            }
-        }
-
-        [TestClass]
-        public class Post
-        {
-            [TestMethod]
-            public async Task ReturnsOk()
+            public async Task ValidParams_ReturnsBulkStoreDTO()
             {
                 // Arrange
                 var mockRepository = new Mock<LeaderboardsContext>();
@@ -141,8 +92,8 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                     LeaderboardsServiceFactory.ReadLeaderboardHeaders());
 
                 // Act
-                var actionResult = await controller.Post(new List<PlayerModel>());
-                var contentResult = actionResult as OkNegotiatedContentResult<BulkStoreDTO>;
+                var actionResult = await controller.PostPlayers(new List<Models.PlayerModel>());
+                var contentResult = actionResult as OkNegotiatedContentResult<Models.BulkStore>;
 
                 // Assert
                 Assert.IsNotNull(contentResult);
@@ -164,7 +115,7 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 controller.ModelState.AddModelError("fakeError", "fakeError");
 
                 // Act
-                var actionResult = await controller.Post(new List<PlayerModel>());
+                var actionResult = await controller.PostPlayers(new List<Models.PlayerModel>());
 
                 // Assert
                 Assert.IsInstanceOfType(actionResult, typeof(InvalidModelStateResult));

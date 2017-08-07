@@ -101,15 +101,17 @@
     <Reference Include="toofz.NecroDancer.EntityFramework, Version=2.0.0.27611, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\toofz.NecroDancer.EntityFramework.2.0.0\lib\net46\toofz.NecroDancer.EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="toofz.TestsShared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\toofz.TestsShared.1.0.7\lib\net45\toofz.TestsShared.dll</HintPath>
+    <Reference Include="toofz.TestsShared, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.TestsShared.1.2.0\lib\net45\toofz.TestsShared.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\EnemiesControllerTests.cs" />

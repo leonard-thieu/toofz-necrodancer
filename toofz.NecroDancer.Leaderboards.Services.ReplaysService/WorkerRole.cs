@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Linq;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +11,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using toofz.NecroDancer.Leaderboards.Services.Common;
 using toofz.NecroDancer.Leaderboards.Steam.WebApi;
+using toofz.NecroDancer.Leaderboards.toofz;
 using toofz.NecroDancer.Replays;
 
 namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
@@ -42,7 +44,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
             apiHandlers = HttpClientFactory.CreatePipeline(new WebRequestHandler(), new DelegatingHandler[]
             {
                 new LoggingHandler(),
-                new EnsureSuccessHandler(),
+                new HttpRequestStatusHandler(),
                 oAuth2Handler,
             });
         }
@@ -67,16 +69,16 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
                 new HttpRequestStatusHandler(),
             });
 
-            using (var apiClient = new ApiClient(apiHandlers))
+            using (var toofzApiClient = new ToofzApiClient(apiHandlers))
             using (var steamWebApiClient = new SteamWebApiClient(steamApiHandlers))
             using (var ugcHttpClient = new UgcHttpClient(ugcHandlers))
             {
-                apiClient.BaseAddress = new Uri(apiBaseAddress);
+                toofzApiClient.BaseAddress = new Uri(apiBaseAddress);
 
                 steamWebApiClient.SteamWebApiKey = steamWebApiKey;
 
                 await UpdateReplaysAsync(
-                    apiClient,
+                    toofzApiClient,
                     steamWebApiClient,
                     ugcHttpClient,
                     GetDirectory(storageConnectionString),
@@ -89,15 +91,15 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
         static readonly ReplaySerializer ReplaySerializer = new ReplaySerializer();
 
         internal async Task UpdateReplaysAsync(
-            IApiClient apiClient,
+            IToofzApiClient toofzApiClient,
             ISteamWebApiClient steamWebApiClient,
             IUgcHttpClient ugcHttpClient,
             CloudBlobDirectory directory,
             int limit,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (apiClient == null)
-                throw new ArgumentNullException(nameof(apiClient), $"{nameof(apiClient)} is null.");
+            if (toofzApiClient == null)
+                throw new ArgumentNullException(nameof(toofzApiClient), $"{nameof(toofzApiClient)} is null.");
             if (steamWebApiClient == null)
                 throw new ArgumentNullException(nameof(steamWebApiClient), $"{nameof(steamWebApiClient)} is null.");
             if (ugcHttpClient == null)
@@ -109,13 +111,21 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
 
             using (new UpdateNotifier(Log, "replays"))
             {
-                var missing = await apiClient.GetMissingReplayIdsAsync(limit, cancellationToken).ConfigureAwait(false);
+                var response = await toofzApiClient
+                    .GetReplaysAsync(new GetReplaysParams
+                    {
+                        Limit = limit,
+                    }, cancellationToken)
+                    .ConfigureAwait(false);
+                var ugcIds = (from r in response.replays
+                              select r.id)
+                              .ToList();
 
                 var replays = new ConcurrentBag<Replay>();
                 using (var download = new DownloadNotifier(Log, "replays"))
                 {
                     var requests = new List<Task>();
-                    foreach (var ugcId in missing)
+                    foreach (var ugcId in ugcIds)
                     {
                         var request = UpdateReplayAsync(ugcId);
                         requests.Add(request);
@@ -186,8 +196,12 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
                     }
                 }
 
-                // TODO: Add rollback to stored replays in case this fails
-                await apiClient.PostReplaysAsync(replays, cancellationToken).ConfigureAwait(false);
+                using (var activity = new StoreNotifier(Log, "replays"))
+                {
+                    // TODO: Add rollback to stored replays in case this fails
+                    var bulkStore = await toofzApiClient.PostReplaysAsync(replays, cancellationToken).ConfigureAwait(false);
+                    activity.Progress.Report(bulkStore.rows_affected);
+                }
             }
         }
     }

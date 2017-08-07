@@ -22,7 +22,7 @@ namespace toofz.NecroDancer.Leaderboards
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            AddBearerToken(request);
+            AddBearerToken();
             var response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
 
             if (response.StatusCode == HttpStatusCode.Unauthorized)
@@ -34,19 +34,19 @@ namespace toofz.NecroDancer.Leaderboards
                 else
                 {
                     BearerToken = await AuthenticateAsync(request.RequestUri, cancellationToken).ConfigureAwait(false);
-                    AddBearerToken(request);
+                    AddBearerToken();
                     response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
                 }
             }
 
             return response;
-        }
 
-        void AddBearerToken(HttpRequestMessage request)
-        {
-            if (BearerToken != null)
+            void AddBearerToken()
             {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", BearerToken.AccessToken);
+                if (BearerToken != null)
+                {
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", BearerToken.AccessToken);
+                }
             }
         }
 
@@ -63,11 +63,7 @@ namespace toofz.NecroDancer.Leaderboards
             };
             var content = new FormUrlEncodedContent(loginData);
 
-            HttpResponseMessage response = await PostAsync(authUri, content, cancellationToken).ConfigureAwait(false);
-            if (!response.IsSuccessStatusCode)
-            {
-                throw await ApiException.CreateAsync(response).ConfigureAwait(false);
-            }
+            var response = await PostAsync(authUri, content, cancellationToken).ConfigureAwait(false);
 
             var accessToken = await response.Content.ReadAsAsync<OAuth2AccessToken>(cancellationToken).ConfigureAwait(false);
 

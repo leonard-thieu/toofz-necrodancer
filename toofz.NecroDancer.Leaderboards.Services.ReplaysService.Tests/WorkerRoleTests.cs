@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Moq;
 using toofz.NecroDancer.Leaderboards.Steam.WebApi;
+using toofz.NecroDancer.Leaderboards.toofz;
 using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
@@ -56,7 +59,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 // Arrange
                 var workerRole = new WorkerRole();
 
-                var mockIApiClient = new Mock<IApiClient>();
+                var mockIToofzApiClient = new Mock<IToofzApiClient>();
                 var mockIUgcHttpClient = new Mock<IUgcHttpClient>();
                 var directory = GetReplaysCloudBlobDirectory();
 
@@ -64,7 +67,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 var ex = await Record.ExceptionAsync(() =>
                 {
                     return workerRole.UpdateReplaysAsync(
-                        mockIApiClient.Object,
+                        mockIToofzApiClient.Object,
                         null,
                         mockIUgcHttpClient.Object,
                         directory,
@@ -81,7 +84,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 // Arrange
                 var workerRole = new WorkerRole();
 
-                var mockIApiClient = new Mock<IApiClient>();
+                var mockIToofzApiClient = new Mock<IToofzApiClient>();
                 var mockISteamWebApiClient = new Mock<ISteamWebApiClient>();
                 var directory = GetReplaysCloudBlobDirectory();
 
@@ -89,7 +92,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 var ex = await Record.ExceptionAsync(() =>
                 {
                     return workerRole.UpdateReplaysAsync(
-                        mockIApiClient.Object,
+                        mockIToofzApiClient.Object,
                         mockISteamWebApiClient.Object,
                         null,
                         directory,
@@ -106,7 +109,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 // Arrange
                 var workerRole = new WorkerRole();
 
-                var mockIApiClient = new Mock<IApiClient>();
+                var mockIToofzApiClient = new Mock<IToofzApiClient>();
                 var mockISteamWebApiClient = new Mock<ISteamWebApiClient>();
                 var mockIUgcHttpClient = new Mock<IUgcHttpClient>();
 
@@ -114,7 +117,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 var ex = await Record.ExceptionAsync(() =>
                 {
                     return workerRole.UpdateReplaysAsync(
-                        mockIApiClient.Object,
+                        mockIToofzApiClient.Object,
                         mockISteamWebApiClient.Object,
                         mockIUgcHttpClient.Object,
                         null,
@@ -131,7 +134,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 // Arrange
                 var workerRole = new WorkerRole();
 
-                var mockIApiClient = new Mock<IApiClient>();
+                var mockIToofzApiClient = new Mock<IToofzApiClient>();
                 var mockISteamWebApiClient = new Mock<ISteamWebApiClient>();
                 var mockIUgcHttpClient = new Mock<IUgcHttpClient>();
                 var directory = GetReplaysCloudBlobDirectory();
@@ -140,7 +143,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 var ex = await Record.ExceptionAsync(() =>
                 {
                     return workerRole.UpdateReplaysAsync(
-                        mockIApiClient.Object,
+                        mockIToofzApiClient.Object,
                         mockISteamWebApiClient.Object,
                         mockIUgcHttpClient.Object,
                         directory,
@@ -157,7 +160,14 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 // Arrange
                 var workerRole = new WorkerRole();
 
-                var mockIApiClient = new Mock<IApiClient>();
+                var mockIToofzApiClient = new Mock<IToofzApiClient>();
+                mockIToofzApiClient
+                    .Setup(toofzApiClient => toofzApiClient.GetReplaysAsync(It.IsAny<GetReplaysParams>(), It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(new Replays()));
+                mockIToofzApiClient
+                    .Setup(toofzApiClient => toofzApiClient.PostReplaysAsync(It.IsAny<IEnumerable<Replay>>(), It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(new BulkStore()));
+
                 var mockISteamWebApiClient = new Mock<ISteamWebApiClient>();
                 var mockIUgcHttpClient = new Mock<IUgcHttpClient>();
                 var directory = GetReplaysCloudBlobDirectory();
@@ -166,7 +176,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 var ex = await Record.ExceptionAsync(() =>
                 {
                     return workerRole.UpdateReplaysAsync(
-                        mockIApiClient.Object,
+                        mockIToofzApiClient.Object,
                         mockISteamWebApiClient.Object,
                         mockIUgcHttpClient.Object,
                         directory,
@@ -174,7 +184,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 });
 
                 // Assert
-                Assert.IsNull(ex);
+                Assert.IsNull(ex, ex?.Message);
             }
         }
     }

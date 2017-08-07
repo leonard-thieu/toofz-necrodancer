@@ -230,6 +230,21 @@ namespace toofz.NecroDancer.Web.Api.Models
         public IEnumerable<Player> players { get; set; }
     }
 
+    public class Replay
+    {
+        public string id { get; set; }
+        public int? error { get; set; }
+        public int? seed { get; set; }
+        public int? version { get; set; }
+        public string killed_by { get; set; }
+    }
+
+    public class Replays
+    {
+        public int total { get; set; }
+        public IEnumerable<Replay> replays { get; set; }
+    }
+
     /// <summary>
     /// The zone and level that the entry ends on.
     /// </summary>
@@ -336,5 +351,16 @@ namespace toofz.NecroDancer.Web.Api.Models
         /// A collection of leaderboard entries.
         /// </summary>
         public IEnumerable<Entry> entries { get; set; }
+    }
+
+    /// <summary>
+    /// Represents the response of a bulk store operation.
+    /// </summary>
+    public class BulkStore
+    {
+        /// <summary>
+        /// The number of rows affected.
+        /// </summary>
+        public int rows_affected { get; set; }
     }
 }

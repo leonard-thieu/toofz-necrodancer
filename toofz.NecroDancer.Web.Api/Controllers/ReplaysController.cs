@@ -30,30 +30,44 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             this.storeClient = storeClient;
         }
 
-        private readonly LeaderboardsContext db;
-        private readonly ILeaderboardsStoreClient storeClient;
+        readonly LeaderboardsContext db;
+        readonly ILeaderboardsStoreClient storeClient;
 
-        /// <summary>
-        /// Gets a list of UGCIDs that require processing.
-        /// </summary>
-        /// <param name="limit">The maximum number of results to return.</param>
-        /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
-        /// <returns>
-        /// Returns UGCIDs that require processing.
-        /// </returns>
-        [ResponseType(typeof(List<long>))]
+        [ResponseType(typeof(Models.Replays))]
         [Route("")]
-        [Authorize(Users = "ReplaysService")]
-        public async Task<IHttpActionResult> Get(int limit,
+        public async Task<IHttpActionResult> GetReplays(
+            int? version = null,
+            int? error = null,
+            [FromUri] ReplaysPagination pagination = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var missing = await (from r in db.Replays
-                                 where r.Version == null && r.ErrorCode == null
-                                 select r.ReplayId)
-                                 .Take(limit)
-                                 .ToListAsync(cancellationToken);
+            pagination = pagination ?? new ReplaysPagination();
 
-            return Ok(missing);
+            var query = from r in db.Replays
+                        where r.Version == version && r.ErrorCode == error
+                        orderby r.ReplayId
+                        select new Models.Replay
+                        {
+                            id = r.ReplayId.ToString(),
+                            error = r.ErrorCode,
+                            seed = r.Seed,
+                            version = r.Version,
+                            killed_by = r.KilledBy,
+                        };
+
+            var total = await query.CountAsync(cancellationToken);
+            var replays = await query
+                .Skip(pagination.offset)
+                .Take(pagination.limit)
+                .ToListAsync(cancellationToken);
+
+            var results = new Models.Replays
+            {
+                total = total,
+                replays = replays,
+            };
+
+            return Ok(results);
         }
 
         /// <summary>
@@ -67,10 +81,11 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// <httpStatusCode cref="System.Net.HttpStatusCode.BadRequest">
         /// Any replays failed validation.
         /// </httpStatusCode>
-        [ResponseType(typeof(BulkStoreDTO))]
+        [ResponseType(typeof(BulkStore))]
         [Route("")]
         [Authorize(Users = "ReplaysService")]
-        public async Task<IHttpActionResult> Post(IEnumerable<ReplayModel> replays,
+        public async Task<IHttpActionResult> PostReplays(
+            IEnumerable<ReplayModel> replays,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (!ModelState.IsValid)
@@ -79,7 +94,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             }
 
             var model = (from r in replays
-                         select new Replay
+                         select new Leaderboards.Replay
                          {
                              ReplayId = r.ReplayId,
                              ErrorCode = r.ErrorCode,
@@ -90,12 +105,12 @@ namespace toofz.NecroDancer.Web.Api.Controllers
 
             await storeClient.SaveChangesAsync(model, true, cancellationToken);
 
-            return Ok(new BulkStoreDTO { RowsAffected = replays.Count() });
+            return Ok(new BulkStore { rows_affected = replays.Count() });
         }
 
         #region IDisposable Members
 
-        private bool disposed;
+        bool disposed;
 
         /// <summary>
         /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
