@@ -11,103 +11,6 @@ namespace toofz.NecroDancer.Leaderboards
 {
     public sealed class LeaderboardsSqlClient : ILeaderboardsSqlClient
     {
-        #region Table Names
-
-        const string LeaderboardsTableName = "Leaderboards";
-        const string EntriesTableName = "Entries";
-        const string DailyLeaderboardsTableName = "DailyLeaderboards";
-        const string DailyEntriesTableName = "DailyEntries";
-        const string PlayersTableName = "Players";
-        const string ReplaysTableName = "Replays";
-
-        #endregion
-
-        #region Column Configuration
-
-        #region Leaderboard
-
-        static readonly ColumnMappings<Leaderboard> LeaderboardMappings = new ColumnMappings<Leaderboard>
-        {
-            d => d.LeaderboardId,
-            d => d.LastUpdate,
-            d => d.CharacterId,
-            d => d.RunId,
-            d => d.Date,
-        };
-
-        #endregion
-
-        #region Entry
-
-        static readonly ColumnMappings<Entry> EntryMappings = new ColumnMappings<Entry>
-        {
-            d => d.LeaderboardId,
-            d => d.Rank,
-            d => d.SteamId,
-            d => d.ReplayId,
-            d => d.Score,
-            d => d.Zone,
-            d => d.Level,
-        };
-
-        #endregion
-
-        #region DailyLeaderboard
-
-        static readonly ColumnMappings<DailyLeaderboard> DailyLeaderboardMappings = new ColumnMappings<DailyLeaderboard>
-        {
-            d => d.LeaderboardId,
-            d => d.LastUpdate,
-            d => d.Date,
-            d => d.ProductId,
-            d => d.IsProduction
-        };
-
-        #endregion
-
-        #region DailyEntry
-
-        static readonly ColumnMappings<DailyEntry> DailyEntryMappings = new ColumnMappings<DailyEntry>
-        {
-            d => d.LeaderboardId,
-            d => d.Rank,
-            d => d.SteamId,
-            d => d.ReplayId,
-            d => d.Score,
-            d => d.Zone,
-            d => d.Level,
-        };
-
-        #endregion
-
-        #region Player
-
-        static readonly ColumnMappings<Player> PlayerMappings = new ColumnMappings<Player>
-        {
-            d => d.SteamId,
-            d => d.Exists,
-            d => d.Name,
-            d => d.LastUpdate,
-            d => d.Avatar,
-        };
-
-        #endregion
-
-        #region Replay
-
-        static readonly ColumnMappings<Replay> ReplayMappings = new ColumnMappings<Replay>
-        {
-            d => d.ReplayId,
-            d => d.ErrorCode,
-            d => d.Seed,
-            d => d.KilledBy,
-            d => d.Version,
-        };
-
-        #endregion
-
-        #endregion
-
         static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsSqlClient));
 
         static string ToSentenceCase(string str)
@@ -130,9 +33,18 @@ namespace toofz.NecroDancer.Leaderboards
 
         #endregion
 
-        #region ILeaderboardsSqlClient Members
-
         #region Leaderboard
+
+        const string LeaderboardsTableName = "Leaderboards";
+
+        static readonly ColumnMappings<Leaderboard> LeaderboardMappings = new ColumnMappings<Leaderboard>
+        {
+            d => d.LeaderboardId,
+            d => d.LastUpdate,
+            d => d.CharacterId,
+            d => d.RunId,
+            d => d.Date,
+        };
 
         public Task SaveChangesAsync(IEnumerable<Leaderboard> leaderboards, CancellationToken cancellationToken)
         {
@@ -142,6 +54,19 @@ namespace toofz.NecroDancer.Leaderboards
         #endregion
 
         #region Entry
+
+        const string EntriesTableName = "Entries";
+
+        static readonly ColumnMappings<Entry> EntryMappings = new ColumnMappings<Entry>
+        {
+            d => d.LeaderboardId,
+            d => d.Rank,
+            d => d.SteamId,
+            d => d.ReplayId,
+            d => d.Score,
+            d => d.Zone,
+            d => d.Level,
+        };
 
         public async Task SaveChangesAsync(IEnumerable<Entry> entries)
         {
@@ -218,6 +143,17 @@ FROM {tableName};";
 
         #region DailyLeaderboard
 
+        const string DailyLeaderboardsTableName = "DailyLeaderboards";
+
+        static readonly ColumnMappings<DailyLeaderboard> DailyLeaderboardMappings = new ColumnMappings<DailyLeaderboard>
+        {
+            d => d.LeaderboardId,
+            d => d.LastUpdate,
+            d => d.Date,
+            d => d.ProductId,
+            d => d.IsProduction
+        };
+
         public Task SaveChangesAsync(IEnumerable<DailyLeaderboard> leaderboards, CancellationToken cancellationToken)
         {
             return UpsertAsync(DailyLeaderboardsTableName, DailyLeaderboardMappings, leaderboards, true, cancellationToken);
@@ -226,6 +162,19 @@ FROM {tableName};";
         #endregion
 
         #region DailyEntry
+
+        const string DailyEntriesTableName = "DailyEntries";
+
+        static readonly ColumnMappings<DailyEntry> DailyEntryMappings = new ColumnMappings<DailyEntry>
+        {
+            d => d.LeaderboardId,
+            d => d.Rank,
+            d => d.SteamId,
+            d => d.ReplayId,
+            d => d.Score,
+            d => d.Zone,
+            d => d.Level,
+        };
 
         public Task SaveChangesAsync(IEnumerable<DailyEntry> entries, CancellationToken cancellationToken)
         {
@@ -236,6 +185,17 @@ FROM {tableName};";
 
         #region Player
 
+        const string PlayersTableName = "Players";
+
+        static readonly ColumnMappings<Player> PlayerMappings = new ColumnMappings<Player>
+        {
+            d => d.SteamId,
+            d => d.Exists,
+            d => d.Name,
+            d => d.LastUpdate,
+            d => d.Avatar,
+        };
+
         public Task SaveChangesAsync(IEnumerable<Player> players, bool updateOnMatch, CancellationToken cancellationToken)
         {
             return UpsertAsync(PlayersTableName, PlayerMappings, players, updateOnMatch, cancellationToken);
@@ -245,16 +205,23 @@ FROM {tableName};";
 
         #region Replay
 
+        const string ReplaysTableName = "Replays";
+
+        static readonly ColumnMappings<Replay> ReplayMappings = new ColumnMappings<Replay>
+        {
+            d => d.ReplayId,
+            d => d.ErrorCode,
+            d => d.Seed,
+            d => d.KilledBy,
+            d => d.Version,
+        };
+
         public Task SaveChangesAsync(IEnumerable<Replay> replays, bool updateOnMatch, CancellationToken cancellationToken)
         {
             return UpsertAsync(ReplaysTableName, ReplayMappings, replays, updateOnMatch, cancellationToken);
         }
 
         #endregion
-
-        #endregion
-
-        #region Methods
 
         async Task UpsertAsync<T>(string tableName, ColumnMappings<T> columnMappings, IEnumerable<T> items, bool updateOnMatch, CancellationToken cancellationToken)
         {
@@ -271,7 +238,5 @@ FROM {tableName};";
                 }
             }
         }
-
-        #endregion
     }
 }
