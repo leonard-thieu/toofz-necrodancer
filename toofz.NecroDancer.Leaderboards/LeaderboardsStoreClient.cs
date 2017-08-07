@@ -1,22 +1,17 @@
-﻿using log4net;
-using SqlBulkUpsert;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Text.RegularExpressions;
+using Humanizer;
+using log4net;
+using SqlBulkUpsert;
 
 namespace toofz.NecroDancer.Leaderboards
 {
     public sealed class LeaderboardsStoreClient : ILeaderboardsStoreClient
     {
         static readonly ILog Log = LogManager.GetLogger(typeof(LeaderboardsStoreClient));
-
-        static string ToSentenceCase(string str)
-        {
-            return Regex.Replace(str, "[a-z][A-Z]", m => $"{m.Value[0]} {char.ToLower(m.Value[1])}");
-        }
 
         #region Initialization
 
@@ -232,7 +227,7 @@ FROM {tableName};";
                 var targetSchema = await SqlTableSchema.LoadFromDatabaseAsync(connection, tableName, cancellationToken).ConfigureAwait(false);
                 var upserter = new TypedUpserter<T>(targetSchema, columnMappings);
 
-                using (var activity = new StoreNotifier(Log, ToSentenceCase(tableName).ToLowerInvariant()))
+                using (var activity = new StoreNotifier(Log, tableName.Humanize().Transform(To.LowerCase)))
                 {
                     await upserter.UpsertAsync(connection, items, activity.Progress, updateOnMatch, cancellationToken).ConfigureAwait(false);
                 }
