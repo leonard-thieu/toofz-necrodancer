@@ -17,18 +17,18 @@ namespace toofz.NecroDancer.Leaderboards
         /// </summary>
         /// <param name="response">The unsuccessful HTTP response.</param>
         /// <returns>
-        /// A <see cref="Task{ApiException}"/> that represents the asynchronus operation.
+        /// A <see cref="Task{TResult}"/> that represents the asynchronus operation.
         /// </returns>
-        /// <exception cref="ArgumentNullException">
+        /// <exception cref="System.ArgumentNullException">
         /// <paramref name="response"/> is null.
         /// </exception>
-        /// <exception cref="ArgumentException">
+        /// <exception cref="System.ArgumentException">
         /// <paramref name="response"/> is a successful response.
         /// </exception>
         public static Task<ApiException> CreateAsync(HttpResponseMessage response)
         {
             if (response == null)
-                throw new ArgumentNullException(nameof(response));
+                throw new ArgumentNullException(nameof(response), $"{nameof(response)} is null.");
             if (response.IsSuccessStatusCode)
                 throw new ArgumentException($"Cannot create {nameof(ApiException)} from a successful response.", nameof(response));
 
@@ -42,15 +42,15 @@ namespace toofz.NecroDancer.Leaderboards
         /// </summary>
         /// <param name="response">The HTTP response.</param>
         /// <returns>
-        /// A <see cref="Task{ApiException}"/> that represents the asynchronus operation.
+        /// A <see cref="Task{TResult}"/> that represents the asynchronus operation.
         /// </returns>
-        /// <exception cref="ArgumentNullException">
+        /// <exception cref="System.ArgumentNullException">
         /// <paramref name="response"/> is null.
         /// </exception>
         public static Task<ApiException> CreateIncorrectMediaTypeAsync(HttpResponseMessage response)
         {
             if (response == null)
-                throw new ArgumentNullException(nameof(response));
+                throw new ArgumentNullException(nameof(response), $"{nameof(response)} is null.");
 
             var mediaType = response.Content.Headers.ContentType.MediaType;
             var message = $"Expected to receive a response with content type 'application/json' but received '{mediaType}' instead.";
