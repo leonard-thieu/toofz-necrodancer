@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using log4net;
 using toofz.NecroDancer.Leaderboards.Services.Common;
 using toofz.NecroDancer.Leaderboards.Steam.WebApi;
+using toofz.NecroDancer.Leaderboards.toofz;
 
 namespace toofz.NecroDancer.Leaderboards.Services.PlayersService
 {
@@ -76,7 +77,16 @@ namespace toofz.NecroDancer.Leaderboards.Services.PlayersService
 
             using (new UpdateNotifier(Log, "players"))
             {
-                var steamIds = (await toofzApiClient.GetStaleSteamIdsAsync(limit, cancellationToken).ConfigureAwait(false)).ToList();
+                var response = await toofzApiClient
+                    .GetPlayersAsync(new GetPlayersParams
+                    {
+                        Limit = limit,
+                        Sort = "updated_at",
+                    }, cancellationToken)
+                    .ConfigureAwait(false);
+                var steamIds = (from p in response.players
+                                select p.id)
+                                .ToList();
 
                 var players = new ConcurrentBag<Player>();
                 using (var download = new DownloadNotifier(Log, "players"))

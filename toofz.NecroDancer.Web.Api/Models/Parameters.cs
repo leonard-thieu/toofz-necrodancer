@@ -45,6 +45,18 @@ namespace toofz.NecroDancer.Web.Api.Models
         [DefaultValue(0)]
         public int offset { get; set; } = 0;
         [MinValue(1)]
+        [MaxValue(500)]
+        [DefaultValue(100)]
+        public int limit { get; set; } = 100;
+    }
+
+    public class ReplaysPagination
+    {
+        [MinValue(0)]
+        [MaxValue(int.MaxValue)]
+        [DefaultValue(0)]
+        public int offset { get; set; } = 0;
+        [MinValue(1)]
         [MaxValue(100)]
         [DefaultValue(100)]
         public int limit { get; set; } = 100;

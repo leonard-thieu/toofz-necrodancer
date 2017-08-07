@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Linq;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +11,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using toofz.NecroDancer.Leaderboards.Services.Common;
 using toofz.NecroDancer.Leaderboards.Steam.WebApi;
+using toofz.NecroDancer.Leaderboards.toofz;
 using toofz.NecroDancer.Replays;
 
 namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
@@ -109,13 +111,21 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
 
             using (new UpdateNotifier(Log, "replays"))
             {
-                var missing = await toofzApiClient.GetMissingReplayIdsAsync(limit, cancellationToken).ConfigureAwait(false);
+                var response = await toofzApiClient
+                    .GetReplaysAsync(new GetReplaysParams
+                    {
+                        Limit = limit,
+                    }, cancellationToken)
+                    .ConfigureAwait(false);
+                var ugcIds = (from r in response.replays
+                              select r.id)
+                              .ToList();
 
                 var replays = new ConcurrentBag<Replay>();
                 using (var download = new DownloadNotifier(Log, "replays"))
                 {
                     var requests = new List<Task>();
-                    foreach (var ugcId in missing)
+                    foreach (var ugcId in ugcIds)
                     {
                         var request = UpdateReplayAsync(ugcId);
                         requests.Add(request);

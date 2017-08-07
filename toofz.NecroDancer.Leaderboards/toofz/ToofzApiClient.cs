@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
+using Flurl;
 using log4net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace toofz.NecroDancer.Leaderboards
+namespace toofz.NecroDancer.Leaderboards.toofz
 {
     public sealed class ToofzApiClient : HttpClient, IToofzApiClient
     {
@@ -18,19 +20,39 @@ namespace toofz.NecroDancer.Leaderboards
         /// Initializes a new instance of the <see cref="ToofzApiClient"/> class with a specific handler.
         /// </summary>
         /// <param name="handler">The HTTP handler stack to use for sending requests.</param>
-        public ToofzApiClient(HttpMessageHandler handler) : base(handler, disposeHandler: false) { }
+        public ToofzApiClient(HttpMessageHandler handler) : base(handler, disposeHandler: false)
+        {
+            MaxResponseContentBufferSize = 2 * 1024 * 1024;
+            DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+        }
 
         #region Players
 
-        public async Task<IEnumerable<long>> GetStaleSteamIdsAsync(int limit, CancellationToken cancellationToken)
+        public async Task<Players> GetPlayersAsync(
+            GetPlayersParams @params = null,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
-            var response = await GetAsync($"players?limit={limit}", cancellationToken).ConfigureAwait(false);
+            var url = "players"
+                .SetQueryParams(new
+                {
+                    q = @params?.Query,
+                    offset = @params?.Offset,
+                    limit = @params?.Limit,
+                    sort = @params.Sort,
+                });
 
-            return await response.Content.ReadAsAsync<long[]>(cancellationToken).ConfigureAwait(false);
+            var response = await GetAsync(url, cancellationToken).ConfigureAwait(false);
+
+            return await response.Content.ReadAsAsync<Players>(cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<string> PostPlayersAsync(IEnumerable<Player> players, CancellationToken cancellationToken)
+        public Task<string> PostPlayersAsync(
+            IEnumerable<Leaderboards.Player> players,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (players == null)
+                throw new ArgumentNullException(nameof(players), $"{nameof(players)} is null.");
+
             var entities = (from p in players
                             select new
                             {
@@ -48,15 +70,31 @@ namespace toofz.NecroDancer.Leaderboards
 
         #region Replays
 
-        public async Task<IEnumerable<long>> GetMissingReplayIdsAsync(int limit, CancellationToken cancellationToken)
+        public async Task<Replays> GetReplaysAsync(
+            GetReplaysParams @params = null,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
-            var response = await GetAsync($"replays?limit={limit}", cancellationToken).ConfigureAwait(false);
+            var url = "replays"
+                .SetQueryParams(new
+                {
+                    version = @params?.Version,
+                    error = @params?.ErrorCode,
+                    offset = @params?.Offset,
+                    limit = @params?.Limit,
+                });
 
-            return await response.Content.ReadAsAsync<IEnumerable<long>>(cancellationToken).ConfigureAwait(false);
+            var response = await GetAsync(url, cancellationToken).ConfigureAwait(false);
+
+            return await response.Content.ReadAsAsync<Replays>(cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<string> PostReplaysAsync(IEnumerable<Replay> replays, CancellationToken cancellationToken)
+        public Task<string> PostReplaysAsync(
+            IEnumerable<Leaderboards.Replay> replays,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (replays == null)
+                throw new ArgumentNullException(nameof(replays), $"{nameof(replays)} is null.");
+
             return PostEntitiesAsync("replays", replays, cancellationToken);
         }
 

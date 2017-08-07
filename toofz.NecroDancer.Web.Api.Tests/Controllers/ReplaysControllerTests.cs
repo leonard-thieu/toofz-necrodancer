@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,7 +6,6 @@ using Moq;
 using toofz.NecroDancer.Leaderboards;
 using toofz.NecroDancer.Leaderboards.EntityFramework;
 using toofz.NecroDancer.Web.Api.Controllers;
-using toofz.NecroDancer.Web.Api.Models;
 using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Web.Api.Tests.Controllers
@@ -15,27 +13,26 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
     public class ReplaysControllerTests
     {
         [TestClass]
-        public class Get
+        public class GetReplays
         {
             [TestMethod]
             public async Task ReturnsOk()
             {
                 // Arrange
-                var mockSet = MockHelper.MockSet(new List<Replay>
-                {
-
-                }.AsQueryable());
+                var mockSet = MockHelper.MockSet<Replay>();
 
                 var mockRepository = new Mock<LeaderboardsContext>();
-                mockRepository.Setup(x => x.Replays).Returns(mockSet.Object);
+                mockRepository
+                    .Setup(x => x.Replays)
+                    .Returns(mockSet.Object);
 
                 var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
 
                 var controller = new ReplaysController(mockRepository.Object, mockILeaderboardsStoreClient.Object);
 
                 // Act
-                var actionResult = await controller.Get(0);
-                var contentResult = actionResult as OkNegotiatedContentResult<List<long>>;
+                var actionResult = await controller.GetReplays(0);
+                var contentResult = actionResult as OkNegotiatedContentResult<Models.Replays>;
 
                 // Assert
                 Assert.IsNotNull(contentResult);
@@ -44,7 +41,7 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
         }
 
         [TestClass]
-        public class Post
+        public class PostReplays
         {
             [TestMethod]
             public async Task ReturnsOk()
@@ -57,8 +54,8 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var controller = new ReplaysController(mockRepository.Object, mockILeaderboardsStoreClient.Object);
 
                 // Act
-                var actionResult = await controller.Post(new List<ReplayModel>());
-                var contentResult = actionResult as OkNegotiatedContentResult<BulkStoreDTO>;
+                var actionResult = await controller.PostReplays(new List<Models.ReplayModel>());
+                var contentResult = actionResult as OkNegotiatedContentResult<Models.BulkStoreDTO>;
 
                 // Assert
                 Assert.IsNotNull(contentResult);
@@ -77,7 +74,7 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 controller.ModelState.AddModelError("fakeError", "fakeError");
 
                 // Act
-                var actionResult = await controller.Post(new List<ReplayModel>());
+                var actionResult = await controller.PostReplays(new List<Models.ReplayModel>());
 
                 // Assert
                 Assert.IsInstanceOfType(actionResult, typeof(InvalidModelStateResult));

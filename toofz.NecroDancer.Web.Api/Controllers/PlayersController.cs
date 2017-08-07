@@ -17,6 +17,14 @@ namespace toofz.NecroDancer.Web.Api.Controllers
     [RoutePrefix("players")]
     public sealed class PlayersController : ApiController
     {
+        static IReadOnlyDictionary<string, string> SortKeySelectorMap = new Dictionary<string, string>
+        {
+            { $"{nameof(Models.Player.id)}", $"{nameof(Leaderboards.Player.SteamId)}" },
+            { $"{nameof(Models.Player.display_name)}", $"{nameof(Leaderboards.Player.Name)}" },
+            { $"{nameof(Models.Player.updated_at)}", $"{nameof(Leaderboards.Player.LastUpdate)}" },
+            { $"{nameof(Models.PlayerEntries.entries)}", $"{nameof(Leaderboards.Player.Entries)}.{nameof(List<Leaderboards.Entry>.Count)}" },
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayersController"/> class.
         /// </summary>
@@ -42,6 +50,11 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </summary>
         /// <param name="q">A search query.</param>
         /// <param name="pagination">Pagination parameters.</param>
+        /// <param name="sort">
+        /// Comma-separated values of properties to sort by. Properties may be prefixed with "-" to sort descending.
+        /// Valid properties are "id", "display_name", "updated_at", and "entries".
+        /// If not provided, results will sorted using "-entries,display_name,id".
+        /// </param>
         /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
         /// <returns>
         /// Returns a list of Steam players that match the search query.
@@ -49,17 +62,25 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         [ResponseType(typeof(Players))]
         [Route("")]
         public async Task<IHttpActionResult> GetPlayers(
-            string q,
-            [FromUri] PlayersPagination pagination,
+            string q = null,
+            [FromUri] PlayersPagination pagination = null,
+            string sort = "-entries,display_name,id",
             CancellationToken cancellationToken = default(CancellationToken))
         {
             pagination = pagination ?? new PlayersPagination();
 
-            var search = from p in db.Players
-                         where p.Name.StartsWith(q)
-                         select p;
-            var query = from p in search
-                        orderby p.Entries.Count descending, p.Name, p.SteamId
+            IQueryable<Leaderboards.Player> queryBase = db.Players;
+            if (!string.IsNullOrEmpty(q))
+            {
+                queryBase = queryBase.Where(p => p.Name.StartsWith(q));
+            }
+
+            if (queryBase.TryApplySort(sort, SortKeySelectorMap, out IQueryable<Leaderboards.Player> sorted))
+            {
+                queryBase = sorted;
+            }
+
+            var query = from p in queryBase
                         select new Models.Player
                         {
                             id = p.SteamId.ToString(),
@@ -261,30 +282,6 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         }
 
         /// <summary>
-        /// Gets a list of Steam players who require information to be updated.
-        /// </summary>
-        /// <param name="limit">The maximum number of Steam IDs to return.</param>
-        /// <param name="cancellationToken">A <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
-        /// <returns>
-        /// Returns a list of Steam IDs.
-        /// </returns>
-        [ResponseType(typeof(List<long>))]
-        [Route("")]
-        [Authorize(Users = "PlayersService")]
-        public async Task<IHttpActionResult> Get(
-            int limit,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            var players = await (from p in db.Players
-                                 orderby p.LastUpdate
-                                 select p.SteamId)
-                                 .Take(limit)
-                                 .ToListAsync(cancellationToken);
-
-            return Ok(players);
-        }
-
-        /// <summary>
         /// Updates Steam players.
         /// </summary>
         /// <param name="players">A list of players.</param>
@@ -298,7 +295,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         [ResponseType(typeof(BulkStoreDTO))]
         [Route("")]
         [Authorize(Users = "PlayersService")]
-        public async Task<IHttpActionResult> Post(
+        public async Task<IHttpActionResult> PostPlayers(
             IEnumerable<PlayerModel> players,
             CancellationToken cancellationToken = default(CancellationToken))
         {

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Moq;
 using toofz.NecroDancer.Leaderboards.Steam.WebApi;
+using toofz.NecroDancer.Leaderboards.toofz;
 using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
@@ -158,6 +160,10 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 var workerRole = new WorkerRole();
 
                 var mockIToofzApiClient = new Mock<IToofzApiClient>();
+                mockIToofzApiClient
+                    .Setup(toofzApiClient => toofzApiClient.GetReplaysAsync(It.IsAny<GetReplaysParams>(), It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(new Replays()));
+
                 var mockISteamWebApiClient = new Mock<ISteamWebApiClient>();
                 var mockIUgcHttpClient = new Mock<IUgcHttpClient>();
                 var directory = GetReplaysCloudBlobDirectory();
@@ -174,7 +180,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 });
 
                 // Assert
-                Assert.IsNull(ex);
+                Assert.IsNull(ex, ex?.Message);
             }
         }
     }

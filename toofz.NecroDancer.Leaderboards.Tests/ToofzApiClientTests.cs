@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using RichardSzalay.MockHttp;
+using toofz.NecroDancer.Leaderboards.toofz;
 using toofz.TestsShared;
 
 namespace toofz.NecroDancer.Leaderboards.Tests
 {
     class ToofzApiClientTests
     {
-        static readonly CancellationToken Cancellation = CancellationToken.None;
-
         [TestClass]
-        public class GetStaleSteamIdsAsync
+        public class GetPlayersAsync
         {
             [TestMethod]
             public async Task ReturnsSteamIds()
@@ -22,19 +20,21 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 // Arrange
                 var handler = new MockHttpMessageHandler();
                 handler
-                    .When(new Uri(Constants.FakeUri + "players?limit=0"))
-                    .RespondJson(new List<long>());
+                    .When(new Uri(Constants.FakeUri + "players?limit=20&sort=updated_at"))
+                    .RespondJson(new Players());
 
-                var toofzApiClient = new ToofzApiClient(handler)
-                {
-                    BaseAddress = Constants.FakeUri
-                };
+                var toofzApiClient = new ToofzApiClient(handler) { BaseAddress = Constants.FakeUri };
 
                 // Act
-                var steamIds = await toofzApiClient.GetStaleSteamIdsAsync(0, Cancellation);
+                var steamIds = await toofzApiClient.GetPlayersAsync(new GetPlayersParams
+                {
+                    Limit = 20,
+                    Sort = "updated_at",
+
+                });
 
                 // Assert
-                Assert.IsInstanceOfType(steamIds, typeof(IEnumerable<long>));
+                Assert.IsInstanceOfType(steamIds, typeof(Players));
             }
         }
 
@@ -50,14 +50,11 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                     .When(new Uri(Constants.FakeUri + "players"))
                     .RespondJson(new { rowsAffected = 1 });
 
-                var toofzApiClient = new ToofzApiClient(handler)
-                {
-                    BaseAddress = Constants.FakeUri
-                };
+                var toofzApiClient = new ToofzApiClient(handler) { BaseAddress = Constants.FakeUri };
                 var players = new List<Player> { new Player { Exists = true, LastUpdate = new DateTime(2016, 1, 1) } };
 
                 // Act
-                var response = await toofzApiClient.PostPlayersAsync(players, Cancellation);
+                var response = await toofzApiClient.PostPlayersAsync(players);
                 var rowsAffected = JObject.Parse(response)["rowsAffected"].Value<long>();
 
                 // Assert
@@ -66,7 +63,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
         }
 
         [TestClass]
-        public class GetMissingReplayIdsAsync
+        public class GetReplaysAsync
         {
             [TestMethod]
             public async Task ReturnsReplayIds()
@@ -74,19 +71,19 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 // Arrange
                 var handler = new MockHttpMessageHandler();
                 handler
-                    .When(new Uri(Constants.FakeUri + "replays?limit=0"))
-                    .RespondJson(new List<long>());
+                    .When(new Uri(Constants.FakeUri + "replays?limit=20"))
+                    .RespondJson(new Replays());
 
-                var toofzApiClient = new ToofzApiClient(handler)
-                {
-                    BaseAddress = Constants.FakeUri
-                };
+                var toofzApiClient = new ToofzApiClient(handler) { BaseAddress = Constants.FakeUri };
 
                 // Act
-                var replayIds = await toofzApiClient.GetMissingReplayIdsAsync(0, Cancellation);
+                var replayIds = await toofzApiClient.GetReplaysAsync(new GetReplaysParams
+                {
+                    Limit = 20,
+                });
 
                 // Assert
-                Assert.IsInstanceOfType(replayIds, typeof(IEnumerable<long>));
+                Assert.IsInstanceOfType(replayIds, typeof(Replays));
             }
         }
 
@@ -102,14 +99,11 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                     .When(new Uri(Constants.FakeUri + "replays"))
                     .RespondJson(new { rowsAffected = 1 });
 
-                var toofzApiClient = new ToofzApiClient(handler)
-                {
-                    BaseAddress = Constants.FakeUri
-                };
+                var toofzApiClient = new ToofzApiClient(handler) { BaseAddress = Constants.FakeUri };
                 var replays = new List<Replay> { new Replay() };
 
                 // Act
-                var response = await toofzApiClient.PostReplaysAsync(replays, Cancellation);
+                var response = await toofzApiClient.PostReplaysAsync(replays);
                 var rowsAffected = JObject.Parse(response)["rowsAffected"].Value<long>();
 
                 // Assert

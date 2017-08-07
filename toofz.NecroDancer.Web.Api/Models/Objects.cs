@@ -230,6 +230,21 @@ namespace toofz.NecroDancer.Web.Api.Models
         public IEnumerable<Player> players { get; set; }
     }
 
+    public class Replay
+    {
+        public string id { get; set; }
+        public int? error { get; set; }
+        public int? seed { get; set; }
+        public int? version { get; set; }
+        public string killed_by { get; set; }
+    }
+
+    public class Replays
+    {
+        public int total { get; set; }
+        public IEnumerable<Replay> replays { get; set; }
+    }
+
     /// <summary>
     /// The zone and level that the entry ends on.
     /// </summary>
