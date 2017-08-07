@@ -121,10 +121,8 @@
     </Compile>
     <Compile Include="Steam\WebApi\SteamWebApiTransientErrorDetectionStrategy.cs" />
     <Compile Include="Steam\WebApi\SteamWebApiTransientFaultHandler.cs" />
-    <Compile Include="ApiException.cs" />
     <Compile Include="DailyEntry.cs" />
     <Compile Include="DailyLeaderboard.cs" />
-    <Compile Include="EnsureSuccessHandler.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="HttpContentExtensions.cs" />
     <Compile Include="HttpRequestStatusException.cs" />

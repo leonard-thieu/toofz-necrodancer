@@ -55,7 +55,7 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
 
                 // Act
                 var actionResult = await controller.PostReplays(new List<Models.ReplayModel>());
-                var contentResult = actionResult as OkNegotiatedContentResult<Models.BulkStoreDTO>;
+                var contentResult = actionResult as OkNegotiatedContentResult<Models.BulkStore>;
 
                 // Assert
                 Assert.IsNotNull(contentResult);

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json.Linq;
 using RichardSzalay.MockHttp;
 using toofz.NecroDancer.Leaderboards.toofz;
 using toofz.TestsShared;
@@ -48,17 +47,16 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var handler = new MockHttpMessageHandler();
                 handler
                     .When(new Uri(Constants.FakeUri + "players"))
-                    .RespondJson(new { rowsAffected = 1 });
+                    .RespondJson(new { rows_affected = 1 });
 
                 var toofzApiClient = new ToofzApiClient(handler) { BaseAddress = Constants.FakeUri };
                 var players = new List<Player> { new Player { Exists = true, LastUpdate = new DateTime(2016, 1, 1) } };
 
                 // Act
-                var response = await toofzApiClient.PostPlayersAsync(players);
-                var rowsAffected = JObject.Parse(response)["rowsAffected"].Value<long>();
+                var bulkStore = await toofzApiClient.PostPlayersAsync(players);
 
                 // Assert
-                Assert.AreEqual(1, rowsAffected);
+                Assert.AreEqual(1, bulkStore.rows_affected);
             }
         }
 
@@ -97,17 +95,16 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var handler = new MockHttpMessageHandler();
                 handler
                     .When(new Uri(Constants.FakeUri + "replays"))
-                    .RespondJson(new { rowsAffected = 1 });
+                    .RespondJson(new { rows_affected = 1 });
 
                 var toofzApiClient = new ToofzApiClient(handler) { BaseAddress = Constants.FakeUri };
                 var replays = new List<Replay> { new Replay() };
 
                 // Act
-                var response = await toofzApiClient.PostReplaysAsync(replays);
-                var rowsAffected = JObject.Parse(response)["rowsAffected"].Value<long>();
+                var bulkStore = await toofzApiClient.PostReplaysAsync(replays);
 
                 // Assert
-                Assert.AreEqual(1, rowsAffected);
+                Assert.AreEqual(1, bulkStore.rows_affected);
             }
         }
     }

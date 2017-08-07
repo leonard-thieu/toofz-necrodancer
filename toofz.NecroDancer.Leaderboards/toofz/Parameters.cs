@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace toofz.NecroDancer.Leaderboards.toofz
+﻿namespace toofz.NecroDancer.Leaderboards.toofz
 {
     public sealed class GetPlayersParams : IPagination
     {

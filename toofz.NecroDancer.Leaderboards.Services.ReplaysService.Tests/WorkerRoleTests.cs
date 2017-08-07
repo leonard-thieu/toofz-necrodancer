@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -163,6 +164,9 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests
                 mockIToofzApiClient
                     .Setup(toofzApiClient => toofzApiClient.GetReplaysAsync(It.IsAny<GetReplaysParams>(), It.IsAny<CancellationToken>()))
                     .Returns(Task.FromResult(new Replays()));
+                mockIToofzApiClient
+                    .Setup(toofzApiClient => toofzApiClient.PostReplaysAsync(It.IsAny<IEnumerable<Replay>>(), It.IsAny<CancellationToken>()))
+                    .Returns(Task.FromResult(new BulkStore()));
 
                 var mockISteamWebApiClient = new Mock<ISteamWebApiClient>();
                 var mockIUgcHttpClient = new Mock<IUgcHttpClient>();

@@ -292,7 +292,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// <httpStatusCode cref="System.Net.HttpStatusCode.BadRequest">
         /// Any players failed validation.
         /// </httpStatusCode>
-        [ResponseType(typeof(BulkStoreDTO))]
+        [ResponseType(typeof(BulkStore))]
         [Route("")]
         [Authorize(Users = "PlayersService")]
         public async Task<IHttpActionResult> PostPlayers(
@@ -315,7 +315,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                          }).ToList();
             await storeClient.SaveChangesAsync(model, true, cancellationToken);
 
-            return Ok(new BulkStoreDTO { RowsAffected = players.Count() });
+            return Ok(new BulkStore { rows_affected = players.Count() });
         }
 
         #region IDisposable Members

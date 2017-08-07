@@ -347,7 +347,6 @@
     <Compile Include="Identity\ApplicationDbContext.cs" />
     <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Models\BulkStoreDTO.cs" />
     <Compile Include="Models\Objects.cs" />
     <Compile Include="Models\Parameters.cs" />
     <Compile Include="Models\PlayerModel.cs" />

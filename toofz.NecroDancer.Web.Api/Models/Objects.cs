@@ -352,4 +352,15 @@ namespace toofz.NecroDancer.Web.Api.Models
         /// </summary>
         public IEnumerable<Entry> entries { get; set; }
     }
+
+    /// <summary>
+    /// Represents the response of a bulk store operation.
+    /// </summary>
+    public class BulkStore
+    {
+        /// <summary>
+        /// The number of rows affected.
+        /// </summary>
+        public int rows_affected { get; set; }
+    }
 }

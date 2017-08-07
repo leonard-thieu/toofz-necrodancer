@@ -10,13 +10,13 @@ namespace toofz.NecroDancer.Leaderboards.toofz
         Task<Players> GetPlayersAsync(
             GetPlayersParams @params = null,
             CancellationToken cancellationToken = default(CancellationToken));
-        Task<string> PostPlayersAsync(
+        Task<BulkStore> PostPlayersAsync(
             IEnumerable<Leaderboards.Player> players,
             CancellationToken cancellationToken = default(CancellationToken));
         Task<Replays> GetReplaysAsync(
             GetReplaysParams @params = null,
             CancellationToken cancellationToken = default(CancellationToken));
-        Task<string> PostReplaysAsync(
+        Task<BulkStore> PostReplaysAsync(
             IEnumerable<Leaderboards.Replay> replays,
             CancellationToken cancellationToken = default(CancellationToken));
     }

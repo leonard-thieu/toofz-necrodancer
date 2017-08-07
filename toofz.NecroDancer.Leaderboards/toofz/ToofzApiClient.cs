@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Flurl;
 using log4net;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace toofz.NecroDancer.Leaderboards.toofz
 {
@@ -46,24 +43,16 @@ namespace toofz.NecroDancer.Leaderboards.toofz
             return await response.Content.ReadAsAsync<Players>(cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<string> PostPlayersAsync(
+        public async Task<BulkStore> PostPlayersAsync(
             IEnumerable<Leaderboards.Player> players,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (players == null)
                 throw new ArgumentNullException(nameof(players), $"{nameof(players)} is null.");
 
-            var entities = (from p in players
-                            select new
-                            {
-                                SteamId = p.SteamId,
-                                Exists = p.Exists.Value,
-                                Name = p.Name,
-                                LastUpdate = p.LastUpdate.Value,
-                                Avatar = p.Avatar,
-                            }).ToList();
+            var response = await this.PostAsJsonAsync("players", players, cancellationToken).ConfigureAwait(false);
 
-            return PostEntitiesAsync("players", entities, cancellationToken);
+            return await response.Content.ReadAsAsync<BulkStore>(cancellationToken).ConfigureAwait(false);
         }
 
         #endregion
@@ -88,45 +77,18 @@ namespace toofz.NecroDancer.Leaderboards.toofz
             return await response.Content.ReadAsAsync<Replays>(cancellationToken).ConfigureAwait(false);
         }
 
-        public Task<string> PostReplaysAsync(
+        public async Task<BulkStore> PostReplaysAsync(
             IEnumerable<Leaderboards.Replay> replays,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (replays == null)
                 throw new ArgumentNullException(nameof(replays), $"{nameof(replays)} is null.");
 
-            return PostEntitiesAsync("replays", replays, cancellationToken);
+            var response = await this.PostAsJsonAsync("replays", replays, cancellationToken).ConfigureAwait(false);
+
+            return await response.Content.ReadAsAsync<BulkStore>(cancellationToken).ConfigureAwait(false);
         }
 
         #endregion
-
-        async Task<string> PostEntitiesAsync<T>(string requestUri, IEnumerable<T> entities, CancellationToken cancellationToken)
-        {
-            using (var activity = new StoreNotifier(Log, requestUri))
-            {
-                var response = await this.PostAsJsonAsync(requestUri, entities, cancellationToken).ConfigureAwait(false);
-                if (response.Content.Headers.ContentType.MediaType != "application/json")
-                {
-                    throw await ApiException.CreateIncorrectMediaTypeAsync(response).ConfigureAwait(false);
-                }
-
-                var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-                try
-                {
-                    var bulkStore = JObject.Parse(json);
-                    var rowsAffectedObj = bulkStore["rowsAffected"];
-                    var rowsAffected = rowsAffectedObj.Value<long>();
-                    activity.Progress.Report(rowsAffected);
-                }
-                catch (JsonReaderException ex)
-                {
-                    var message = $"Couldn't deserialize response from {requestUri}." + Environment.NewLine + json;
-                    Log.Error(message, ex);
-                }
-
-                return json;
-            }
-        }
     }
 }

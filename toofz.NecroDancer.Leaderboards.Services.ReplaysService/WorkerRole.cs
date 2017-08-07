@@ -44,7 +44,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
             apiHandlers = HttpClientFactory.CreatePipeline(new WebRequestHandler(), new DelegatingHandler[]
             {
                 new LoggingHandler(),
-                new EnsureSuccessHandler(),
+                new HttpRequestStatusHandler(),
                 oAuth2Handler,
             });
         }
@@ -196,8 +196,12 @@ namespace toofz.NecroDancer.Leaderboards.Services.ReplaysService
                     }
                 }
 
-                // TODO: Add rollback to stored replays in case this fails
-                await toofzApiClient.PostReplaysAsync(replays, cancellationToken).ConfigureAwait(false);
+                using (var activity = new StoreNotifier(Log, "replays"))
+                {
+                    // TODO: Add rollback to stored replays in case this fails
+                    var bulkStore = await toofzApiClient.PostReplaysAsync(replays, cancellationToken).ConfigureAwait(false);
+                    activity.Progress.Report(bulkStore.rows_affected);
+                }
             }
         }
     }

@@ -81,7 +81,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// <httpStatusCode cref="System.Net.HttpStatusCode.BadRequest">
         /// Any replays failed validation.
         /// </httpStatusCode>
-        [ResponseType(typeof(BulkStoreDTO))]
+        [ResponseType(typeof(BulkStore))]
         [Route("")]
         [Authorize(Users = "ReplaysService")]
         public async Task<IHttpActionResult> PostReplays(
@@ -105,7 +105,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
 
             await storeClient.SaveChangesAsync(model, true, cancellationToken);
 
-            return Ok(new BulkStoreDTO { RowsAffected = replays.Count() });
+            return Ok(new BulkStore { rows_affected = replays.Count() });
         }
 
         #region IDisposable Members

@@ -105,9 +105,7 @@
     <Compile Include="Steam\WebApi\ISteamRemoteStorage\UgcFileDetailsTests.cs" />
     <Compile Include="Steam\WebApi\ISteamUser\PlayerSummariesTests.cs" />
     <Compile Include="Steam\WebApi\SteamWebApiClientTests.cs" />
-    <Compile Include="ApiExceptionTests.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="EnsureSuccessHandlerTests.cs" />
     <Compile Include="HttpRequestStatusHandlerTests.cs" />
     <Compile Include="ITargetBlockExtensionsTests.cs" />
     <Compile Include="OAuth2HandlerTests.cs" />

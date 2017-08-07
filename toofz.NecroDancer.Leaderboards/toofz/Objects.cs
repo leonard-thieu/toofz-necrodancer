@@ -55,4 +55,15 @@ namespace toofz.NecroDancer.Leaderboards.toofz
         public int total { get; set; }
         public IEnumerable<Replay> replays { get; set; } = new List<Replay>();
     }
+
+    /// <summary>
+    /// Represents the response of a bulk store operation.
+    /// </summary>
+    public class BulkStore
+    {
+        /// <summary>
+        /// The number of rows affected.
+        /// </summary>
+        public int rows_affected { get; set; }
+    }
 }

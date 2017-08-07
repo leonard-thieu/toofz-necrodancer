@@ -28,7 +28,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.PlayersService
             apiHandlers = HttpClientFactory.CreatePipeline(new WebRequestHandler(), new DelegatingHandler[]
             {
                 new LoggingHandler(),
-                new EnsureSuccessHandler(),
+                new HttpRequestStatusHandler(),
                 oAuth2Handler,
             });
         }
@@ -147,7 +147,11 @@ namespace toofz.NecroDancer.Leaderboards.Services.PlayersService
                         return p;
                     });
 
-                await toofzApiClient.PostPlayersAsync(playersIncludingNonExisting, cancellationToken).ConfigureAwait(false);
+                using (var activity = new StoreNotifier(Log, "players"))
+                {
+                    var bulkStore = await toofzApiClient.PostPlayersAsync(playersIncludingNonExisting, cancellationToken).ConfigureAwait(false);
+                    activity.Progress.Report(bulkStore.rows_affected);
+                }
             }
         }
     }
