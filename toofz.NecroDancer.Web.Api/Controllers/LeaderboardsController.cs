@@ -64,7 +64,10 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         [ResponseType(typeof(Models.Leaderboards))]
         [Route("")]
         public async Task<IHttpActionResult> GetLeaderboards(
-            string products = null, string modes = null, string runs = null, string characters = null,
+            string products = null,
+            string modes = null,
+            string runs = null,
+            string characters = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             products = products ?? categories.GetAllItemNames("products");
@@ -92,7 +95,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                                    l.CharacterId,
                                    l.RunId,
                                    l.LastUpdate,
-                                   l.Entries.Count
+                                   l.Entries.Count,
                                }).ToListAsync(cancellationToken);
 
             var leaderboards = (from l in query
@@ -107,13 +110,13 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                                     run = h.run,
                                     display_name = h.display_name,
                                     updated_at = l.LastUpdate,
-                                    total = l.Count
+                                    total = l.Count,
                                 }).ToList();
 
             var vm = new Models.Leaderboards
             {
                 total = leaderboards.Count,
-                leaderboards = leaderboards
+                leaderboards = leaderboards,
             };
 
             return Ok(vm);
@@ -131,7 +134,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </httpStatusCode>
         [ResponseType(typeof(LeaderboardEntries))]
         [Route("{lbid:int}/entries")]
-        public async Task<IHttpActionResult> GetLeaderboardEntries(int lbid,
+        public async Task<IHttpActionResult> GetLeaderboardEntries(
+            int lbid,
             [FromUri] LeaderboardsPagination pagination,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -316,7 +320,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </httpStatusCode>
         [ResponseType(typeof(DailyLeaderboardEntries))]
         [Route("dailies/{lbid:int}/entries")]
-        public async Task<IHttpActionResult> GetDailyLeaderboardEntries(int lbid,
+        public async Task<IHttpActionResult> GetDailyLeaderboardEntries(
+            int lbid,
             [FromUri] LeaderboardsPagination pagination,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -384,7 +389,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                                end = new End
                                {
                                    zone = e.End.Zone,
-                                   level = e.End.Level
+                                   level = e.End.Level,
                                },
                                killed_by = x?.KilledBy,
                                version = x?.Version,
@@ -401,7 +406,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                     production = leaderboard.IsProduction,
                 },
                 total = total,
-                entries = entries
+                entries = entries,
             };
 
             return Ok(content);

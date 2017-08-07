@@ -30,8 +30,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             this.storeClient = storeClient;
         }
 
-        private readonly LeaderboardsContext db;
-        private readonly ILeaderboardsStoreClient storeClient;
+        readonly LeaderboardsContext db;
+        readonly ILeaderboardsStoreClient storeClient;
 
         /// <summary>
         /// Gets a list of UGCIDs that require processing.
@@ -44,7 +44,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         [ResponseType(typeof(List<long>))]
         [Route("")]
         [Authorize(Users = "ReplaysService")]
-        public async Task<IHttpActionResult> Get(int limit,
+        public async Task<IHttpActionResult> Get(
+            int limit,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var missing = await (from r in db.Replays
@@ -70,7 +71,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         [ResponseType(typeof(BulkStoreDTO))]
         [Route("")]
         [Authorize(Users = "ReplaysService")]
-        public async Task<IHttpActionResult> Post(IEnumerable<ReplayModel> replays,
+        public async Task<IHttpActionResult> Post(
+            IEnumerable<ReplayModel> replays,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (!ModelState.IsValid)
@@ -95,7 +97,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
 
         #region IDisposable Members
 
-        private bool disposed;
+        bool disposed;
 
         /// <summary>
         /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.

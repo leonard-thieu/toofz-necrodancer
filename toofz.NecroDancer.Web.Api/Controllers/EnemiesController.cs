@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using toofz.NecroDancer.Data;
 using toofz.NecroDancer.EntityFramework;
 using toofz.NecroDancer.Web.Api.Models;
 
@@ -26,7 +25,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             this.db = db;
         }
 
-        private readonly NecroDancerContext db;
+        readonly NecroDancerContext db;
 
         /// <summary>
         /// Gets a list of Crypt of the NecroDancer enemies.
@@ -64,7 +63,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </httpStatusCode>
         [ResponseType(typeof(Enemies))]
         [Route("{attribute}")]
-        public async Task<IHttpActionResult> GetEnemies(string attribute,
+        public async Task<IHttpActionResult> GetEnemies(
+            string attribute,
             [FromUri] EnemiesPagination pagination,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -80,7 +80,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             }
         }
 
-        internal async Task<Enemies> GetEnemiesAsync(string attribute,
+        internal async Task<Enemies> GetEnemiesAsync(
+            string attribute,
             EnemiesPagination pagination,
             CancellationToken cancellationToken)
         {
@@ -134,7 +135,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
 
         #region IDisposable Members
 
-        private bool disposed;
+        bool disposed;
 
         /// <summary>
         /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.

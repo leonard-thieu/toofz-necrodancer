@@ -26,7 +26,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             this.db = db;
         }
 
-        private readonly NecroDancerContext db;
+        readonly NecroDancerContext db;
 
         /// <summary>
         /// Gets a list of Crypt of the NecroDancer items.
@@ -58,7 +58,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </returns>
         [ResponseType(typeof(Items))]
         [Route("{category}")]
-        public async Task<IHttpActionResult> GetItems(string category,
+        public async Task<IHttpActionResult> GetItems(
+            string category,
             [FromUri] ItemsPagination pagination,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -80,7 +81,9 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </returns>
         [ResponseType(typeof(Items))]
         [Route("{category}/{subcategory}")]
-        public async Task<IHttpActionResult> GetItems(string category, string subcategory,
+        public async Task<IHttpActionResult> GetItems(
+            string category,
+            string subcategory,
             [FromUri] ItemsPagination pagination,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -90,7 +93,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             return Ok(content);
         }
 
-        private async Task<Items> GetItemsAsync(Expression<Func<Data.Item, bool>> filter, ItemsPagination pagination, CancellationToken cancellationToken)
+        async Task<Items> GetItemsAsync(Expression<Func<Data.Item, bool>> filter, ItemsPagination pagination, CancellationToken cancellationToken)
         {
             var p = pagination ?? new ItemsPagination();
             var offset = p.offset;
@@ -122,7 +125,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             };
         }
 
-        private static Expression<Func<Data.Item, bool>> Items(string category, string subcategory)
+        static Expression<Func<Data.Item, bool>> Items(string category, string subcategory)
         {
             category = category?.ToLowerInvariant();
             subcategory = subcategory?.ToLowerInvariant();
@@ -146,7 +149,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             }
         }
 
-        private static Expression<Func<Data.Item, bool>> GetWeaponFilter(string subcategory)
+        static Expression<Func<Data.Item, bool>> GetWeaponFilter(string subcategory)
         {
             switch (subcategory)
             {
@@ -167,11 +170,11 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             }
         }
 
-        private static readonly string[] RedChestSlots = new[] { "head", "hud", "hud_weapon", "action", "bomb", "shovel" };
-        private static readonly string[] PurpleChestSlots = new[] { "ring" };
-        private static readonly string[] BlackChestSlots = new[] { "feet" };
+        static readonly string[] RedChestSlots = new[] { "head", "hud", "hud_weapon", "action", "bomb", "shovel" };
+        static readonly string[] PurpleChestSlots = new[] { "ring" };
+        static readonly string[] BlackChestSlots = new[] { "feet" };
 
-        private static Expression<Func<Data.Item, bool>> GetChestFilter(string subcategory)
+        static Expression<Func<Data.Item, bool>> GetChestFilter(string subcategory)
         {
             switch (subcategory)
             {
@@ -187,7 +190,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
 
         #region IDisposable Members
 
-        private bool disposed;
+        bool disposed;
 
         /// <summary>
         /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.

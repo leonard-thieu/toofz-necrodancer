@@ -33,9 +33,9 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             this.leaderboardHeaders = leaderboardHeaders;
         }
 
-        private readonly LeaderboardsContext db;
-        private readonly ILeaderboardsStoreClient storeClient;
-        private readonly LeaderboardHeaders leaderboardHeaders;
+        readonly LeaderboardsContext db;
+        readonly ILeaderboardsStoreClient storeClient;
+        readonly LeaderboardHeaders leaderboardHeaders;
 
         /// <summary>
         /// Search for Steam players.
@@ -48,7 +48,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </returns>
         [ResponseType(typeof(Players))]
         [Route("")]
-        public async Task<IHttpActionResult> GetPlayers(string q,
+        public async Task<IHttpActionResult> GetPlayers(
+            string q,
             [FromUri] PlayersPagination pagination,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -64,7 +65,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                             id = p.SteamId.ToString(),
                             display_name = p.Name,
                             updated_at = p.LastUpdate,
-                            avatar = p.Avatar
+                            avatar = p.Avatar,
                         };
 
             var total = await query.CountAsync(cancellationToken);
@@ -76,7 +77,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
             var results = new Players
             {
                 total = total,
-                players = players
+                players = players,
             };
 
             return Ok(results);
@@ -95,7 +96,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </httpStatusCode>
         [ResponseType(typeof(PlayerEntries))]
         [Route("{steamId}/entries")]
-        public async Task<IHttpActionResult> GetPlayer(long steamId,
+        public async Task<IHttpActionResult> GetPlayer(
+            long steamId,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var player = db.Players.FirstOrDefault(p => p.SteamId == steamId);
@@ -113,14 +115,14 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                                                e.Leaderboard.LeaderboardId,
                                                e.Leaderboard.CharacterId,
                                                e.Leaderboard.RunId,
-                                               e.Leaderboard.LastUpdate
+                                               e.Leaderboard.LastUpdate,
                                            },
                                            Rank = e.Rank,
                                            Score = e.Score,
                                            End = new
                                            {
                                                e.Zone,
-                                               e.Level
+                                               e.Level,
                                            },
                                            ReplayId = e.ReplayId,
                                        }).ToListAsync(cancellationToken);
@@ -149,14 +151,14 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                                    character = h.character,
                                    mode = h.mode,
                                    run = h.run,
-                                   updated_at = e.Leaderboard.LastUpdate
+                                   updated_at = e.Leaderboard.LastUpdate,
                                },
                                rank = e.Rank,
                                score = e.Score,
                                end = new End
                                {
                                    zone = e.End.Zone,
-                                   level = e.End.Level
+                                   level = e.End.Level,
                                },
                                killed_by = x?.KilledBy,
                                version = x?.Version,
@@ -169,10 +171,10 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                     id = player.SteamId.ToString(),
                     display_name = player.Name,
                     updated_at = player.LastUpdate,
-                    avatar = player.Avatar
+                    avatar = player.Avatar,
                 },
                 total = entries.Count,
-                entries = entries
+                entries = entries,
             };
 
             return Ok(vm);
@@ -193,7 +195,9 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// </httpStatusCode>
         [ResponseType(typeof(Models.Entry))]
         [Route("{steamId}/entries/{lbid:int}")]
-        public async Task<IHttpActionResult> GetPlayerLeaderboardEntry(int lbid, long steamId,
+        public async Task<IHttpActionResult> GetPlayerLeaderboardEntry(
+            int lbid,
+            long steamId,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var query = from e in db.Entries
@@ -213,9 +217,9 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                             End = new
                             {
                                 e.Zone,
-                                e.Level
+                                e.Level,
                             },
-                            ReplayId = e.ReplayId
+                            ReplayId = e.ReplayId,
                         };
 
             var playerEntry = await query.FirstOrDefaultAsync(e => e.Player.SteamId == steamId, cancellationToken);
@@ -247,7 +251,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                 end = new End
                 {
                     zone = playerEntry.End.Zone,
-                    level = playerEntry.End.Level
+                    level = playerEntry.End.Level,
                 },
                 killed_by = replay?.KilledBy,
                 version = replay?.Version,
@@ -267,7 +271,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         [ResponseType(typeof(List<long>))]
         [Route("")]
         [Authorize(Users = "PlayersService")]
-        public async Task<IHttpActionResult> Get(int limit,
+        public async Task<IHttpActionResult> Get(
+            int limit,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var players = await (from p in db.Players
@@ -293,7 +298,8 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         [ResponseType(typeof(BulkStoreDTO))]
         [Route("")]
         [Authorize(Users = "PlayersService")]
-        public async Task<IHttpActionResult> Post(IEnumerable<PlayerModel> players,
+        public async Task<IHttpActionResult> Post(
+            IEnumerable<PlayerModel> players,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             if (!ModelState.IsValid)
@@ -317,7 +323,7 @@ namespace toofz.NecroDancer.Web.Api.Controllers
 
         #region IDisposable Members
 
-        private bool disposed;
+        bool disposed;
 
         /// <summary>
         /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
