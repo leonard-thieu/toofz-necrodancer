@@ -11,7 +11,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.Steam.WebApi.ISteamRemoteStorage
         public class Deserialization
         {
             [TestMethod]
-            public void GetUGCFileDetailsJson_DeserializesUgcFileDetails()
+            public void GetUgcFileDetailsJson_DeserializesUgcFileDetails()
             {
                 // Arrange
                 var json = Resources.UgcFileDetails;
@@ -32,7 +32,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests.Steam.WebApi.ISteamRemoteStorage
         public class Deserialization
         {
             [TestMethod]
-            public void GetUGCFileDetailsJson_DeserializesUgcFileDetailsData()
+            public void GetUgcFileDetailsJson_DeserializesUgcFileDetailsData()
             {
                 // Arrange
                 var json = Resources.UgcFileDetails;

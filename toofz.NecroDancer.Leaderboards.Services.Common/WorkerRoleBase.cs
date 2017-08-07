@@ -1,13 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
 using log4net;
 using Newtonsoft.Json;
-using toofz.NecroDancer.Leaderboards.Steam.WebApi;
 
 namespace toofz.NecroDancer.Leaderboards.Services.Common
 {
@@ -17,6 +15,17 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
         #region Static Members
 
         static readonly ILog Log = LogManager.GetLogger(typeof(WorkerRoleBase<TSettings>).GetSimpleFullName());
+
+        static void LogError(string message, Exception ex)
+        {
+            var e = ex;
+            if (ex is AggregateException)
+            {
+                var all = ((AggregateException)ex).Flatten();
+                e = all.InnerExceptions.Count == 1 ? all.InnerException : all;
+            }
+            Log.Error(message, e);
+        }
 
         #endregion
 
@@ -40,24 +49,24 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
 
         readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
-        SteamWebApiClient httpClient;
-        OAuth2Handler oAuth2Handler;
-        ApiClient apiClient;
-        IUgcHttpClient ugcHttpClient;
-
         Thread thread;
         Idle idle;
 
-        protected abstract string SettingsPath { get; }
-
         protected TSettings Settings { get; set; } = new TSettings();
 
-        /// <summary>
-        /// The client used to perform leaderboard updates.
-        /// </summary>
-        protected LeaderboardsClient LeaderboardsClient { get; set; }
-
         #endregion
+
+        /// <summary>
+        /// Starts the update process. This method is intended to be called from console applications.
+        /// </summary>
+        /// <param name="args">Data passed by the start command.</param>
+        public void ConsoleStart(params string[] args)
+        {
+            OnStart(args);
+            thread.Join(Timeout.InfiniteTimeSpan);
+        }
+
+        #region OnStart
 
         /// <summary>
         /// Executes when a Start command is sent to the service by the Service Control Manager (SCM) 
@@ -66,36 +75,19 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
         /// <param name="args">Data passed by the start command.</param>
         protected sealed override void OnStart(string[] args)
         {
-            var steamApiHandlers = HttpClientFactory.CreatePipeline(new WebRequestHandler(), new DelegatingHandler[]
-            {
-                new LoggingHandler(),
-                new SteamWebApiTransientFaultHandler(Application.TelemetryClient),
-            });
-            httpClient = new SteamWebApiClient(steamApiHandlers);
-
-            var sqlClient = new LeaderboardsSqlClient(Util.GetEnvVar("LeaderboardsConnectionString"));
-
-            oAuth2Handler = new OAuth2Handler();
-            var apiHandlers = HttpClientFactory.CreatePipeline(new WebRequestHandler(), new DelegatingHandler[]
-            {
-                new LoggingHandler(),
-                new EnsureSuccessHandler(),
-                oAuth2Handler,
-            });
-            apiClient = new ApiClient(apiHandlers);
-
-            var ugcHandlers = HttpClientFactory.CreatePipeline(new WebRequestHandler(), new DelegatingHandler[]
-            {
-                new LoggingHandler(),
-                new HttpRequestStatusHandler(),
-            });
-            ugcHttpClient = new UgcHttpClient(ugcHandlers);
-
-            LeaderboardsClient = new LeaderboardsClient(httpClient, sqlClient, apiClient, ugcHttpClient);
-
+            OnStartOverride();
             thread = new Thread(Run);
             thread.Start();
         }
+
+        /// <summary>
+        /// When overridden in a derived class, performs initialization for the service.
+        /// </summary>
+        protected abstract void OnStartOverride();
+
+        #endregion
+
+        #region Run
 
         void Run()
         {
@@ -124,37 +116,16 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
             }
         }
 
-        static void LogError(string message, Exception ex)
-        {
-            var e = ex;
-            if (ex is AggregateException)
-            {
-                var all = ((AggregateException)ex).Flatten();
-                e = all.InnerExceptions.Count == 1 ? all.InnerException : all;
-            }
-            Log.Error(message, e);
-        }
-
         async Task RunAsync(CancellationToken cancellationToken)
         {
             while (!cancellationToken.IsCancellationRequested)
             {
                 idle = new Idle();
 
-                using (var sr = File.OpenText(SettingsPath))
+                using (var sr = File.OpenText("settings.json"))
                 {
                     var json = await sr.ReadToEndAsync().ConfigureAwait(false);
                     Settings = JsonConvert.DeserializeObject<TSettings>(json);
-                }
-
-                httpClient.SteamWebApiKey = Util.GetEnvVar("SteamWebApiKey");
-                oAuth2Handler.UserName = Util.GetEnvVar(Settings.ApiUserNameEnvVar);
-                oAuth2Handler.Password = Util.GetEnvVar(Settings.ApiPasswordEnvVar);
-
-                if (apiClient.BaseAddress == null)
-                {
-                    var apiBaseAddress = Util.GetEnvVar("toofzApiBaseAddress");
-                    apiClient.BaseAddress = new Uri(apiBaseAddress);
                 }
 
                 await RunAsyncOverride(cancellationToken).ConfigureAwait(false);
@@ -172,6 +143,10 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
         /// <returns>A task that represents the update process.</returns>
         protected abstract Task RunAsyncOverride(CancellationToken cancellationToken);
 
+        #endregion
+
+        #region OnStop
+
         /// <summary>
         /// Executes when a Stop command is sent to the service by the Service Control Manager (SCM).
         /// </summary>
@@ -181,14 +156,6 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
             thread.Join(TimeSpan.FromSeconds(10));
         }
 
-        /// <summary>
-        /// Starts the update process. This method is intended to be called from console applications.
-        /// </summary>
-        /// <param name="args">Data passed by the start command.</param>
-        public void ConsoleStart(params string[] args)
-        {
-            OnStart(args);
-            thread.Join(Timeout.InfiniteTimeSpan);
-        }
+        #endregion
     }
 }

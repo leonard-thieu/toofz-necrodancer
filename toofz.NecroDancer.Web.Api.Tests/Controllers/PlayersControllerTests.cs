@@ -42,11 +42,11 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 mockRepository.Setup(x => x.Entries).Returns(mockSetEntry.Object);
                 mockRepository.Setup(x => x.Replays).Returns(mockSetReplay.Object);
 
-                var mockSqlClient = new Mock<ILeaderboardsSqlClient>();
+                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
 
                 var controller = new PlayersController(
                     mockRepository.Object,
-                    mockSqlClient.Object,
+                    mockILeaderboardsStoreClient.Object,
                     LeaderboardsServiceFactory.ReadLeaderboardHeaders());
 
                 // Act
@@ -75,11 +75,11 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var mockRepository = new Mock<LeaderboardsContext>();
                 mockRepository.Setup(x => x.Players).Returns(mockSet.Object);
 
-                var mockSqlClient = new Mock<ILeaderboardsSqlClient>();
+                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
 
                 var controller = new PlayersController(
                     mockRepository.Object,
-                    mockSqlClient.Object,
+                    mockILeaderboardsStoreClient.Object,
                     LeaderboardsServiceFactory.ReadLeaderboardHeaders());
 
                 // Act
@@ -107,11 +107,11 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var mockRepository = new Mock<LeaderboardsContext>();
                 mockRepository.Setup(x => x.Players).Returns(mockSet.Object);
 
-                var mockSqlClient = new Mock<ILeaderboardsSqlClient>();
+                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
 
                 var controller = new PlayersController(
                     mockRepository.Object,
-                    mockSqlClient.Object,
+                    mockILeaderboardsStoreClient.Object,
                     LeaderboardsServiceFactory.ReadLeaderboardHeaders());
 
                 // Act
@@ -133,11 +133,11 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 // Arrange
                 var mockRepository = new Mock<LeaderboardsContext>();
 
-                var mockSqlClient = new Mock<ILeaderboardsSqlClient>();
+                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
 
                 var controller = new PlayersController(
                     mockRepository.Object,
-                    mockSqlClient.Object,
+                    mockILeaderboardsStoreClient.Object,
                     LeaderboardsServiceFactory.ReadLeaderboardHeaders());
 
                 // Act
@@ -155,11 +155,11 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 // Arrange
                 var mockRepository = new Mock<LeaderboardsContext>();
 
-                var mockSqlClient = new Mock<ILeaderboardsSqlClient>();
+                var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
 
                 var controller = new PlayersController(
                     mockRepository.Object,
-                    mockSqlClient.Object,
+                    mockILeaderboardsStoreClient.Object,
                     LeaderboardsServiceFactory.ReadLeaderboardHeaders());
                 controller.ModelState.AddModelError("fakeError", "fakeError");
 

@@ -27,7 +27,6 @@ namespace toofz.NecroDancer.Leaderboards.Services.Common
             if (disposing)
             {
                 components?.Dispose();
-                LeaderboardsClient?.Dispose();
             }
 
             disposed = true;

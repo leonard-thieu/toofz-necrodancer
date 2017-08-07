@@ -148,7 +148,7 @@ namespace toofz.NecroDancer.Leaderboards.Steam.WebApi
         /// <see cref="GetUgcFileDetailsAsync"/> requires <see cref="SteamWebApiKey"/> to be set to a valid Steam Web API Key.
         /// </exception>
         public async Task<UgcFileDetails> GetUgcFileDetailsAsync(
-            int appId,
+            uint appId,
             long ugcId,
             IProgress<long> progress = null,
             CancellationToken cancellationToken = default(CancellationToken))

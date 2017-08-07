@@ -1,7 +1,6 @@
 namespace toofz.NecroDancer.Leaderboards.EntityFramework.Migrations
 {
     using System.Data.Entity.Migrations;
-    using System.Data.SqlClient;
 
     public partial class FuschiaCopperPomeranian : DbMigration
     {

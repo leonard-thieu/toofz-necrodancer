@@ -48,5 +48,9 @@ namespace toofz.NecroDancer.Leaderboards.Steam.ClientApi
         /// Username or password are not set within details.
         /// </exception>
         Task<SteamUser.LoggedOnCallback> LogOnAsync(SteamUser.LogOnDetails details);
+        /// <summary>
+        /// Disconnects this client.
+        /// </summary>
+        void Disconnect();
     }
 }
