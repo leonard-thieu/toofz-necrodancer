@@ -133,12 +133,9 @@
     <Reference Include="toofz.NecroDancer.Leaderboards, Version=3.0.6429.22954, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\toofz.NecroDancer.Leaderboards.3.0.0\lib\net45\toofz.NecroDancer.Leaderboards.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\toofz.NecroDancer.Leaderboards.Services.Common\toofz.NecroDancer.Leaderboards.Services.Common.csproj">
-      <Project>{a80ace15-8a80-4912-aed0-385cc94b3974}</Project>
-      <Name>toofz.NecroDancer.Leaderboards.Services.Common</Name>
-    </ProjectReference>
+    <Reference Include="toofz.NecroDancer.Leaderboards.Services.Common, Version=2.0.6429.24735, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.NecroDancer.Leaderboards.Services.Common.2.0.0\lib\net45\toofz.NecroDancer.Leaderboards.Services.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

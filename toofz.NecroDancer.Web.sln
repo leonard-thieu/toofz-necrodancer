@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Services.Common", "toofz.NecroDancer.Leaderboards.Services.Common\toofz.NecroDancer.Leaderboards.Services.Common.csproj", "{A80ACE15-8A80-4912-AED0-385CC94B3974}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Web.Api", "toofz.NecroDancer.Web.Api\toofz.NecroDancer.Web.Api.csproj", "{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E1862536-1291-47AB-8DF8-65C3156CB8C8}"
@@ -37,10 +35,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A80ACE15-8A80-4912-AED0-385CC94B3974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A80ACE15-8A80-4912-AED0-385CC94B3974}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A80ACE15-8A80-4912-AED0-385CC94B3974}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A80ACE15-8A80-4912-AED0-385CC94B3974}.Release|Any CPU.Build.0 = Release|Any CPU
 		{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -78,7 +72,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A80ACE15-8A80-4912-AED0-385CC94B3974} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
 		{538C3CD9-BE40-4CD6-AEC8-4B7C07EC4CE7} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
 		{AF85C3C1-6A21-43E4-B9B6-E0D2707D9A9E} = {E1862536-1291-47AB-8DF8-65C3156CB8C8}
 		{1678334C-DE8C-4DC4-B493-4454BC209E18} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
