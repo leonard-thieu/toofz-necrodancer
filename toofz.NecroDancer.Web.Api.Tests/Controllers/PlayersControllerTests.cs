@@ -29,7 +29,7 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var controller = new PlayersController(
                     mockRepository.Object,
                     mockILeaderboardsStoreClient.Object,
-                    LeaderboardsServiceFactory.ReadLeaderboardHeaders());
+                    LeaderboardsResources.ReadLeaderboardHeaders());
 
                 // Act
                 var actionResult = await controller.GetPlayers("", new Models.PlayersPagination());
@@ -62,7 +62,7 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var controller = new PlayersController(
                     mockRepository.Object,
                     mockILeaderboardsStoreClient.Object,
-                    LeaderboardsServiceFactory.ReadLeaderboardHeaders());
+                    LeaderboardsResources.ReadLeaderboardHeaders());
 
                 // Act
                 var actionResult = await controller.GetPlayer(76561197960481221);
@@ -89,7 +89,7 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var controller = new PlayersController(
                     mockRepository.Object,
                     mockILeaderboardsStoreClient.Object,
-                    LeaderboardsServiceFactory.ReadLeaderboardHeaders());
+                    LeaderboardsResources.ReadLeaderboardHeaders());
 
                 // Act
                 var actionResult = await controller.PostPlayers(new List<Models.PlayerModel>());
@@ -111,7 +111,7 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
                 var controller = new PlayersController(
                     mockRepository.Object,
                     mockILeaderboardsStoreClient.Object,
-                    LeaderboardsServiceFactory.ReadLeaderboardHeaders());
+                    LeaderboardsResources.ReadLeaderboardHeaders());
                 controller.ModelState.AddModelError("fakeError", "fakeError");
 
                 // Act

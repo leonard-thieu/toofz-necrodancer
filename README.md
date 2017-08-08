@@ -16,33 +16,25 @@ Provides types for working with Crypt of the NecroDancer game data.
 
 Provides a context for working with types from [toofz.NecroDancer](https://github.com/leonard-thieu/toofz-necrodancer-core) in a database.
 
-#### [toofz.NecroDancer.Leaderboards](toofz.NecroDancer.Leaderboards)
+#### [toofz.NecroDancer.Leaderboards](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards)
 
 Provides types for working with Crypt of the NecroDancer leaderboards.
-
-#### [toofz.NecroDancer.Leaderboards.Tests](toofz.NecroDancer.Leaderboards.Tests)
-
-Tests for [toofz.NecroDancer.Leaderboards](toofz.NecroDancer.Leaderboards).
 
 #### [toofz.NecroDancer.Leaderboards.Services.Common](toofz.NecroDancer.Leaderboards.Services.Common)
 
 Common code for services.
 
-#### [toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate](toofz.NecroDancer.Leaderboards.Services.LeaderboardUpdate)
+#### [toofz.NecroDancer.Leaderboards.Services.LeaderboardsService](toofz.NecroDancer.Leaderboards.Services.LeaderboardsService)
 
 Service that updates leaderboard data.
 
-#### [toofz.NecroDancer.Leaderboards.Services.PlayerUpdate](toofz.NecroDancer.Leaderboards.Services.PlayerUpdate)
+#### [toofz.NecroDancer.Leaderboards.Services.PlayersService](toofz.NecroDancer.Leaderboards.Services.PlayersService)
 
 Service that updates player data.
 
-#### [toofz.NecroDancer.Leaderboards.Services.ReplayUpdate](toofz.NecroDancer.Leaderboards.Services.ReplayUpdate)
+#### [toofz.NecroDancer.Leaderboards.Services.ReplaysService](toofz.NecroDancer.Leaderboards.Services.ReplaysService)
 
 Service that updates replay data.
-
-#### [toofz.NecroDancer.Leaderboards.Services.Installer](toofz.NecroDancer.Leaderboards.Services.Installer)
-
-Installer for leaderboard services.
 
 #### [SqlBulkUpsert](https://github.com/leonard-thieu/SqlBulkUpsert)
 

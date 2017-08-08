@@ -54,10 +54,10 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService
             {
                 var headers = new List<LeaderboardHeader>();
 
-                var leaderboardHeaders = LeaderboardsResources.ReadLeaderboardHeaders("leaderboard-headers.min.json");
+                var leaderboardHeaders = LeaderboardsResources.ReadLeaderboardHeaders();
                 headers.AddRange(leaderboardHeaders.Where(h => h.id > 0));
 
-                var categories = LeaderboardsResources.ReadCategories("leaderboard-categories.min.json");
+                var leaderboardCategories = LeaderboardsResources.ReadLeaderboardCategories();
 
                 Leaderboard[] leaderboards;
                 using (var download = new DownloadNotifier(Log, "leaderboards"))
@@ -74,8 +74,8 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService
                             var leaderboard = new Leaderboard
                             {
                                 LeaderboardId = header.id,
-                                CharacterId = categories.GetItemId("characters", header.character),
-                                RunId = categories.GetItemId("runs", header.run),
+                                CharacterId = leaderboardCategories.GetItemId("characters", header.character),
+                                RunId = leaderboardCategories.GetItemId("runs", header.run),
                                 LastUpdate = DateTime.UtcNow,
                             };
 
@@ -152,7 +152,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService
                 var headers = new List<DailyLeaderboardHeader>();
 
                 IEnumerable<DailyLeaderboardHeader> todaysDailies;
-                var categories = LeaderboardsResources.ReadCategories("leaderboard-categories.min.json");
+                var leaderboardCategories = LeaderboardsResources.ReadLeaderboardCategories();
                 var today = DateTime.Today;
 
                 var staleDailies = await (from l in db.DailyLeaderboards
@@ -174,7 +174,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService
                     {
                         id = staleDaily.LeaderboardId,
                         date = staleDaily.Date,
-                        product = categories.GetItemName("products", staleDaily.ProductId),
+                        product = leaderboardCategories.GetItemName("products", staleDaily.ProductId),
                         production = staleDaily.IsProduction,
                     };
                     headers.Add(header);
@@ -197,15 +197,15 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService
                                  {
                                      id = l.LeaderboardId,
                                      date = l.Date,
-                                     product = categories.GetItemName("products", l.ProductId),
+                                     product = leaderboardCategories.GetItemName("products", l.ProductId),
                                      production = l.IsProduction,
                                  })
                                  .ToList();
 
-                if (todaysDailies.Count() != categories.GetCategory("products").Count)
+                if (todaysDailies.Count() != leaderboardCategories.GetCategory("products").Count)
                 {
                     var headerTasks = new List<Task<DailyLeaderboardHeader>>();
-                    foreach (var p in categories["products"])
+                    foreach (var p in leaderboardCategories["products"])
                     {
                         headerTasks.Add(GetDailyLeaderboardHeaderAsync());
 
@@ -264,7 +264,7 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService
                             {
                                 LeaderboardId = header.id,
                                 Date = header.date,
-                                ProductId = categories.GetItemId("products", header.product),
+                                ProductId = leaderboardCategories.GetItemId("products", header.product),
                                 IsProduction = header.production,
                                 LastUpdate = DateTime.UtcNow,
                             };
