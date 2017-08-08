@@ -44,13 +44,9 @@ Provides bulk upserting functionality. Used by leaderboard services for performa
 
 Source for http://crypt.toofz.com/.
 
-#### [toofz.NecroDancer.Web.Api](toofz.NecroDancer.Web.Api)
+#### [toofz.NecroDancer.Web.Api](https://github.com/leonard-thieu/toofz-necrodancer-web-api)
 
 Source for https://api.toofz.com/help.
-
-#### [toofz.NecroDancer.Web.Api.Tests](toofz.NecroDancer.Web.Api.Tests)
-
-Tests for [toofz.NecroDancer.Web.Api](toofz.NecroDancer.Web.Api).
 
 #### [toofz.NecroDancer.ImageManager](https://github.com/leonard-thieu/toofz-necrodancer-imagemanager)
 
