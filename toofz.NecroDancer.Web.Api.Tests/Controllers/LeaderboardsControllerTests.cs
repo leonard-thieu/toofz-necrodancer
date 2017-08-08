@@ -25,8 +25,8 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
 
                 var controller = new LeaderboardsController(
                     mockRepository.Object,
-                    LeaderboardsServiceFactory.ReadCategories(),
-                    LeaderboardsServiceFactory.ReadLeaderboardHeaders());
+                    LeaderboardsResources.ReadLeaderboardCategories(),
+                    LeaderboardsResources.ReadLeaderboardHeaders());
 
                 // Act
                 var actionResult = await controller.GetDailies(null);
@@ -56,8 +56,8 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
 
                 var controller = new LeaderboardsController(
                     mockRepository.Object,
-                    LeaderboardsServiceFactory.ReadCategories(),
-                    LeaderboardsServiceFactory.ReadLeaderboardHeaders());
+                    LeaderboardsResources.ReadLeaderboardCategories(),
+                    LeaderboardsResources.ReadLeaderboardHeaders());
 
                 // Act
                 var actionResult = await controller.GetLeaderboardEntries(741312, new Models.LeaderboardsPagination());
@@ -79,8 +79,8 @@ namespace toofz.NecroDancer.Web.Api.Tests.Controllers
 
                 var controller = new LeaderboardsController(
                     mockRepository.Object,
-                    LeaderboardsServiceFactory.ReadCategories(),
-                    LeaderboardsServiceFactory.ReadLeaderboardHeaders());
+                    LeaderboardsResources.ReadLeaderboardCategories(),
+                    LeaderboardsResources.ReadLeaderboardHeaders());
 
                 // Act
                 var actionResult = await controller.GetLeaderboardEntries(0, new Models.LeaderboardsPagination());
