@@ -180,18 +180,14 @@ namespace toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests
 
                 var mockILeaderboardsStoreClient = new Mock<ILeaderboardsStoreClient>();
 
-                var dailyLeaderboards = new List<DailyLeaderboard>
+                var mockSetDailyLeaderboard = MockHelper.MockSet(new DailyLeaderboard
                 {
-                    new DailyLeaderboard
-                    {
-                        LeaderboardId = 2089328,
-                        Date = new DateTime(2017, 8, 6, 0, 0, 0, DateTimeKind.Utc),
-                        LastUpdate = new DateTime(2017, 8, 6, 13, 20, 32, DateTimeKind.Utc),
-                        ProductId = 1,
-                        IsProduction = true,
-                    },
-                };
-                var mockSetDailyLeaderboard = MockHelper.MockSet(dailyLeaderboards);
+                    LeaderboardId = 2089328,
+                    Date = new DateTime(2017, 8, 6, 0, 0, 0, DateTimeKind.Utc),
+                    LastUpdate = new DateTime(2017, 8, 6, 13, 20, 32, DateTimeKind.Utc),
+                    ProductId = 1,
+                    IsProduction = true,
+                });
 
                 var mockLeaderboardsContext = new Mock<LeaderboardsContext>();
                 mockLeaderboardsContext
