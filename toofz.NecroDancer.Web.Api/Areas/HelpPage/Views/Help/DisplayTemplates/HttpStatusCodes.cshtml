@@ -1,9 +1,0 @@
-﻿@using toofz.NecroDancer.Web.Api.Areas.HelpPage.ModelDescriptions
-@model IList<HttpStatusCodeDescription>
-
-@foreach (var description in Model)
-{
-    <p>
-        <span class="label label-primary">@description.StatusCode @description.Phrase</span> @description.Documentation
-    </p>
-}
