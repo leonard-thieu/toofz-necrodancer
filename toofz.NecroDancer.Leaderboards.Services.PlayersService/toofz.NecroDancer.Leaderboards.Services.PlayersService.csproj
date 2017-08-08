@@ -83,8 +83,8 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.ServiceProcess" />
-    <Reference Include="toofz, Version=2.1.0.20911, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\toofz.2.1.0\lib\net45\toofz.dll</HintPath>
+    <Reference Include="toofz, Version=2.2.0.19639, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.2.2.0\lib\net45\toofz.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

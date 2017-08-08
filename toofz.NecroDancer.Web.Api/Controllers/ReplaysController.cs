@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -81,6 +82,9 @@ namespace toofz.NecroDancer.Web.Api.Controllers
         /// <httpStatusCode cref="System.Net.HttpStatusCode.BadRequest">
         /// Any replays failed validation.
         /// </httpStatusCode>
+        /// <httpStatusCode cref="System.Net.HttpStatusCode.Conflict">
+        /// There are duplicate IDs.
+        /// </httpStatusCode>
         [ResponseType(typeof(BulkStore))]
         [Route("")]
         [Authorize(Users = "ReplaysService")]
@@ -103,7 +107,15 @@ namespace toofz.NecroDancer.Web.Api.Controllers
                              KilledBy = r.KilledBy,
                          }).ToList();
 
-            await storeClient.SaveChangesAsync(model, true, cancellationToken);
+            try
+            {
+                await storeClient.SaveChangesAsync(model, true, cancellationToken);
+            }
+            // Violation of PRIMARY KEY constraint
+            catch (SqlException ex) when (ex.Number == 2627)
+            {
+                return Conflict();
+            }
 
             return Ok(new BulkStore { rows_affected = replays.Count() });
         }

@@ -40,7 +40,7 @@ namespace toofz.NecroDancer.Leaderboards.Tests
                 var mockHandler = new MockHttpMessageHandler();
                 mockHandler
                     .When("*")
-                    .Respond(HttpStatusCode.BadRequest);
+                    .Respond(HttpStatusCode.BadRequest, "application/json", "");
 
                 var handler = new TestingHttpMessageHandler(new HttpRequestStatusHandler { InnerHandler = mockHandler });
 
