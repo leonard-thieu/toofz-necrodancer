@@ -79,6 +79,11 @@ namespace toofz.NecroDancer.Web.Api.Areas.HelpPage
         public IEnumerable<HttpStatusCodeDescription> GetHttpStatusCodeDescriptions(HttpActionDescriptor actionDescriptor)
         {
             XPathNavigator methodNode = GetMethodNode(actionDescriptor);
+            if (methodNode == null)
+            {
+                return null;
+            }
+
             var httpStatusCodes = methodNode.SelectChildren("httpStatusCode", "");
 
             return httpStatusCodes.OfType<XPathNavigator>().Select(e =>

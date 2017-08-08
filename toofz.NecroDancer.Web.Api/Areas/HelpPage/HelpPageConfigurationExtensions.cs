@@ -259,7 +259,10 @@ namespace toofz.NecroDancer.Web.Api.Areas.HelpPage
             var documentationProvider = config.Services.GetDocumentationProvider() as XmlDocumentationProvider;
             var httpStatusCodes = documentationProvider.GetHttpStatusCodeDescriptions(apiModel.ApiDescription.ActionDescriptor);
 
-            apiModel.HttpStatusCodes.AddRange(httpStatusCodes);
+            if (httpStatusCodes != null)
+            {
+                apiModel.HttpStatusCodes.AddRange(httpStatusCodes);
+            }
         }
 
         private static void GenerateUriParameters(HelpPageApiModel apiModel, ModelDescriptionGenerator modelGenerator)
