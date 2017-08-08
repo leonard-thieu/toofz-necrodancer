@@ -83,8 +83,8 @@
       <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="toofz, Version=2.1.0.20911, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\toofz.2.1.0\lib\net45\toofz.dll</HintPath>
+    <Reference Include="toofz, Version=2.2.0.19639, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\toofz.2.2.0\lib\net45\toofz.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -124,18 +124,19 @@
     </Compile>
     <Compile Include="Steam\WebApi\SteamWebApiTransientErrorDetectionStrategy.cs" />
     <Compile Include="Steam\WebApi\SteamWebApiTransientFaultHandler.cs" />
-    <Compile Include="DailyEntry.cs" />
-    <Compile Include="DailyLeaderboard.cs" />
-    <Compile Include="Entry.cs" />
-    <Compile Include="HttpContentExtensions.cs" />
-    <Compile Include="HttpRequestStatusException.cs" />
-    <Compile Include="HttpRequestStatusHandler.cs" />
     <Compile Include="toofz\IToofzApiClient.cs" />
     <Compile Include="toofz\Objects.cs" />
     <Compile Include="toofz\Parameters.cs" />
     <Compile Include="toofz\ToofzApiClient.cs">
       <DependentUpon>IToofzApiClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="DailyEntry.cs" />
+    <Compile Include="DailyLeaderboard.cs" />
+    <Compile Include="Entry.cs" />
+    <Compile Include="HttpContentExtensions.cs" />
+    <Compile Include="HttpError.cs" />
+    <Compile Include="HttpRequestStatusException.cs" />
+    <Compile Include="HttpRequestStatusHandler.cs" />
     <Compile Include="ILeaderboardsStoreClient.cs" />
     <Compile Include="LeaderboardsStoreClient.cs">
       <DependentUpon>ILeaderboardsStoreClient.cs</DependentUpon>

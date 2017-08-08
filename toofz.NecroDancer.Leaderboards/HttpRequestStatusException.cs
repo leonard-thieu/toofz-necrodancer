@@ -29,5 +29,7 @@ namespace toofz.NecroDancer.Leaderboards
         /// The status code returned by the server for the request.
         /// </summary>
         public HttpStatusCode StatusCode { get; set; }
+        public Uri RequestUri { get; set; }
+        public string ResponseContent { get; set; }
     }
 }
