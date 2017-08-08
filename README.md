@@ -20,7 +20,7 @@ Provides a context for working with types from [toofz.NecroDancer](https://githu
 
 Provides types for working with Crypt of the NecroDancer leaderboards.
 
-#### [toofz.NecroDancer.Leaderboards.Services.Common](toofz.NecroDancer.Leaderboards.Services.Common)
+#### [toofz.NecroDancer.Leaderboards.Services.Common](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards-services-common)
 
 Common code for services.
 
