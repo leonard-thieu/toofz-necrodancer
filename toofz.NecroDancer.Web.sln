@@ -11,10 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Services.LeaderboardsService", "toofz.NecroDancer.Leaderboards.Services.LeaderboardsService\toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.csproj", "{1678334C-DE8C-4DC4-B493-4454BC209E18}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests", "toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests\toofz.NecroDancer.Leaderboards.Services.LeaderboardsService.Tests.csproj", "{45E158FD-FCBB-409D-A09B-D54EDD758910}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Services.PlayersService", "toofz.NecroDancer.Leaderboards.Services.PlayersService\toofz.NecroDancer.Leaderboards.Services.PlayersService.csproj", "{714C9B00-9392-4F2A-872C-3FE575A23D12}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Services.PlayersService.Tests", "toofz.NecroDancer.Leaderboards.Services.PlayersService.Tests\toofz.NecroDancer.Leaderboards.Services.PlayersService.Tests.csproj", "{3F602AB5-05E8-4A2D-B84A-F76EE07BE5EE}"
@@ -29,14 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1678334C-DE8C-4DC4-B493-4454BC209E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1678334C-DE8C-4DC4-B493-4454BC209E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1678334C-DE8C-4DC4-B493-4454BC209E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1678334C-DE8C-4DC4-B493-4454BC209E18}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45E158FD-FCBB-409D-A09B-D54EDD758910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45E158FD-FCBB-409D-A09B-D54EDD758910}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45E158FD-FCBB-409D-A09B-D54EDD758910}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45E158FD-FCBB-409D-A09B-D54EDD758910}.Release|Any CPU.Build.0 = Release|Any CPU
 		{714C9B00-9392-4F2A-872C-3FE575A23D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{714C9B00-9392-4F2A-872C-3FE575A23D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{714C9B00-9392-4F2A-872C-3FE575A23D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,8 +46,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1678334C-DE8C-4DC4-B493-4454BC209E18} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
-		{45E158FD-FCBB-409D-A09B-D54EDD758910} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
 		{714C9B00-9392-4F2A-872C-3FE575A23D12} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
 		{3F602AB5-05E8-4A2D-B84A-F76EE07BE5EE} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
 		{A1DCEC28-3283-4953-BD44-105DCCBB04CE} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}

@@ -24,7 +24,7 @@ Provides types for working with Crypt of the NecroDancer leaderboards.
 
 Common code for services.
 
-#### [toofz.NecroDancer.Leaderboards.Services.LeaderboardsService](toofz.NecroDancer.Leaderboards.Services.LeaderboardsService)
+#### [toofz.NecroDancer.Leaderboards.Services.LeaderboardsService](https://github.com/leonard-thieu/leaderboards-service)
 
 Service that updates leaderboard data.
 
