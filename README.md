@@ -1,5 +1,3 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/kl4iyoueism9ojdo?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer)
-
 # toofz
 
 ## Project structure
