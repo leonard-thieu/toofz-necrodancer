@@ -3,39 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CC7FC22B-EAC1-48BE-8149-9BE3DC096509}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution files", "Solution files", "{6F458725-A1D5-446C-81D1-FFCED96AE999}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Services.ReplaysService", "toofz.NecroDancer.Leaderboards.Services.ReplaysService\toofz.NecroDancer.Leaderboards.Services.ReplaysService.csproj", "{A1DCEC28-3283-4953-BD44-105DCCBB04CE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests", "toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests\toofz.NecroDancer.Leaderboards.Services.ReplaysService.Tests.csproj", "{100F18F7-93AB-4493-92B0-FF5541373FAC}"
-EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A1DCEC28-3283-4953-BD44-105DCCBB04CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1DCEC28-3283-4953-BD44-105DCCBB04CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1DCEC28-3283-4953-BD44-105DCCBB04CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1DCEC28-3283-4953-BD44-105DCCBB04CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{100F18F7-93AB-4493-92B0-FF5541373FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{100F18F7-93AB-4493-92B0-FF5541373FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{100F18F7-93AB-4493-92B0-FF5541373FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{100F18F7-93AB-4493-92B0-FF5541373FAC}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{A1DCEC28-3283-4953-BD44-105DCCBB04CE} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
-		{100F18F7-93AB-4493-92B0-FF5541373FAC} = {CC7FC22B-EAC1-48BE-8149-9BE3DC096509}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8
