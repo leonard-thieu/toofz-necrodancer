@@ -32,7 +32,7 @@ Service that updates leaderboard data.
 
 Service that updates player data.
 
-#### [toofz.NecroDancer.Leaderboards.Services.ReplaysService](toofz.NecroDancer.Leaderboards.Services.ReplaysService)
+#### [toofz.NecroDancer.Leaderboards.ReplaysService](https://github.com/leonard-thieu/replays-service)
 
 Service that updates replay data.
 
