@@ -24,11 +24,11 @@ Provides types for working with Crypt of the NecroDancer leaderboards.
 
 Common code for services.
 
-#### [toofz.NecroDancer.Leaderboards.Services.LeaderboardsService](https://github.com/leonard-thieu/leaderboards-service)
+#### [toofz.NecroDancer.Leaderboards.LeaderboardsService](https://github.com/leonard-thieu/leaderboards-service)
 
 Service that updates leaderboard data.
 
-#### [toofz.NecroDancer.Leaderboards.Services.PlayersService](toofz.NecroDancer.Leaderboards.Services.PlayersService)
+#### [toofz.NecroDancer.Leaderboards.PlayersService](https://github.com/leonard-thieu/players-service)
 
 Service that updates player data.
 
