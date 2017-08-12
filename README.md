@@ -52,7 +52,7 @@ Provides bulk upserting functionality. Used by **Leaderboard Services** for perf
 
 #### [Image Manager](https://github.com/leonard-thieu/toofz-necrodancer-imagemanager) [![Build status](https://ci.appveyor.com/api/projects/status/7o5ymk33junl322j/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-imagemanager/branch/master)
 
-Prepares and uploads image data from **Crypt of the NecroDancer** for use on the **toofz Website**.
+Prepares and uploads image data from **Crypt of the NecroDancer** for use on [toofz](https://github.com/leonard-thieu/toofz-necrodancer-webclient).
 
 #### [Data Loader](https://github.com/leonard-thieu/toofz-necrodancer-loaddata) [![Build status](https://ci.appveyor.com/api/projects/status/gpnh3cbvi2224wyh/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-loaddata/branch/master)
 
