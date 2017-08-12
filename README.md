@@ -30,17 +30,17 @@ Service that updates replay data.
 
 Common code for services.
 
-#### [toofz.NecroDancer.Leaderboards](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards)
+#### [Leaderboards](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards)
 
 Provides types for working with Crypt of the NecroDancer leaderboards.
 
 ### Crypt of the NecroDancer
 
-#### [toofz.NecroDancer](https://github.com/leonard-thieu/toofz-necrodancer-core)
+#### [NecroDancer](https://github.com/leonard-thieu/toofz-necrodancer-core)
 
 Provides types for working with Crypt of the NecroDancer game data.
 
-#### [toofz.NecroDancer.EntityFramework](https://github.com/leonard-thieu/toofz-necrodancer-entityframework)
+#### [NecroDancer (Entity Framework)](https://github.com/leonard-thieu/toofz-necrodancer-entityframework)
 
 Provides a context for working with types from [toofz.NecroDancer](https://github.com/leonard-thieu/toofz-necrodancer-core) in a database.
 
