@@ -58,10 +58,10 @@ Prepares and uploads image data from **Crypt of the NecroDancer** for use on [to
 
 Parses and loads **Crypt of the NecroDancer** item and enemy data into a database.
 
-#### [toofz Utilities](https://github.com/leonard-thieu/toofz) [![Build status](https://ci.appveyor.com/api/projects/status/b2w3cuq05d3udp00/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz/branch/master)
+#### [toofz Utilities](https://github.com/leonard-thieu/toofz) [![Build status](https://ci.appveyor.com/api/projects/status/b2w3cuq05d3udp00/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/toofz/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/toofz?branch=master)
 
 Utility library.
 
-#### [toofz Utilities for Tests](https://github.com/leonard-thieu/toofz-testsshared) [![Build status](https://ci.appveyor.com/api/projects/status/5mrvq3c9shjkisgs/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-testsshared/branch/master)
+#### [toofz Utilities for Tests](https://github.com/leonard-thieu/toofz-testsshared) [![Build status](https://ci.appveyor.com/api/projects/status/5mrvq3c9shjkisgs/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-testsshared/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/toofz-testsshared/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/toofz-testsshared?branch=master)
 
 Utility library for test projects.
