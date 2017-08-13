@@ -36,7 +36,7 @@ Provides types for working with **Crypt of the NecroDancer** leaderboards.
 
 ### Crypt of the NecroDancer
 
-#### [NecroDancer Core](https://github.com/leonard-thieu/toofz-necrodancer-core) [![Build status](https://ci.appveyor.com/api/projects/status/de1vj801al1krlfa/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-core/branch/master)
+#### [NecroDancer Core](https://github.com/leonard-thieu/toofz-necrodancer-core) [![Build status](https://ci.appveyor.com/api/projects/status/de1vj801al1krlfa/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-core/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/toofz-necrodancer-core/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/toofz-necrodancer-core?branch=master)
 
 Provides types for working with **Crypt of the NecroDancer** game data.
 
