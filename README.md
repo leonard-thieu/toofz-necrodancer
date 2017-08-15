@@ -4,11 +4,11 @@
 
 ### Web
 
-#### [toofz](https://github.com/leonard-thieu/toofz-necrodancer-webclient) [![Build status](https://ci.appveyor.com/api/projects/status/83e8eikypiri2lhi/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-webclient/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/toofz-necrodancer-webclient/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/toofz-necrodancer-webclient?branch=master)
+#### [toofz](https://github.com/leonard-thieu/crypt.toofz.com) [![Build status](https://ci.appveyor.com/api/projects/status/83e8eikypiri2lhi/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-webclient/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/crypt.toofz.com/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/crypt.toofz.com?branch=master)
 
 Source for http://crypt.toofz.com/.
 
-#### [toofz API](https://github.com/leonard-thieu/api.toofz.com) [![Build status](https://ci.appveyor.com/api/projects/status/2en9f6hcf72ujm9y/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-web-api/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/toofz-necrodancer-web-api/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/toofz-necrodancer-web-api?branch=master)
+#### [toofz API](https://github.com/leonard-thieu/api.toofz.com) [![Build status](https://ci.appveyor.com/api/projects/status/2en9f6hcf72ujm9y/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-web-api/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/api.toofz.com/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/api.toofz.com?branch=master)
 
 Source for [https://api.toofz.com/](https://api.toofz.com/help).
 
