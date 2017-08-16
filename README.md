@@ -26,7 +26,7 @@ Service that updates player data.
 
 Service that updates replay data.
 
-#### [Services Core](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards-services-common) [![Build status](https://ci.appveyor.com/api/projects/status/ra5o1lcdc1hh3e29?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards-services-common)
+#### [Services Core](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards-services) [![Build status](https://ci.appveyor.com/api/projects/status/ra5o1lcdc1hh3e29?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards-services-common)
 
 Common code for services.
 
