@@ -18,7 +18,7 @@ Source for [https://api.toofz.com/](https://api.toofz.com/help).
 
 Service that updates leaderboard data.
 
-#### [Players Service](https://github.com/leonard-thieu/players-service) [![Build status](https://ci.appveyor.com/api/projects/status/3udoy27b6tetostp/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/players-service/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/players-service/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/players-service?branch=master)
+#### [Players Service](https://github.com/leonard-thieu/players-service) [![Build status](https://ci.appveyor.com/api/projects/status/3udoy27b6tetostp/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/players-service/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/players-service/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/players-service)
 
 Service that updates player data.
 
