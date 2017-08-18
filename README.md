@@ -58,7 +58,7 @@ Prepares and uploads image data from **Crypt of the NecroDancer** for use on [to
 
 Parses and loads **Crypt of the NecroDancer** item and enemy data into a database.
 
-#### [toofz Utilities](https://github.com/leonard-thieu/toofz) [![Build status](https://ci.appveyor.com/api/projects/status/b2w3cuq05d3udp00/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/toofz/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/toofz?branch=master)
+#### [toofz Utilities](https://github.com/leonard-thieu/toofz) [![Build status](https://ci.appveyor.com/api/projects/status/b2w3cuq05d3udp00/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz)
 
 Utility library.
 
