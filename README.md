@@ -50,14 +50,6 @@ Provides a context for working with types from [NecroDancer Core](https://github
 
 Provides bulk upserting functionality. Used by **Leaderboard Services** for performance. Forked from https://github.com/dezfowler/SqlBulkUpsert.
 
-#### [Image Manager](https://github.com/leonard-thieu/toofz-necrodancer-imagemanager) [![Build status](https://ci.appveyor.com/api/projects/status/7o5ymk33junl322j/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-imagemanager/branch/master)
-
-Prepares and uploads image data from **Crypt of the NecroDancer** for use on [toofz](https://github.com/leonard-thieu/crypt.toofz.com).
-
-#### [Data Loader](https://github.com/leonard-thieu/toofz-necrodancer-loaddata) [![Build status](https://ci.appveyor.com/api/projects/status/gpnh3cbvi2224wyh/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-loaddata/branch/master)
-
-Parses and loads **Crypt of the NecroDancer** item and enemy data into a database.
-
 #### [toofz Utilities](https://github.com/leonard-thieu/toofz) [![Build status](https://ci.appveyor.com/api/projects/status/b2w3cuq05d3udp00/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz)
 
 Utility library.
@@ -65,3 +57,11 @@ Utility library.
 #### [toofz Utilities for Tests](https://github.com/leonard-thieu/toofz-testsshared) [![Build status](https://ci.appveyor.com/api/projects/status/5mrvq3c9shjkisgs/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-testsshared/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-testsshared/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-testsshared)
 
 Utility library for test projects.
+
+#### [Image Manager](https://github.com/leonard-thieu/toofz-necrodancer-imagemanager) [![Build status](https://ci.appveyor.com/api/projects/status/7o5ymk33junl322j/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-imagemanager/branch/master)
+
+Prepares and uploads image data from **Crypt of the NecroDancer** for use on [toofz](https://github.com/leonard-thieu/crypt.toofz.com).
+
+#### [Data Loader](https://github.com/leonard-thieu/toofz-necrodancer-loaddata) [![Build status](https://ci.appveyor.com/api/projects/status/gpnh3cbvi2224wyh/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-loaddata/branch/master)
+
+Parses and loads **Crypt of the NecroDancer** item and enemy data into a database.
