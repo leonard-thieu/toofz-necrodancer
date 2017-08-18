@@ -46,7 +46,8 @@ Provides a context for working with types from [NecroDancer Core](https://github
 
 ### Utility and tools
 
-#### [SqlBulkUpsert](https://github.com/leonard-thieu/SqlBulkUpsert) [![Build status](https://ci.appveyor.com/api/projects/status/q0r7259k9i1pky06/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/sqlbulkupsert/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/SqlBulkUpsert/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/SqlBulkUpsert?branch=master)
+#### [SqlBulkUpsert](https://github.com/leonard-thieu/SqlBulkUpsert) [![Build status](https://ci.appveyor.com/api/projects/status/q0r7259k9i1pky06/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/sqlbulkupsert/branch/master) [![Build status](https://ci.appveyor.com/api/projects/status/q0r7259k9i1pky06/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/sqlbulkupsert/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/SqlBulkUpsert/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/SqlBulkUpsert)
+
 
 Provides bulk upserting functionality. Used by **Leaderboard Services** for performance. Forked from https://github.com/dezfowler/SqlBulkUpsert.
 
