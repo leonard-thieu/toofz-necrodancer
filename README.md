@@ -62,6 +62,6 @@ Parses and loads **Crypt of the NecroDancer** item and enemy data into a databas
 
 Utility library.
 
-#### [toofz Utilities for Tests](https://github.com/leonard-thieu/toofz-testsshared) [![Build status](https://ci.appveyor.com/api/projects/status/5mrvq3c9shjkisgs/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-testsshared/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/toofz-testsshared/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/toofz-testsshared?branch=master)
+#### [toofz Utilities for Tests](https://github.com/leonard-thieu/toofz-testsshared) [![Build status](https://ci.appveyor.com/api/projects/status/5mrvq3c9shjkisgs/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-testsshared/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-testsshared/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-testsshared)
 
 Utility library for test projects.
