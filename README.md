@@ -26,7 +26,7 @@ Service that updates player data.
 
 Service that updates replay data.
 
-#### [Services Core](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards-services) [![Build status](https://ci.appveyor.com/api/projects/status/ra5o1lcdc1hh3e29?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards-services-common)
+#### [Services Core](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards-services) [![Build status](https://ci.appveyor.com/api/projects/status/ra5o1lcdc1hh3e29?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards-services-common) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-leaderboards-services/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-leaderboards-services)
 
 Common code for services.
 
@@ -58,6 +58,10 @@ Utility library.
 #### [toofz Utilities for Tests](https://github.com/leonard-thieu/toofz-testsshared) [![Build status](https://ci.appveyor.com/api/projects/status/5mrvq3c9shjkisgs/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-testsshared/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-testsshared/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-testsshared)
 
 Utility library for test projects.
+
+#### [toofz Telemetry](https://github.com/leonard-thieu/toofz-telemetry) [![Build status](https://ci.appveyor.com/api/projects/status/180jggt6xnfkyfht/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-telemetry/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-telemetry/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-telemetry)
+
+Enhances telemetry data.
 
 #### [Image Manager](https://github.com/leonard-thieu/toofz-necrodancer-imagemanager) [![Build status](https://ci.appveyor.com/api/projects/status/7o5ymk33junl322j/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-imagemanager/branch/master)
 
