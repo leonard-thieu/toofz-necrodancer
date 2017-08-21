@@ -30,7 +30,7 @@ Service that updates replay data.
 
 Common code for services.
 
-#### [Leaderboards Core](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards) [![Build status](https://ci.appveyor.com/api/projects/status/fhfu870220jgfm3l/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards/branch/master) [![Coverage Status](https://coveralls.io/repos/github/leonard-thieu/toofz-necrodancer-leaderboards/badge.svg?branch=master)](https://coveralls.io/github/leonard-thieu/toofz-necrodancer-leaderboards?branch=master)
+#### [Leaderboards Core](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards) [![Build status](https://ci.appveyor.com/api/projects/status/fhfu870220jgfm3l/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-leaderboards/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-leaderboards)
 
 Provides types for working with **Crypt of the NecroDancer** leaderboards.
 
