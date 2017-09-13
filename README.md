@@ -30,13 +30,13 @@ Service that updates replay data.
 
 Common code for services.
 
-#### [Leaderboards Core](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards) [![Build status](https://ci.appveyor.com/api/projects/status/fhfu870220jgfm3l/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-leaderboards/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-leaderboards) [![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Leaderboards.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Leaderboards)
+#### [Leaderboards Core](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards) [![Build status](https://ci.appveyor.com/api/projects/status/fhfu870220jgfm3l/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core) [![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Leaderboards.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Leaderboards)
 
 Provides types for working with **Crypt of the NecroDancer** leaderboards.
 
 #### [Leaderboards Core (Entity Framework)](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards-entityframework) [![Build status](https://ci.appveyor.com/api/projects/status/belqgh64mubwul1u/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards-entityframework/branch/master) [![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Leaderboards.EntityFramework.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Leaderboards.EntityFramework)
 
-Provides a context for working with types from [Leaderboards Core](https://github.com/leonard-thieu/toofz-necrodancer-leaderboards) in a database.
+Provides a context for working with types from [Leaderboards Core](https://github.com/leonard-thieu/toofz-leaderboards-core) in a database.
 
 ### Crypt of the NecroDancer
 
