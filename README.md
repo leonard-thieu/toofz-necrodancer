@@ -58,7 +58,7 @@ Provides bulk upserting functionality. Used by **Leaderboard Services** for perf
 
 Utility library.
 
-#### [toofz Utilities for Tests](https://github.com/leonard-thieu/toofz-testsshared) [![Build status](https://ci.appveyor.com/api/projects/status/5mrvq3c9shjkisgs/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-testsshared/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-testsshared/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-testsshared) [![MyGet](https://img.shields.io/myget/toofz/v/toofz.TestsShared.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.TestsShared)
+#### [toofz Utilities for Tests](https://github.com/leonard-thieu/toofz-utilities-for-tests) [![Build status](https://ci.appveyor.com/api/projects/status/5mrvq3c9shjkisgs/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-testsshared/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-utilities-for-tests/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-utilities-for-tests) [![MyGet](https://img.shields.io/myget/toofz/v/toofz.TestsShared.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.TestsShared)
 
 Utility library for test projects.
 
