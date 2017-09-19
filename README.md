@@ -34,7 +34,7 @@ Common code for services.
 
 Provides types for working with **Crypt of the NecroDancer** leaderboards.
 
-#### [Leaderboards Core (Data)](https://github.com/leonard-thieu/toofz-leaderboards-core-data) [![Build status](https://ci.appveyor.com/api/projects/status/belqgh64mubwul1u/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards-entityframework/branch/master) [![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Leaderboards.Data.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Leaderboards.Data)
+#### [Leaderboards Core (Data)](https://github.com/leonard-thieu/toofz-leaderboards-core-data) [![Build status](https://ci.appveyor.com/api/projects/status/belqgh64mubwul1u/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards-entityframework/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core-data/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core-data) [![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Leaderboards.Data.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Leaderboards.Data)
 
 Provides a context for working with types from [Leaderboards Core](https://github.com/leonard-thieu/toofz-leaderboards-core) in a database.
 
