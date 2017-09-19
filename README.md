@@ -44,7 +44,7 @@ Provides a context for working with types from [Leaderboards Core](https://githu
 
 Provides types for working with **Crypt of the NecroDancer** game data.
 
-#### [NecroDancer Core (Data)](https://github.com/leonard-thieu/toofz-necrodancer-core-data) [![Build status](https://ci.appveyor.com/api/projects/status/cowbksjnikl2928m/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-entityframework/branch/master) [![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Data.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Data)
+#### [NecroDancer Core (Data)](https://github.com/leonard-thieu/toofz-necrodancer-core-data) [![Build status](https://ci.appveyor.com/api/projects/status/cowbksjnikl2928m/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-entityframework/branch/master) [![codecov](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-core-data/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-core-data) [![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Data.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Data)
 
 Provides a context for working with types from [NecroDancer Core](https://github.com/leonard-thieu/toofz-necrodancer-core) in a database.
 
