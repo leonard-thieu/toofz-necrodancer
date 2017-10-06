@@ -70,6 +70,6 @@ Enhances telemetry data.
 
 Prepares and uploads image data from **Crypt of the NecroDancer** for use on [toofz](https://github.com/leonard-thieu/crypt.toofz.com).
 
-#### [Data Loader](https://github.com/leonard-thieu/toofz-necrodancer-loaddata) [![Build status](https://ci.appveyor.com/api/projects/status/gpnh3cbvi2224wyh/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-loaddata/branch/master)
+#### [Data Loader](https://github.com/leonard-thieu/toofz-data-loader) [![Build status](https://ci.appveyor.com/api/projects/status/gpnh3cbvi2224wyh/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-loaddata/branch/master)
 
 Parses and loads **Crypt of the NecroDancer** item and enemy data into a database.
