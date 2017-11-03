@@ -93,15 +93,15 @@ Provides a context for working with types from [NecroDancer Core](https://github
 
 Provides bulk upserting functionality. Used by **Leaderboard Services** for performance. Forked from https://github.com/dezfowler/SqlBulkUpsert.
 
-#### [toofz Utilities](https://github.com/leonard-thieu/toofz-utilities)
+#### [SteamKit2](https://github.com/leonard-thieu/SteamKit)
 
-[![Build status](https://ci.appveyor.com/api/projects/status/b2w3cuq05d3udp00/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz/branch/master)
-[![codecov](https://codecov.io/gh/leonard-thieu/toofz-utilities/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-utilities)
-[![MyGet](https://img.shields.io/myget/toofz/v/toofz.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz)
+[![Build status](https://ci.appveyor.com/api/projects/status/rvbwhn15yiooeyi3/branch/master2?svg=true)](https://ci.appveyor.com/project/leonard-thieu/steamkit/branch/master2)
+[![MyGet](https://img.shields.io/myget/toofz/v/toofz.SteamKit2.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.SteamKit2)
 
-Utility library.
+SteamKit2 is a .NET library designed to interoperate with Valve's [Steam network](http://store.steampowered.com/about). 
+It aims to provide a simple, yet extensible, interface to perform various actions on the network. Forked from https://github.com/SteamRE/SteamKit.
 
-#### [toofz Utilities for Tests](https://github.com/leonard-thieu/toofz-utilities-for-tests)
+#### [Utilities for Tests](https://github.com/leonard-thieu/toofz-utilities-for-tests)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/5mrvq3c9shjkisgs/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-testsshared/branch/master)
 [![codecov](https://codecov.io/gh/leonard-thieu/toofz-utilities-for-tests/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-utilities-for-tests)
@@ -109,7 +109,19 @@ Utility library.
 
 Utility library for test projects.
 
-#### [toofz Telemetry](https://github.com/leonard-thieu/toofz-telemetry)
+#### [Activity Tracing](https://github.com/leonard-thieu/toofz-activity-tracing)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/ndjkfngbcrmyoo5p/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-activity-tracing/branch/master)
+[![codecov](https://codecov.io/gh/leonard-thieu/toofz-activity-tracing/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-activity-tracing)
+[![MyGet](https://img.shields.io/myget/toofz/v/toofz.ActivityTracing.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.ActivityTracing)
+
+#### [Exception Renderer](https://github.com/leonard-thieu/toofz-exception-renderer)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/5t9ippn4gbw1a49n/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-exception-renderer/branch/master)
+[![codecov](https://codecov.io/gh/leonard-thieu/toofz-exception-renderer/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-exception-renderer)
+[![MyGet](https://img.shields.io/myget/toofz/v/toofz.ExceptionRenderer.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.ExceptionRenderer)
+
+#### [Telemetry](https://github.com/leonard-thieu/toofz-telemetry)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/180jggt6xnfkyfht/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-telemetry/branch/master)
 [![codecov](https://codecov.io/gh/leonard-thieu/toofz-telemetry/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-telemetry)
