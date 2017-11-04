@@ -85,14 +85,6 @@ Provides a context for working with types from [NecroDancer Core](https://github
 
 ### Utility and tools
 
-#### [SqlBulkUpsert](https://github.com/leonard-thieu/SqlBulkUpsert)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/q0r7259k9i1pky06/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/sqlbulkupsert/branch/master)
-[![codecov](https://codecov.io/gh/leonard-thieu/SqlBulkUpsert/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/SqlBulkUpsert)
-[![MyGet](https://img.shields.io/myget/toofz/v/toofz.SqlBulkUpsert.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.SqlBulkUpsert)
-
-Provides bulk upserting functionality. Used by **Leaderboard Services** for performance. Forked from https://github.com/dezfowler/SqlBulkUpsert.
-
 #### [SteamKit2](https://github.com/leonard-thieu/SteamKit)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/rvbwhn15yiooeyi3/branch/master2?svg=true)](https://ci.appveyor.com/project/leonard-thieu/steamkit/branch/master2)
