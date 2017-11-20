@@ -82,25 +82,3 @@ Provides types for working with **Crypt of the NecroDancer** game data.
 [![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Data.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Data)
 
 Provides a context for working with types from [NecroDancer Core](https://github.com/leonard-thieu/toofz-necrodancer-core) in a database.
-
-### Utility and tools
-
-#### [Utilities for Tests](https://github.com/leonard-thieu/toofz-utilities-for-tests)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/5mrvq3c9shjkisgs/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-testsshared/branch/master)
-[![codecov](https://codecov.io/gh/leonard-thieu/toofz-utilities-for-tests/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-utilities-for-tests)
-[![MyGet](https://img.shields.io/myget/toofz/v/toofz.TestsShared.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.TestsShared)
-
-Utility library for test projects.
-
-#### [Image Manager](https://github.com/leonard-thieu/toofz-image-manager)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/7o5ymk33junl322j/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-imagemanager/branch/master)
-
-Prepares and uploads image data from **Crypt of the NecroDancer** for use on [toofz](https://github.com/leonard-thieu/crypt.toofz.com).
-
-#### [Data Loader](https://github.com/leonard-thieu/toofz-data-loader)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/gpnh3cbvi2224wyh/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-loaddata/branch/master)
-
-Parses and loads **Crypt of the NecroDancer** item and enemy data into a database.
