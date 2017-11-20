@@ -85,14 +85,6 @@ Provides a context for working with types from [NecroDancer Core](https://github
 
 ### Utility and tools
 
-#### [SteamKit2](https://github.com/leonard-thieu/SteamKit)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/rvbwhn15yiooeyi3/branch/master2?svg=true)](https://ci.appveyor.com/project/leonard-thieu/steamkit/branch/master2)
-[![MyGet](https://img.shields.io/myget/toofz/v/toofz.SteamKit2.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.SteamKit2)
-
-SteamKit2 is a .NET library designed to interoperate with Valve's [Steam network](http://store.steampowered.com/about). 
-It aims to provide a simple, yet extensible, interface to perform various actions on the network. Forked from https://github.com/SteamRE/SteamKit.
-
 #### [Utilities for Tests](https://github.com/leonard-thieu/toofz-utilities-for-tests)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/5mrvq3c9shjkisgs/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-testsshared/branch/master)
@@ -100,26 +92,6 @@ It aims to provide a simple, yet extensible, interface to perform various action
 [![MyGet](https://img.shields.io/myget/toofz/v/toofz.TestsShared.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.TestsShared)
 
 Utility library for test projects.
-
-#### [Activity Tracing](https://github.com/leonard-thieu/toofz-activity-tracing)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/ndjkfngbcrmyoo5p/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-activity-tracing/branch/master)
-[![codecov](https://codecov.io/gh/leonard-thieu/toofz-activity-tracing/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-activity-tracing)
-[![MyGet](https://img.shields.io/myget/toofz/v/toofz.ActivityTracing.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.ActivityTracing)
-
-#### [Exception Renderer](https://github.com/leonard-thieu/toofz-exception-renderer)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/5t9ippn4gbw1a49n/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-exception-renderer/branch/master)
-[![codecov](https://codecov.io/gh/leonard-thieu/toofz-exception-renderer/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-exception-renderer)
-[![MyGet](https://img.shields.io/myget/toofz/v/toofz.ExceptionRenderer.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.ExceptionRenderer)
-
-#### [Telemetry](https://github.com/leonard-thieu/toofz-telemetry)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/180jggt6xnfkyfht/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-telemetry/branch/master)
-[![codecov](https://codecov.io/gh/leonard-thieu/toofz-telemetry/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-telemetry)
-[![MyGet](https://img.shields.io/myget/toofz/v/toofz.Telemetry.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.Telemetry)
-
-Enhances telemetry data.
 
 #### [Image Manager](https://github.com/leonard-thieu/toofz-image-manager)
 
