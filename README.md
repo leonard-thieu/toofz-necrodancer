@@ -9,7 +9,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/83e8eikypiri2lhi/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-webclient/branch/master)
 [![codecov](https://codecov.io/gh/leonard-thieu/crypt.toofz.com/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/crypt.toofz.com)
 
-Crypt of the NecroDancer information website.
+**Crypt of the NecroDancer** information website.
 
 Source for https://crypt.toofz.com/.
 
@@ -18,7 +18,7 @@ Source for https://crypt.toofz.com/.
 [![Build status](https://ci.appveyor.com/api/projects/status/2en9f6hcf72ujm9y/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-web-api/branch/master) 
 [![codecov](https://codecov.io/gh/leonard-thieu/api.toofz.com/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/api.toofz.com)
 
-REST API that serves data for Crypt of the NecroDancer items, enemies, leaderboards, and player stats.
+REST API that serves data for **Crypt of the NecroDancer** items, enemies, leaderboards, and player stats.
 
 Source for https://api.toofz.com/.
 
@@ -29,7 +29,7 @@ Source for https://api.toofz.com/.
 [![Build status](https://ci.appveyor.com/api/projects/status/77fd6okl8bc2ulkb/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/leaderboards-service/branch/master)
 [![codecov](https://codecov.io/gh/leonard-thieu/leaderboards-service/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/leaderboards-service)
 
-Backend service that handles updating Crypt of the NecroDancer leaderboards for toofz API.
+Backend service that handles updating **Crypt of the NecroDancer** leaderboards for **toofz API**.
 
 #### [Players Service](https://github.com/leonard-thieu/players-service)
 
