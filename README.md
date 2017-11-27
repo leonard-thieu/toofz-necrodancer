@@ -36,14 +36,14 @@ Backend service that handles updating **Crypt of the NecroDancer** leaderboards 
 [![Build status](https://ci.appveyor.com/api/projects/status/3udoy27b6tetostp/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/players-service/branch/master)
 [![codecov](https://codecov.io/gh/leonard-thieu/players-service/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/players-service)
 
-Service that updates player data.
+Backend service that handles updating **Crypt of the NecroDancer** players for **toofz API**.
 
 #### [Replays Service](https://github.com/leonard-thieu/replays-service)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/xeoko709p63qf3jb/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/replays-service/branch/master)
 [![codecov](https://codecov.io/gh/leonard-thieu/replays-service/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/replays-service)
 
-Service that updates replay data.
+Backend service that handles updating **Crypt of the NecroDancer** replays for **toofz API**.
 
 #### [Services Core](https://github.com/leonard-thieu/toofz-services-core)
 
