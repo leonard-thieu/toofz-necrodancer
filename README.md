@@ -9,9 +9,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/83e8eikypiri2lhi/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-webclient/branch/master)
 [![codecov](https://codecov.io/gh/leonard-thieu/crypt.toofz.com/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/crypt.toofz.com)
 
-**Crypt of the NecroDancer** information website.
-
-Source for https://crypt.toofz.com/.
+AngularJS-based Single-Page Application (SPA) written in TypeScript featuring information on  **Crypt of the NecroDancer** items and enemies, fast and easy to navigate leaderboards, and player profiles which showcase a player's personal bests.
 
 #### [toofz API](https://github.com/leonard-thieu/api.toofz.com)
 
@@ -19,8 +17,6 @@ Source for https://crypt.toofz.com/.
 [![codecov](https://codecov.io/gh/leonard-thieu/api.toofz.com/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/api.toofz.com)
 
 REST API that serves data for **Crypt of the NecroDancer** items, enemies, leaderboards, and player stats.
-
-Source for https://api.toofz.com/.
 
 ### Services
 
