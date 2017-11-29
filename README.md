@@ -73,7 +73,7 @@ Common code used by **toofz Services**.
 [![codecov](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core-data/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core-data)
 [![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Leaderboards.Data.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Leaderboards.Data)
 
-Data access layer (DAL) for **toofz Leaderboards Core**.
+Data access layer for **toofz Leaderboards Core**.
 
 #### *Crypt of the NecroDancer*
 
@@ -91,4 +91,4 @@ Data access layer (DAL) for **toofz Leaderboards Core**.
 [![codecov](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-core-data/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-core-data)
 [![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Data.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Data)
 
-Data access layer (DAL) for **toofz NecroDancer Core**.
+Data access layer for **toofz NecroDancer Core**.
