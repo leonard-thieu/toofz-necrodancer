@@ -69,7 +69,7 @@ Common code used by **toofz Services**.
 [![codecov](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core-data/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core-data)
 [![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Leaderboards.Data.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Leaderboards.Data)
 
-Data access layer for **toofz Leaderboards Core**.
+Data access layer for leaderboards, players, and replays.
 
 #### *Crypt of the NecroDancer*
 
