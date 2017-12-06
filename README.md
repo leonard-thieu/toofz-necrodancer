@@ -20,21 +20,21 @@ REST API that serves data for **Crypt of the NecroDancer** items, enemies, leade
 
 ### Services
 
-#### [Leaderboards Service](https://github.com/leonard-thieu/leaderboards-service)
+#### [toofz Leaderboards Service](https://github.com/leonard-thieu/leaderboards-service)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/77fd6okl8bc2ulkb/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/leaderboards-service/branch/master)
 [![codecov](https://codecov.io/gh/leonard-thieu/leaderboards-service/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/leaderboards-service)
 
 Backend service that handles updating **Crypt of the NecroDancer** leaderboards for **toofz API**.
 
-#### [Players Service](https://github.com/leonard-thieu/players-service)
+#### [toofz Players Service](https://github.com/leonard-thieu/players-service)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/3udoy27b6tetostp/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/players-service/branch/master)
 [![codecov](https://codecov.io/gh/leonard-thieu/players-service/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/players-service)
 
 Backend service that handles updating **Crypt of the NecroDancer** players for **toofz API**.
 
-#### [Replays Service](https://github.com/leonard-thieu/replays-service)
+#### [toofz Replays Service](https://github.com/leonard-thieu/replays-service)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/xeoko709p63qf3jb/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/replays-service/branch/master)
 [![codecov](https://codecov.io/gh/leonard-thieu/replays-service/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/replays-service)
@@ -43,37 +43,7 @@ Backend service that handles updating **Crypt of the NecroDancer** replays for *
 
 ### Libraries
 
-#### *Services*
-
-#### [Services Core](https://github.com/leonard-thieu/toofz-services-core)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/ra5o1lcdc1hh3e29?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards-services-common)
-[![codecov](https://codecov.io/gh/leonard-thieu/toofz-services-core/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-services-core)
-[![MyGet](https://img.shields.io/myget/toofz/v/toofz.Services.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.Services)
-
-Common code used by **toofz Services**.
-
-#### *Leaderboards*
-
-#### [Leaderboards Core](https://github.com/leonard-thieu/toofz-leaderboards-core)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/fhfu870220jgfm3l/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards/branch/master)
-[![codecov](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core)
-[![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Leaderboards.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Leaderboards)
-
-.NET library designed for retrieving leaderboards, players, and user-generated content from **Steam**.
-
-#### [Leaderboards Core (Data)](https://github.com/leonard-thieu/toofz-leaderboards-core-data)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/belqgh64mubwul1u/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards-entityframework/branch/master)
-[![codecov](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core-data/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-leaderboards-core-data)
-[![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Leaderboards.Data.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Leaderboards.Data)
-
-Data access layer for leaderboards, players, and replays.
-
-#### *Crypt of the NecroDancer*
-
-#### [NecroDancer Core](https://github.com/leonard-thieu/toofz-necrodancer-core)
+#### [toofz NecroDancer Core](https://github.com/leonard-thieu/toofz-necrodancer-core)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/de1vj801al1krlfa/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-core/branch/master)
 [![codecov](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-core/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-core)
@@ -81,10 +51,26 @@ Data access layer for leaderboards, players, and replays.
 
 .NET library designed for parsing and editing **Crypt of the NecroDancer** files.
 
-#### [NecroDancer Core (Data)](https://github.com/leonard-thieu/toofz-necrodancer-core-data)
+#### [toofz Steam](https://github.com/leonard-thieu/toofz-steam)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/fhfu870220jgfm3l/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards/branch/master)
+[![codecov](https://codecov.io/gh/leonard-thieu/toofz-steam/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-steam)
+[![MyGet](https://img.shields.io/myget/toofz/v/toofz.Steam.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.Steam)
+
+.NET library designed for retrieving leaderboards, players, and user-generated content from **Steam**.
+
+#### [toofz Data](https://github.com/leonard-thieu/toofz-data)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/cowbksjnikl2928m/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-entityframework/branch/master)
-[![codecov](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-core-data/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-necrodancer-core-data)
-[![MyGet](https://img.shields.io/myget/toofz/v/toofz.NecroDancer.Data.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.NecroDancer.Data)
+[![codecov](https://codecov.io/gh/leonard-thieu/toofz-data/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-data)
+[![MyGet](https://img.shields.io/myget/toofz/v/toofz.Data.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.Data)
 
-Data access layer for **toofz NecroDancer Core**.
+Data access layer for **toofz**.
+
+#### [toofz Services Core](https://github.com/leonard-thieu/toofz-services-core)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/ra5o1lcdc1hh3e29?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-necrodancer-leaderboards-services-common)
+[![codecov](https://codecov.io/gh/leonard-thieu/toofz-services-core/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-services-core)
+[![MyGet](https://img.shields.io/myget/toofz/v/toofz.Services.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.Services)
+
+Common code used by **toofz Services**.
