@@ -27,6 +27,13 @@ REST API that serves data for **Crypt of the NecroDancer** items, enemies, leade
 
 Backend service that handles updating **Crypt of the NecroDancer** leaderboards for **toofz API**.
 
+#### [toofz Daily Leaderboards Service](https://github.com/leonard-thieu/daily-leaderboards-service)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/s3rywctxr63pwc26/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/daily-leaderboards-service/branch/master)
+[![codecov](https://codecov.io/gh/leonard-thieu/daily-leaderboards-service/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/daily-leaderboards-service)
+
+Backend service that handles updating **Crypt of the NecroDancer** leaderboards for **toofz API**.
+
 #### [toofz Players Service](https://github.com/leonard-thieu/players-service)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/3udoy27b6tetostp/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/players-service/branch/master)
