@@ -85,6 +85,7 @@ Common code used by **toofz Services**.
 #### [toofz Build](https://github.com/leonard-thieu/toofz-build)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/1ykql6v9dm8l9jfl/branch/master?svg=true)](https://ci.appveyor.com/project/leonard-thieu/toofz-build/branch/master)
+[![codecov](https://codecov.io/gh/leonard-thieu/toofz-build/branch/master/graph/badge.svg)](https://codecov.io/gh/leonard-thieu/toofz-build)
 [![MyGet](https://img.shields.io/myget/toofz/v/toofz.Build.svg)](https://www.myget.org/feed/toofz/package/nuget/toofz.Build)
 
 Supports building toofz projects.
